@@ -1510,7 +1510,7 @@ details.paste summary .sum-l{margin-right:auto}
 
 /*PURE-START*/
 const HANGUL = /[ᄀ-ᇿ㄰-㆏가-힯]/;
-const MAXB = 20, MINB = 8;
+const MAXB = 20;
 const PH_WORD = /^(?:sb|sth|sw|~|one's|oneself|someone|something|somebody|someone's|somewhere)$/i;
 const rnd = n => Math.floor(Math.random() * n);
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -1575,22 +1575,15 @@ function prepareSet(raw) {
   });
   return { id: raw.id, title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), custom: !!raw.custom, items, sections };
 }
-/* 지문별로 묶고, 20개 넘으면 고르게 나누고, 너무 작은 묶음은 이웃과 합침 */
+/* 지문 경계와 상관없이 세트 순서대로 20개 이하로 고르게 나눔 (80개 → 20×4, 87개 → 18·18·17·17·17) */
 function makeBatches(set, pool) {
-  const inPool = new Set(pool), out = [];
-  set.sections.forEach(sec => {
-    const ids = sec.ids.filter(id => inPool.has(id));
-    if (!ids.length) return;
-    const n = Math.ceil(ids.length / MAXB), size = Math.ceil(ids.length / n);
-    for (let i = 0; i < ids.length; i += size) out.push(ids.slice(i, i + size));
-  });
-  const merged = [];
-  out.forEach(b => {
-    const last = merged[merged.length - 1];
-    if (last && (last.length < MINB || b.length < MINB) && last.length + b.length <= MAXB) merged[merged.length - 1] = last.concat(b);
-    else merged.push(b);
-  });
-  return merged;
+  const inPool = new Set(pool);
+  const ids = set.sections.flatMap(sec => sec.ids).filter(id => inPool.has(id));
+  if (!ids.length) return [];
+  const n = Math.ceil(ids.length / MAXB), base = Math.floor(ids.length / n), extra = ids.length % n;
+  const out = [];
+  for (let k = 0, i = 0; k < n; k++) { const sz = base + (k < extra ? 1 : 0); out.push(ids.slice(i, i + sz)); i += sz; }
+  return out;
 }
 function splitLoose(s) {
   const i = s.search(HANGUL);
