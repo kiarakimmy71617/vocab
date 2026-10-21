@@ -122,8 +122,9 @@ details.paste summary .sum-l{margin-right:auto}
 .bb.dot{background:radial-gradient(circle,var(--omr) 0 2.4px,transparent 2.9px)}
 .bb.full{background:var(--ink);border-color:var(--ink)}
 .track-n{font-size:13px;color:var(--muted)}
-.meter{align-self:center;height:10px;border:1.5px solid var(--omr);border-radius:999px;overflow:hidden;background:var(--card)}
+.meter{display:flex;align-self:center;height:10px;border:1.5px solid var(--omr);border-radius:999px;overflow:hidden;background:var(--card)}
 .meter i{display:block;height:100%;background:var(--ink);transition:width .25s ease}
+.meter b{display:block;height:100%;background:var(--omr-line);transition:width .25s ease}
 .banner{font-size:13px;line-height:1.45;padding:7px 10px;background:var(--omr-wash);border-radius:2px}
 .card{position:relative;flex:1;display:flex;flex-direction:column;min-height:300px;padding:14px 16px 18px;background:var(--card);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
 .card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
@@ -218,9 +219,9 @@ details.paste summary .sum-l{margin-right:auto}
 <script id="sets-data" type="application/json">
 [
  {
-  "id": "haesong1-2026-voc2-1-80",
+  "id": "haesong1-2026-voc2-1-100",
   "group": "어휘평가 2차 (수행평가) · 291개",
-  "title": "어휘평가 · 1~80번",
+  "title": "어휘평가 · 1~100번",
   "sections": [
    {
     "name": "공통영어2 어휘평가 2차",
@@ -624,20 +625,7 @@ details.paste summary .sum-l{margin-right:auto}
       "continuity",
       "연속성",
       ""
-     ]
-    ]
-   }
-  ],
-  "note": "공통영어2 어휘평가 2차"
- },
- {
-  "id": "haesong1-2026-voc2-81-160",
-  "group": "어휘평가 2차 (수행평가) · 291개",
-  "title": "어휘평가 · 81~160번",
-  "sections": [
-   {
-    "name": "공통영어2 어휘평가 2차",
-    "items": [
+     ],
      [
       "primitive",
       "원시적인",
@@ -737,7 +725,21 @@ details.paste summary .sum-l{margin-right:auto}
       "ensure",
       "보장하다",
       ""
-     ],
+     ]
+    ]
+   }
+  ],
+  "batch": 50,
+  "note": "공통영어2 어휘평가 2차"
+ },
+ {
+  "id": "haesong1-2026-voc2-101-200",
+  "group": "어휘평가 2차 (수행평가) · 291개",
+  "title": "어휘평가 · 101~200번",
+  "sections": [
+   {
+    "name": "공통영어2 어휘평가 2차",
+    "items": [
      [
       "surplus",
       "흑자",
@@ -1037,20 +1039,7 @@ details.paste summary .sum-l{margin-right:auto}
       "ownership",
       "소유권",
       ""
-     ]
-    ]
-   }
-  ],
-  "note": "공통영어2 어휘평가 2차"
- },
- {
-  "id": "haesong1-2026-voc2-161-240",
-  "group": "어휘평가 2차 (수행평가) · 291개",
-  "title": "어휘평가 · 161~240번",
-  "sections": [
-   {
-    "name": "공통영어2 어휘평가 2차",
-    "items": [
+     ],
      [
       "legally",
       "법적으로",
@@ -1250,7 +1239,21 @@ details.paste summary .sum-l{margin-right:auto}
       "genetic",
       "유전적인",
       ""
-     ],
+     ]
+    ]
+   }
+  ],
+  "batch": 50,
+  "note": "공통영어2 어휘평가 2차"
+ },
+ {
+  "id": "haesong1-2026-voc2-201-291",
+  "group": "어휘평가 2차 (수행평가) · 291개",
+  "title": "어휘평가 · 201~291번",
+  "sections": [
+   {
+    "name": "공통영어2 어휘평가 2차",
+    "items": [
      [
       "expose",
       "드러내다",
@@ -1450,20 +1453,7 @@ details.paste summary .sum-l{margin-right:auto}
       "suitable",
       "적합한",
       ""
-     ]
-    ]
-   }
-  ],
-  "note": "공통영어2 어휘평가 2차"
- },
- {
-  "id": "haesong1-2026-voc2-241-291",
-  "group": "어휘평가 2차 (수행평가) · 291개",
-  "title": "어휘평가 · 241~291번",
-  "sections": [
-   {
-    "name": "공통영어2 어휘평가 2차",
-    "items": [
+     ],
      [
       "prohibit",
       "금지하다",
@@ -1722,6 +1712,7 @@ details.paste summary .sum-l{margin-right:auto}
     ]
    }
   ],
+  "batch": 50,
   "note": "공통영어2 어휘평가 2차"
  },
  {
@@ -3085,14 +3076,15 @@ function prepareSet(raw) {
     (sec.items || []).forEach(row => { const it = prepItem(row); if (it) { ids.push(items.length); items.push(it); } });
     if (ids.length) sections.push({ name: String(sec.name || ''), ids });
   });
-  return { id: raw.id, title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), custom: !!raw.custom, items, sections };
+  return { id: raw.id, title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), custom: !!raw.custom, batch: Number(raw.batch) || 0, items, sections };
 }
-/* 지문 경계와 상관없이 세트 순서대로 20개 이하로 고르게 나눔 (80개 → 20×4, 87개 → 18·18·17·17·17) */
+/* 지문 경계와 상관없이 세트 순서대로 고르게 나눔. 묶음 크기는 세트에 batch가 있으면 그 값, 없으면 20
+   (80개 → 20×4, 87개 → 18·18·17·17·17, batch 50이면 100개 → 50×2) */
 function makeBatches(set, pool) {
-  const inPool = new Set(pool);
+  const inPool = new Set(pool), max = set.batch > 0 ? set.batch : MAXB;
   const ids = set.sections.flatMap(sec => sec.ids).filter(id => inPool.has(id));
   if (!ids.length) return [];
-  const n = Math.ceil(ids.length / MAXB), base = Math.floor(ids.length / n), extra = ids.length % n;
+  const n = Math.ceil(ids.length / max), base = Math.floor(ids.length / n), extra = ids.length % n;
   const out = [];
   for (let k = 0, i = 0; k < n; k++) { const sz = base + (k < extra ? 1 : 0); out.push(ids.slice(i, i + sz)); i += sz; }
   return out;
@@ -3586,7 +3578,12 @@ function renderStudy() {
   showCard();
   startClock();
 }
+/* 묶음이 25개 이하면 OMR 동그라미, 그보다 크면 막대(외운 것 진하게 + 본 것 연하게) */
 function trackHTML(n, full, dot) {
+  if (n > 25) {
+    const w = x => (x / n * 100).toFixed(1) + '%';
+    return `<div class="meter" aria-hidden="true"><i style="width:${w(full)}"></i><b style="width:${w(dot)}"></b></div>`;
+  }
   let b = '';
   for (let i = 0; i < n; i++) b += `<span class="bb${i < full ? ' full' : i < full + dot ? ' dot' : ''}"></span>`;
   return `<div class="track-grid" aria-hidden="true"><div class="ticks">${'<i></i>'.repeat(n)}</div><div class="bubbles">${b}</div></div>`;
