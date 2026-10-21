@@ -2269,7 +2269,8 @@ function renderResult() {
     <div><dt>${r.mode === 'quick' ? '한 번에 맞힘' : '바로 나온 단어'}</dt><dd>${r.known}</dd></div>
     <div><dt>끈질긴 단어</dt><dd>${hardItems.length}</dd></div>
   </dl>
-  ${FORM ? `
+  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.</p>` : ''}
+  ${FORM && r.mode === 'full' ? `
   <section class="submit" aria-labelledby="sub-h">
     <h3 id="sub-h">선생님께 제출</h3>
     <label for="sub-name">이름</label>
@@ -2291,7 +2292,7 @@ function renderResult() {
     <button class="btn ${hardItems.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
   </div>
 </div>`;
-  if (FORM) bindSubmit(r, kind, hardItems);
+  if (FORM && r.mode === 'full') bindSubmit(r, kind, hardItems);
   const hl = $('.hard ul');
   if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) TTS.say(sayText(hardItems[+b.dataset.say])); });
   const h = $('#r-hard');
