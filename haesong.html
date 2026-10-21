@@ -136,6 +136,11 @@ details.paste summary .sum-l{margin-right:auto}
 .tbar i{display:block;height:100%;background:var(--omr);transform-origin:left center}
 .tbar.run i{animation:drain 5s linear forwards}
 @keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.say{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;min-width:36px;padding:0 12px;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;touch-action:manipulation}
+.say:active{background:var(--omr-wash)}
+.say-row{display:flex;justify-content:center}
+.fb-say{display:flex;align-items:center;gap:10px}
+.hard li .say{padding:0;min-height:32px;min-width:32px;justify-self:end}
 .ek-hint{font-size:13px;color:var(--muted);text-align:center}
 .ek-hint.late{color:var(--omr);font-weight:500}
 .reveal{display:grid;gap:7px;padding-top:14px;border-top:1px dashed var(--omr-line);text-align:center}
@@ -193,6 +198,7 @@ details.paste summary .sum-l{margin-right:auto}
 .hard h3{margin:0;font-size:15px}
 .hard ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
 .hard li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.hard ul.with-say li{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) auto;align-items:center}
 .hard .en{font-family:var(--font-word);font-weight:700;font-size:16px;overflow-wrap:anywhere}
 
 @media (prefers-reduced-motion: reduce){
@@ -1650,6 +1656,43 @@ const K = { sess: id => 'kd1:sess:' + id, rec: id => 'kd1:rec:' + id, custom: 'k
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 function fmt(ms) { const t = Math.max(0, Math.floor(ms / 1000)); const m = Math.floor(t / 60), s = t % 60; return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
 
+/* 발음: 폰에 들어 있는 영어 음성(TTS)으로 읽어 줌. 자리표시(A, V, ~, 한글)는 빼고 읽음 */
+const TTS = (() => {
+  const ok = 'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance === 'function';
+  let voice = null;
+  const pick = () => {
+    try {
+      const vs = window.speechSynthesis.getVoices() || [];
+      voice = vs.find(v => /^en[-_]US/i.test(v.lang) && /samantha|google|natural|aria|jenny/i.test(v.name)) ||
+        vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+    } catch (e) { voice = null; }
+  };
+  if (ok) { pick(); try { window.speechSynthesis.addEventListener('voiceschanged', pick); } catch (e) {} }
+  return {
+    ok,
+    say(text) {
+      if (!ok || !text) return;
+      try {
+        window.speechSynthesis.cancel();
+        const u = new window.SpeechSynthesisUtterance(text);
+        u.lang = voice ? voice.lang : 'en-US';
+        if (voice) u.voice = voice;
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+  };
+})();
+/* 적힌 그대로 읽되, a(n)→a, (to)→to, ~·…→쉼, 한글·+는 뺌 (A·B·V는 그대로 읽음) */
+const sayText = it => String(it.en)
+  .replace(/(\S)\([^)]*\)/g, '$1').replace(/\([^)]*\)(\S)/g, '$1').replace(/[()]/g, '')
+  .replace(/\bsb\b/gi, 'somebody').replace(/\bsth\b/gi, 'something')
+  .replace(/…|\.{3}|~/g, ',').replace(/\+/g, ' ')
+  .split(/\s+/).filter(w => w && !HANGUL.test(w)).join(' ')
+  .replace(/\s*,[\s,]*/g, ', ').replace(/^[,\s]+|[,\s]+$/g, '');
+const SAY_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+const sayBtn = (id, label) => TTS.ok ? `<button class="say" type="button" data-say="${id}" aria-label="발음 듣기">${SAY_ICON}${label ? `<span>${label}</span>` : ''}</button>` : '';
+
 /* 기기별 저장 (없어도 동작) */
 const mem = {};
 const store = {
@@ -1968,6 +2011,7 @@ const STUDY = `
     <div class="card-top"><span class="dir" id="c-dir"></span><span class="left mono" id="c-left"></span></div>
     <div class="zone" id="ek-zone">
       <div class="word" id="ek-word" lang="en"></div>
+      <div class="say-row" id="ek-say"></div>
       <div class="tbar" id="ek-tbar" aria-hidden="true"><i></i></div>
       <div class="ek-hint" id="ek-hint"></div>
       <div class="reveal" id="ek-reveal" hidden>
@@ -2015,6 +2059,14 @@ function renderStudy() {
   ['ke-go', 'ke-hint', 'ke-dunno'].forEach(k => R[k].addEventListener('pointerdown', e => { if (document.activeElement === R['ke-input']) e.preventDefault(); }));
   R['ke-hint'].onclick = useHint;
   R['ke-dunno'].onclick = dunno;
+  /* 발음 버튼: 카드를 눌러 뜻이 열리지 않게 막고, 한→영 입력 중엔 키보드가 닫히지 않게 함 */
+  R['st-card'].addEventListener('pointerdown', e => { if (e.target.closest('[data-say]') && document.activeElement === R['ke-input']) e.preventDefault(); });
+  R['st-card'].addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (!b || !C) return;
+    e.stopPropagation();
+    TTS.say(sayText(SET.items[C.id]));
+  }, true);
   window.scrollTo(0, 0);
   showCard();
   startClock();
@@ -2068,6 +2120,7 @@ function showCard() {
     if (document.activeElement === R['ke-input']) R['ke-input'].blur();
     R['ke-zone'].hidden = true; R['ek-zone'].hidden = false; R['ek-actions'].hidden = false;
     R['ek-word'].textContent = it.en;
+    R['ek-say'].innerHTML = sayBtn(card.id, '발음');
     R['ek-reveal'].hidden = true; R['ek-show'].hidden = false; R['ek-grade'].hidden = true;
     R['ek-hint'].textContent = '뜻을 소리 내서 말한 다음 뜻 보기';
     R['ek-hint'].classList.remove('late');
@@ -2148,14 +2201,14 @@ function onKESubmit(e) {
   C.state = 'fb'; C.pending = 'wrong';
   stamp('x'); fbDone('다음');
   const d = diffParts(typed, it.vars[0]);
-  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>내 답</dt><dd class="diff" lang="en">${d.a}</dd></div><div class="fb-row"><dt>정답</dt><dd class="diff" lang="en">${d.b}</dd></div></dl><p class="note">빨간 글자만 확인하고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>내 답</dt><dd class="diff" lang="en">${d.a}</dd></div><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${d.b}</span>${sayBtn(C.id, '')}</dd></div></dl><p class="note">빨간 글자만 확인하고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
 }
 function dunno() {
   if (!C || C.d !== 'ke' || C.state !== 'ask') return;
   const it = SET.items[C.id];
   C.state = 'fb'; C.pending = 'dunno';
   fbDone('다음');
-  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>정답</dt><dd class="diff" lang="en">${esc(it.vars[0])}</dd></div></dl><p class="note">철자를 눈에 담고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${esc(it.vars[0])}</span>${sayBtn(C.id, '')}</dd></div></dl><p class="note">철자를 눈에 담고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
 }
 function slotsHTML(it) {
   let first = true;
@@ -2237,7 +2290,7 @@ function renderResult() {
   <section class="hard" aria-labelledby="hard-h">
     <h3 id="hard-h">끈질긴 단어</h3>
     <p class="note">여러 번 틀렸거나 마지막 점검에서 걸린 단어야.</p>
-    <ul>${hardItems.map(it => `<li><span class="en" lang="en">${esc(it.en)}</span><span>${esc(it.core)}</span></li>`).join('')}</ul>
+    <ul class="${TTS.ok ? 'with-say' : ''}">${hardItems.map((it, i) => `<li><span class="en" lang="en">${esc(it.en)}</span><span>${esc(it.core)}</span>${sayBtn(i, '')}</li>`).join('')}</ul>
   </section>` : `<p class="note">끈질긴 단어 없이 끝났어.</p>`}
   <p class="note">시험 전날 ‘빠른 점검’을 한 번 더 하면 오래 가.</p>
   <div class="actions">
@@ -2246,6 +2299,8 @@ function renderResult() {
   </div>
 </div>`;
   if (FORM) bindSubmit(r, kind, hardItems);
+  const hl = $('.hard ul');
+  if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) TTS.say(sayText(hardItems[+b.dataset.say])); });
   const h = $('#r-hard');
   if (h) h.onclick = () => begin(r.setId, 'hard');
   $('#r-home').onclick = () => renderHome();
