@@ -1,0 +1,165 @@
+#!/usr/bin/env python3
+"""꺼내는 단어장 — 학교별 학생 페이지 빌드 도구
+
+  python3 _build/build.py import <단어장.xlsx> <데이터이름>   엑셀 → _build/data/<데이터이름>.json
+  python3 _build/build.py <학교>                              _build/schools/<학교>.json → 저장소 맨 위 <page>.html
+
+세트 ID(id_prefix-첫번호-끝번호)는 학생 진행 기록의 열쇠다. 학생에게 링크가 나간 뒤에는
+id_prefix나 set_size를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
+"""
+import sys, os, re, json, glob
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+TEMPLATE = os.path.join(HERE, 'template.html')
+DEFAULT_BATCH = 20  # template.html의 MAXB와 같은 값. 그룹 batch가 이 값이면 페이지 데이터에 따로 적지 않음
+
+# 모든 학교가 함께 쓰는 제출 폼(구글폼 '단어 숙제 제출'). 학교 칸으로 학교를 구분한다.
+FORM = {
+    'url': 'https://docs.google.com/forms/d/e/1FAIpQLSfsvGXKVGASob6ylSlyCFKyEahrzGSqFNtwlaYEvA1AHOanww/viewform',
+    'name': 'entry.2087311015', 'school': 'entry.331616395', 'set': 'entry.1245213658',
+    'time': 'entry.1880995760', 'hard': 'entry.770504430',
+}
+
+HEADERS = {  # 머리글 이름 → 칸 (엑셀마다 열 순서가 달라도 머리글로 찾음)
+    'n': {'번호', 'no', 'no.', '#'},
+    'en': {'영어', 'english', 'word'},
+    'ko': {'단어 뜻', '뜻', '외울 뜻', 'meaning'},
+    'note': {'참고', '본문 풀이', '풀이', '비고'},
+    'sec': {'지문', '출처', '구분', '지문 구분', 'passage'},
+}
+HANGUL = re.compile(r'[가-힯]')
+
+
+def cell(v):
+    return '' if v is None else str(v).strip()
+
+
+# ---------- 엑셀 → 데이터 ----------
+def import_xlsx(path, name):
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=True)
+    ws = wb['단어장'] if '단어장' in wb.sheetnames else wb.worksheets[0]
+    rows = [list(r) for r in ws.iter_rows(values_only=True)]
+    hi = next((i for i, r in enumerate(rows) if any(cell(c) == '영어' for c in r)), None)
+    if hi is None:
+        sys.exit('머리글 행(‘영어’ 칸)을 못 찾았어. 엑셀 머리글을 확인해 줘.')
+    col = {}
+    for j, c in enumerate(rows[hi]):
+        h = cell(c).lower()
+        for k, names in HEADERS.items():
+            if h in names and k not in col: col[k] = j
+    if 'en' not in col or 'ko' not in col:
+        sys.exit(f'영어·뜻 칸을 못 찾았어. 머리글: {[cell(c) for c in rows[hi]]}')
+    pre = [cell(c) for r in rows[:hi] for c in r if cell(c)]
+    title = next((t for t in pre if '어학원' not in t), pre[0] if pre else '')  # 학원 이름 줄 다음의 제목 줄
+
+    items, sec, run = [], None, 0
+    for r in rows[hi + 1:]:
+        get = lambda k: cell(r[col[k]]) if k in col and col[k] < len(r) else ''
+        en, ko = get('en'), get('ko')
+        filled = [cell(c) for c in r if cell(c)]
+        if not en and not ko:
+            if len(filled) == 1 and not filled[0].startswith('▶'):
+                sec = filled[0]  # 지문 구분 행 (예: [교재 | Lesson 3 | 제목])
+            continue
+        if not en or not ko:
+            print(f'  ! 영어나 뜻이 비어서 뺀 줄: {filled}')
+            continue
+        run += 1
+        n = get('n')
+        items.append({'n': int(float(n)) if re.fullmatch(r'\d+(\.0)?', n) else run, 'en': en, 'ko': ko,
+                      'note': get('note'), 'sec': get('sec') or sec})
+
+    nums = [it['n'] for it in items]
+    gaps = [k for k in range(nums[0], nums[-1] + 1) if k not in set(nums)] if nums else []
+    dup_n = sorted({k for k in nums if nums.count(k) > 1})
+    low = [it['en'].lower() for it in items]
+    dup_en = sorted({w for w in low if low.count(w) > 1})
+    by_ko = {}
+    for it in items: by_ko.setdefault(it['ko'], []).append(it['en'])
+    twins = {k: v for k, v in by_ko.items() if len(v) > 1}
+    long_en = [it['en'] for it in items if len([w for w in it['en'].split() if not re.fullmatch(r'[A-Z~…+]', w) and not HANGUL.search(w)]) > 7]
+
+    out = os.path.join(HERE, 'data', name + '.json')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump({'source': os.path.basename(path), 'title': title, 'items': items}, f, ensure_ascii=False, indent=1)
+    secs = []
+    for it in items:
+        if not secs or secs[-1][0] != it['sec']: secs.append([it['sec'], 0])
+        secs[-1][1] += 1
+    print(f'{out}: 단어 {len(items)}개 (번호 {nums[0] if nums else "-"}~{nums[-1] if nums else "-"})')
+    print(f'  제목: {title}')
+    print('  지문: ' + (' / '.join(f'{(s or "구분 없음")[:40]} {c}' for s, c in secs) or '구분 없음'))
+    if gaps or dup_n: print(f'  ! 번호 빠짐 {gaps[:10]} / 중복 {dup_n[:10]}')
+    if dup_en: print(f'  ! 같은 표제어 {dup_en[:10]}')
+    if twins: print(f'  · 뜻이 똑같은 단어(한→영에서 둘 다 정답 처리): {list(twins.values())[:10]}')
+    if long_en: print(f'  · 8단어 이상이라 한→영 철자 문제에서 빠지는 표제어: {long_en[:10]}')
+
+
+# ---------- 데이터 → 학교 페이지 ----------
+def sec_name(raw, cont, default):
+    if not raw: return default or '단어'
+    parts = [p.strip() for p in raw.strip('[]').split('|')]
+    if len(parts) < 3: return raw.strip('[]')
+    lesson, name = parts[1], parts[2]
+    if name.startswith('대화문'): return f'{lesson} 대화문'
+    return f'{lesson} 본문 (이어서)' if cont else f'{lesson} 본문 · {name}'
+
+
+def build(school):
+    cfg_path = os.path.join(HERE, 'schools', school + '.json')
+    cfg = json.load(open(cfg_path, encoding='utf-8'))
+    sets = []
+    for g in [g for g in cfg['groups'] if g.get('active', True)]:
+        items = json.load(open(os.path.join(HERE, 'data', g['data'] + '.json'), encoding='utf-8'))['items']
+        size = int(g['set_size'])
+        bounds = [(i, min(i + size, len(items))) for i in range(0, len(items), size)]
+        if len(bounds) > 1 and bounds[-1][1] - bounds[-1][0] < size // 2:  # 자투리(세트 절반 미만)는 앞 세트에 합침
+            bounds[-2] = (bounds[-2][0], bounds[-1][1]); bounds.pop()
+        seen = set()
+        for lo, hi in bounds:
+            chunk = items[lo:hi]; n0, n1 = chunk[0]['n'], chunk[-1]['n']
+            st = {'id': f"{g['id_prefix']}-{n0}-{n1}", 'group': g['group'], 'title': f"{g['title']} · {n0}~{n1}번", 'sections': []}
+            if int(g.get('batch', DEFAULT_BATCH)) != DEFAULT_BATCH: st['batch'] = int(g['batch'])
+            for it in chunk:
+                if not st['sections'] or st['sections'][-1]['raw'] != it['sec']:
+                    st['sections'].append({'raw': it['sec'], 'name': sec_name(it['sec'], it['sec'] in seen, g.get('note')), 'items': []})
+                st['sections'][-1]['items'].append([it['en'], it['ko'], it['note']])
+            seen.update(s['raw'] for s in st['sections'])
+            st['note'] = g.get('note') or ' + '.join(
+                f"{s['name'].split(' · ')[0].replace(' (이어서)', '')} {len(s['items'])}" for s in st['sections'])
+            for s in st['sections']: s.pop('raw')
+            sets.append(st)
+            print(f"{g['group'][:24]} | {st['title']} | {st['note']} | {hi - lo}개")
+
+    page_cfg = {'paste': False, 'school': cfg['school'], 'fields': cfg['fields'], 'form': FORM}
+    tpl = open(TEMPLATE, encoding='utf-8').read()
+    data = json.dumps(sets, ensure_ascii=False, indent=1)
+    assert '</script' not in data
+    tpl = re.sub(r'(<script id="sets-data" type="application/json">)[\s\S]*?(</script>)',
+                 lambda m: m.group(1) + '\n' + data + '\n' + m.group(2), tpl, count=1)
+    tpl = tpl.replace('<script id="sets-data"', f'<script id="page-config" type="application/json">{json.dumps(page_cfg, ensure_ascii=False)}</script>\n<script id="sets-data"', 1)
+    tpl = tpl.replace('<title>꺼내는 단어장</title>', f"<title>꺼내는 단어장 · {cfg['short']}</title>", 1)
+    tpl = re.sub(r'<meta name="claude:viewport-fit-sides"[^>]*>\n?', '', tpl)
+    tpl = tpl.replace(':root{\n  --paper', ':root{\n  color-scheme:light;\n  --paper', 1)
+    cut = tpl.index('</style>') + len('</style>')
+    head, body = tpl[:cut], tpl[cut:].strip()
+    out = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
+           '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
+           '<meta name="robots" content="noindex,nofollow">\n'
+           '<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n'
+           + head + '\n</head>\n<body>\n' + body + '\n</body>\n</html>\n')
+    path = os.path.join(ROOT, cfg['page'])
+    open(path, 'w', encoding='utf-8').write(out)
+    print(f"→ {cfg['page']} ({len(out.encode()) // 1024} KB) · 학생 링크 https://kiarakimmy71617.github.io/vocab/{cfg['page']}")
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 4 and sys.argv[1] == 'import':
+        import_xlsx(sys.argv[2], sys.argv[3])
+    elif len(sys.argv) == 2:
+        build(sys.argv[1])
+    else:
+        sys.exit(__doc__)
