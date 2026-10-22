@@ -1,0 +1,6451 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>꺼내는 단어장 · 송도고1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: an OMR answer strip — one 480px column. Study screen = top bar, bubble track, a single question card, answer controls in the thumb zone. */
+:root{
+  color-scheme:light;
+  --paper:#FAF5F6;
+  --card:#FFFFFF;
+  --ink:#1B1517;
+  --muted:#6B5F63;
+  --omr:#C93549;
+  --omr-line:#EDC3CA;
+  --omr-wash:#FBEAED;
+  --rule:#E8DDE0;
+  --font-word:"Atkinson Hyperlegible","Helvetica Neue",Arial,sans-serif;
+  --font-ui:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151113;--card:#1F191C;--ink:#F2EBED;--muted:#A99CA1;
+    --omr:#F0697B;--omr-line:#5A3038;--omr-wash:#3A1F26;--rule:#342A2E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151113;--card:#1F191C;--ink:#F2EBED;--muted:#A99CA1;
+  --omr:#F0697B;--omr-line:#5A3038;--omr-wash:#3A1F26;--rule:#342A2E;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-ui);font-size:15px;line-height:1.55;word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit;color:inherit}
+#app{min-height:100%;display:flex;flex-direction:column}
+.wrap{width:100%;max-width:480px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 32px}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--omr);outline-offset:2px}
+b{font-weight:600}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:48px;padding:0 16px;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);color:var(--ink);font-weight:600;font-size:15px;line-height:1.2;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn-primary{background:var(--ink);color:var(--card)}
+.btn-quiet{border-color:var(--rule);font-weight:500}
+.btn-small{min-height:38px;padding:0 12px;font-size:14px}
+.big{min-height:56px;font-size:16px}
+.wide{width:100%}
+.linkish{background:none;border:0;padding:8px 0;color:var(--muted);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--omr-line);cursor:pointer;touch-action:manipulation}
+.linkish:disabled{opacity:.45;text-decoration:none;cursor:default}
+.eyebrow{margin:0;font-size:12px;line-height:1.4;font-weight:600;letter-spacing:.12em;color:var(--omr)}
+
+/* home */
+.home{display:flex;flex-direction:column;gap:22px}
+.masthead{display:grid;gap:10px;padding-bottom:18px;border-bottom:1.5px solid var(--omr)}
+.fields{display:flex;flex-wrap:wrap;gap:6px}
+.field{display:inline-flex;border:1px solid var(--omr);font-size:12px;line-height:1}
+.field b{background:var(--omr);color:var(--card);padding:5px 7px;letter-spacing:.08em}
+.field span{padding:5px 8px;color:var(--ink)}
+h1{margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.lede{margin:0;color:var(--muted)}
+.rules{display:grid;gap:10px;padding:14px;background:var(--card);border:1px solid var(--omr-line);border-radius:2px}
+.rules ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.rules li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.5}
+.num{width:18px;height:23px;margin-top:-1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--omr)}
+.sets{display:grid;gap:12px}
+.sets-h{display:flex;justify-content:space-between;align-items:baseline;color:var(--omr);font-size:12px}
+.group-h{margin:10px 0 -2px;padding-top:12px;border-top:1px solid var(--rule);font-size:15px;font-weight:700;line-height:1.35}
+.sets-h + .group-h{margin-top:0;padding-top:0;border-top:0}
+.set{display:grid;gap:10px;padding:14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.set-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.set-title{min-width:0;font-weight:600;font-size:16px;line-height:1.35}
+.set-count{flex:none;font-size:12.5px;color:var(--muted)}
+.set-note{margin-top:-6px;font-size:13px;color:var(--muted)}
+.set-status{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;padding:1px 9px;border:1px solid var(--omr);border-radius:999px;color:var(--omr);font-size:12.5px}
+.set-actions{display:flex;flex-wrap:wrap;gap:8px}
+.set-actions .btn{flex:1 1 auto}
+.del{justify-self:start;padding:0}
+.confirm{display:grid;gap:8px;padding:10px 12px;background:var(--omr-wash);border-radius:2px;font-size:14px}
+.confirm-btns{display:flex;gap:8px;justify-content:flex-end}
+details.paste{border-top:1px solid var(--rule);padding-top:14px}
+details.paste summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;font-weight:600}
+details.paste summary::-webkit-details-marker{display:none}
+details.paste summary::before{content:"+";font-family:var(--font-mono);color:var(--omr)}
+details.paste[open] summary::before{content:"−"}
+details.paste summary .sum-l{margin-right:auto}
+.sum-r{font-size:12.5px;font-weight:400;color:var(--muted)}
+.paste-body{display:grid;gap:8px;margin-top:12px}
+.paste-body label{font-size:13px;color:var(--muted)}
+.paste-body input,.paste-body textarea{width:100%;border:1px solid var(--rule);background:var(--card);border-radius:4px;padding:10px 12px;font-size:15px}
+.paste-body textarea{font-family:var(--font-mono);font-size:13px;line-height:1.5;resize:vertical;min-height:132px;tab-size:4}
+.paste-status{margin:0;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.paste-status.bad{color:var(--omr)}
+.paste-status.ok{color:var(--ink)}
+.foot{margin:0;font-size:12.5px;line-height:1.65;color:var(--muted)}
+
+/* study */
+.study{flex:1;display:flex;flex-direction:column;gap:10px;padding-block:10px 14px}
+.bar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
+.back{min-height:40px;padding:0 12px;border:1px solid var(--rule);border-radius:6px;background:var(--card);font-size:14px;cursor:pointer;touch-action:manipulation}
+.bar-mid{min-width:0}
+.bar-title{font-weight:600;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-sub{font-size:12px;line-height:1.4;color:var(--omr);font-weight:500}
+.clock{font-size:14px;color:var(--muted)}
+.track{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px;min-height:26px}
+.track-grid{display:grid;gap:3px}
+.ticks,.bubbles{display:flex;gap:4px}
+.ticks i{flex:1 1 0;max-width:12px;height:4px;background:var(--ink)}
+.bubbles .bb{flex:1 1 0;max-width:12px;height:16px;border:1.5px solid var(--omr);border-radius:50%}
+.bb.dot{background:radial-gradient(circle,var(--omr) 0 2.4px,transparent 2.9px)}
+.bb.full{background:var(--ink);border-color:var(--ink)}
+.track-n{font-size:13px;color:var(--muted)}
+.meter{display:flex;align-self:center;height:10px;border:1.5px solid var(--omr);border-radius:999px;overflow:hidden;background:var(--card)}
+.meter i{display:block;height:100%;background:var(--ink);transition:width .25s ease}
+.meter b{display:block;height:100%;background:var(--omr-line);transition:width .25s ease}
+.banner{font-size:13px;line-height:1.45;padding:7px 10px;background:var(--omr-wash);border-radius:2px}
+.card{position:relative;flex:1;display:flex;flex-direction:column;min-height:300px;padding:14px 16px 18px;background:var(--card);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dir{display:inline-flex;border:1px solid var(--omr);font-size:12px;line-height:1}
+.dir b{background:var(--omr);color:var(--card);padding:5px 7px;letter-spacing:.06em}
+.dir span{padding:5px 8px;color:var(--omr)}
+.left{font-size:12.5px;color:var(--muted)}
+.zone{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-top:18px}
+#ke-zone{justify-content:flex-start;padding-top:24px}
+.word{font-family:var(--font-word);font-weight:700;font-size:clamp(32px,10.5vw,50px);line-height:1.12;text-align:center;text-wrap:balance;overflow-wrap:anywhere}
+.tbar{width:min(220px,70%);height:3px;margin:0 auto;background:var(--omr-wash);border-radius:2px;overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--omr);transform-origin:left center}
+.tbar.run i{animation:drain 5s linear forwards}
+@keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.say{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;min-width:36px;padding:0 12px;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;touch-action:manipulation}
+.say:active{background:var(--omr-wash)}
+.say-row{display:flex;justify-content:center}
+.fb-say{display:flex;align-items:center;gap:10px}
+.hard li .say{padding:0;min-height:32px;min-width:32px;justify-self:end}
+.ek-hint{font-size:13px;color:var(--muted);text-align:center}
+.ek-hint.late{color:var(--omr);font-weight:500}
+.reveal{display:grid;gap:7px;padding-top:14px;border-top:1px dashed var(--omr-line);text-align:center}
+.core{font-size:23px;font-weight:700;line-height:1.35;text-wrap:balance}
+.notes{display:grid;gap:3px;font-size:14px;line-height:1.5;color:var(--muted);text-wrap:pretty}
+.notes:empty{display:none}
+.notes p{margin:0}
+.ko-prompt{font-size:26px;font-weight:700;line-height:1.3;text-wrap:balance}
+.slots{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--font-mono);font-size:18px;letter-spacing:.2em;color:var(--muted)}
+.slots .ph{color:var(--omr);letter-spacing:0}
+.answer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}
+#ke-input{width:100%;min-width:0;padding:8px 2px;border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;font-family:var(--font-mono);font-size:22px;outline:none}
+#ke-input:focus{border-bottom-color:var(--omr)}
+.ke-tools{display:flex;flex-wrap:wrap;gap:4px 18px}
+.ke-fb{display:grid;gap:6px;font-size:14px}
+.ke-fb:empty{display:none}
+.fb{display:grid;gap:4px;margin:0}
+.fb-row{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;align-items:baseline}
+.fb-row dt{font-size:12px;color:var(--muted)}
+.fb-row dd{margin:0}
+.diff{font-family:var(--font-mono);font-size:19px;overflow-wrap:anywhere}
+.diff .miss{color:var(--omr);background:var(--omr-wash);font-weight:600;box-shadow:inset 0 -2px 0 var(--omr)}
+.diff .xtra{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--omr)}
+.ok-word{margin:0;font-family:var(--font-word);font-weight:700;font-size:20px}
+.warn{margin:0;color:var(--omr)}
+.note{margin:0;font-size:14px;color:var(--muted)}
+.actions{display:grid;gap:8px}
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.grade .btn{min-height:56px;padding:0 8px}
+.stamp{position:absolute;top:40px;right:14px;width:60px;height:60px;pointer-events:none;opacity:0}
+.stamp.on{opacity:.9;animation:stamp .18s ease-out}
+.stamp.ok{border:4px solid var(--omr);border-radius:50%}
+.stamp.x::before{content:"";position:absolute;left:calc(50% - 2.5px);top:-6px;bottom:-6px;width:5px;border-radius:3px;background:var(--omr);transform:rotate(38deg)}
+@keyframes stamp{from{transform:scale(1.45);opacity:0}to{transform:scale(1);opacity:.9}}
+@media (max-height:700px){
+  .study.ke-mode .track,.study.ke-mode .banner{display:none}
+  .study.ke-mode #ke-zone{padding-top:14px}
+}
+
+/* pause + result */
+.pause,.result{flex:1;display:flex;flex-direction:column;gap:16px}
+.pause{justify-content:center}
+.big-h{margin:0;font-size:28px;line-height:1.25;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0;background:var(--rule);border:1px solid var(--rule)}
+.stats div{background:var(--card);padding:11px 12px;min-width:0}
+.stats dt{font-size:12px;color:var(--muted)}
+.stats dd{margin:2px 0 0;font-family:var(--font-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.submit{display:grid;gap:8px;padding:14px;background:var(--card);border:1.5px solid var(--omr);border-radius:2px}
+.submit h3{margin:0;font-size:15px}
+.submit label{font-size:13px;color:var(--muted)}
+.submit-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.submit input{width:100%;min-width:0;padding:10px 12px;border:1px solid var(--rule);border-radius:4px;background:var(--card);font-size:16px}
+.submit .btn{text-decoration:none}
+.hard{display:grid;gap:8px}
+.hard h3{margin:0;font-size:15px}
+.hard ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.hard li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.hard ul.with-say li{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) auto;align-items:center}
+.hard .en{font-family:var(--font-word);font-weight:700;font-size:16px;overflow-wrap:anywhere}
+
+@media (prefers-reduced-motion: reduce){
+  .stamp.on{animation:none}
+  .tbar{display:none}
+  .meter i{transition:none}
+  .btn:active{transform:none}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script id="page-config" type="application/json">{"paste": false, "school": "송도고 1학년", "fields": [["학교", "송도고 1학년"]], "form": {"url": "https://docs.google.com/forms/d/e/1FAIpQLSfsvGXKVGASob6ylSlyCFKyEahrzGSqFNtwlaYEvA1AHOanww/viewform", "name": "entry.2087311015", "school": "entry.331616395", "set": "entry.1245213658", "time": "entry.1880995760", "hard": "entry.770504430"}}</script>
+<script id="sets-data" type="application/json">
+[
+ {
+  "id": "songdo1-2026-2f-1-80",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 1~80번",
+  "sections": [
+   {
+    "name": "16강 01번",
+    "items": [
+     [
+      "streamlined",
+      "유선형의 (a.)",
+      "공기 저항을 덜 받게 매끈한 모양 / 다른 빈출 뜻: 간소화된, 능률적인"
+     ],
+     [
+      "rotate",
+      "회전하다 (v.)",
+      "본문: as they rotate(축이 돌면서) / rotation (n.) 회전 / 다른 빈출 뜻: 교대로 하다"
+     ],
+     [
+      "gravity",
+      "중력 (n.)",
+      "다른 빈출 뜻: 심각성 — the gravity of the situation(상황의 심각성)"
+     ],
+     [
+      "steadily",
+      "꾸준히 (ad.)",
+      "끊기지 않고 고르게 / steady (a.) 꾸준한, 안정된"
+     ],
+     [
+      "gradually",
+      "서서히, 점차 (ad.)",
+      "gradual (a.) 점진적인 — 단계를 밟아 조금씩"
+     ],
+     [
+      "inertia",
+      "관성 (n.)",
+      "관성: 움직이던 것은 계속 움직이고 멈춘 것은 계속 멈춰 있으려는 성질 / 다른 빈출 뜻: 무기력, 타성(오래돼 굳어진 버릇)"
+     ],
+     [
+      "cease",
+      "멈추다, 그치다 (v.)",
+      "cease to V / cease V-ing(V하기를 그만두다)"
+     ],
+     [
+      "wear out",
+      "닳다, 닳아 없어지다",
+      "오래 써서 못 쓰게 되다 / 다른 빈출 뜻: 지치게 하다 — be worn out(녹초가 되다)"
+     ],
+     [
+      "act on A",
+      "A에 작용하다",
+      "본문: friction forces acting on you(당신에게 작용하는 마찰력) / 다른 빈출 뜻: (충고·정보에) 따라 행동하다"
+     ],
+     [
+      "velocity",
+      "속도 (n.)",
+      "방향까지 따진 빠르기"
+     ],
+     [
+      "collision",
+      "충돌 (n.)",
+      "collide (v.) 충돌하다 — collide with A"
+     ],
+     [
+      "steep",
+      "가파른 (a.)",
+      "경사가 심한 / 다른 빈출 뜻: (증가·하락이) 급격한"
+     ],
+     [
+      "abruptly",
+      "갑작스럽게 (ad.)",
+      "abrupt (a.) 갑작스러운, (말투가) 퉁명스러운"
+     ],
+     [
+      "that is",
+      "즉, 다시 말해",
+      "앞말을 쉽게 바꿔 말할 때 — 본문: opposite to movement, that is backwards(움직임과 반대, 즉 뒤쪽으로)"
+     ],
+     [
+      "axle",
+      "(바퀴의) 축 (n.)",
+      "바퀴 한가운데를 꿰뚫어 바퀴를 받치는 막대 — 바퀴는 이 축을 중심으로 돈다"
+     ],
+     [
+      "counteract",
+      "(효과를) 상쇄하다 (v.)",
+      "상쇄: 반대 작용으로 효과를 없앰 / counter(반대) + act(작용하다)"
+     ],
+     [
+      "accelerate",
+      "가속하다 (v.)",
+      "acceleration (n.) 가속 / 다른 빈출 뜻: (일을) 앞당기다, 촉진하다"
+     ],
+     [
+      "magnitude",
+      "크기, 규모 (n.)",
+      "다른 빈출 뜻: 중요도, (지진의) 규모"
+     ],
+     [
+      "give rise to A",
+      "A를 일으키다, 낳다",
+      "어떤 현상이 생겨나게 하다"
+     ],
+     [
+      "pedal",
+      "페달을 밟다 (v.)",
+      "본문: pedalling(영국식 철자 / 미국식은 pedaling) / 다른 빈출 뜻: 페달 (n.)"
+     ],
+     [
+      "mechanical",
+      "기계의, 기계적인 (a.)",
+      "18강 01번: with a mechanical indifference(기계처럼 아무 감정 없이) / mechanic (n.) 정비공"
+     ],
+     [
+      "level",
+      "평평한 (a.)",
+      "본문: a level road(평평한 도로) / 다른 빈출 뜻: 수준, 정도 (n.)"
+     ],
+     [
+      "scrape",
+      "긁다 (v.)",
+      "단단한 것으로 표면을 긁어내다 / scrape by: 간신히 살아가다"
+     ],
+     [
+      "revolve",
+      "(주위를) 돌다, 공전하다 (v.)",
+      "revolve around A: A를 중심으로 돌다, A에 집중되다"
+     ],
+     [
+      "wheel-rim",
+      "바퀴 테두리 (n.)",
+      "rim: 둥근 물건의 가장자리, 테"
+     ],
+     [
+      "rub on A",
+      "A에 닿아 비벼지다",
+      "rub: 문지르다, 비비다 — 본문: the wheels rubbing on the axles(축에 닿아 비벼지는 바퀴)"
+     ],
+     [
+      "grip",
+      "꽉 붙잡다 (v.)",
+      "본문: grip and rub on the wheel-rims(바퀴 테두리를 꽉 잡고 비벼지다) / 다른 빈출 뜻: 꽉 쥐기, 통제 (n.)"
+     ],
+     [
+      "mechanism",
+      "작동 원리, 기제 (n.)",
+      "기제: 어떤 일이 일어나게 하는 짜임새 — 17강 08번: the mechanism at work(작동하고 있는 원리)"
+     ],
+     [
+      "air resistance",
+      "공기 저항",
+      "움직이는 물체를 공기가 뒤로 미는 힘 / resistance (n.) 저항, resist (v.) 저항하다"
+     ],
+     [
+      "momentum",
+      "탄력, 기세 (n.)",
+      "나아가던 힘이 계속 이어지는 것 — gain momentum(탄력을 받다) / 물리: 운동량"
+     ],
+     [
+      "friction",
+      "마찰(력) (n.)",
+      "마찰: 맞닿은 두 물체가 비벼지며 움직임을 막는 힘 / 다른 빈출 뜻: (사람·집단 사이의) 불화, 갈등"
+     ],
+     [
+      "put the brakes on",
+      "브레이크를 걸다",
+      "본문: By putting the brakes on.(브레이크를 걸면 된다) / 비유: (일의 진행에) 제동을 걸다"
+     ],
+     [
+      "generate",
+      "발생시키다, 만들어 내다 (v.)",
+      "본문: generating friction(마찰을 일으키는) / 다른 빈출 뜻: (전기를) 생산하다, (수익을) 창출하다 — 17강 04번에도 나옴"
+     ],
+     [
+      "thrust",
+      "세게 밀다 (v.)",
+      "thrust-thrust-thrust / 다른 빈출 뜻: 추진력, (글의) 요지 (n.)"
+     ],
+     [
+      "exert a force on A",
+      "A에 힘을 가하다",
+      "exert: (힘·영향력을) 가하다, 행사하다 — exert influence on A(A에 영향력을 행사하다)"
+     ],
+     [
+      "rapid",
+      "급속한, 빠른 (a.)",
+      "17강 06번: rapid population growth(급격한 인구 증가) / rapidly (ad.)"
+     ],
+     [
+      "kinetic energy",
+      "운동 에너지",
+      "kinetic (a.) 운동의"
+     ],
+     [
+      "opposite to A",
+      "A와 반대의",
+      "본문: in the direction opposite to movement(움직임과 반대 방향으로) / opposite (n.) 반대되는 것"
+     ],
+     [
+      "incline",
+      "경사, 비탈 (n.)",
+      "다른 빈출 뜻: (마음이) 기울게 하다 (v.) — be inclined to V(V하고 싶어 하다)"
+     ],
+     [
+      "slippery",
+      "미끄러운 (a.)",
+      "slip (v.) 미끄러지다 / a slippery slope: 한번 시작하면 걷잡을 수 없이 나빠지는 길"
+     ],
+     [
+      "apply A to B",
+      "A를 B에 적용하다",
+      "application (n.) 적용 / 다른 빈출 뜻: apply for A(A에 지원하다) — 18강 07번에도 나옴"
+     ],
+     [
+      "spin",
+      "빙빙 돌다 (v.)",
+      "spin-spun-spun / 다른 빈출 뜻: (이야기를) 지어내다"
+     ],
+     [
+      "clutch",
+      "움켜쥐다 (v.)",
+      "놓치지 않으려고 꽉 쥐다"
+     ],
+     [
+      "traction",
+      "접지력 (n.)",
+      "바퀴가 미끄러지지 않고 땅을 붙잡는 힘 / 다른 빈출 뜻: (생각이) 지지를 얻음 — gain traction(호응을 얻다)"
+     ]
+    ]
+   },
+   {
+    "name": "16강 02번",
+    "items": [
+     [
+      "downfall",
+      "몰락 (n.)",
+      "지위나 힘을 잃고 무너짐"
+     ],
+     [
+      "complexity",
+      "복잡성 (n.)",
+      "complex (a.) 복잡한"
+     ],
+     [
+      "again and again",
+      "거듭, 되풀이하여",
+      "한 번이 아니라 여러 번 반복해서"
+     ],
+     [
+      "prehistoric",
+      "선사 시대의 (a.)",
+      "선사 시대: 문자로 기록을 남기기 전의 시대"
+     ],
+     [
+      "be the case",
+      "사실이다, 그러하다",
+      "본문: is this always the case?(이게 늘 그럴까?) / case: 사실, 실정"
+     ],
+     [
+      "royal",
+      "왕의, 왕실의 (a.)",
+      "16강 08번: the royal roads(왕의 길) / royalty (n.) 왕족"
+     ],
+     [
+      "historical",
+      "역사의, 역사적인 (a.)",
+      "본문: historical records(역사 기록) / historic(역사적으로 중요한)과 구별"
+     ],
+     [
+      "civilization",
+      "문명 (n.)",
+      "본문: ancient civilizations(고대 문명들) / civilize (v.) 문명화하다"
+     ],
+     [
+      "repeat itself",
+      "되풀이되다",
+      "본문: History repeats itself.(역사는 되풀이된다)"
+     ],
+     [
+      "cyclical",
+      "순환하는, 주기적인 (a.)",
+      "cycle (n.) 주기, 순환 — 역사가 일정한 주기로 되풀이된다는 관점"
+     ],
+     [
+      "medieval",
+      "중세의 (a.)",
+      "중세: 대략 5~15세기의 유럽"
+     ],
+     [
+      "heyday",
+      "전성기 (n.)",
+      "가장 번성하던 시기"
+     ],
+     [
+      "invader",
+      "침략자 (n.)",
+      "invade (v.) 침략하다, invasion (n.) 침략"
+     ],
+     [
+      "be doomed to V",
+      "V할 운명이다",
+      "doom (n.) 파멸, 불운 — be doomed to fail(실패할 운명이다)"
+     ],
+     [
+      "prosper",
+      "번영하다 (v.)",
+      "경제적으로 잘되다 / prosperity (n.) 번영"
+     ],
+     [
+      "in the case of A",
+      "A의 경우에",
+      "본문: in the case of civilizations(문명의 경우에) / as in the cases of Rome ... and the British Empire(로마와 대영제국의 경우에서처럼)"
+     ],
+     [
+      "oversimplification",
+      "지나친 단순화 (n.)",
+      "복잡한 것을 너무 단순하게 말해 버림 / oversimplify (v.)"
+     ],
+     [
+      "agricultural",
+      "농업의 (a.)",
+      "agriculture (n.) 농업 — 17강 06번: agricultural societies(농경 사회)"
+     ],
+     [
+      "fall apart",
+      "무너지다, 해체되다",
+      "본문: the British Empire, which fell apart(해체된 대영제국) / 다른 빈출 뜻: (물건이) 산산조각 나다"
+     ],
+     [
+      "disintegrate",
+      "분해되다, 산산이 흩어지다 (v.)",
+      "dis(분리) + integrate(통합하다)"
+     ],
+     [
+      "rise and fall",
+      "흥망성쇠",
+      "흥하고 망함 — the rise and fall of empires(제국의 흥망)"
+     ],
+     [
+      "go under",
+      "몰락하다, 망하다",
+      "본문: Rome, which went under in 476 AD(476년에 멸망한 로마) / 다른 빈출 뜻: (배가) 가라앉다"
+     ],
+     [
+      "overgeneralization",
+      "과잉 일반화 (n.)",
+      "몇몇 사례만 보고 전체를 단정함"
+     ],
+     [
+      "empire",
+      "제국 (n.)",
+      "제국: 황제가 다스리는 큰 나라 / emperor (n.) 황제 — 16강 08번: the Inca empire"
+     ],
+     [
+      "expand",
+      "확장하다, 팽창하다 (v.)",
+      "expansion (n.) 확장"
+     ],
+     [
+      "era",
+      "시대 (n.)",
+      "본문: the post-World War II era(제2차 세계 대전 이후 시대) / post-: ~ 이후의"
+     ],
+     [
+      "chronicle",
+      "연대기 (n.)",
+      "일어난 일을 시간 순서대로 적은 기록 / 다른 빈출 뜻: 연대순으로 기록하다 (v.)"
+     ],
+     [
+      "get overextended",
+      "무리하게 확장되다",
+      "overextend: 감당할 수 있는 범위를 넘어 넓히다"
+     ],
+     [
+      "decline",
+      "쇠퇴하다 (v.)",
+      "힘이 점점 약해지다 / 다른 빈출 뜻: 감소 (n.), (제안을) 거절하다"
+     ],
+     [
+      "colony",
+      "식민지 (n.)",
+      "식민지: 다른 나라에 주권을 빼앗겨 지배받는 땅 / colonial (a.) 식민지의"
+     ],
+     [
+      "reign",
+      "통치 기간 (n.)",
+      "다른 빈출 뜻: 통치하다, 군림하다 (v.) — g는 소리 나지 않음"
+     ],
+     [
+      "overexpansion",
+      "과도한 확장 (n.)",
+      "감당할 수 있는 것보다 지나치게 넓힘 — 본문: as a result of overexpansion(과도한 확장의 결과로)"
+     ],
+     [
+      "ruins",
+      "폐허, 유적 (n.)",
+      "ruin (v.) 망치다 — in ruins(폐허가 된)"
+     ],
+     [
+      "demise",
+      "종말, 소멸 (n.)",
+      "존재하던 것이 끝나 사라짐 / 다른 빈출 뜻: 사망"
+     ],
+     [
+      "deteriorate",
+      "악화되다 (v.)",
+      "점점 나빠지다 / deterioration (n.) 악화"
+     ],
+     [
+      "archaeology",
+      "고고학 (n.)",
+      "고고학: 유물·유적으로 옛사람들의 삶을 연구하는 학문 / archaeologist (n.) 고고학자"
+     ]
+    ]
+   }
+  ],
+  "note": "16강 01번 44 + 16강 02번 36"
+ },
+ {
+  "id": "songdo1-2026-2f-81-160",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 81~160번",
+  "sections": [
+   {
+    "name": "16강 02번",
+    "items": [
+     [
+      "simplistic",
+      "지나치게 단순한 (a.)",
+      "복잡한 문제를 너무 쉽게 봐 버리는"
+     ],
+     [
+      "heritage",
+      "유산 (n.)",
+      "대대로 물려받은 문화·전통 — cultural heritage(문화유산)"
+     ],
+     [
+      "territory",
+      "영토 (n.)",
+      "다른 빈출 뜻: (동물의) 세력권, (지식의) 영역"
+     ],
+     [
+      "be conquered by A",
+      "A에게 정복당하다",
+      "conquer: 정복하다 / conquest (n.) 정복 — 본문: conquered by invaders(침략자들에게 정복된)"
+     ],
+     [
+      "relic",
+      "유물 (n.)",
+      "옛날부터 남아 전해지는 물건이나 풍습"
+     ],
+     [
+      "dynasty",
+      "왕조 (n.)",
+      "같은 집안 출신 왕이 대를 이어 다스리는 시대"
+     ],
+     [
+      "thrive",
+      "번성하다, 잘 자라다 (v.)",
+      "어려운 환경에서도 힘차게 성장하다"
+     ]
+    ]
+   },
+   {
+    "name": "16강 03번",
+    "items": [
+     [
+      "self-doubt",
+      "자기 회의 (n.)",
+      "회의: 의심을 품음 — 스스로의 능력을 의심함"
+     ],
+     [
+      "strive",
+      "애쓰다, 분투하다 (v.)",
+      "strive to V / strive for A(A를 얻으려고 애쓰다)"
+     ],
+     [
+      "not A but B",
+      "A가 아니라 B",
+      "본문: not for their smarts but for their effort"
+     ],
+     [
+      "self-fulfilling prophecy",
+      "자기 충족적 예언",
+      "그럴 거라고 믿고 행동하다 보니 정말 그렇게 되는 현상"
+     ],
+     [
+      "grit",
+      "투지, 근성 (n.)",
+      "어려워도 포기하지 않고 버티는 힘"
+     ],
+     [
+      "aptitude",
+      "적성, 소질 (n.)",
+      "어떤 일에 맞는 타고난 능력"
+     ],
+     [
+      "determination",
+      "결심, 결단력 (n.)",
+      "다른 빈출 뜻: 결정, (사실의) 확인 / determine (v.)"
+     ],
+     [
+      "concept",
+      "개념 (n.)",
+      "conceptual (a.) 개념의"
+     ],
+     [
+      "commend",
+      "칭찬하다, 추천하다 (v.)",
+      "공식적으로 잘했다고 인정하다"
+     ],
+     [
+      "take on A",
+      "(일 등을) 떠맡다",
+      "다른 빈출 뜻: (특징·모습을) 띠다, (직원을) 고용하다"
+     ],
+     [
+      "emphasize",
+      "강조하다 (v.)",
+      "emphasis (n.) 강조 — 16강 05번: be emphasized(두드러지다)"
+     ],
+     [
+      "end up V-ing",
+      "결국 V하게 되다",
+      "본문: end up taking on tougher things(결국 더 힘든 일을 떠맡게 되다)"
+     ],
+     [
+      "compliment",
+      "칭찬 (n.)",
+      "complement(보완하다)와 철자 구별 / 다른 빈출 뜻: 칭찬하다 (v.)"
+     ],
+     [
+      "scold",
+      "꾸짖다 (v.)",
+      "잘못했다고 나무라다 — 18강 03번: his mother scolds him / scolding (n.) 꾸중"
+     ],
+     [
+      "endeavor",
+      "노력, 시도 (n.)",
+      "다른 빈출 뜻: 노력하다 (v.) — endeavor to V"
+     ],
+     [
+      "fixed mindset",
+      "고정 사고방식",
+      "능력은 타고나서 바뀌지 않는다고 믿는 태도"
+     ],
+     [
+      "continually",
+      "계속해서, 끊임없이 (ad.)",
+      "continual (a.) 거듭되는"
+     ],
+     [
+      "self-worth",
+      "자기 가치감 (n.)",
+      "자기가 가치 있는 사람이라고 느끼는 마음"
+     ],
+     [
+      "inborn",
+      "타고난 (a.)",
+      "태어날 때부터 지닌"
+     ],
+     [
+      "malleable",
+      "잘 바뀌는, 가변적인 (a.)",
+      "원래: (금속이) 두드려 펼 수 있는 — 능력이 노력으로 바뀔 수 있다고 할 때 씀"
+     ],
+     [
+      "internationally recognized",
+      "국제적으로 인정받는",
+      "recognize: 인정하다, 알아보다"
+     ],
+     [
+      "smarts",
+      "똑똑함, 머리 (n.)",
+      "본문: not for their smarts but for their effort(머리가 좋아서가 아니라 노력해서) / smart (a.) 똑똑한"
+     ],
+     [
+      "persistence",
+      "끈기, 고집 (n.)",
+      "persist (v.) 끈질기게 계속하다 — persist in A"
+     ],
+     [
+      "cultivate",
+      "기르다, 함양하다 (v.)",
+      "함양: 능력·품성을 길러 쌓음 / 다른 빈출 뜻: (땅을) 경작하다"
+     ],
+     [
+      "outperform",
+      "더 나은 성과를 내다 (v.)",
+      "outperform A: A를 능가하다"
+     ],
+     [
+      "flexible",
+      "유연한 (a.)",
+      "상황에 맞게 바꿀 수 있는 — 17강 07번: be less flexible(유연성이 떨어지다) / flexibility (n.)"
+     ],
+     [
+      "psychology",
+      "심리학 (n.)",
+      "psychologist (n.) 심리학자, psychological (a.) 심리적인"
+     ],
+     [
+      "gifted",
+      "재능이 뛰어난 (a.)",
+      "특정 분야에 남다른 능력을 타고난"
+     ],
+     [
+      "persevere in A",
+      "A를 끈기 있게 계속하다",
+      "perseverance (n.) 인내, 끈기"
+     ],
+     [
+      "fear of failure",
+      "실패에 대한 두려움",
+      ""
+     ],
+     [
+      "variable",
+      "변수 (n.)",
+      "변수: 상황에 따라 달라질 수 있는 요소 / 다른 빈출 뜻: 변하기 쉬운 (a.)"
+     ],
+     [
+      "evidence",
+      "증거 (n.)",
+      "본문: evidence that they are not smart(자기가 똑똑하지 않다는 증거) — that 이하가 evidence의 내용 / evident (a.) 분명한"
+     ],
+     [
+      "be praised for A",
+      "A로 칭찬받다",
+      "praise A for B(B에 대해 A를 칭찬하다)의 수동형"
+     ],
+     [
+      "stagnate",
+      "정체되다 (v.)",
+      "더 나아가지 못하고 제자리에 머물다 / stagnant (a.) 정체된"
+     ],
+     [
+      "competence",
+      "능력, 역량 (n.)",
+      "일을 해낼 만한 실력 — 18강 08번: status and competence(지위와 능력) / competent (a.) 유능한"
+     ],
+     [
+      "setback",
+      "차질, 좌절 (n.)",
+      "잘 나아가던 일이 뒤로 밀림"
+     ],
+     [
+      "in contrast",
+      "그에 반해, 대조적으로",
+      "앞 내용과 반대되는 내용을 이을 때 — by contrast도 같은 뜻(17강 03번)"
+     ],
+     [
+      "underperform",
+      "기대만큼 성과를 못 내다 (v.)",
+      "본문: underperform in future tasks(이후 과제에서 실력보다 못하다)"
+     ],
+     [
+      "pioneer",
+      "선구자, 개척자 (n.)",
+      "남보다 앞서 새 분야를 연 사람 / 다른 빈출 뜻: 개척하다 (v.)"
+     ],
+     [
+      "motivate",
+      "동기를 부여하다 (v.)",
+      "motivation (n.) 동기 부여 — be motivated to V"
+     ],
+     [
+      "over time",
+      "시간이 지나면서",
+      "시간이 흐르는 동안 조금씩"
+     ],
+     [
+      "growth mindset",
+      "성장 사고방식",
+      "노력하면 능력이 자란다고 믿는 태도 / mindset: 사고방식"
+     ],
+     [
+      "acquire",
+      "습득하다, 얻다 (v.)",
+      "노력이나 경험으로 몸에 익히다 — 18강 07번: acquire cultural traits(문화적 특성을 얻다) / acquisition (n.)"
+     ]
+    ]
+   },
+   {
+    "name": "16강 04번",
+    "items": [
+     [
+      "spiritual",
+      "정신적인, 영적인 (a.)",
+      "spirit (n.) 정신, 영혼"
+     ],
+     [
+      "precede",
+      "~보다 앞서다 (v.)",
+      "preceding (a.) 앞선 / precedent (n.) 선례"
+     ],
+     [
+      "revise",
+      "수정하다 (v.)",
+      "본문: this revised cause-and-effect(이 수정된 인과 관계) / revision (n.) 수정"
+     ],
+     [
+      "lethargy",
+      "무기력 (n.)",
+      "기운이 없어 아무것도 하기 싫은 상태"
+     ],
+     [
+      "sense of self",
+      "자아감",
+      "자아감: 내가 누구인지에 대한 감각"
+     ],
+     [
+      "prescription",
+      "처방(전) (n.)",
+      "prescribe (v.) 처방하다"
+     ],
+     [
+      "subconscious",
+      "잠재의식의 (a.)",
+      "잠재의식: 스스로 알아차리지 못하지만 마음 밑바닥에서 작용하는 의식 — 18강 06번: the subconscious mind"
+     ],
+     [
+      "consciousness",
+      "의식 (n.)",
+      "의식: 깨어서 자신과 주변을 알아차리는 마음의 작용 / conscious (a.) 의식하는"
+     ],
+     [
+      "aftermath",
+      "여파, 후유증 (n.)",
+      "큰일이 끝난 뒤 남은 영향"
+     ],
+     [
+      "conventional medicine",
+      "기존의 주류 의학",
+      "conventional: 관습적인, 전통적인 / convention (n.) 관습, 대회"
+     ],
+     [
+      "catalyst",
+      "촉매, 계기 (n.)",
+      "촉매: 어떤 변화를 일으키거나 빠르게 하는 것"
+     ],
+     [
+      "root cause",
+      "근본 원인",
+      "root: 뿌리, 근원"
+     ],
+     [
+      "in the form of A",
+      "A의 형태로",
+      ""
+     ],
+     [
+      "manifest itself",
+      "(증상 등이) 드러나다, 나타나다",
+      "본문: manifest itself in the form of depression / manifest (a.) 명백한"
+     ],
+     [
+      "fundamental",
+      "근본적인 (a.)",
+      "가장 밑바탕이 되는 — 17강 04번에도 나옴"
+     ],
+     [
+      "substance",
+      "물질 (n.)",
+      "다른 빈출 뜻: 실체, 본질, (말·글의) 요지"
+     ],
+     [
+      "neurotransmitter",
+      "신경 전달 물질 (n.)",
+      "뇌 신경 세포끼리 신호를 주고받게 하는 화학 물질"
+     ],
+     [
+      "emerge from A",
+      "A에서 나오다, 드러나다",
+      "17강 02번: emerged from a study(한 연구에서 나왔다) / emergence (n.) 출현"
+     ],
+     [
+      "relapse",
+      "재발 (n.)",
+      "나았던 병이 다시 도짐 / 다른 빈출 뜻: 재발하다, (나쁜 상태로) 되돌아가다 (v.)"
+     ],
+     [
+      "diagnose",
+      "진단하다 (v.)",
+      "diagnosis (n.) 진단 — be diagnosed with A(A라는 진단을 받다)"
+     ],
+     [
+      "introspection",
+      "자기 성찰 (n.)",
+      "자기 마음을 스스로 들여다봄"
+     ],
+     [
+      "functioning",
+      "작용, 작동 (n.)",
+      "본문: the functioning of the brain(뇌가 작동하는 것) / function (v.) 작동하다"
+     ],
+     [
+      "cause-and-effect",
+      "인과 관계 (n.)",
+      "인과: 원인과 결과 / causal (a.) 인과의"
+     ],
+     [
+      "equilibrium",
+      "평형, 균형 (n.)",
+      "여러 힘이 맞서 어느 쪽으로도 치우치지 않은 상태"
+     ],
+     [
+      "distortion",
+      "왜곡 (n.)",
+      "왜곡: 사실과 다르게 비틀어 놓음 / distort (v.) 왜곡하다"
+     ],
+     [
+      "melancholy",
+      "우울, 침울함 (n.)",
+      "다른 빈출 뜻: 우울한 (a.)"
+     ],
+     [
+      "byproduct",
+      "부산물 (n.)",
+      "주된 것이 생길 때 덤으로 따라 생기는 것"
+     ],
+     [
+      "self-awareness",
+      "자기 인식 (n.)",
+      "자기 생각·감정·상태를 스스로 알아차림"
+     ],
+     [
+      "entity",
+      "실체, 존재 (n.)",
+      "실체: 실제로 따로 존재하는 것"
+     ],
+     [
+      "organ",
+      "(신체) 기관, 장기 (n.)",
+      "본문: an organ of consciousness(의식의 기관) / 다른 빈출 뜻: 오르간(악기) / organism (n.) 유기체"
+     ]
+    ]
+   }
+  ],
+  "note": "16강 02번 7 + 16강 03번 43 + 16강 04번 30"
+ },
+ {
+  "id": "songdo1-2026-2f-161-240",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 161~240번",
+  "sections": [
+   {
+    "name": "16강 04번",
+    "items": [
+     [
+      "go beyond A",
+      "A를 넘어서다",
+      "본문: goes beyond the functioning of the brain(뇌의 작용을 넘어서다)"
+     ],
+     [
+      "imbalance",
+      "불균형 (n.)",
+      "본문: an imbalance of neurotransmitters(신경 전달 물질의 불균형)"
+     ],
+     [
+      "consequence",
+      "결과 (n.)",
+      "본문: a consequence of depression, not its cause(우울증의 원인이 아니라 결과) / consequently (ad.) 그 결과"
+     ],
+     [
+      "depression",
+      "우울증 (n.)",
+      "다른 빈출 뜻: 불경기, 불황 / depressed (a.) 우울한, 침체된"
+     ],
+     [
+      "antidepressant",
+      "항우울제 (n.)",
+      "우울증을 치료하는 약 — anti(반대) + depress(우울하게 하다)"
+     ],
+     [
+      "unconscious",
+      "무의식적인 (a.)",
+      "자기도 모르게 일어나는 — 18강 01번: unconscious hierarchies(무의식적인 위계)"
+     ],
+     [
+      "reframe A as B",
+      "A를 B로 재구성하다",
+      "틀(frame)을 바꿔 A를 B라는 관점에서 다시 보다"
+     ],
+     [
+      "no more than A",
+      "A에 지나지 않는",
+      "not more than A(많아야 A)와 구별"
+     ],
+     [
+      "psychiatrist",
+      "정신과 의사 (n.)",
+      "psychiatry (n.) 정신 의학"
+     ],
+     [
+      "exhibit",
+      "(증상·감정을) 보이다 (v.)",
+      "다른 빈출 뜻: 전시하다 (v.), 전시품 (n.)"
+     ],
+     [
+      "shallow",
+      "얕은, 피상적인 (a.)",
+      "피상적: 겉만 보고 깊이가 없는"
+     ],
+     [
+      "result in A",
+      "A를 초래하다",
+      "17강 06번: resulted in rapid population growth / result from A(A에서 비롯되다)와 구별"
+     ],
+     [
+      "underlying",
+      "밑에 깔린, 근원적인 (a.)",
+      "겉으로 드러나지 않고 바탕에 놓인"
+     ]
+    ]
+   },
+   {
+    "name": "16강 05번",
+    "items": [
+     [
+      "mismatch",
+      "불일치 (n.)",
+      "서로 맞지 않음 — 녹음된 목소리와 머릿속 목소리가 다르게 느껴지는 것처럼"
+     ],
+     [
+      "self-image",
+      "자아상 (n.)",
+      "자아상: 자기가 생각하는 자신의 모습"
+     ],
+     [
+      "perceive",
+      "지각하다, 인식하다 (v.)",
+      "지각: 감각을 통해 알아차림 — 17강 08번에도 나옴 / perceptive (a.) 지각력 있는"
+     ],
+     [
+      "resonate",
+      "울려 퍼지다, 공명하다 (v.)",
+      "다른 빈출 뜻: 공감을 불러일으키다 — resonate with A(A의 마음에 와닿다)"
+     ],
+     [
+      "pronounced",
+      "뚜렷한, 두드러진 (a.)",
+      "pronounce(발음하다)와 뜻이 다름 — 본문: more pronounced in the recording(녹음에서 더 두드러지는)"
+     ],
+     [
+      "acoustic",
+      "음향의, 청각의 (a.)",
+      "acoustics (n.) 음향학, (공간의) 음향 효과"
+     ],
+     [
+      "frequency",
+      "주파수 (n.)",
+      "주파수: 소리가 1초 동안 떨리는 횟수 — 본문: Lower frequencies(더 낮은 주파수들) / 다른 빈출 뜻: 빈도(얼마나 자주 일어나는지) — 18강 07번: the frequency of a cultural trait / frequent (a.) 잦은"
+     ],
+     [
+      "exterior",
+      "바깥면, 외관 (n.)",
+      "다른 빈출 뜻: 외부의 (a.)"
+     ],
+     [
+      "tremble",
+      "(몸이) 떨리다 (v.)",
+      "두려움·추위 등으로 몸이 떨리다"
+     ],
+     [
+      "interior",
+      "내부, 실내 (n.)",
+      "다른 빈출 뜻: 내부의 (a.) — interior design(실내 디자인)"
+     ],
+     [
+      "intensity",
+      "강도, 세기 (n.)",
+      "17강 08번: at a little different intensities(조금씩 다른 강도로) / intense (a.) 강렬한"
+     ],
+     [
+      "stimulate",
+      "자극하다 (v.)",
+      "본문: stimulate our inner ears directly(내이를 직접 자극하다) / stimulus (n.) 자극(복수 stimuli)"
+     ],
+     [
+      "dialect",
+      "방언, 사투리 (n.)",
+      "특정 지역에서 쓰는 말"
+     ],
+     [
+      "what A sounds like",
+      "A가 어떻게 들리는지",
+      "본문: Is that really what my voice sounds like?(내 목소리가 정말 저렇게 들려?) / sound like A: A처럼 들리다"
+     ],
+     [
+      "muffled",
+      "(소리가) 막혀 둔하게 들리는 (a.)",
+      "무언가에 가려 소리가 작고 흐릿한"
+     ],
+     [
+      "rich",
+      "(소리가) 깊고 풍부한 (a.)",
+      "본문: deeper and richer(더 깊고 풍부하게) / 다른 빈출 뜻: 부유한, (영양·자원이) 풍부한"
+     ],
+     [
+      "fairly",
+      "꽤, 상당히 (ad.)",
+      "다른 빈출 뜻: 공정하게 — fair (a.) 공정한"
+     ],
+     [
+      "soundproof",
+      "방음의 (a.)",
+      "소리가 새거나 들어오지 않게 막은 — soundproof room(방음실)"
+     ],
+     [
+      "inner ear",
+      "내이(속귀)",
+      "귀의 가장 안쪽 — 소리를 신경 신호로 바꾸는 곳 / outer ear(외이), middle ear(중이)"
+     ],
+     [
+      "wave",
+      "파동 (n.)",
+      "본문: waves that travel from the air(공기에서 전해 오는 파동) — sound wave(음파) / 다른 빈출 뜻: 물결, (손을) 흔들다 (v.)"
+     ],
+     [
+      "be conducted through A",
+      "(소리·열이) A를 통해 전해지다",
+      "conduct: (열·전기·소리를) 전하다 / 다른 빈출 뜻: (연구·조사를) 수행하다 — 17강 08번"
+     ],
+     [
+      "eardrum",
+      "고막 (n.)",
+      "소리가 들어오면 떨리는 귓속의 얇은 막"
+     ],
+     [
+      "activate",
+      "활성화하다 (v.)",
+      "active (a.) 활동적인 / activation (n.) 활성화"
+     ],
+     [
+      "provoke",
+      "(반응을) 일으키다, 화나게 하다 (v.)",
+      "provocative (a.) 도발적인"
+     ],
+     [
+      "internal",
+      "내부의 (a.)",
+      "본문: a second internal path(두 번째 내부 경로)"
+     ],
+     [
+      "make out A",
+      "A를 알아듣다, 알아보다",
+      "어렴풋한 것을 겨우 알아차리다 / 다른 빈출 뜻: (서류·수표를) 작성하다"
+     ],
+     [
+      "arouse",
+      "(감정·관심을) 불러일으키다 (v.)",
+      "arouse curiosity(호기심을 자극하다)"
+     ],
+     [
+      "noticeable",
+      "주목할 만한, 눈에 띄는 (a.)",
+      "18강 07번: noticeable connections(주목할 만한 연관성) / notice (v.) 알아차리다"
+     ],
+     [
+      "accent",
+      "말투, 억양 (n.)",
+      "지역·나라마다 다른 말의 특색 — 본문: your accent is more pronounced(억양이 더 두드러진다) / 다른 빈출 뜻: 강조, 강세 (n.)"
+     ],
+     [
+      "intonation",
+      "음의 높낮이, 어조 (n.)",
+      "말할 때 목소리가 오르내리는 가락"
+     ],
+     [
+      "echo",
+      "메아리, 울림 (n.)",
+      "다른 빈출 뜻: (말·생각을) 그대로 되풀이하다 (v.)"
+     ],
+     [
+      "trigger",
+      "유발하다, 촉발하다 (v.)",
+      "17강 03번: trigger this reflex(이 반사를 일으키다) / 다른 빈출 뜻: 방아쇠, 계기 (n.)"
+     ],
+     [
+      "route",
+      "(가는) 길, 노선 (n.)",
+      "본문: the route through which we perceive most external sounds / 17강 07번: migration routes(이동 경로)"
+     ],
+     [
+      "external",
+      "외부의 (a.)",
+      "본문: external sounds(바깥에서 들어오는 소리)"
+     ],
+     [
+      "vibrate",
+      "진동하다 (v.)",
+      "vibration (n.) 진동 — 본문: Vibrations are conducted through our bones"
+     ],
+     [
+      "skull",
+      "두개골 (n.)",
+      "머리뼈 — 목소리 진동은 뼈를 타고 귀로 전해짐"
+     ],
+     [
+      "perception",
+      "지각, 인식 (n.)",
+      "감각으로 대상을 알아차림 — 17강 08번: register that perception / 18강 01번 요약문: visual perception(시각적 인식)"
+     ],
+     [
+      "striking",
+      "인상적인, 놀라운 (a.)",
+      "strike (v.) 치다, (생각이) 문득 떠오르다"
+     ],
+     [
+      "pathway",
+      "경로, 통로 (n.)",
+      "본문: two pathways through which we perceive our own voice(자기 목소리를 지각하는 두 경로)"
+     ],
+     [
+      "deafening",
+      "귀청이 터질 듯한 (a.)",
+      "deaf (a.) 귀가 먹은 — 18강 05번에 나옴"
+     ],
+     [
+      "vocal cords",
+      "성대",
+      "목 안에서 떨려 목소리를 내는 기관"
+     ],
+     [
+      "amplify",
+      "증폭하다 (v.)",
+      "증폭: 소리·신호를 크게 늘림 / 다른 빈출 뜻: (감정·문제를) 키우다"
+     ]
+    ]
+   },
+   {
+    "name": "16강 06번",
+    "items": [
+     [
+      "marginal",
+      "미미한, 주변적인 (a.)",
+      "중심에서 벗어난, 크지 않은 — margin (n.) 여백, 차이"
+     ],
+     [
+      "e-waste",
+      "전자 폐기물 (n.)",
+      "버려진 컴퓨터·휴대폰 같은 전자 제품 쓰레기"
+     ],
+     [
+      "threaten",
+      "위협하다 (v.)",
+      "threat (n.) 위협 / threatening (a.) 위협적인"
+     ],
+     [
+      "greenhouse gas",
+      "온실가스",
+      "이산화 탄소처럼 지구를 덥게 만드는 기체"
+     ],
+     [
+      "dispose of A",
+      "A를 처분하다, 버리다",
+      "disposal (n.) 처리 / disposable (a.) 일회용의"
+     ],
+     [
+      "perilous",
+      "아주 위험한 (a.)",
+      "peril (n.) (큰) 위험 — 위태로울 만큼 위험한"
+     ],
+     [
+      "carbon emission",
+      "탄소 배출(량)",
+      "emission: (가스·빛 등의) 배출 / emit (v.) 내뿜다"
+     ],
+     [
+      "invoice",
+      "송장, 청구서 (n.)",
+      "송장: 보낸 물건의 목록과 값을 적은 문서"
+     ],
+     [
+      "consumption",
+      "소비(량) (n.)",
+      "consume (v.) 소비하다 — energy consumption(에너지 소비량)"
+     ],
+     [
+      "promising",
+      "유망한, 장래가 밝은 (a.)",
+      "본문: a promising step to save trees(나무를 살릴 희망적인 조치) / promise (n.) 약속, 가능성"
+     ],
+     [
+      "overlook",
+      "간과하다, 못 보고 넘어가다 (v.)",
+      "18강 05번 요약문: have often been overlooked(자주 간과되어 왔다) / 다른 빈출 뜻: (높은 곳에서) 내려다보다"
+     ],
+     [
+      "used to V",
+      "(예전에) V하곤 했다, (예전에는) V였다",
+      "본문: offices used to have much more paper waste(예전에는 사무실에 종이 쓰레기가 훨씬 더 많았다 — 과거의 상태) / be used to V-ing(V하는 데 익숙하다)·be used to V(V하는 데 쓰이다)와 구별"
+     ],
+     [
+      "energy-efficient",
+      "에너지 효율이 높은 (a.)",
+      "같은 일을 하는 데 에너지를 덜 쓰는"
+     ],
+     [
+      "store",
+      "저장하다 (v.)",
+      "본문: store bigger data on clouds / 다른 빈출 뜻: 가게 (n.), 비축하다 — 18강 06번 요약문: stores your responses"
+     ],
+     [
+      "archiving",
+      "(기록) 보관 (n.)",
+      "자료를 정리해 오래 보관하는 일 / archive (n.) 기록 보관소, (v.) 보관하다"
+     ],
+     [
+      "carbon footprint",
+      "탄소 발자국",
+      "개인·단체가 활동하며 내뿜는 온실가스의 총량"
+     ],
+     [
+      "attachment",
+      "첨부 파일 (n.)",
+      "본문: if the attachment is big(첨부 파일이 크면) / 다른 빈출 뜻: 애착 — attach A to B(A를 B에 붙이다)"
+     ],
+     [
+      "preserve",
+      "보존하다 (v.)",
+      "본래 상태 그대로 오래 지키다 — 18강 05번: preserve digital information / preservation (n.)"
+     ],
+     [
+      "bleak",
+      "암울한, 황량한 (a.)",
+      "희망이 보이지 않는 — a bleak future(암울한 미래)"
+     ],
+     [
+      "be neglected",
+      "간과되다, 무시되다",
+      "neglect: 소홀히 하다, 방치하다 — 본문: the cost ... is neglected(그 비용은 간과되고 있다)"
+     ],
+     [
+      "proclaim",
+      "선포하다 (v.)",
+      "널리 공식적으로 알리다 / proclamation (n.) 선포"
+     ],
+     [
+      "declare",
+      "선언하다, 공표하다 (v.)",
+      "본문: A recent Wired report declared that ~(최근 Wired지의 한 보고서는 ~라고 밝혔다) / declaration (n.) 선언"
+     ],
+     [
+      "landfill",
+      "쓰레기 매립지 (n.)",
+      "매립지: 쓰레기를 땅에 묻는 곳"
+     ],
+     [
+      "hazardous",
+      "위험한, 해로운 (a.)",
+      "hazard (n.) 위험 (요소) — 본문: even more hazardous(훨씬 더 위험한)"
+     ],
+     [
+      "paperless",
+      "종이를 쓰지 않는 (a.)",
+      "paperless office(종이 없는 사무실)"
+     ]
+    ]
+   }
+  ],
+  "note": "16강 04번 13 + 16강 05번 42 + 16강 06번 25"
+ },
+ {
+  "id": "songdo1-2026-2f-241-320",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 241~320번",
+  "sections": [
+   {
+    "name": "16강 06번",
+    "items": [
+     [
+      "carbon neutral",
+      "탄소 중립의",
+      "내보낸 만큼 줄이거나 흡수해 실제 탄소 배출을 0으로 만든"
+     ],
+     [
+      "shift from A to B",
+      "A에서 B로 바뀌다",
+      "본문: workplaces shifted from paper to digital documents / shift (n.) 변화, 교대 근무"
+     ],
+     [
+      "encouraging",
+      "고무적인 (a.)",
+      "고무적: 희망을 주어 힘이 나게 하는"
+     ],
+     [
+      "via",
+      "~을 통해, ~을 거쳐 (prep.)",
+      "본문: mail sent via a post office(우체국을 거쳐 보낸 우편)"
+     ],
+     [
+      "downplay",
+      "대수롭지 않게 여기다 (v.)",
+      "실제보다 덜 중요한 것처럼 다루다"
+     ],
+     [
+      "fossil fuel",
+      "화석 연료",
+      "석탄·석유처럼 옛 생물이 땅속에서 변해 생긴 연료"
+     ],
+     [
+      "endanger",
+      "위험에 빠뜨리다 (v.)",
+      "en(~하게 하다) + danger(위험) / endangered (a.) 멸종 위기에 처한"
+     ],
+     [
+      "it is assumed that ~",
+      "~라고 여겨진다",
+      "assume: (사실이라고) 생각하다, 추정하다 / assumption (n.) 가정 — 17강 04번"
+     ],
+     [
+      "decade",
+      "10년 (n.)",
+      "본문: A few decades ago(수십 년 전) — 18강 05번: over the last several decades"
+     ],
+     [
+      "speculate",
+      "추측하다 (v.)",
+      "확실한 근거 없이 짐작하다 / 다른 빈출 뜻: 투기하다"
+     ],
+     [
+      "core",
+      "핵심의, 중심이 되는 (a.)",
+      "본문: core business activities(핵심 사업 활동) / 다른 빈출 뜻: 핵심, (과일의) 속 (n.)"
+     ],
+     [
+      "green",
+      "친환경의 (a.)",
+      "본문: make our green clouds gray(친환경이라던 클라우드를 회색으로 만들다 — 오염을 낳는다는 비유) / 다른 빈출 뜻: (과일이) 덜 익은 — 16강 07번: green acorns(덜 익은 도토리)"
+     ],
+     [
+      "digitize",
+      "디지털화하다 (v.)",
+      "종이 문서 등을 디지털 형태로 바꾸다"
+     ],
+     [
+      "virtual",
+      "가상의 (a.)",
+      "다른 빈출 뜻: 사실상의 — virtually (ad.) 사실상, 거의"
+     ],
+     [
+      "noxious",
+      "(가스 등이) 유독한 (a.)",
+      "몸이나 환경에 해를 끼치는"
+     ],
+     [
+      "as much as + 수량",
+      "~나 되는, ~만큼이나",
+      "많은 양을 강조 — 본문: as much as 50 grams(50그램이나) / as many as + 셀 수 있는 수"
+     ],
+     [
+      "shift A to B",
+      "A를 B로 전환하다",
+      "본문: shift some core business activities to digital(일부 핵심 활동을 디지털로 옮기다)"
+     ]
+    ]
+   },
+   {
+    "name": "16강 07번",
+    "items": [
+     [
+      "be introduced to A",
+      "A에 유입되다",
+      "introduce A to B(A를 B에 들여오다)의 수동형 / 다른 빈출 뜻: introduce 소개하다, 도입하다"
+     ],
+     [
+      "acorn",
+      "도토리 (n.)",
+      "본문: green acorns(덜 익은 도토리)"
+     ],
+     [
+      "digest",
+      "소화하다 (v.)",
+      "digestion (n.) 소화 / 다른 빈출 뜻: (정보를) 이해하다, 요약(문) (n.)"
+     ],
+     [
+      "carrying capacity",
+      "(환경) 수용력",
+      "한 서식지가 먹여 살릴 수 있는 생물의 최대 수"
+     ],
+     [
+      "ecosystem",
+      "생태계 (n.)",
+      "생물과 환경이 서로 영향을 주고받는 하나의 체계"
+     ],
+     [
+      "adapt",
+      "적응하다, (상황에) 맞추다 (v.)",
+      "본문: adapt its diet(먹이를 상황에 맞게 바꾸다) — 17강 07번: don't adapt easily / adopt(채택하다)와 구별"
+     ],
+     [
+      "breeding ground",
+      "번식지",
+      "breed (v.) 새끼를 낳다, 기르다 — 17강 07번: pushes breeding grounds farther north"
+     ],
+     [
+      "arise",
+      "생기다, 발생하다 (v.)",
+      "arise-arose-arisen / 본문: Problems often arise(문제가 흔히 생긴다) — 17강 05번: arose independently(따로 생겨났다)"
+     ],
+     [
+      "compete for A",
+      "A를 두고 경쟁하다",
+      "competition (n.) 경쟁 / competitive (a.) 경쟁의"
+     ],
+     [
+      "come close to A",
+      "거의 A할 지경에 이르다",
+      "본문: has come close to extinction(멸종 직전까지 갔다)"
+     ],
+     [
+      "exotic",
+      "외래의, 이국적인 (a.)",
+      "본문: an exotic species(외래종 — 다른 곳에서 들어온 종)"
+     ],
+     [
+      "deforestation",
+      "삼림 벌채 (n.)",
+      "벌채: 숲의 나무를 베어 냄"
+     ],
+     [
+      "immature",
+      "미성숙한, 덜 자란 (a.)",
+      "im(not) + mature"
+     ],
+     [
+      "diverse",
+      "다양한 (a.)",
+      "diversity (n.) 다양성 — 18강 07번 요약문: more diverse factors / 17강 04번: diversity"
+     ],
+     [
+      "have a bite",
+      "한 입 먹다",
+      "본문: before red squirrels even have a bite(붉은 다람쥐가 한 입 먹기도 전에) / bite (v.) 물다"
+     ],
+     [
+      "habitat",
+      "서식지 (n.)",
+      "동식물이 자연 상태로 사는 곳 — 본문: varied habitats(여러 종류의 서식지)"
+     ],
+     [
+      "food chain",
+      "먹이 사슬",
+      "먹고 먹히는 관계로 이어진 생물의 사슬"
+     ],
+     [
+      "species",
+      "(생물의) 종 (n.)",
+      "단수·복수 형태가 같음 — 17강 07번: migratory bird species(철새 종)"
+     ],
+     [
+      "rodent",
+      "설치류 (n.)",
+      "설치류: 쥐·다람쥐처럼 앞니가 계속 자라 갉아 먹는 동물"
+     ],
+     [
+      "have the edge",
+      "우위를 점하다",
+      "edge: 우위, 강점 / 다른 빈출 뜻: 가장자리, 끝"
+     ],
+     [
+      "woodland",
+      "삼림 지대, 숲 (n.)",
+      "나무가 우거진 넓은 땅"
+     ],
+     [
+      "in captivity",
+      "갇혀서, 사육 상태에서",
+      "captive (a.) 사로잡힌 / captivity (n.) 감금 — 18강 04번: Capuchins ... will, in captivity, trade with people(사육 상태의 카푸친원숭이는 사람과 거래를 한다)"
+     ],
+     [
+      "put A under pressure",
+      "A를 압박하다",
+      "본문: put the native red squirrel populations under pressure(토종 붉은 다람쥐 개체군을 압박했다)"
+     ],
+     [
+      "conservation",
+      "(자연) 보호 (n.)",
+      "conserve (v.) 보호하다, 아끼다 — conservation area(보호 구역)"
+     ],
+     [
+      "mature",
+      "다 자란, 다 익은 (a.)",
+      "본문: mature acorns(다 익은 도토리) / 다른 빈출 뜻: 성숙한, 성숙하다 (v.) / maturity (n.)"
+     ],
+     [
+      "densely",
+      "빽빽하게, 밀집하여 (ad.)",
+      "dense (a.) 빽빽한 / density (n.) 밀도"
+     ],
+     [
+      "sparsely",
+      "드문드문 (ad.)",
+      "sparse (a.) 드문, 희박한"
+     ],
+     [
+      "mammal",
+      "포유류 (n.)",
+      "새끼를 낳아 젖을 먹이는 동물 — 17강 03번: other marine mammals / 17강 05번: all mammals"
+     ],
+     [
+      "ripe",
+      "(먹기 좋게) 익은 (a.)",
+      "ripen (v.) 익다"
+     ],
+     [
+      "coexist",
+      "공존하다 (v.)",
+      "co(함께) + exist(존재하다) / coexistence (n.)"
+     ],
+     [
+      "indigenous",
+      "(그 지역) 고유의, 원산의 (a.)",
+      "원래부터 그 땅에서 나고 자란"
+     ],
+     [
+      "die out",
+      "멸종하다, 자취를 감추다",
+      "수가 서서히 줄어 모두 없어지다"
+     ],
+     [
+      "native",
+      "토종의, 토착의 (a.)",
+      "본문: the native red squirrel(토종 붉은 다람쥐) / 다른 빈출 뜻: 원주민, 그 나라 태생의 사람 (n.)"
+     ],
+     [
+      "extinction",
+      "멸종 (n.)",
+      "extinct (a.) 멸종된 — go extinct(멸종하다)"
+     ],
+     [
+      "forage",
+      "먹이를 찾다 (v.)",
+      "(동물이) 먹을 것을 찾아 돌아다니다"
+     ],
+     [
+      "cooperate",
+      "협력하다 (v.)",
+      "cooperation (n.) 협력 / co(함께) + operate(일하다)"
+     ],
+     [
+      "varied",
+      "여러 가지의, 가지각색의 (a.)",
+      "vary (v.) 서로 다르다 / variety (n.) 다양성"
+     ],
+     [
+      "outcompete",
+      "경쟁에서 이기다 (v.)",
+      "경쟁 상대를 밀어내고 살아남다"
+     ],
+     [
+      "hibernate",
+      "겨울잠을 자다 (v.)",
+      "hibernation (n.) 겨울잠, 동면"
+     ],
+     [
+      "squirrel",
+      "다람쥐 (n.)",
+      "본문: red and grey squirrels — grey는 영국식 철자(미국식 gray)"
+     ],
+     [
+      "population",
+      "개체군, 개체 수 (n.)",
+      "한 지역에 사는 같은 종의 무리 / 다른 빈출 뜻: 인구 — 17강 06번: rapid population growth"
+     ],
+     [
+      "invasive species",
+      "침입종",
+      "들어온 곳의 생태계를 해칠 만큼 퍼지는 외래종 / invade (v.) 침략하다"
+     ]
+    ]
+   },
+   {
+    "name": "16강 08번",
+    "items": [
+     [
+      "administer",
+      "관리하다, 운영하다 (v.)",
+      "다른 빈출 뜻: (약을) 투여하다 / administration (n.) 행정, 관리"
+     ],
+     [
+      "catch sight of A",
+      "A를 발견하다, 언뜻 보다",
+      "본문: If they caught sight of another messenger coming(다른 전령이 오는 게 보이면)"
+     ],
+     [
+      "carrier pigeon",
+      "전서구",
+      "전서구: 소식을 전하도록 길들인 비둘기"
+     ],
+     [
+      "transport",
+      "이동시키다, 운반하다 (v.)",
+      "17강 06번: transporting young children long distances(어린아이를 먼 거리 데리고 다니기) / transportation (n.) 운송"
+     ],
+     [
+      "mountainous",
+      "산이 많은, 산악의 (a.)",
+      "mountainous region(산악 지대)"
+     ],
+     [
+      "with no A available",
+      "A를 구할 수 없어서",
+      "with + 명사 + 형용사(~한 채로, ~해서) / available: 이용할 수 있는, 구할 수 있는"
+     ],
+     [
+      "in sight of A",
+      "A가 보이는 곳에",
+      "본문: in sight of one another(서로 보이는 곳에) / out of sight(보이지 않는 곳에)"
+     ],
+     [
+      "outpost",
+      "전초 기지 (n.)",
+      "전초: 본대에서 멀리 떨어져 경계하는 곳"
+     ],
+     [
+      "endurance",
+      "지구력, 인내 (n.)",
+      "endure (v.) 견디다"
+     ],
+     [
+      "herald",
+      "알리다, 예고하다 (v.)",
+      "원래: (왕의 소식을 알리던) 전령 / 다른 빈출 뜻: 전조, 선구자 (n.)"
+     ],
+     [
+      "adjacent",
+      "인접한 (a.)",
+      "adjacent to A(A에 붙어 있는, A 바로 옆의)"
+     ],
+     [
+      "relay",
+      "(소식을) 이어 전달하다 (v.)",
+      "받은 것을 다음 사람에게 넘겨 전하다 / 다른 빈출 뜻: 릴레이 경주, 교대 (n.)"
+     ],
+     [
+      "near",
+      "다가가다 (v.)",
+      "본문: When a messenger neared the next hut(전령이 다음 오두막에 가까워지면) — near가 동사로 쓰임"
+     ],
+     [
+      "telegraph",
+      "전신, 전보 (n.)",
+      "전신: 전기 신호로 멀리 소식을 보내는 통신"
+     ],
+     [
+      "high ground",
+      "고지대, 높은 지대",
+      "본문: built the huts on high ground(오두막을 높은 지대에 지었다)"
+     ],
+     [
+      "under good conditions",
+      "여건이 좋을 때",
+      "under ~ conditions: ~한 조건에서 — condition: 조건, 상태"
+     ],
+     [
+      "hut",
+      "오두막 (n.)",
+      "작고 허술하게 지은 집"
+     ],
+     [
+      "in groups of + 수",
+      "~명씩 무리 지어",
+      "본문: in groups of four to six(4~6명씩 무리 지어)"
+     ],
+     [
+      "be stationed on A",
+      "A에 배치되다",
+      "station: (사람을) 배치하다 / 다른 빈출 뜻: 역, 정거장 (n.)"
+     ],
+     [
+      "courier",
+      "배달원, 택배 회사 (n.)",
+      "서류·물건을 직접 전해 주는 사람이나 업체"
+     ],
+     [
+      "call out",
+      "큰 소리로 외치다",
+      "본문: began to call out(소리쳐 부르기 시작했다) / 다른 빈출 뜻: call out A(A를 공개적으로 비판하다)"
+     ]
+    ]
+   }
+  ],
+  "note": "16강 06번 17 + 16강 07번 42 + 16강 08번 21"
+ },
+ {
+  "id": "songdo1-2026-2f-321-400",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 321~400번",
+  "sections": [
+   {
+    "name": "16강 08번",
+    "items": [
+     [
+      "apart",
+      "(서로) 떨어져 (ad.)",
+      "본문: placed from one to two miles apart(1~2마일 간격으로 떨어져 놓인) / apart from A(A를 제외하고, A 외에도)"
+     ],
+     [
+      "lose sight of A",
+      "A를 시야에서 놓치다, 잊다",
+      "다른 빈출 뜻: (목표·본질을) 잊어버리다"
+     ],
+     [
+      "excel at V-ing",
+      "V하는 데 뛰어나다",
+      "excellent (a.) 뛰어난 / excel in A(A에서 뛰어나다)"
+     ],
+     [
+      "terrain",
+      "지형 (n.)",
+      "땅의 생김새 — rough terrain(험한 지형)"
+     ],
+     [
+      "outdo",
+      "능가하다 (v.)",
+      "outdo-outdid-outdone / out(~보다 더) + do"
+     ],
+     [
+      "vast",
+      "광대한, 막대한 (a.)",
+      "어마어마하게 넓은·많은"
+     ],
+     [
+      "pass on A",
+      "A를 전하다, 물려주다",
+      "17강 07번: the passing on of cultural information(문화적 정보의 전달)"
+     ],
+     [
+      "swift",
+      "빠른, 신속한 (a.)",
+      "swiftly (ad.) 신속하게"
+     ],
+     [
+      "postal",
+      "우편의 (a.)",
+      "postal service(우편 제도)"
+     ],
+     [
+      "summon",
+      "불러들이다, 소환하다 (v.)",
+      "다른 빈출 뜻: (용기·힘을) 내다 — summon up courage"
+     ],
+     [
+      "dispatch",
+      "보내다, 파견하다 (v.)",
+      "다른 빈출 뜻: 발송, 파견 (n.)"
+     ],
+     [
+      "remote",
+      "외딴, 멀리 떨어진 (a.)",
+      "다른 빈출 뜻: 원격의 — remote control(리모컨)"
+     ],
+     [
+      "interval",
+      "간격, 사이 (n.)",
+      "17강 06번: shorten their birth intervals(출산 간격을 줄이다) — at regular intervals(일정한 간격으로)"
+     ],
+     [
+      "stamina",
+      "체력, 지구력 (n.)",
+      "오래 버티는 힘"
+     ],
+     [
+      "logistics",
+      "물류, (일의) 세부 계획 (n.)",
+      "물자를 효율적으로 옮기고 관리하는 일"
+     ],
+     [
+      "envoy",
+      "사절, 특사 (n.)",
+      "나라를 대표해 다른 나라에 보내는 사람"
+     ],
+     [
+      "transmission",
+      "전달, 전송 (n.)",
+      "transmit (v.) 전하다, 전송하다 — 18강 07번: cultural transmission(문화 전파)"
+     ],
+     [
+      "messenger",
+      "전령, 심부름꾼 (n.)",
+      "전령: 명령이나 소식을 전하는 사람"
+     ],
+     [
+      "expedite",
+      "신속히 처리하다, 촉진하다 (v.)",
+      "일이 빨리 진행되게 하다"
+     ],
+     [
+      "proximity",
+      "가까움, 근접 (n.)",
+      "in close proximity to A(A에 아주 가까이)"
+     ],
+     [
+      "deploy",
+      "(필요한 곳에) 배치하다, 투입하다 (v.)",
+      "군대·사람·자원을 보내 쓰다 / deployment (n.)"
+     ]
+    ]
+   },
+   {
+    "name": "17강 01번",
+    "items": [
+     [
+      "desired",
+      "원하는, 바라던 (a.)",
+      "본문: desired shots or scenes(원하는 장면) / desire (n.) 욕구 — 17강 02번"
+     ],
+     [
+      "piece",
+      "(글·작품) 한 편 (n.)",
+      "본문: the whole piece(글 전체) / 다른 빈출 뜻: 조각, 한 개 — a piece of advice(충고 한마디)"
+     ],
+     [
+      "cumbersome",
+      "번거로운, 다루기 힘든 (a.)",
+      "크고 무거워 다루기 불편한"
+     ],
+     [
+      "haphazard",
+      "되는대로의, 무계획적인 (a.)",
+      "계획 없이 제멋대로인"
+     ],
+     [
+      "clip",
+      "짧은 영상, 클립 (n.)",
+      "다른 빈출 뜻: 자르다, 클립으로 고정하다 (v.)"
+     ],
+     [
+      "rewind",
+      "되감다 (v.)",
+      "본문: rewinding videotape(비디오테이프를 되감기) / fast reverse(빨리 되감다)도 같은 뜻"
+     ],
+     [
+      "footage",
+      "(촬영된) 영상 (n.)",
+      "security camera footage(보안 카메라 영상)"
+     ],
+     [
+      "linear",
+      "선형의, 일직선의 (a.)",
+      "처음부터 끝까지 한 줄로 차례대로 이어지는 — 18강 02번: linear thinking(선형적 사고)"
+     ],
+     [
+      "fast forward",
+      "(영상을) 빨리 감다",
+      "본문: without having to fast forward(빨리 감을 필요 없이)"
+     ],
+     [
+      "automatically",
+      "자동으로 (ad.)",
+      "automatic (a.) 자동의 — 17강 03번: automatically closes down the airway"
+     ],
+     [
+      "random access",
+      "임의 접근",
+      "(순서와 관계없이) 원하는 곳에 바로 접근함 — random: 무작위의, 임의의"
+     ],
+     [
+      "manually",
+      "수동으로, 손으로 (ad.)",
+      "manual (a.) 손으로 하는, (n.) 설명서"
+     ],
+     [
+      "compose a paper",
+      "글을 쓰다, 논문을 작성하다",
+      "compose: (글·곡을) 짓다 / 다른 빈출 뜻: 구성하다 — be composed of A(A로 구성되다)"
+     ],
+     [
+      "technique",
+      "기법, 기술 (n.)",
+      "18강 02번: techniques which are already known(이미 알려진 기법) / technical (a.) 기술적인"
+     ],
+     [
+      "chronological",
+      "연대순의, 시간 순서의 (a.)",
+      "in chronological order(시간 순서대로)"
+     ],
+     [
+      "keystroke",
+      "키 입력 (n.)",
+      "본문: with a few keystrokes(키를 몇 번 눌러서)"
+     ],
+     [
+      "erase",
+      "지우다 (v.)",
+      "eraser (n.) 지우개 — 흔적을 없애다"
+     ],
+     [
+      "tedious",
+      "지루하고 따분한 (a.)",
+      "같은 일이 계속돼 지겨운"
+     ],
+     [
+      "editing",
+      "편집 (n.)",
+      "edit (v.) 편집하다 / editor (n.) 편집자 — 본문: an editor(편집자)"
+     ],
+     [
+      "typewriter",
+      "타자기 (n.)",
+      "글자를 한 자씩 쳐서 종이에 찍는 기계"
+     ],
+     [
+      "intended",
+      "의도된 (a.)",
+      "intend (v.) 의도하다 — intended audience(대상 독자·청중)"
+     ],
+     [
+      "adjust",
+      "조정하다 (v.)",
+      "본문: adjusts the program length automatically(프로그램 길이를 자동으로 맞추다) / adjustment (n.) / adjust to A(A에 적응하다)"
+     ],
+     [
+      "obsolete",
+      "구식의, 쓸모없게 된 (a.)",
+      "새것이 나와 더는 쓰지 않는 — 타자기처럼"
+     ],
+     [
+      "delete",
+      "삭제하다 (v.)",
+      "deletion (n.) 삭제"
+     ],
+     [
+      "amend",
+      "(법·문서를) 수정하다 (v.)",
+      "amendment (n.) 개정(안)"
+     ],
+     [
+      "highlight",
+      "가장 두드러진 점, 주요 특징 (n.)",
+      "본문: Another highlight(또 다른 주요 특징) / 다른 빈출 뜻: 강조하다 (v.)"
+     ],
+     [
+      "dissolve",
+      "디졸브(장면이 서서히 겹쳐 바뀌는 효과) (n.)",
+      "다른 빈출 뜻: 녹다, 용해되다, (조직을) 해산하다 (v.)"
+     ],
+     [
+      "rectify",
+      "바로잡다 (v.)",
+      "잘못된 것을 고쳐 바르게 하다"
+     ],
+     [
+      "draft",
+      "초안 (n.)",
+      "다른 빈출 뜻: 초안을 쓰다 (v.), 징병 — rough draft(초고)"
+     ],
+     [
+      "modify",
+      "(일부를) 바꾸다, 변경하다 (v.)",
+      "18강 07번: had to be modified(수정되어야 했다) / modification (n.) 변형 — 17강 05번"
+     ],
+     [
+      "interface",
+      "인터페이스, 접점 (n.)",
+      "사람과 기계(프로그램)가 만나 정보를 주고받는 부분"
+     ],
+     [
+      "make it easy for A to V",
+      "A가 V하기 쉽게 하다",
+      "it은 가목적어, for A는 to V의 의미상 주어"
+     ],
+     [
+      "alter",
+      "바꾸다, 고치다 (v.)",
+      "alteration (n.) 변경 / alternative(대안)와 구별"
+     ],
+     [
+      "undo",
+      "되돌리다, 취소하다 (v.)",
+      "undo-undid-undone — 해 놓은 것을 원래대로 돌리다"
+     ],
+     [
+      "nonlinear",
+      "비선형의 (a.)",
+      "순서대로가 아니라 원하는 곳으로 바로 가는 — 18강 02번: in a nonlinear manner(비선형적 방식으로)"
+     ],
+     [
+      "retype",
+      "다시 입력하다 (v.)",
+      "re(다시) + type(타자를 치다) — 본문: had to be retyped(다시 쳐야 했다)"
+     ],
+     [
+      "proofread",
+      "교정을 보다 (v.)",
+      "교정: 글의 틀린 글자를 바로잡음"
+     ],
+     [
+      "a range of A",
+      "다양한 A",
+      "본문: a range of special effects(다양한 특수 효과) / range (n.) 범위 — range from A to B(A에서 B까지 이르다)"
+     ],
+     [
+      "revamp",
+      "개편하다, 개조하다 (v.)",
+      "새롭게 고쳐 확 바꾸다"
+     ],
+     [
+      "montage",
+      "몽타주 (n.)",
+      "여러 장면을 이어 붙여 하나로 만드는 기법"
+     ],
+     [
+      "without having to V",
+      "V할 필요 없이",
+      "have to V의 동명사형"
+     ],
+     [
+      "sequential",
+      "순서대로 이어지는 (a.)",
+      "sequence (n.) 순서, 연속"
+     ],
+     [
+      "seamless",
+      "매끄러운, 끊김 없는 (a.)",
+      "seam(이음매) + less(없는)"
+     ],
+     [
+      "shot",
+      "(영상의) 한 장면, 숏 (n.)",
+      "본문: any video shot or scene / 다른 빈출 뜻: 시도 — give it a shot(한번 해 보다), 주사, 발사"
+     ]
+    ]
+   },
+   {
+    "name": "17강 02번",
+    "items": [
+     [
+      "commuter",
+      "통근자 (n.)",
+      "commute (v.) 통근하다"
+     ],
+     [
+      "obvious",
+      "명백한, 뻔한 (a.)",
+      "본문: the obvious convenience(누가 봐도 분명한 편리함) / obviously (ad.)"
+     ],
+     [
+      "congested",
+      "붐비는, 혼잡한 (a.)",
+      "congestion (n.) 혼잡 — traffic congestion(교통 체증)"
+     ],
+     [
+      "partly",
+      "부분적으로 (ad.)",
+      "본문: Partly ~. But it was shaped partly by ~(일부는 ~ 때문이고, 일부는 ~ 때문)"
+     ],
+     [
+      "investigate",
+      "조사하다, 연구하다 (v.)",
+      "investigation (n.) 조사 — 18강 08번: studies that investigate these judgments(이런 판단을 조사하는 연구들) / 다른 빈출 뜻: (사건을) 수사하다"
+     ],
+     [
+      "monitor",
+      "관찰하다, 지켜보다 (v.)",
+      "본문: To monitor our surroundings(주변 환경을 살피는 것) / 다른 빈출 뜻: 화면, 감시 장치 (n.)"
+     ],
+     [
+      "convenience",
+      "편리(함) (n.)",
+      "convenient (a.) 편리한 — the convenience of V-ing(V할 수 있는 편리함)"
+     ],
+     [
+      "make eye contact with A",
+      "A와 눈을 마주치다",
+      "eye contact: 시선 마주침"
+     ],
+     [
+      "indefinite",
+      "불명확한, 무기한의 (a.)",
+      "in(not) + definite(분명한)"
+     ],
+     [
+      "glance",
+      "흘끗 보다 (v.)",
+      "다른 빈출 뜻: 흘끗 봄 (n.) — at a glance(한눈에)"
+     ],
+     [
+      "specific",
+      "구체적인, 특정한 (a.)",
+      "본문: something less specific(덜 구체적인 것) / specify (v.) 명시하다"
+     ],
+     [
+      "plant oneself",
+      "자리를 잡다, 버티고 서다",
+      "본문: plant themselves close to the train's doors(열차 문 가까이에 자리를 잡다) / 다른 빈출 뜻: plant 공장 (n.)"
+     ],
+     [
+      "avert one's eyes",
+      "눈길을 돌리다",
+      "avert: (눈·얼굴을) 돌리다, (위험을) 피하다"
+     ],
+     [
+      "generic",
+      "일반적인, 포괄적인 (a.)",
+      "다른 빈출 뜻: 상표가 붙지 않은 — generic drug(복제약)"
+     ],
+     [
+      "awkward",
+      "어색한, 곤란한 (a.)",
+      "awkward silence(어색한 침묵)"
+     ]
+    ]
+   }
+  ],
+  "note": "16강 08번 21 + 17강 01번 44 + 17강 02번 15"
+ },
+ {
+  "id": "songdo1-2026-2f-401-480",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 401~480번",
+  "sections": [
+   {
+    "name": "17강 02번",
+    "items": [
+     [
+      "observer",
+      "관찰자 (n.)",
+      "observe (v.) 관찰하다, (규칙을) 지키다 — 18강 08번: observers' reactions(관찰자들의 반응)"
+     ],
+     [
+      "etiquette",
+      "예절, 에티켓 (n.)",
+      "사회생활에서 지켜야 할 예의"
+     ],
+     [
+      "shape",
+      "형성하다 (v.)",
+      "본문: it was shaped partly by ~(그것은 부분적으로 ~에 의해 형성되었다) / 다른 빈출 뜻: 모양, (건강) 상태 (n.) — in good shape"
+     ],
+     [
+      "maneuver",
+      "(이리저리) 움직이다, 조종하다 (v.)",
+      "좁은 곳에서 요리조리 움직여 나아가다 / 다른 빈출 뜻: 책략, 술책 (n.)"
+     ],
+     [
+      "finding",
+      "(연구) 결과, 발견 (n.)",
+      "본문: One of their findings(그들이 알아낸 사실 중 하나)"
+     ],
+     [
+      "surroundings",
+      "주변 환경 (n.)",
+      "항상 복수형 / surround (v.) 둘러싸다"
+     ],
+     [
+      "concrete",
+      "실체가 있는, 구체적인 (a.)",
+      "다른 빈출 뜻: 콘크리트 (n.)"
+     ],
+     [
+      "vicinity",
+      "부근, 근처 (n.)",
+      "in the vicinity of A(A 부근에)"
+     ],
+     [
+      "accidentally",
+      "우연히, 뜻하지 않게 (ad.)",
+      "accident (n.) 사고, 우연 — by accident(우연히)"
+     ],
+     [
+      "navigate",
+      "(길을) 찾아 다니다 (v.)",
+      "본문: navigated that space(그 공간을 이동했다) / navigation (n.) / 다른 빈출 뜻: (어려움을) 헤쳐 나가다"
+     ],
+     [
+      "factor",
+      "요인 (n.)",
+      "본문: the factors that shape the way riders used and navigated that space(승객들이 그 공간을 쓰고 이동하는 방식을 만드는 요인들)"
+     ],
+     [
+      "mark",
+      "특징짓다 (v.)",
+      "본문: what really marks a place(어떤 장소를 진정으로 특징짓는 것) / 다른 빈출 뜻: 표시하다, 기념하다, 자국·점수 (n.)"
+     ],
+     [
+      "intrusive",
+      "거슬리는, 침해하는 (a.)",
+      "intrude (v.) 침범하다 — 남의 공간·사생활에 끼어드는"
+     ],
+     [
+      "abstract",
+      "추상적인 (a.)",
+      "눈에 보이거나 손에 잡히지 않는 — 본문: a more abstract sensation(더 추상적인 느낌)"
+     ],
+     [
+      "seated",
+      "(자리에) 앉아 있는 (a.)",
+      "본문: seated passengers(앉아 있는 승객들) / be seated(앉다)"
+     ],
+     [
+      "introvert",
+      "내향적인 사람 (n.)",
+      "introverted (a.) 내향적인"
+     ],
+     [
+      "hassle",
+      "귀찮고 성가신 일 (n.)",
+      "hassle-free(번거롭지 않은)"
+     ],
+     [
+      "privacy",
+      "사생활, 혼자 있는 상태 (n.)",
+      "private (a.) 사적인 / invade one's privacy(사생활을 침해하다)"
+     ],
+     [
+      "extrovert",
+      "외향적인 사람 (n.)",
+      "extroverted (a.) 외향적인"
+     ],
+     [
+      "probe",
+      "조사하다, 캐묻다 (v.)",
+      "다른 빈출 뜻: 탐사선, 조사 (n.)"
+     ],
+     [
+      "look into A",
+      "A를 들여다보다, 조사하다",
+      ""
+     ],
+     [
+      "involve",
+      "관련되다, 수반하다 (v.)",
+      "본문: involved the reasons ~(~하는 이유와 관련이 있었다) — 18강 04번: if food is involved(먹이가 걸려 있으면) / involvement (n.)"
+     ],
+     [
+      "the desire to V",
+      "V하려는 욕구",
+      "desire: 욕구, 바람 / 다른 빈출 뜻: 바라다 (v.)"
+     ],
+     [
+      "sensation",
+      "느낌, 감각 (n.)",
+      "다른 빈출 뜻: 센세이션(큰 화제) / sensational (a.) 선풍적인"
+     ],
+     [
+      "exit",
+      "나가다, (차에서) 내리다 (v.)",
+      "다른 빈출 뜻: 출구 (n.)"
+     ],
+     [
+      "personal space",
+      "개인 공간",
+      "다른 사람이 들어오면 불편한 몸 주변의 공간"
+     ],
+     [
+      "deliberately",
+      "일부러, 고의로 (ad.)",
+      "deliberate (a.) 고의의, 신중한"
+     ],
+     [
+      "examine",
+      "조사하다, 살펴보다 (v.)",
+      "examination (n.) 조사, 시험"
+     ],
+     [
+      "evade",
+      "피하다, 회피하다 (v.)",
+      "evasion (n.) 회피 — 책임·질문 등을 교묘하게 피하다"
+     ],
+     [
+      "unspoken rule",
+      "암묵적 규칙",
+      "말로 정하지 않았지만 다들 지키는 규칙"
+     ],
+     [
+      "apparent",
+      "~인 것처럼 보이는, 분명한 (a.)",
+      "apparently (ad.) 보아하니"
+     ]
+    ]
+   },
+   {
+    "name": "17강 03번",
+    "items": [
+     [
+      "marine",
+      "해양의, 바다에 사는 (a.)",
+      "본문: other marine mammals(다른 해양 포유류)"
+     ],
+     [
+      "brief",
+      "짧은, 잠깐의 (a.)",
+      "본문: the brief stop in breathing(잠깐의 호흡 정지) / 다른 빈출 뜻: 간단히 알리다 (v.) / briefly (ad.)"
+     ],
+     [
+      "hold one's breath",
+      "숨을 참다",
+      "다른 빈출 뜻: (긴장해서) 숨죽이다"
+     ],
+     [
+      "go under water",
+      "물속에 잠기다",
+      "본문: only when the facial region goes under water(얼굴 부위가 물속에 잠길 때만)"
+     ],
+     [
+      "gulp",
+      "꿀꺽 삼키다 (v.)",
+      "다른 빈출 뜻: 꿀꺽 삼킴, 한 모금 (n.)"
+     ],
+     [
+      "blood vessel",
+      "혈관",
+      "vessel: 그릇, (큰) 배, 관"
+     ],
+     [
+      "immerse",
+      "몰두시키다, (액체에) 푹 잠기게 하다 (v.)",
+      "be immersed in A(A에 몰두하다)"
+     ],
+     [
+      "carbon dioxide",
+      "이산화 탄소",
+      "숨을 내쉴 때 나오는 기체"
+     ],
+     [
+      "heart rate",
+      "심박수",
+      "1분 동안 심장이 뛰는 횟수"
+     ],
+     [
+      "airway",
+      "기도 (n.)",
+      "기도: 숨 쉴 때 공기가 지나는 길 — 본문의 air-passages(공기 통로)도 같은 부류"
+     ],
+     [
+      "race",
+      "(심장이) 빨리 뛰다 (v.)",
+      "본문: its heart would race(심장이 마구 뛸 것이다) / 다른 빈출 뜻: 경주, 인종 (n.)"
+     ],
+     [
+      "circulation",
+      "(혈액) 순환 (n.)",
+      "다른 빈출 뜻: 유통, (신문의) 발행 부수 / circulate (v.)"
+     ],
+     [
+      "suffocate",
+      "질식하다, 숨 막히게 하다 (v.)",
+      "suffocation (n.) 질식"
+     ],
+     [
+      "be shunted to A",
+      "A로 (방향을 돌려) 보내지다",
+      "shunt: 다른 쪽으로 돌리다 — 본문: blood is shunted to the vital organs(혈액이 생명 유지 장기로 보내진다)"
+     ],
+     [
+      "lung",
+      "폐, 허파 (n.)",
+      ""
+     ],
+     [
+      "drown",
+      "물에 빠져 죽다, 익사하다 (v.)",
+      "다른 빈출 뜻: (소리를) 묻히게 하다 — drown out A"
+     ],
+     [
+      "region",
+      "(신체의) 부위, 지역 (n.)",
+      "regional (a.) 지역의"
+     ],
+     [
+      "narrow",
+      "좁히다 (v.)",
+      "본문: it narrows the small air-passages(작은 공기 통로를 좁힌다) / 다른 빈출 뜻: 좁은 (a.) — narrow down A(A를 좁히다, 추리다)"
+     ],
+     [
+      "instinct",
+      "본능 (n.)",
+      "instinctive (a.) 본능적인"
+     ],
+     [
+      "reduce the risk of A",
+      "A의 위험을 줄이다",
+      "본문: reducing the risk of swallowing water(물을 삼킬 위험을 줄이며)"
+     ],
+     [
+      "momentary",
+      "순간적인, 한순간의 (a.)",
+      "18강 01번: our momentary priorities(그 순간의 우선순위) / moment (n.) 순간"
+     ],
+     [
+      "diving reflex",
+      "잠수 반사",
+      "얼굴이 물에 잠기면 몸이 저절로 산소를 아끼는 반응"
+     ],
+     [
+      "inhale",
+      "숨을 들이마시다 (v.)",
+      ""
+     ],
+     [
+      "divert",
+      "(방향을) 돌리다, 전환하다 (v.)",
+      "다른 빈출 뜻: (관심을) 딴 데로 돌리다 — divert attention"
+     ],
+     [
+      "aquatic",
+      "물에 사는, 수중의 (a.)",
+      "aquatic animals(수생 동물)"
+     ],
+     [
+      "vital organ",
+      "생명 유지에 꼭 필요한 장기",
+      "vital: 생명 유지에 필요한, 필수적인 / vitality (n.) 활력"
+     ],
+     [
+      "physiological",
+      "생리적인 (a.)",
+      "생리: 생물의 몸이 기능하는 원리 / physiology (n.) 생리학"
+     ],
+     [
+      "facial",
+      "얼굴의 (a.)",
+      "본문: the facial region(얼굴 부위)"
+     ],
+     [
+      "reflex",
+      "반사 (작용) (n.)",
+      "생각하기 전에 몸이 저절로 하는 반응 — 본문: trigger this reflex(이 반사를 일으키다) / reflexive (a.) 반사적인"
+     ],
+     [
+      "constrict",
+      "수축시키다, 죄다 (v.)",
+      "constriction (n.) 수축"
+     ],
+     [
+      "swallow",
+      "삼키다 (v.)",
+      "다른 빈출 뜻: 제비 (n.)"
+     ],
+     [
+      "sink",
+      "(물에) 담그다, 가라앉히다 (v.)",
+      "sink-sank-sunk / 본문: sink just our face in a bowl of water(그릇의 물에 얼굴만 담그다) / 다른 빈출 뜻: 가라앉다, 싱크대 (n.)"
+     ],
+     [
+      "buoyancy",
+      "부력 (n.)",
+      "부력: 물에 뜨게 하는 힘 / buoyant (a.) 잘 뜨는, 낙관적인"
+     ],
+     [
+      "indispensable",
+      "없어서는 안 될 (a.)",
+      "in(not) + dispensable(없어도 되는)"
+     ],
+     [
+      "broaden",
+      "넓히다 (v.)",
+      "broad (a.) 넓은 — broaden one's horizons(시야를 넓히다)"
+     ],
+     [
+      "submerge",
+      "물에 잠그다, 잠기다 (v.)",
+      "sub(아래) + merge"
+     ],
+     [
+      "nerve ending",
+      "신경 말단",
+      "신경 가지의 맨 끝부분 — 자극을 받아들이는 곳"
+     ],
+     [
+      "exhale",
+      "숨을 내쉬다 (v.)",
+      ""
+     ],
+     [
+      "panic",
+      "겁에 질리다, 당황하다 (v.)",
+      "panic-panicked-panicked / 다른 빈출 뜻: 공황, 극심한 공포 (n.)"
+     ],
+     [
+      "composure",
+      "침착함, 평정 (n.)",
+      "평정: 마음이 흔들림 없이 고요함 / compose oneself(마음을 가라앉히다)"
+     ],
+     [
+      "find oneself in A",
+      "(어느새) A에 처해 있다",
+      "본문: found itself in water(물속에 빠져 있다면)"
+     ],
+     [
+      "close down A",
+      "A를 닫다",
+      "본문: closes down the airway(기도를 닫다) / 다른 빈출 뜻: (가게·공장이) 문을 닫다, 폐업하다"
+     ]
+    ]
+   },
+   {
+    "name": "17강 04번",
+    "items": [
+     [
+      "anecdote",
+      "일화 (n.)",
+      "실제 있었던 짤막한 이야기 / anecdotal (a.) 일화적인(과학적 근거가 약한)"
+     ],
+     [
+      "interact with A",
+      "A와 상호 작용하다",
+      "interaction (n.) 상호 작용 — 본문: interact with one another(서로 상호 작용하다)"
+     ],
+     [
+      "doctrine",
+      "교리, 신조 (n.)",
+      "교리: 종교나 학파가 옳다고 정해 둔 가르침"
+     ],
+     [
+      "float around",
+      "(소문·생각이) 떠돌다",
+      "본문: accounts of human nature that float around in society(사회에 떠도는 인간 본성에 대한 설명들)"
+     ],
+     [
+      "be derived from A",
+      "A에서 나오다, 유래하다",
+      "derive A from B(B에서 A를 얻다)"
+     ],
+     [
+      "credible",
+      "믿을 만한 (a.)",
+      "credibility (n.) 신뢰성 / credulous(쉽게 믿는)와 구별"
+     ],
+     [
+      "controlled experiment",
+      "통제 실험",
+      "조건 하나만 바꾸고 나머지는 똑같이 둔 실험"
+     ]
+    ]
+   }
+  ],
+  "note": "17강 02번 31 + 17강 03번 42 + 17강 04번 7"
+ },
+ {
+  "id": "songdo1-2026-2f-481-560",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 481~560번",
+  "sections": [
+   {
+    "name": "17강 04번",
+    "items": [
+     [
+      "testable",
+      "검증할 수 있는 (a.)",
+      "실험이나 관찰로 맞는지 확인할 수 있는"
+     ],
+     [
+      "evidence-based approach",
+      "증거 기반 접근법",
+      "approach: 접근(법) — 증거에 근거해 판단하는 방식"
+     ],
+     [
+      "conjecture",
+      "추측 (n.)",
+      "다른 빈출 뜻: 추측하다 (v.)"
+     ],
+     [
+      "falsify",
+      "반증하다, 위조하다 (v.)",
+      "반증: 틀렸음을 증거로 밝힘"
+     ],
+     [
+      "branch",
+      "(학문의) 분야 (n.)",
+      "본문: the branch of science(과학의 한 분야) / 다른 빈출 뜻: 나뭇가지, 지점 — 17강 05번: branches of the evolutionary tree(진화 계통의 가지들)"
+     ],
+     [
+      "firmly",
+      "확고하게, 단단히 (ad.)",
+      "본문: are firmly based(확고한 근거를 두고 있다) / firm (a.) 단단한, (n.) 회사"
+     ],
+     [
+      "absurdity",
+      "터무니없음, 부조리 (n.)",
+      "absurd (a.) 터무니없는"
+     ],
+     [
+      "bias",
+      "편견, 편향 (n.)",
+      "한쪽으로 치우친 생각 — 18강 06번: biases and all kinds of other negativities / biased (a.) 편향된"
+     ],
+     [
+      "be devoted to A",
+      "A에 전념하다, 헌신하다",
+      "to는 전치사 → be devoted to V-ing / devote A to B(A를 B에 바치다) / devotion (n.) 헌신"
+     ],
+     [
+      "stem from A",
+      "A에서 비롯되다",
+      "stem: 줄기"
+     ],
+     [
+      "gossip",
+      "험담, 잡담 (n.)",
+      "다른 빈출 뜻: 남 얘기를 하다 (v.)"
+     ],
+     [
+      "common sense",
+      "상식",
+      "누구나 알 만한 보통의 판단력"
+     ],
+     [
+      "plain",
+      "순전한 (a.)",
+      "본문: plain silliness(순전한 어리석음) / 다른 빈출 뜻: 평범한, 분명한, 평원 (n.)"
+     ],
+     [
+      "objective",
+      "객관적인 (a.)",
+      "개인 감정·생각을 섞지 않은 — 18강 01번 요약문: the objective perspective of a camera / 다른 빈출 뜻: 목표 (n.)"
+     ],
+     [
+      "rigorous",
+      "엄격한, 철저한 (a.)",
+      "rigorous research(철저한 연구)"
+     ],
+     [
+      "hearsay",
+      "소문, 풍문 (n.)",
+      "직접 보지 않고 남에게서 들은 말"
+     ],
+     [
+      "generally accepted",
+      "일반적으로 받아들여지는",
+      "본문: the generally accepted views(널리 받아들여지는 견해)"
+     ],
+     [
+      "tale",
+      "이야기, 설화 (n.)",
+      "folk tale(민간 설화)"
+     ],
+     [
+      "skeptical",
+      "회의적인 (a.)",
+      "쉽게 믿지 않고 의심하는 / skepticism (n.) 회의론"
+     ],
+     [
+      "principle",
+      "원리, 원칙 (n.)",
+      "principal(주요한; 교장)과 철자 구별"
+     ],
+     [
+      "what A is all about",
+      "A의 본질, A가 진정 다루는 것",
+      "be all about A(A가 핵심이다, A에 관한 것이다)"
+     ],
+     [
+      "mixture",
+      "혼합(물) (n.)",
+      "본문: a mixture of assumptions, tales and ~(가정과 이야기와 ~이 뒤섞인 것)"
+     ],
+     [
+      "theoretical",
+      "이론의, 이론적인 (a.)",
+      "theory (n.) 이론 — 18강 07번: theoretical population genetics(이론 집단 유전학)"
+     ],
+     [
+      "B as well as A",
+      "A뿐만 아니라 B도",
+      ""
+     ],
+     [
+      "intuition",
+      "직관 (n.)",
+      "직관: 따져 보지 않고 바로 느껴 아는 것 / intuitive (a.)"
+     ],
+     [
+      "considered",
+      "숙고한, 신중히 생각한 (a.)",
+      "본문: the considered opinions of deep thinkers(사상가들이 깊이 생각해서 낸 의견) / considerable(상당한)·considerate(사려 깊은)와 구별"
+     ],
+     [
+      "thinker",
+      "사상가 (n.)",
+      "사상가: 세상과 삶에 대해 깊이 생각해 체계적인 생각을 내놓은 사람"
+     ],
+     [
+      "sheer",
+      "완전한, 엄청난 (a.)",
+      "sheer luck(순전한 운) / 다른 빈출 뜻: (절벽이) 깎아지른 듯한, (천이) 얇은"
+     ],
+     [
+      "subjective",
+      "주관적인 (a.)",
+      "자기 생각·감정에 따른 / subject (n.) 주제, 과목, 실험 대상"
+     ],
+     [
+      "silliness",
+      "어리석음 (n.)",
+      "silly (a.) 어리석은"
+     ],
+     [
+      "human nature",
+      "인간 본성",
+      ""
+     ],
+     [
+      "pseudoscience",
+      "사이비 과학 (n.)",
+      "사이비: 겉은 비슷하지만 속은 아닌 — pseudo(가짜의) + science"
+     ],
+     [
+      "assumption",
+      "가정, 추정 (n.)",
+      "사실인지 확인하지 않고 그렇다고 여기는 것 / assume (v.) — 16강 06번: it is assumed that ~"
+     ],
+     [
+      "thoughtful",
+      "사려 깊은, 생각에 잠긴 (a.)",
+      "남을 배려하고 깊이 생각하는"
+     ]
+    ]
+   },
+   {
+    "name": "17강 05번",
+    "items": [
+     [
+      "genetic",
+      "유전의, 유전적인 (a.)",
+      "gene (n.) 유전자 — 18강 07번: genetic transmission(유전자 전달)"
+     ],
+     [
+      "analogy",
+      "상사(성), (기능의) 유사성 (n.)",
+      "상사: 기원은 달라도 하는 일(기능)이 비슷함 — 본문: distinguish analogy from homology(상사와 상동을 구별하다) / 다른 빈출 뜻: 비유, 유추 — draw an analogy between A and B(A와 B를 빗대어 설명하다)"
+     ],
+     [
+      "skeleton",
+      "뼈대, 골격 (n.)",
+      "다른 빈출 뜻: (계획의) 골자"
+     ],
+     [
+      "dissimilar",
+      "닮지 않은, 다른 (a.)",
+      "dis(not) + similar"
+     ],
+     [
+      "architecture",
+      "구조, 구성 (n.)",
+      "본문: the overall architecture of the organs(기관의 전체 구조) / 다른 빈출 뜻: 건축(학)"
+     ],
+     [
+      "dysfunction",
+      "기능 장애 (n.)",
+      "dys(나쁜) + function"
+     ],
+     [
+      "ancestor",
+      "조상 (n.)",
+      "ancestry (n.) 혈통 — 본문: the ancestor of all mammals(모든 포유류의 조상)"
+     ],
+     [
+      "convergent evolution",
+      "수렴 진화",
+      "조상이 달라도 비슷한 환경 때문에 비슷한 모습으로 진화함 — 새와 벌의 날개처럼"
+     ],
+     [
+      "comprehensive",
+      "포괄적인, 종합적인 (a.)",
+      "빠짐없이 다 아우르는"
+     ],
+     [
+      "lineage",
+      "혈통, 계보 (n.)",
+      "조상에서 자손으로 이어지는 줄기"
+     ],
+     [
+      "indicate",
+      "나타내다, 보여 주다 (v.)",
+      "본문: indicates their being the same organ(그것들이 같은 기관임을 보여 준다 — their는 being의 의미상 주어) / indication (n.) 징후"
+     ],
+     [
+      "vertebrate",
+      "척추동물 (n.)",
+      "척추(등뼈)가 있는 동물 / invertebrate (n.) 무척추동물"
+     ],
+     [
+      "discriminate",
+      "구별하다, 차별하다 (v.)",
+      "discriminate between A and B(A와 B를 구별하다) / discrimination (n.) 차별"
+     ],
+     [
+      "mutation",
+      "돌연변이 (n.)",
+      "유전자가 갑자기 바뀌는 일 — 18강 07번: transmission, mutation, and selection / mutate (v.)"
+     ],
+     [
+      "in a sense",
+      "어떤 의미에서",
+      "본문: in an important sense(중요한 의미에서)"
+     ],
+     [
+      "function",
+      "기능 (n.)",
+      "functional (a.) 기능적인 — 18강 01번 / 본문: nonfunctional traits(기능과 상관없는 형질)"
+     ],
+     [
+      "independently",
+      "독립적으로, 따로 (ad.)",
+      "independent (a.) 독립적인 — 본문: arose independently in evolution(진화 과정에서 따로 생겨났다)"
+     ],
+     [
+      "evolution",
+      "진화 (n.)",
+      "evolutionary (a.) 진화의 — 본문: the evolutionary tree(진화 계통수) / evolve (v.) — 17강 07번"
+     ],
+     [
+      "descend from A",
+      "A의 자손이다, A에서 내려오다",
+      "본문: descended from a common ancestor(공통 조상에게서 내려왔다) / descent (n.) 혈통, 하강"
+     ],
+     [
+      "signify",
+      "의미하다, 뜻하다 (v.)",
+      "significance (n.) 의미, 중요성"
+     ],
+     [
+      "overall",
+      "전체적인, 전반적인 (a.)",
+      "다른 빈출 뜻: 전반적으로 (ad.)"
+     ],
+     [
+      "property",
+      "특성, 속성 (n.)",
+      "본문: their most useless properties(가장 쓸모없는 특성들) / 다른 빈출 뜻: 재산, 부동산"
+     ],
+     [
+      "denote",
+      "(기호·말이) 가리키다 (v.)",
+      "어떤 뜻·대상을 나타내다"
+     ],
+     [
+      "analogous",
+      "(기능이) 유사한, 상사(相似)의 (a.)",
+      "상사: 기원은 달라도 하는 일(기능)이 비슷함 — 새의 날개와 벌의 날개처럼"
+     ],
+     [
+      "hence",
+      "그러므로, 따라서 (ad.)",
+      ""
+     ],
+     [
+      "distinguish A from B",
+      "A를 B와 구별하다",
+      "distinguish 단독으로도 씀 — 본문: distinguish two kinds of similarity / 18강 05번: distinguishing particular colors / distinguished (a.) 저명한"
+     ],
+     [
+      "may or may not V",
+      "V할 수도 있고 안 할 수도 있다",
+      "본문: may or may not have a common function(공통 기능이 있을 수도 없을 수도 있다)"
+     ],
+     [
+      "biologist",
+      "생물학자 (n.)",
+      "biology (n.) 생물학 / biological (a.) 생물학적인 — 18강 07번"
+     ],
+     [
+      "parallel",
+      "평행한, 아주 비슷한 (a.)",
+      "다른 빈출 뜻: 유사점 (n.) — draw a parallel between A and B(A와 B를 견주다)"
+     ],
+     [
+      "forelimb",
+      "앞다리 (n.)",
+      "fore(앞) + limb(팔다리)"
+     ],
+     [
+      "similarity",
+      "유사성, 비슷한 점 (n.)",
+      "similar (a.) 비슷한 — 18강 07번 요약문: the similarity between culture and genes"
+     ],
+     [
+      "homologous",
+      "상동(相同)의 (a.)",
+      "상동: 하는 일은 달라도 같은 조상에서 나와 구조가 같음 — 박쥐 날개와 말의 앞다리처럼 / homology (n.) 상동성"
+     ],
+     [
+      "anatomy",
+      "해부학, (몸의) 구조 (n.)",
+      "해부학: 몸속 구조를 연구하는 학문 / anatomical (a.) 해부학의"
+     ],
+     [
+      "resemblance",
+      "닮음, 유사함 (n.)",
+      "resemble (v.) ~와 닮다(전치사 없이 목적어)"
+     ],
+     [
+      "have nothing in common",
+      "공통점이 없다",
+      "have A in common(A를 공통으로 가지다)"
+     ],
+     [
+      "thereby",
+      "그렇게 함으로써 (ad.)",
+      "앞에서 말한 방법으로 — 결과를 이을 때"
+     ],
+     [
+      "the number of A",
+      "A의 수",
+      "the number of + 복수명사 + 단수동사 / a number of A(많은 A)와 구별"
+     ],
+     [
+      "fin",
+      "지느러미 (n.)",
+      ""
+     ],
+     [
+      "trait",
+      "특성, 형질 (n.)",
+      "형질: 생물이 지닌 모양·성질 같은 특징 — 18강 07번: a cultural trait(문화적 특성)"
+     ],
+     [
+      "limb",
+      "팔다리, 사지 (n.)",
+      "다른 빈출 뜻: (나무의) 큰 가지 — go out on a limb(위험을 무릅쓰다)"
+     ]
+    ]
+   },
+   {
+    "name": "17강 06번",
+    "items": [
+     [
+      "mortality",
+      "사망률 (n.)",
+      "mortal (a.) 죽을 운명의 — infant mortality(영아 사망률)"
+     ],
+     [
+      "year after year",
+      "해마다, 매년",
+      ""
+     ],
+     [
+      "toil",
+      "힘들게 일하다 (v.)",
+      "다른 빈출 뜻: 노고, 수고 (n.)"
+     ],
+     [
+      "Neolithic",
+      "신석기 시대의 (a.)",
+      "농경이 시작된 시대 — the Neolithic Revolution(신석기 혁명)"
+     ],
+     [
+      "surplus",
+      "잉여, 남는 것 (n.)",
+      "잉여: 쓰고 남은 나머지 / 다른 빈출 뜻: 흑자(번 돈이 쓴 돈보다 많음) — food surplus(잉여 식량)"
+     ],
+     [
+      "itinerant",
+      "떠돌아다니는 (a.)",
+      "일정한 거처 없이 옮겨 다니는"
+     ]
+    ]
+   }
+  ],
+  "note": "17강 04번 34 + 17강 05번 40 + 17강 06번 6"
+ },
+ {
+  "id": "songdo1-2026-2f-561-640",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 561~640번",
+  "sections": [
+   {
+    "name": "17강 06번",
+    "items": [
+     [
+      "agrarian",
+      "농경의, 토지의 (a.)",
+      "agrarian society(농경 사회)"
+     ],
+     [
+      "demographic",
+      "인구(통계)의 (a.)",
+      "demography (n.) 인구 통계학"
+     ],
+     [
+      "birth rate",
+      "출생률",
+      ""
+     ],
+     [
+      "hunter-gatherer",
+      "수렵 채집인 (n.)",
+      "사냥(수렵)과 열매 따기(채집)로 먹고살던 사람"
+     ],
+     [
+      "every time S V",
+      "~할 때마다",
+      ""
+     ],
+     [
+      "space",
+      "간격을 두다 (v.)",
+      "본문: spacing their births(출산 간격을 두다) / 다른 빈출 뜻: 공간, 우주 (n.)"
+     ],
+     [
+      "in particular",
+      "특히",
+      ""
+     ],
+     [
+      "innovation",
+      "혁신 (n.)",
+      "새로운 방법·생각을 들여옴 — 18강 07번: transmission, innovation, and selection / innovative (a.) — 18강 02번 요약문"
+     ],
+     [
+      "abbreviate",
+      "줄여 쓰다, 축약하다 (v.)",
+      "abbreviation (n.) 약어"
+     ],
+     [
+      "prolong",
+      "연장하다, (기간을) 늘리다 (v.)",
+      "prolonged (a.) 장기적인, 오래 끄는"
+     ],
+     [
+      "equivalent",
+      "동등한 것, 상당하는 것 (n.)",
+      "다른 빈출 뜻: 동등한, ~에 상당하는 (a.)"
+     ],
+     [
+      "counterpart",
+      "(서로) 대응하는 사람·것 (n.)",
+      "본문: her hunter-gatherer counterpart(수렵 채집 사회에서 같은 처지의 여성)"
+     ],
+     [
+      "possessions",
+      "소유물, 재산 (n.)",
+      "주로 복수형 / possess (v.) 소유하다"
+     ],
+     [
+      "fertility",
+      "출산율, (땅의) 비옥함 (n.)",
+      "fertile (a.) 비옥한, 생식력 있는"
+     ],
+     [
+      "oblige",
+      "(의무적으로) ~하게 하다 (v.)",
+      "be obliged to V(V할 수밖에 없다) / obligation (n.) 의무"
+     ],
+     [
+      "infant",
+      "유아, 젖먹이 (n.)",
+      "infancy (n.) 유아기, 초창기"
+     ],
+     [
+      "livestock",
+      "가축 (n.)",
+      "소·돼지처럼 농가에서 기르는 동물"
+     ],
+     [
+      "bear",
+      "(아이를) 낳다 (v.)",
+      "bear-bore-born(e) / 다른 빈출 뜻: 견디다, (책임을) 지다, 곰 (n.)"
+     ],
+     [
+      "labor",
+      "노동(력) (n.)",
+      "본문: large amounts of human labor(많은 인간 노동력) / laborious (a.) 힘든 / 다른 빈출 뜻: 출산의 진통"
+     ],
+     [
+      "frequently",
+      "자주, 빈번히 (ad.)",
+      "frequent (a.) 잦은 — 18강 06번에도 나옴"
+     ],
+     [
+      "barren",
+      "(땅이) 메마른, 불모의 (a.)",
+      "불모: 식물이 자라지 못함"
+     ],
+     [
+      "force A to V",
+      "A가 V하도록 강요하다",
+      "be forced to V(어쩔 수 없이 V하다) — 본문: forced people to stay in one place"
+     ],
+     [
+      "domesticate",
+      "(동물을) 길들이다, 작물화하다 (v.)",
+      "작물화: 야생 식물을 농사짓는 작물로 바꿈 / domestic (a.) 가정의, 국내의"
+     ],
+     [
+      "advantage",
+      "이점, 유리한 점 (n.)",
+      "본문: an advantage to agricultural societies(농경 사회에 이점) / take advantage of A(A를 이용하다) / advantageous (a.) 유리한"
+     ],
+     [
+      "shorten",
+      "줄이다, 단축하다 (v.)",
+      "short (a.) + en(~하게 하다)"
+     ],
+     [
+      "in turn",
+      "결국, 그 결과",
+      "본문: which in turn resulted in ~(그것이 다시 ~을 낳았다) / 다른 빈출 뜻: 차례로, 번갈아"
+     ],
+     [
+      "yield",
+      "수확량 (n.)",
+      "다른 빈출 뜻: (결과를) 산출하다, 양보하다, 굴복하다 (v.)"
+     ],
+     [
+      "sporadically",
+      "산발적으로, 이따금 (ad.)",
+      "산발적: 여기저기서 띄엄띄엄 일어나는 / sporadic (a.) 산발적인"
+     ],
+     [
+      "or so",
+      "~쯤, ~ 정도",
+      "본문: every four years or so(대략 4년마다) / every + 기수 + 복수명사: ~마다"
+     ],
+     [
+      "settle down",
+      "정착하다",
+      "settlement (n.) 정착(지) / settler (n.) 정착민"
+     ],
+     [
+      "harvest",
+      "수확하다 (v.)",
+      "다른 빈출 뜻: 수확(물) (n.)"
+     ],
+     [
+      "belongings",
+      "소지품 (n.)",
+      "belong to A(A의 것이다)"
+     ],
+     [
+      "crop",
+      "농작물 (n.)",
+      "본문: Growing crops(농작물 재배) / 다른 빈출 뜻: (사진을) 잘라 내다 (v.) — crop up(불쑥 나타나다)"
+     ],
+     [
+      "at a time",
+      "한 번에",
+      "본문: more than one child at a time(한 번에 둘 이상의 아이)"
+     ],
+     [
+      "so that S V",
+      "~하도록",
+      "목적 — 본문: so that they never had to carry more than one child(한 번에 두 아이를 안고 다니지 않도록)"
+     ]
+    ]
+   },
+   {
+    "name": "17강 07번",
+    "items": [
+     [
+      "hereditary",
+      "유전되는, 대대로 물려받는 (a.)",
+      "heredity (n.) 유전"
+     ],
+     [
+      "peer",
+      "또래, 동료 (n.)",
+      "나이·지위가 비슷한 사람 — 18강 07번: nonparental adults and peers(부모 아닌 어른과 또래) / peer pressure(또래 압력)"
+     ],
+     [
+      "facilitate",
+      "촉진하다, 쉽게 하다 (v.)",
+      "본문: facilitates the passing on of cultural information(문화적 정보의 전달을 돕는다)"
+     ],
+     [
+      "inefficient",
+      "비효율적인 (a.)",
+      "in(not) + efficient"
+     ],
+     [
+      "effective",
+      "효과적인 (a.)",
+      "원하는 결과를 내는 — 18강 02번: be most effective(가장 효과적이다) / efficient(효율적인)와 구별"
+     ],
+     [
+      "entirely",
+      "완전히, 전적으로 (ad.)",
+      "entire (a.) 전체의"
+     ],
+     [
+      "adaptable",
+      "적응력 있는 (a.)",
+      "상황이 바뀌어도 잘 맞춰 가는"
+     ],
+     [
+      "fledgling",
+      "갓 날기 시작한 새 (n.)",
+      "다른 빈출 뜻: 신생의, 초보의 (a.)"
+     ],
+     [
+      "efficient",
+      "효율적인 (a.)",
+      "시간·노력을 낭비 없이 쓰는 / efficiency (n.) 효율 — effective(효과적인)와 구별"
+     ],
+     [
+      "flock",
+      "(새·양의) 떼 (n.)",
+      "다른 빈출 뜻: 떼 지어 모이다 (v.) — flock to A"
+     ],
+     [
+      "be born knowing how to V",
+      "V하는 법을 알고 태어나다",
+      "본문: born knowing how to migrate(이동하는 법을 타고난)"
+     ],
+     [
+      "childhood",
+      "어린 시절, 유년기 (n.)",
+      "본문: birds with the longest childhoods(어린 시절이 가장 긴 새들)"
+     ],
+     [
+      "allow A to V",
+      "A가 V하게 해 주다",
+      "본문: allows animals to learn about their environment / 18강 03번: cannot allow the child to hit"
+     ],
+     [
+      "farther",
+      "더 멀리 (ad.)",
+      "far-farther-farthest(거리) / further: 더 나아가, 추가의"
+     ],
+     [
+      "evolve",
+      "진화하다, 발전하다 (v.)",
+      "본문: culture can evolve faster than genes(문화는 유전자보다 빨리 진화할 수 있다)"
+     ],
+     [
+      "ingrained",
+      "깊이 배어든, 뿌리 깊은 (a.)",
+      "오래돼 쉽게 바뀌지 않는"
+     ],
+     [
+      "hardware",
+      "하드웨어, 기계 장치 (n.)",
+      "본문: rely more fully on hardware(타고난 하드웨어, 즉 본능에 더 기대다 — 비유) / software(소프트웨어)"
+     ],
+     [
+      "socialization",
+      "사회화 (n.)",
+      "사회화: 사회의 규칙과 문화를 배워 그 일원이 되어 가는 과정"
+     ],
+     [
+      "seasonal",
+      "계절의, 계절에 따라 다른 (a.)",
+      "season (n.) 계절"
+     ],
+     [
+      "migratory",
+      "철 따라 이동하는, 이주하는 (a.)",
+      "migratory birds(철새)"
+     ],
+     [
+      "parental care",
+      "부모의 보살핌",
+      "parental (a.) 부모의"
+     ],
+     [
+      "nurture",
+      "양육, 후천적 환경 (n.)",
+      "nature vs. nurture(타고난 본성 대 후천적 환경) / 다른 빈출 뜻: 기르다, 키우다 (v.)"
+     ],
+     [
+      "imprinting",
+      "각인 (n.)",
+      "각인: 새끼가 태어나 처음 본 대상을 어미로 알고 따르는 현상"
+     ],
+     [
+      "learned behavior",
+      "학습된 행동",
+      "경험을 통해 배워서 하게 된 행동"
+     ],
+     [
+      "by comparison",
+      "그에 비해, 비교해 보면",
+      "comparison (n.) 비교 — 18강 04번에도 나옴"
+     ],
+     [
+      "instruction",
+      "지시, 설명 (n.)",
+      "본문: instructions they were born with(타고난 지시 사항 — 본능) / instruct (v.) 지시하다, 가르치다"
+     ],
+     [
+      "habitat loss",
+      "서식지 감소",
+      ""
+     ],
+     [
+      "juvenile",
+      "어린, 청소년의 (a.)",
+      "juvenile delinquency(청소년 비행)"
+     ],
+     [
+      "hinder",
+      "방해하다 (v.)",
+      "hindrance (n.) 방해"
+     ],
+     [
+      "magnetic field",
+      "자기장",
+      "철새는 지구 자기장을 이용해 길을 찾는다고 알려짐"
+     ],
+     [
+      "dry up",
+      "바싹 마르다",
+      "다른 빈출 뜻: (자금·공급이) 바닥나다"
+     ],
+     [
+      "impede",
+      "(진행을) 지연시키다, 막다 (v.)",
+      "impediment (n.) 장애(물)"
+     ],
+     [
+      "hatch",
+      "(알이) 부화하다 (v.)",
+      "다른 빈출 뜻: (계획을) 꾸미다"
+     ],
+     [
+      "rigid",
+      "경직된, 융통성 없는 (a.)",
+      "rigidity (n.) 경직성"
+     ],
+     [
+      "migrate",
+      "(철 따라) 이동하다, 이주하다 (v.)",
+      "migration (n.) 이동, 이주 — 본문: migration routes(이동 경로) / immigrate(이민 오다)·emigrate(이민 가다)와 구별"
+     ],
+     [
+      "rely on A",
+      "A에 의존하다",
+      "reliance (n.) 의존 / reliable (a.) 믿을 만한"
+     ],
+     [
+      "directive",
+      "(공식적인) 지시, 지령 (n.)",
+      ""
+     ],
+     [
+      "hamper",
+      "(움직임·진행을) 어렵게 하다 (v.)",
+      ""
+     ],
+     [
+      "gene",
+      "유전자 (n.)",
+      "genetic (a.) 유전의 / genome (n.) 유전체"
+     ],
+     [
+      "wetland",
+      "습지 (n.)",
+      "물기가 많은 축축한 땅"
+     ],
+     [
+      "versatile",
+      "다재다능한, 다용도의 (a.)",
+      "여러 가지를 두루 잘하는"
+     ]
+    ]
+   },
+   {
+    "name": "17강 08번",
+    "items": [
+     [
+      "leading",
+      "선도적인, 일류의 (a.)",
+      "본문: leading taste researchers(일류 미각 연구자들) / leading cause(주된 원인)"
+     ],
+     [
+      "bland",
+      "싱거운, 밋밋한 (a.)",
+      "다른 빈출 뜻: (성격·글이) 단조로운"
+     ],
+     [
+      "overturn",
+      "뒤집다, 번복하다 (v.)",
+      "기존 생각·판결을 뒤엎다"
+     ],
+     [
+      "mistranslation",
+      "오역 (n.)",
+      "오역: 잘못 번역함 / translate (v.) 번역하다"
+     ]
+    ]
+   }
+  ],
+  "note": "17강 06번 35 + 17강 07번 41 + 17강 08번 4"
+ },
+ {
+  "id": "songdo1-2026-2f-641-720",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 641~720번",
+  "sections": [
+   {
+    "name": "17강 08번",
+    "items": [
+     [
+      "utterly",
+      "아주, 철저히 (ad.)",
+      "utter (a.) 완전한, (v.) (말을) 하다"
+     ],
+     [
+      "integrate",
+      "통합하다 (v.)",
+      "integration (n.) 통합 — integrate A into B(A를 B에 통합하다)"
+     ],
+     [
+      "tip",
+      "(뾰족한) 끝 (n.)",
+      "본문: sweetness at the tip(혀끝의 단맛) / 다른 빈출 뜻: 조언, 팁(봉사료)"
+     ],
+     [
+      "discrete",
+      "개별적인, 따로 떨어진 (a.)",
+      "discreet(신중한)와 철자 구별"
+     ],
+     [
+      "savory",
+      "짭짤한, 감칠맛 나는 (a.)",
+      "달지 않고 짭조름한"
+     ],
+     [
+      "misinterpretation",
+      "잘못된 해석, 오해 (n.)",
+      "mis(잘못) + interpretation(해석)"
+     ],
+     [
+      "acidic",
+      "산성의, 신 (a.)",
+      "acid (n.) 산"
+     ],
+     [
+      "furthermore",
+      "더욱이, 나아가 (ad.)",
+      "18강 04번: Furthermore, she is now willing to ~"
+     ],
+     [
+      "be grouped according to A",
+      "A에 따라 묶이다, 분류되다",
+      "according to A: A에 따라, A에 따르면"
+     ],
+     [
+      "sourness",
+      "신맛 (n.)",
+      "sour (a.) 신, 시큼한"
+     ],
+     [
+      "site",
+      "장소, 위치 (n.)",
+      "본문: at different sites(여러 위치에서) / 다른 빈출 뜻: (건설) 현장, (웹)사이트"
+     ],
+     [
+      "It's not that A but rather that B",
+      "A라는 게 아니라 오히려 B라는 것이다",
+      "본문: It's not that you taste sweetness at the tip of your tongue, but rather that you register that perception first"
+     ],
+     [
+      "specialty",
+      "전문 분야, 특기 (n.)",
+      "본문: grouped according to specialty(맡은 맛 종류별로 묶인) / 다른 빈출 뜻: 특산품, 특별 요리"
+     ],
+     [
+      "moreover",
+      "게다가 (ad.)",
+      ""
+     ],
+     [
+      "contradict",
+      "반박하다, ~와 모순되다 (v.)",
+      "contradiction (n.) 모순"
+     ],
+     [
+      "palate",
+      "미각, 입천장 (n.)",
+      "다른 빈출 뜻: (음식) 취향"
+     ],
+     [
+      "be mapped into A",
+      "A로 (나뉘어) 구획되다",
+      "map: 지도에 나타내다, 구획하다 (v.) — 본문: The tongue was mapped into separate areas / tongue map(혀 지도)"
+     ],
+     [
+      "as it turns out",
+      "알고 보니, 밝혀진 바와 같이",
+      "turn out (to be) A(A로 판명되다)"
+     ],
+     [
+      "at work",
+      "작동하고 있는, 작용 중인",
+      "본문: the mechanism at work(작동하고 있는 기제) / 다른 빈출 뜻: 일하는 중인, 직장에서"
+     ],
+     [
+      "aftertaste",
+      "뒷맛 (n.)",
+      "먹은 뒤 입에 남는 맛"
+     ],
+     [
+      "misread",
+      "잘못 읽다, 잘못 해석하다 (v.)",
+      "misread-misread-misread"
+     ],
+     [
+      "flavor",
+      "풍미, 맛 (n.)",
+      "다른 빈출 뜻: 맛을 내다 (v.)"
+     ],
+     [
+      "bitterness",
+      "쓴맛 (n.)",
+      "bitter (a.) 쓴 / 다른 빈출 뜻: 비통함, 원한"
+     ],
+     [
+      "demonstrate",
+      "입증하다, 보여 주다 (v.)",
+      "demonstration (n.) 입증, 시위 / 다른 빈출 뜻: 시위하다"
+     ],
+     [
+      "at the turn of the century",
+      "세기가 바뀔 무렵에",
+      "본문: at the turn of the twentieth century(20세기 초에) / turn: 전환(점)"
+     ],
+     [
+      "interpret",
+      "해석하다 (v.)",
+      "interpretation (n.) 해석 — 18강 01번: they don't interpret confusing details(혼란스러운 세부를 해석하지 않는다)"
+     ],
+     [
+      "foremost",
+      "가장 중요한, 으뜸가는 (a.)",
+      "first and foremost(무엇보다도)"
+     ],
+     [
+      "texture",
+      "질감, 식감 (n.)",
+      ""
+     ],
+     [
+      "outdated",
+      "시대에 뒤떨어진 (a.)",
+      "더 이상 맞지 않는 옛것의"
+     ],
+     [
+      "taste bud",
+      "미뢰(맛봉오리)",
+      "미뢰: 혀에서 맛을 느끼는 작은 기관 / bud: 싹, 봉오리"
+     ],
+     [
+      "research conducted in A",
+      "A에서 수행된 연구",
+      "conduct research(연구를 수행하다) — 16강 05번 be conducted through A(전해지다)와 뜻 구별"
+     ],
+     [
+      "register",
+      "(감각을) 알아차리다, 감지하다 (v.)",
+      "본문: you register that perception first(그 지각을 먼저 알아차린다) / 다른 빈출 뜻: 등록하다, 기록부 (n.)"
+     ],
+     [
+      "separate",
+      "별개의, 분리된 (a.)",
+      "본문: separate areas(따로 나뉜 구역) / 다른 빈출 뜻: 분리하다 (v.) — separate A from B"
+     ],
+     [
+      "olfactory",
+      "후각의 (a.)",
+      "맛의 상당 부분은 냄새로 느낌"
+     ],
+     [
+      "umami",
+      "감칠맛 (n.)",
+      "단맛·짠맛·쓴맛·신맛과 함께 다섯 번째 기본 맛"
+     ],
+     [
+      "tongue",
+      "혀 (n.)",
+      "다른 빈출 뜻: 언어 — mother tongue(모국어)"
+     ]
+    ]
+   },
+   {
+    "name": "18강 01번",
+    "items": [
+     [
+      "unbiased",
+      "편견 없는, 공정한 (a.)",
+      "un(not) + biased(편향된)"
+     ],
+     [
+      "three-dimensional",
+      "3차원의, 입체적인 (a.)",
+      "3D"
+     ],
+     [
+      "priority",
+      "우선순위, 우선 사항 (n.)",
+      "prioritize (v.) 우선순위를 매기다 / prior (a.) 이전의 — prior to A(A 이전에)"
+     ],
+     [
+      "vision",
+      "시각, 시력 (n.)",
+      "본문: Vision is influenced by our preconceptions(시각은 선입견의 영향을 받는다) / 다른 빈출 뜻: 비전, 미래상 / visual (a.) 시각의 — 18강 05번: low vision(저시력)"
+     ],
+     [
+      "serve up A",
+      "A를 (그대로) 내놓다",
+      "본문: simply serve them up to us(그것들을 그냥 우리에게 내놓다) / 다른 빈출 뜻: serve (목적에) 도움이 되다, 근무하다"
+     ],
+     [
+      "be clouded by A",
+      "A 때문에 흐려지다",
+      "cloud (v.) (판단을) 흐리게 하다 — 18강 06번: your judgment is clouded by emotions(판단력이 감정에 흐려지다)"
+     ],
+     [
+      "flatness",
+      "평평함, 평면성 (n.)",
+      "flat (a.) 평평한, 납작한 — 사진은 입체감 없이 평면이라는 뜻"
+     ],
+     [
+      "confusing",
+      "혼란스러운, 헷갈리게 하는 (a.)",
+      "confused(혼란스러워하는)와 구별 — 혼란을 주는 쪽은 -ing, 혼란을 느끼는 쪽은 -ed (사람도 남을 헷갈리게 하면 confusing)"
+     ],
+     [
+      "handle",
+      "손잡이 (n.)",
+      "다른 빈출 뜻: 다루다, 처리하다 (v.)"
+     ],
+     [
+      "functional relationship",
+      "기능적 관계",
+      "쓰임새를 중심으로 맺는 관계 — functional (a.) 기능적인"
+     ],
+     [
+      "in profile",
+      "옆모습으로",
+      "다른 빈출 뜻: profile 개요, 인물 소개 — keep a low profile(눈에 띄지 않게 지내다)"
+     ],
+     [
+      "envision",
+      "(앞날을) 상상하다, 구상하다 (v.)",
+      "vision(미래상)을 마음에 품다"
+     ],
+     [
+      "precedence",
+      "우선(함) (n.)",
+      "take precedence over A(A보다 우선하다)"
+     ],
+     [
+      "establish",
+      "확립하다, 세우다 (v.)",
+      "본문: we establish unconscious hierarchies / 요약문: an established hierarchy(굳어진 위계) / 18강 08번: established norms(확립된 규범) / establishment (n.) 설립, 기관"
+     ],
+     [
+      "reflect",
+      "반영하다 (v.)",
+      "다른 빈출 뜻: 반사하다, 곰곰이 생각하다 — reflect on A / reflection (n.)"
+     ],
+     [
+      "indifference",
+      "무관심 (n.)",
+      "indifferent (a.) 무관심한 — be indifferent to A / 본문: with a mechanical indifference(기계처럼 무심하게)"
+     ],
+     [
+      "depth perception",
+      "깊이 지각",
+      "거리·입체를 알아보는 능력"
+     ],
+     [
+      "obstruct",
+      "(길·진행을) 막다 (v.)",
+      "obstruction (n.) 방해(물)"
+     ],
+     [
+      "detachment",
+      "무심함, 거리 두기 (n.)",
+      "detach (v.) 떼어 내다 — 감정을 섞지 않고 떨어져서 봄"
+     ],
+     [
+      "interrupt",
+      "방해하다, 가로막다 (v.)",
+      "요약문: interrupts our ability to see(보는 능력을 방해한다) / interruption (n.)"
+     ],
+     [
+      "angle",
+      "각도 (n.)",
+      "다른 빈출 뜻: 관점, (문제를 보는) 시각"
+     ],
+     [
+      "prejudice",
+      "(부정적인) 편견 (n.)",
+      "prejudiced (a.) 편견을 가진 / pre(미리) + judice(판단)"
+     ],
+     [
+      "mirror",
+      "거울처럼 그대로 비추다 (v.)",
+      "다른 빈출 뜻: 거울 (n.)"
+     ],
+     [
+      "preconception",
+      "선입견 (n.)",
+      "선입견: 직접 보기 전에 미리 품은 고정된 생각 / pre(미리) + conception(생각)"
+     ],
+     [
+      "contour",
+      "윤곽 (n.)",
+      "다른 빈출 뜻: 등고선"
+     ],
+     [
+      "photographic",
+      "사진의, 사진 같은 (a.)",
+      "photographic memory(사진처럼 정확한 기억력)"
+     ],
+     [
+      "in one's mind's eye",
+      "마음의 눈으로, 상상 속에서",
+      ""
+     ],
+     [
+      "two-dimensional",
+      "2차원의, 평면적인 (a.)",
+      "다른 빈출 뜻: (인물이) 깊이 없는, 단조로운"
+     ],
+     [
+      "blur",
+      "(윤곽이) 흐릿해지다 (v.)",
+      "다른 빈출 뜻: 흐릿한 형체 (n.)"
+     ],
+     [
+      "document",
+      "(상세히) 기록하다 (v.)",
+      "본문: It documents the world impartially(세상을 공정하게 기록한다) / 다른 빈출 뜻: 문서 (n.) — documentary (n.) 기록물"
+     ],
+     [
+      "bewildering",
+      "어리둥절하게 하는 (a.)",
+      "bewilder (v.) 당황하게 하다"
+     ],
+     [
+      "impartially",
+      "공정하게, 치우침 없이 (ad.)",
+      "impartial (a.) 공정한 — im(not) + partial(편파적인)"
+     ],
+     [
+      "hierarchy",
+      "위계, 서열 (n.)",
+      "위계: 높고 낮음, 중요하고 덜 중요함의 차례 / hierarchical (a.)"
+     ],
+     [
+      "interfere with A",
+      "A를 방해하다",
+      "interference (n.) 간섭, 방해 — interfere in A(A에 간섭하다)와 구별"
+     ],
+     [
+      "in V-ing",
+      "V할 때, V하는 데 있어",
+      "본문: In viewing a scene(어떤 장면을 볼 때)"
+     ],
+     [
+      "pupil",
+      "동공, 눈동자 (n.)",
+      "다른 빈출 뜻: 학생"
+     ],
+     [
+      "expectation",
+      "기대, 예상 (n.)",
+      "본문: visual expectations(시각적 기대) — 18강 08번: match expectations / expect (v.)"
+     ],
+     [
+      "unrecognizable",
+      "알아볼 수 없는 (a.)",
+      "un(not) + recognizable(알아볼 수 있는)"
+     ],
+     [
+      "as they truly are",
+      "있는 그대로",
+      "요약문: see objects as they truly are(사물을 있는 그대로 보다)"
+     ],
+     [
+      "silhouette",
+      "검은 그림자 윤곽, 실루엣 (n.)",
+      ""
+     ],
+     [
+      "perplexing",
+      "당혹스러운, 이해하기 어려운 (a.)",
+      "perplex (v.) 당혹하게 하다"
+     ],
+     [
+      "visualize",
+      "마음속에 그리다, 시각화하다 (v.)",
+      "본문: when visualizing a hammer in our mind's eye(마음속으로 망치를 떠올릴 때)"
+     ],
+     [
+      "snapshot",
+      "스냅 사진, 단면 (n.)",
+      "어떤 순간을 찍은 사진 — a snapshot of A(A의 한 단면)"
+     ],
+     [
+      "partial",
+      "편파적인, 부분적인 (a.)",
+      "편파적: 한쪽 편만 드는 / 다른 빈출 뜻: be partial to A(A를 특히 좋아하다)"
+     ]
+    ]
+   }
+  ],
+  "note": "17강 08번 36 + 18강 01번 44"
+ },
+ {
+  "id": "songdo1-2026-2f-721-800",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 721~800번",
+  "sections": [
+   {
+    "name": "18강 01번",
+    "items": [
+     [
+      "retina",
+      "망막 (n.)",
+      "망막: 눈 안쪽에서 빛을 받아들이는 막"
+     ],
+     [
+      "perspective",
+      "관점, 시각 (n.)",
+      "요약문: the objective perspective of a camera(카메라의 객관적 시각) / 다른 빈출 뜻: 원근법"
+     ]
+    ]
+   },
+   {
+    "name": "18강 02번",
+    "items": [
+     [
+      "in the course of V-ing",
+      "V하는 과정에서",
+      "course: 과정, 진로 — 본문: In the course of trying to solve a problem"
+     ],
+     [
+      "aha moment",
+      "번뜩 깨닫는 순간",
+      ""
+     ],
+     [
+      "come up with A",
+      "A를 생각해 내다",
+      "본문: keep coming up with techniques which are already known(이미 알려진 기법만 계속 떠올리다)"
+     ],
+     [
+      "brainstorm",
+      "아이디어를 마구 떠올리다 (v.)",
+      "다른 빈출 뜻: 브레인스토밍, 번뜩이는 생각 (n.)"
+     ],
+     [
+      "deduction",
+      "추론, 연역 (n.)",
+      "연역: 일반 원리에서 개별 결론을 끌어냄 / deduce (v.) 추론하다 / 다른 빈출 뜻: 공제(액)(전체에서 떼어 내는 금액)"
+     ],
+     [
+      "come up short",
+      "(기대에) 못 미치다, 모자라다",
+      "본문: linear thinking will often come up short(선형적 사고는 흔히 역부족이다)"
+     ],
+     [
+      "stated differently",
+      "달리 말하면",
+      ""
+     ],
+     [
+      "inadequate",
+      "불충분한, 부적절한 (a.)",
+      "in(not) + adequate(충분한)"
+     ],
+     [
+      "strategy",
+      "전략 (n.)",
+      "18강 03번: adopting a different strategy / strategic (a.) 전략적인"
+     ],
+     [
+      "lateral thinking",
+      "수평적 사고",
+      "틀을 벗어나 여러 방향에서 문제를 보는 사고"
+     ],
+     [
+      "cutting-edge",
+      "최첨단의 (a.)",
+      "다른 빈출 뜻: 최첨단 (n.) — at the cutting edge of A"
+     ],
+     [
+      "divergent thinking",
+      "확산적 사고",
+      "하나의 문제에서 여러 답을 떠올리는 사고"
+     ],
+     [
+      "confront",
+      "맞서다, 직면하다 (v.)",
+      "confrontation (n.) 대립 / be confronted with A(A에 직면하다)"
+     ],
+     [
+      "logical",
+      "논리적인 (a.)",
+      "logic (n.) 논리 / logically (ad.) — 본문: think your way logically through the problem"
+     ],
+     [
+      "liberal",
+      "자유주의적인, 관대한 (a.)",
+      "liberty (n.) 자유"
+     ],
+     [
+      "fall short",
+      "(목표·기준에) 미치지 못하다",
+      "요약문: falls short in dealing with new ideas / fall short of A(A에 못 미치다)"
+     ],
+     [
+      "prototype",
+      "시제품, 원형 (n.)",
+      "처음 만들어 본 견본"
+     ],
+     [
+      "invention",
+      "발명(품) (n.)",
+      "invent (v.) 발명하다 — 본문: solve a problem with an invention(발명품이 가진 문제를 해결하다)"
+     ],
+     [
+      "in a ~ manner",
+      "~한 방식으로",
+      "본문: in a nonlinear manner(비선형적 방식으로) / 다른 빈출 뜻: manners 예의"
+     ],
+     [
+      "operate",
+      "작동하다, 활동하다 (v.)",
+      "본문: when we're operating in the area of what we know(아는 영역 안에서 생각할 때) / 다른 빈출 뜻: 수술하다, 운영하다 — operation (n.)"
+     ],
+     [
+      "creativity",
+      "창의성 (n.)",
+      "creative (a.) 창의적인 — 본문: creativity by definition involves ~(창의성은 정의상 ~을 포함한다)"
+     ],
+     [
+      "come across A",
+      "A를 우연히 마주치다",
+      "다른 빈출 뜻: (~하다는) 인상을 주다 — come across as A"
+     ],
+     [
+      "conservative",
+      "보수적인 (a.)",
+      "새것보다 기존 방식을 지키려는 / 다른 빈출 뜻: (추정치가) 낮게 잡은, 보수주의자 (n.)"
+     ],
+     [
+      "by definition",
+      "정의상, 당연히",
+      "definition (n.) 정의 / define (v.) 정의하다"
+     ],
+     [
+      "breakthrough",
+      "돌파구, 획기적 발견 (n.)",
+      ""
+     ],
+     [
+      "problem-solving",
+      "문제 해결 (n.)",
+      "problem-solving skills(문제 해결 능력)"
+     ],
+     [
+      "deadlock",
+      "교착 상태 (n.)",
+      "어느 쪽으로도 나아가지 못하고 막힌 상태"
+     ],
+     [
+      "encounter",
+      "마주치다, 부딪히다 (v.)",
+      "본문: encounter a brick wall of resistance(꽉 막힌 저항의 벽에 부딪히다) / 다른 빈출 뜻: 만남, 마주침 (n.)"
+     ],
+     [
+      "conception",
+      "구상, 생각 (n.)",
+      "본문: the conception of new viewpoints(새 관점을 떠올림) / conceive (v.) 생각해 내다 / 다른 빈출 뜻: 임신"
+     ],
+     [
+      "think outside the box",
+      "틀에서 벗어나 생각하다",
+      "고정관념을 깨고 새롭게 생각하다"
+     ],
+     [
+      "ingenuity",
+      "기발한 재주, 독창성 (n.)",
+      "ingenious (a.) 기발한"
+     ],
+     [
+      "reasoning",
+      "추론, 논리적 사고 (n.)",
+      "reason (v.) 추론하다 — reasoning skills(추론 능력)"
+     ],
+     [
+      "adopt",
+      "채택하다, 받아들이다 (v.)",
+      "18강 03번: adopting a different strategy(다른 전략을 택하다) / 18강 05번 요약문: adopting an inclusive design / 다른 빈출 뜻: 입양하다 — adapt(적응하다)와 구별"
+     ],
+     [
+      "disruptive",
+      "판도를 바꾸는, 지장을 주는 (a.)",
+      "disrupt (v.) 방해하다, 혼란에 빠뜨리다"
+     ],
+     [
+      "a brick wall of resistance",
+      "꽉 막힌 저항의 벽",
+      "brick wall: 벽돌 벽 — 더는 나아갈 수 없는 장애물(비유)"
+     ],
+     [
+      "viewpoint",
+      "견해, 보는 입장 (n.)",
+      "본문: new information, ideas, and viewpoints"
+     ],
+     [
+      "radical",
+      "급진적인, 과격한 (a.)",
+      "다른 빈출 뜻: 근본적인, 급진주의자 (n.)"
+     ],
+     [
+      "think one's way through A",
+      "생각으로 A를 헤쳐 나가다",
+      "make one's way(나아가다)와 같은 구조"
+     ],
+     [
+      "progressive",
+      "진보적인, 점진적인 (a.)",
+      "progress (n.) 진보"
+     ],
+     [
+      "unconventional",
+      "관습에 얽매이지 않는 (a.)",
+      "un(not) + conventional(관습적인) — 16강 04번 conventional medicine"
+     ],
+     [
+      "devise",
+      "고안하다 (v.)",
+      "device(장치)와 철자 구별"
+     ]
+    ]
+   },
+   {
+    "name": "18강 03번",
+    "items": [
+     [
+      "intervene",
+      "개입하다, 끼어들다 (v.)",
+      "intervention (n.) 개입"
+     ],
+     [
+      "in the ~ sense of the word",
+      "그 말의 ~한 의미에서",
+      "본문: in the most classic sense of the word(그 말의 가장 전형적인 의미에서)"
+     ],
+     [
+      "treatment",
+      "대우, 처우 (n.)",
+      "18강 04번 요약문: her feelings about the treatment(자기가 받은 대우에 대한 감정) / 다른 빈출 뜻: 치료(법) / treat (v.) 대하다"
+     ],
+     [
+      "attention-seeking",
+      "관심을 끌려는 (a.)",
+      "남의 관심을 받으려고 일부러 하는"
+     ],
+     [
+      "spur",
+      "자극하다, 박차를 가하다 (v.)",
+      "on the spur of the moment(충동적으로)"
+     ],
+     [
+      "parenting",
+      "육아, 부모 노릇 (n.)",
+      "parenting style(양육 방식)"
+     ],
+     [
+      "point out A",
+      "A를 지적하다",
+      "본문: pointing out the negatives(잘못한 점을 지적하는 것)"
+     ],
+     [
+      "bribe",
+      "(뇌물로) 매수하다 (v.)",
+      "다른 빈출 뜻: 뇌물 (n.)"
+     ],
+     [
+      "discourage A from V-ing",
+      "A가 V하지 못하게 하다",
+      "discourage: 의욕을 꺾다, 막다"
+     ],
+     [
+      "counterproductive",
+      "역효과를 낳는 (a.)",
+      "counter(반대) + productive(생산적인)"
+     ],
+     [
+      "invisible",
+      "눈에 보이지 않는 (a.)",
+      "본문: feeling invisible(아무도 자기를 봐 주지 않는 느낌) / visible (a.) 보이는"
+     ],
+     [
+      "constantly",
+      "줄곧, 쉴 새 없이 (ad.)",
+      "constant (a.) 끊임없는, 변함없는"
+     ],
+     [
+      "prompt",
+      "(행동을) 유도하다, 촉구하다 (v.)",
+      "다른 빈출 뜻: 즉각적인 (a.) — a prompt reply(즉답)"
+     ],
+     [
+      "conditioning",
+      "조건 형성, 길들이기 (n.)",
+      "자극과 보상을 반복해 행동을 익히게 함"
+     ],
+     [
+      "applaud",
+      "박수 치다, 갈채를 보내다 (v.)",
+      "applause (n.) 박수"
+     ],
+     [
+      "congratulate",
+      "축하하다, 칭찬하다 (v.)",
+      "congratulate A on B(B에 대해 A를 축하하다)"
+     ],
+     [
+      "behavioral",
+      "행동의, 행동에 관한 (a.)",
+      "behavioral psychology(행동 심리학)"
+     ],
+     [
+      "reprimand",
+      "(공식적으로) 질책하다 (v.)",
+      "잘못을 엄하게 나무라다"
+     ],
+     [
+      "positive reinforcement",
+      "긍정적 강화",
+      "칭찬·보상으로 바람직한 행동을 늘리는 방법"
+     ],
+     [
+      "tantrum",
+      "(아이의) 짜증, 떼쓰기 (n.)",
+      "throw a tantrum(떼를 쓰다)"
+     ],
+     [
+      "dissuade",
+      "(설득해서) 단념시키다 (v.)",
+      "dissuade A from V-ing(A가 V하지 않도록 설득하다)"
+     ],
+     [
+      "quintessential",
+      "가장 전형적인, 정수의 (a.)",
+      "정수: 가장 핵심이 되는 알맹이 / quintessence (n.) 정수, 본질"
+     ],
+     [
+      "penalize",
+      "불이익을 주다, 벌칙을 주다 (v.)",
+      "penalty (n.) 처벌, 벌금"
+     ],
+     [
+      "encourage A to V",
+      "A가 V하도록 부추기다, 격려하다",
+      "encouragement (n.) 격려"
+     ],
+     [
+      "punish",
+      "벌하다, 처벌하다 (v.)",
+      "punishment (n.) 처벌 — 본문: trick-punishments(오히려 그 행동을 부추기는 처벌)"
+     ],
+     [
+      "imply",
+      "암시하다, 시사하다 (v.)",
+      "implication (n.) 함축, 영향 / infer(추론하다)와 구별 — 말하는 쪽이 imply, 듣는 쪽이 infer"
+     ],
+     [
+      "indulge",
+      "(하고 싶은 대로) 하게 두다, 탐닉하다 (v.)",
+      "indulge in A(A에 빠지다) / indulgent (a.) 너그러운"
+     ],
+     [
+      "classic",
+      "전형적인, 대표적인 (a.)",
+      "classical(고전주의의, 클래식 음악의)과 구별"
+     ],
+     [
+      "misbehavior",
+      "나쁜 행동, 비행 (n.)",
+      "misbehave (v.) 버릇없이 굴다"
+     ],
+     [
+      "connote",
+      "함축하다, 내포하다 (v.)",
+      "함축: 겉으로 드러내지 않고 속뜻으로 담음 / connotation (n.) 함축된 의미"
+     ],
+     [
+      "reward",
+      "보상하다 (v.)",
+      "본문: reward the positives(잘한 것을 보상하다) / 다른 빈출 뜻: 보상 (n.) — 18강 04번 요약문: rewards"
+     ],
+     [
+      "reinforce",
+      "강화하다 (v.)",
+      "요약문: reinforces the unwanted behavior(원치 않는 행동을 더 굳힌다) / reinforcement (n.)"
+     ],
+     [
+      "neuropsychologist",
+      "신경심리학자 (n.)",
+      "neuro(신경) + psychologist(심리학자)"
+     ],
+     [
+      "unnoticed",
+      "아무도 알아채지 못한 (a.)",
+      "go unnoticed(아무도 모르고 지나가다)"
+     ],
+     [
+      "discipline",
+      "훈육하다 (v.)",
+      "훈육: 바르게 행동하도록 가르쳐 기름 / 다른 빈출 뜻: 규율, 학문 분야 (n.)"
+     ],
+     [
+      "sibling",
+      "형제자매 (n.)",
+      "sibling rivalry(형제간 경쟁)"
+     ],
+     [
+      "punitive",
+      "처벌의, 징벌적인 (a.)",
+      "punitive measures(처벌 조치)"
+     ]
+    ]
+   }
+  ],
+  "note": "18강 01번 2 + 18강 02번 41 + 18강 03번 37"
+ },
+ {
+  "id": "songdo1-2026-2f-801-880",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 801~880번",
+  "sections": [
+   {
+    "name": "18강 03번",
+    "items": [
+     [
+      "condone",
+      "(잘못을) 용납하다, 눈감아 주다 (v.)",
+      "나쁜 행동을 문제 삼지 않고 넘어가다"
+     ],
+     [
+      "what A calls B",
+      "A가 B라고 부르는 것",
+      "본문: what Alvaro Bilbao, a neuropsychologist, calls 'trick-punishments'(신경심리학자 Alvaro Bilbao가 '트릭 처벌'이라 부르는 것)"
+     ],
+     [
+      "for a certain length of time",
+      "일정 기간 동안",
+      "length of time: 시간의 길이, 기간"
+     ],
+     [
+      "backfire",
+      "(계획이) 역효과가 나다 (v.)",
+      "뜻과 반대 결과가 되다"
+     ]
+    ]
+   },
+   {
+    "name": "18강 04번",
+    "items": [
+     [
+      "aversion",
+      "혐오, 싫어함 (n.)",
+      "have an aversion to A(A를 몹시 싫어하다)"
+     ],
+     [
+      "outrage",
+      "격분, 분노 (n.)",
+      "다른 빈출 뜻: 격분하게 하다 (v.) / outrageous (a.) 터무니없는"
+     ],
+     [
+      "abandon",
+      "버리다, 포기하다 (v.)",
+      "abandonment (n.) 포기, 유기"
+     ],
+     [
+      "retaliate",
+      "보복하다 (v.)",
+      "retaliation (n.) 보복"
+     ],
+     [
+      "forfeit",
+      "(벌로) 잃다, 몰수당하다 (v.)",
+      ""
+     ],
+     [
+      "source",
+      "구하다, 조달하다 (v.)",
+      "본문: her effort of sourcing rocks(돌을 구해 오는 수고) / 다른 빈출 뜻: 원천, 출처 (n.) — 16강 06번: energy source"
+     ],
+     [
+      "gain",
+      "이득, 얻은 것 (n.)",
+      "다른 빈출 뜻: 얻다, (무게·속도가) 늘다 (v.)"
+     ],
+     [
+      "status",
+      "지위, 신분 (n.)",
+      "18강 08번: higher status and competence(더 높은 지위와 능력) / status symbol(지위의 상징)"
+     ],
+     [
+      "grievance",
+      "불만, 고충 (n.)",
+      "부당하다고 느끼는 데서 오는 불평"
+     ],
+     [
+      "cucumber",
+      "오이 (n.)",
+      ""
+     ],
+     [
+      "egalitarian",
+      "평등주의의 (a.)",
+      "모두가 평등해야 한다고 믿는"
+     ],
+     [
+      "barter",
+      "물물 교환하다 (v.)",
+      "돈 없이 물건끼리 바꾸다"
+     ],
+     [
+      "get paid",
+      "보수를 받다",
+      "본문: she is still getting \"paid\" the same amount(여전히 같은 양을 보수로 받는다)"
+     ],
+     [
+      "be willing to V",
+      "기꺼이 V하다",
+      "willingness (n.) 기꺼이 하는 마음"
+     ],
+     [
+      "ubiquitous",
+      "어디에나 있는 (a.)",
+      ""
+     ],
+     [
+      "inequality",
+      "불평등 (n.)",
+      "요약문: the inequality in rewards(보상의 불평등) / equality (n.) 평등"
+     ],
+     [
+      "protest",
+      "항의하다 (v.)",
+      "다른 빈출 뜻: 항의, 시위 (n.)"
+     ],
+     [
+      "envy",
+      "부러움, 질투 (n.)",
+      "다른 빈출 뜻: 부러워하다 (v.) / envious (a.)"
+     ],
+     [
+      "reject",
+      "거부하다 (v.)",
+      "rejection (n.) 거절, 거부"
+     ],
+     [
+      "equity",
+      "공평, 형평 (n.)",
+      "형평: 어느 쪽으로도 기울지 않고 고름 / 다른 빈출 뜻: 자기 자본, 주식"
+     ],
+     [
+      "slice",
+      "(얇은) 조각 (n.)",
+      "다른 빈출 뜻: 얇게 썰다 (v.)"
+     ],
+     [
+      "cage",
+      "우리, 새장 (n.)",
+      "본문: put two monkeys in cages next to each other(원숭이 두 마리를 나란한 우리에 넣다)"
+     ],
+     [
+      "token",
+      "토큰, 표시 (n.)",
+      "다른 빈출 뜻: 형식적인 (a.) — a token gesture(형식적인 몸짓) / by the same token(같은 이유로)"
+     ],
+     [
+      "displeasure",
+      "불쾌감, 불만 (n.)",
+      "dis(not) + pleasure(기쁨)"
+     ],
+     [
+      "forsake",
+      "(사람·믿음을) 저버리다 (v.)",
+      "forsake-forsook-forsaken"
+     ],
+     [
+      "fairness",
+      "공정성 (n.)",
+      ""
+     ],
+     [
+      "communicate",
+      "(감정·생각을) 전하다 (v.)",
+      "본문: communicate her displeasure(불쾌감을 드러내 전하다) / communication (n.)"
+     ],
+     [
+      "invariably",
+      "언제나, 변함없이 (ad.)",
+      "in(not) + vary(달라지다)"
+     ],
+     [
+      "despite",
+      "~에도 불구하고 (prep.)",
+      ""
+     ],
+     [
+      "turn down A",
+      "A를 거절하다",
+      "다른 빈출 뜻: (소리를) 줄이다"
+     ],
+     [
+      "the same A as B",
+      "B와 같은 A",
+      "요약문: exactly the same rewards as before(전과 정확히 같은 보상)"
+     ],
+     [
+      "unjust",
+      "부당한 (a.)",
+      "un(not) + just(정당한) / injustice (n.) 불의"
+     ],
+     [
+      "trade with A",
+      "A와 거래하다",
+      "trade A for B(A를 B와 맞바꾸다) / 다른 빈출 뜻: 무역, 직업 (n.)"
+     ],
+     [
+      "resentment",
+      "분개, 억울함 (n.)",
+      "resent (v.) 분개하다"
+     ],
+     [
+      "treat",
+      "간식, 대접 (n.)",
+      "본문: you give me a treat to eat(먹을 간식을 준다) / 다른 빈출 뜻: 대하다, 치료하다 (v.)"
+     ],
+     [
+      "particular",
+      "특정한, 특별한 (a.)",
+      "본문: her particular situation(그녀 자신의 상황) / 18강 05번: particular colors / 다른 빈출 뜻: 까다로운 — be particular about A"
+     ],
+     [
+      "experimenter",
+      "실험자 (n.)",
+      "experiment (n.) 실험, (v.) 실험하다"
+     ],
+     [
+      "universally",
+      "보편적으로, 일반적으로 (ad.)",
+      "universal (a.) 보편적인"
+     ],
+     [
+      "indignation",
+      "(부당함에 대한) 분노 (n.)",
+      "indignant (a.) 분개한"
+     ],
+     [
+      "be preferred to A",
+      "A보다 선호되다",
+      "prefer A to B(B보다 A를 좋아하다) — 본문: grapes being universally preferred to cucumbers"
+     ]
+    ]
+   },
+   {
+    "name": "18강 05번",
+    "items": [
+     [
+      "the 최상급 + possible + 명사",
+      "가능한 한 가장 ~한 (명사)",
+      "본문: the largest possible audience(가능한 한 가장 많은 이용자)"
+     ],
+     [
+      "future generations",
+      "미래 세대",
+      "generation: 세대"
+     ],
+     [
+      "take A into account",
+      "A를 고려하다",
+      ""
+     ],
+     [
+      "caption",
+      "(영상) 자막, (사진) 설명문 (n.)",
+      "청각 장애인을 위한 자막"
+     ],
+     [
+      "guarantee",
+      "(확실히) 약속하다, 보증하다 (v.)",
+      "다른 빈출 뜻: 보증, 보장 (n.)"
+     ],
+     [
+      "commercial",
+      "상업적인, 상업용의 (a.)",
+      "다른 빈출 뜻: (TV·라디오) 광고 (n.) / commerce (n.) 상업"
+     ],
+     [
+      "all too often",
+      "너무나 자주",
+      "all too + 형용사·부사: 너무나도 ~한"
+     ],
+     [
+      "universal design",
+      "유니버설 디자인",
+      "나이·장애와 상관없이 누구나 쓸 수 있게 한 설계"
+     ],
+     [
+      "disability",
+      "장애 (n.)",
+      "disabled (a.) 장애가 있는 — people with disabilities(장애가 있는 사람들)"
+     ],
+     [
+      "marginalized",
+      "소외된, 주변으로 밀려난 (a.)",
+      "marginalize (v.) 소외시키다"
+     ],
+     [
+      "layperson",
+      "비전문가, 일반인 (n.)",
+      "lay (a.) 비전문가의"
+     ],
+     [
+      "keep A in mind",
+      "A를 명심하다, 염두에 두다",
+      ""
+     ],
+     [
+      "otherwise",
+      "(그 점만 빼면) 다른 면에서는 (ad.)",
+      "본문: the otherwise most valuable digital resources(그 문제만 없었다면 가장 가치 있었을 디지털 자료) / 다른 빈출 뜻: 그렇지 않으면, 다르게"
+     ],
+     [
+      "blind",
+      "눈이 먼, 시각 장애가 있는 (a.)",
+      "다른 빈출 뜻: 맹목적인 — be blind to A(A를 보지 못하다)"
+     ],
+     [
+      "meet the needs of A",
+      "A의 요구를 충족하다",
+      "meet: (요구·기준을) 충족시키다"
+     ],
+     [
+      "color-blind",
+      "색을 잘 구별하지 못하는, 색맹의 (a.)",
+      "다른 빈출 뜻: 인종을 차별하지 않는"
+     ],
+     [
+      "excluded",
+      "배제된, 제외된 (a.)",
+      "exclude (v.) 배제하다, 제외하다"
+     ],
+     [
+      "ensure",
+      "반드시 ~하게 하다, 보장하다 (v.)",
+      "ensure that S V(반드시 ~하도록 하다)"
+     ],
+     [
+      "have difficulty V-ing",
+      "V하는 데 어려움을 겪다",
+      "본문: have difficulty distinguishing particular colors(특정 색을 구분하기 어려워하다)"
+     ],
+     [
+      "endorse",
+      "지지하다, 승인하다 (v.)",
+      "endorsement (n.) 지지, 보증"
+     ],
+     [
+      "manage to V",
+      "(어렵게) 결국 V해 내다",
+      ""
+     ],
+     [
+      "for the most part",
+      "대부분, 대체로",
+      ""
+     ],
+     [
+      "exclusive",
+      "배타적인, 독점적인 (a.)",
+      "다른 빈출 뜻: 고급의, 전용의 / exclusively (ad.) 오로지"
+     ],
+     [
+      "standard",
+      "기준, 표준 (n.)",
+      "본문: developed standards for ~(~에 대한 기준을 만들었다) / 다른 빈출 뜻: 수준 — standard of living(생활 수준)"
+     ],
+     [
+      "present",
+      "제시하다, 보여 주다 (v.)",
+      "동사일 때 강세가 뒤(pre-SENT) / 다른 빈출 뜻: 현재의, 참석한 (a.), 선물 (n.)"
+     ],
+     [
+      "wheelchair",
+      "휠체어 (n.)",
+      "wheelchair-accessible(휠체어로 이용 가능한)"
+     ],
+     [
+      "sign language",
+      "수화",
+      ""
+     ],
+     [
+      "fail to V",
+      "V하지 못하다",
+      "failure (n.) 실패"
+     ],
+     [
+      "resource",
+      "자원, 자료 (n.)",
+      "본문: digital resources(디지털 자료) / resourceful (a.) 수완이 좋은"
+     ],
+     [
+      "embrace",
+      "(생각을) 받아들이다 (v.)",
+      "다른 빈출 뜻: 껴안다, 포옹 (n.)"
+     ],
+     [
+      "those with A",
+      "A가 있는 사람들",
+      "those = people / 본문: those with disabilities as well as those without(장애가 있는 사람과 없는 사람 모두)"
+     ],
+     [
+      "inclusive",
+      "(누구도 빠뜨리지 않고) 모두를 아우르는 (a.)",
+      "요약문: adopting an inclusive design(포용적 디자인을 채택함) / include (v.) 포함하다"
+     ],
+     [
+      "screen reader",
+      "화면 낭독기",
+      "화면의 글을 소리로 읽어 주는 프로그램"
+     ],
+     [
+      "benchmark",
+      "비교 기준점 (n.)",
+      "성과를 견주어 보는 기준"
+     ],
+     [
+      "scholar",
+      "학자 (n.)",
+      "scholarship (n.) 장학금, 학문 / scholarly (a.) 학문적인"
+     ],
+     [
+      "braille",
+      "점자 (n.)",
+      "시각 장애인이 손끝으로 읽는 볼록한 글자"
+     ]
+    ]
+   }
+  ],
+  "note": "18강 03번 4 + 18강 04번 40 + 18강 05번 36"
+ },
+ {
+  "id": "songdo1-2026-2f-881-960",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 881~960번",
+  "sections": [
+   {
+    "name": "18강 05번",
+    "items": [
+     [
+      "professional",
+      "전문가 (n.)",
+      "다른 빈출 뜻: 전문적인, 직업의 (a.) / profession (n.) 직업"
+     ],
+     [
+      "hard of hearing",
+      "귀가 잘 안 들리는",
+      ""
+     ],
+     [
+      "significant",
+      "상당한, 중요한 (a.)",
+      "본문: significant progress(상당한 진전) / significance (n.) 중요성"
+     ],
+     [
+      "remain neglected",
+      "계속 방치되다, 계속 간과되다",
+      "16강 06번: be neglected(간과되다) / remain + 형용사·분사(계속 ~한 상태이다)"
+     ],
+     [
+      "publish",
+      "(책·논문을) 출판하다, 발표하다 (v.)",
+      "18강 08번: studies published in an article(학술지 논문에 실린 연구들) / publication (n.) 출판(물)"
+     ],
+     [
+      "user-friendly",
+      "사용하기 쉬운 (a.)",
+      ""
+     ],
+     [
+      "deaf",
+      "귀가 먹은, 청각 장애가 있는 (a.)",
+      "deafness (n.)"
+     ],
+     [
+      "make progress in A",
+      "A에서 진전을 이루다",
+      "본문: made significant progress in meeting the needs(요구를 충족하는 데 상당한 진전을 이뤘다)"
+     ],
+     [
+      "impairment",
+      "(신체·기능의) 손상, 장애 (n.)",
+      "visual impairment(시각 장애) / impair (v.) 손상시키다"
+     ],
+     [
+      "how best to V",
+      "가장 잘 V하는 방법",
+      "의문사 + to V — 본문: how best to create, organize, present, and preserve"
+     ]
+    ]
+   },
+   {
+    "name": "18강 06번",
+    "items": [
+     [
+      "response",
+      "반응, 응답 (n.)",
+      "respond (v.) 반응하다 — respond to A / 요약문: stores your responses(반응을 저장한다)"
+     ],
+     [
+      "pessimism",
+      "비관주의 (n.)",
+      "pessimistic (a.) 비관적인"
+     ],
+     [
+      "let A down",
+      "A를 실망시키다",
+      "본문: the part of your mind that lets you down(당신을 실망시키는 마음의 부분)"
+     ],
+     [
+      "phobia",
+      "공포증 (n.)",
+      "특정 대상을 지나치게 무서워하는 증상 — 거미·어둠 공포처럼"
+     ],
+     [
+      "overthink",
+      "지나치게 생각하다 (v.)",
+      ""
+     ],
+     [
+      "optimism",
+      "낙관주의 (n.)",
+      "optimistic (a.) 낙관적인"
+     ],
+     [
+      "willpower",
+      "의지력 (n.)",
+      ""
+     ],
+     [
+      "inhibit",
+      "억제하다, 못 하게 하다 (v.)",
+      "inhibition (n.) 억제"
+     ],
+     [
+      "emanate",
+      "(~에서) 나오다, 퍼지다 (v.)",
+      "emanate from A"
+     ],
+     [
+      "override",
+      "(판단·결정을) 무시하다, ~보다 우선하다 (v.)",
+      "override-overrode-overridden"
+     ],
+     [
+      "awareness",
+      "자각, (무엇을) 알고 있음 (n.)",
+      "aware (a.) 알고 있는 — be aware of A(A를 알다)"
+     ],
+     [
+      "the conscious mind",
+      "의식적 마음",
+      "conscious: 의식하는, 알고 있는 — be conscious of A(A를 의식하다) / 16강 04번: consciousness"
+     ],
+     [
+      "compulsive",
+      "강박적인, 억제할 수 없는 (a.)",
+      "compulsion (n.) 강박, 강요"
+     ],
+     [
+      "dread",
+      "몹시 두려워하다 (v.)",
+      "다른 빈출 뜻: 두려움 (n.) / dreadful (a.) 끔찍한"
+     ],
+     [
+      "apprehension",
+      "불안, 걱정 (n.)",
+      "다른 빈출 뜻: 체포, 이해 / apprehensive (a.) 걱정하는"
+     ],
+     [
+      "recognition",
+      "인식, 알아봄 (n.)",
+      "다른 빈출 뜻: 인정 — gain recognition(인정받다) / recognize (v.)"
+     ],
+     [
+      "mood swing",
+      "감정 기복",
+      "기분이 갑자기 오르내림"
+     ],
+     [
+      "judgment",
+      "판단(력) (n.)",
+      "영국식 철자 judgement / judge (v.) 판단하다 — 18강 08번"
+     ],
+     [
+      "originate in A",
+      "A에서 비롯되다, 생겨나다",
+      "origin (n.) 기원 / original (a.) 원래의, 독창적인"
+     ],
+     [
+      "carry on A",
+      "A를 계속하다",
+      ""
+     ],
+     [
+      "temper",
+      "성질, 화 (n.)",
+      "lose one's temper(화를 내다) / 다른 빈출 뜻: 누그러뜨리다 (v.)"
+     ],
+     [
+      "fight-or-flight",
+      "투쟁-도피(반응)의 (a.)",
+      "위험할 때 맞서 싸울지 달아날지 몸이 자동으로 준비하는 반응"
+     ],
+     [
+      "negativity",
+      "부정적인 태도·생각 (n.)",
+      "negative (a.) 부정적인 — 본문: all kinds of other negativities(온갖 다른 부정적인 것들)"
+     ],
+     [
+      "exacerbate",
+      "(문제·감정을) 악화시키다 (v.)",
+      ""
+     ],
+     [
+      "habitual",
+      "습관적인 (a.)",
+      "habit (n.) 습관"
+     ],
+     [
+      "conscientious",
+      "양심적인, 성실한 (a.)",
+      "conscious(의식하는)와 철자 구별 / conscience (n.) 양심"
+     ],
+     [
+      "premonition",
+      "(불길한) 예감 (n.)",
+      ""
+     ],
+     [
+      "have control over A",
+      "A를 통제하다",
+      "요약문: the controllable conscious mind(통제할 수 있는 의식적 마음) / controllable (a.)"
+     ],
+     [
+      "autopilot",
+      "자동 조종 (n.)",
+      "on autopilot(생각 없이 습관적으로)"
+     ],
+     [
+      "whether to V",
+      "V할지 (말지)",
+      "본문: whether to carry on a thought or to add emotion to it(생각을 계속할지 감정을 더할지)"
+     ],
+     [
+      "subliminal",
+      "잠재의식에 작용하는 (a.)",
+      "subliminal advertising(잠재의식 광고)"
+     ],
+     [
+      "be fueled by A",
+      "A에 부추겨지다",
+      "fuel: 연료 (n.), (감정·논란을) 부채질하다 (v.) — 본문: fueled by emotions(감정에 불붙어)"
+     ],
+     [
+      "record",
+      "기록하다 (v.)",
+      "동사는 강세가 뒤(re-CORD) / 다른 빈출 뜻: 기록, 음반 (n.)"
+     ],
+     [
+      "impulsive",
+      "충동적인 (a.)",
+      "impulse (n.) 충동"
+     ],
+     [
+      "time and time again",
+      "몇 번이고 계속",
+      ""
+     ],
+     [
+      "aggravate",
+      "(상황을) 더 나쁘게 만들다, 짜증 나게 하다 (v.)",
+      "aggravation (n.) 악화, 짜증"
+     ],
+     [
+      "hunch",
+      "직감, 육감 (n.)",
+      "have a hunch that ~(~라는 예감이 들다)"
+     ],
+     [
+      "hold A back",
+      "A를 억제하다, 발목 잡다",
+      "본문: negativities that hold you back(당신의 발목을 잡는 부정적인 것들)"
+     ],
+     [
+      "restrain",
+      "억누르다, 제지하다 (v.)",
+      "restraint (n.) 자제, 억제"
+     ],
+     [
+      "discernment",
+      "분별력, 안목 (n.)",
+      "discern (v.) 분별하다"
+     ],
+     [
+      "self-control",
+      "자제력 (n.)",
+      ""
+     ]
+    ]
+   },
+   {
+    "name": "18강 07번",
+    "items": [
+     [
+      "relevant",
+      "관련 있는, 의미 있는 (a.)",
+      "relevance (n.) 관련성 / irrelevant (a.) 무관한"
+     ],
+     [
+      "selection",
+      "선택, 선발 (n.)",
+      "select (v.) 고르다 / natural selection(자연 선택)"
+     ],
+     [
+      "dynamic",
+      "역동적인, 변화하는 (a.)",
+      "다른 빈출 뜻: 역학 관계 (n.) — group dynamics"
+     ],
+     [
+      "intergenerational",
+      "세대 간의 (a.)",
+      "inter(사이) + generation(세대)"
+     ],
+     [
+      "allow for A",
+      "A를 감안하다, 허용하다",
+      "요약문: allows for more diverse factors(더 다양한 요인을 허용한다)"
+     ],
+     [
+      "subculture",
+      "하위문화 (n.)",
+      "한 사회 안에서 일부 집단이 따로 공유하는 문화"
+     ],
+     [
+      "heritable",
+      "유전 가능한 (a.)",
+      "부모에게서 자식에게 물려줄 수 있는"
+     ],
+     [
+      "probability",
+      "확률, 가능성 (n.)",
+      "probable (a.) 있음직한 — the probability that S V(~할 확률)"
+     ],
+     [
+      "apprenticeship",
+      "견습 (기간), 도제 제도 (n.)",
+      "도제 제도: 스승 밑에서 일하며 기술을 배우게 하는 제도 / apprentice (n.) 견습생"
+     ],
+     [
+      "chromosome",
+      "염색체 (n.)",
+      "유전 정보를 담은 세포 속 구조물"
+     ],
+     [
+      "acculturation",
+      "문화 적응 (n.)",
+      "다른 문화와 접하며 그 문화에 맞춰 바뀌어 가는 것"
+     ],
+     [
+      "dissemination",
+      "보급, 퍼뜨림 (n.)",
+      "disseminate (v.) (정보를) 퍼뜨리다"
+     ],
+     [
+      "biological parents",
+      "친부모, 생물학적 부모",
+      "biological: 생물학적인, 혈연의"
+     ],
+     [
+      "nonparental",
+      "부모가 아닌 (a.)",
+      "non(아닌) + parental(부모의) — 본문: nonparental adults and peers"
+     ],
+     [
+      "draw connections between A and B",
+      "A와 B 사이의 연관성을 끌어내다",
+      "draw: (결론·관심을) 끌어내다 — draw a conclusion(결론을 내리다)"
+     ],
+     [
+      "be likened to A",
+      "A에 비유되다",
+      "liken A to B(A를 B에 비유하다)"
+     ],
+     [
+      "social learning",
+      "사회적 학습",
+      "남을 보고 따라 하며 배우는 것"
+     ],
+     [
+      "account for A",
+      "A를 설명하다, 고려하다",
+      "본문: had to be modified to account for the differences(그 차이를 설명[반영]할 수 있게 수정되어야 했다) / 다른 빈출 뜻: (비율을) 차지하다 / account (n.) 설명 — 17강 04번 common accounts(흔한 설명들)"
+     ],
+     [
+      "pertinent",
+      "(직접) 관련 있는, 적절한 (a.)",
+      "pertinent to A(A와 관련된)"
+     ],
+     [
+      "horizontal transmission",
+      "수평 전달",
+      "또래·같은 세대 사이에서 이루어지는 전달"
+     ],
+     [
+      "approach",
+      "접근법, 방식 (n.)",
+      "본문: these approaches had to be modified(이런 접근법들은 수정되어야 했다) / 다른 빈출 뜻: 다가가다 (v.)"
+     ],
+     [
+      "conceptually",
+      "개념적으로 (ad.)",
+      "conceptual (a.) 개념의 — 16강 03번 concept"
+     ],
+     [
+      "be equally likely to V",
+      "V할 가능성이 똑같다",
+      "be likely to V(V할 것 같다)"
+     ],
+     [
+      "population genetics",
+      "집단 유전학",
+      "생물 집단 안에서 유전자가 어떻게 퍼지고 바뀌는지 연구하는 학문"
+     ],
+     [
+      "ethnic",
+      "민족의 (a.)",
+      "ethnicity (n.) 민족성"
+     ],
+     [
+      "hand down A",
+      "A를 물려주다, 전하다",
+      "다음 세대에 넘겨주다"
+     ],
+     [
+      "duplicate",
+      "복제하다, 그대로 베끼다 (v.)",
+      "다른 빈출 뜻: 사본, 똑같은 것 (n.)"
+     ],
+     [
+      "statistical",
+      "통계의, 통계적인 (a.)",
+      "statistics (n.) 통계(학)"
+     ],
+     [
+      "diffusion",
+      "확산, 전파 (n.)",
+      "diffuse (v.) 퍼뜨리다, 확산되다"
+     ]
+    ]
+   }
+  ],
+  "note": "18강 05번 10 + 18강 06번 41 + 18강 07번 29"
+ },
+ {
+  "id": "songdo1-2026-2f-961-1012",
+  "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
+  "title": "기말 · 961~1012번",
+  "sections": [
+   {
+    "name": "18강 07번",
+    "items": [
+     [
+      "globalization",
+      "세계화 (n.)",
+      "globalize (v.) 세계화하다"
+     ],
+     [
+      "custom",
+      "관습, 풍습 (n.)",
+      "다른 빈출 뜻: customs 세관, 맞춤의 (a.)"
+     ],
+     [
+      "vertical transmission",
+      "수직 전달",
+      "부모에서 자녀로 이어지는 전달"
+     ],
+     [
+      "folklore",
+      "민속, 민간 전승 (n.)",
+      "대대로 전해 내려오는 이야기·풍습"
+     ],
+     [
+      "not necessarily",
+      "반드시 ~인 것은 아닌",
+      "부분 부정 — 본문: is not necessarily equally likely to ~(반드시 똑같이 ~할 가능성이 있는 것은 아니다)"
+     ],
+     [
+      "meme",
+      "밈(문화 유전자) (n.)",
+      "유전자처럼 사람들 사이에 퍼지는 생각·행동·유행"
+     ],
+     [
+      "progeny",
+      "자손 (n.)",
+      "한 생물에서 태어난 후손들"
+     ],
+     [
+      "equate A with B",
+      "A를 B와 동일시하다",
+      "equation (n.) 방정식, 동일시"
+     ],
+     [
+      "transfer",
+      "옮기다, 전달하다 (v.)",
+      "다른 빈출 뜻: 이동, 전학 (n.)"
+     ],
+     [
+      "thus",
+      "따라서, 이와 같이 (ad.)",
+      "앞 내용의 결과를 이을 때"
+     ],
+     [
+      "variation",
+      "변이, 변화 (n.)",
+      "변이: 같은 종 안에서 생기는 모양·성질의 차이 / vary (v.) 다르다 — genetic variation(유전적 변이)"
+     ],
+     [
+      "static",
+      "정적인, 고정된 (a.)",
+      "움직임·변화가 없는"
+     ]
+    ]
+   },
+   {
+    "name": "18강 08번",
+    "items": [
+     [
+      "give a lecture",
+      "강의하다",
+      "lecture: 강의, 잔소리"
+     ],
+     [
+      "match expectations",
+      "기대에 부합하다",
+      "match: ~와 일치하다, 어울리다"
+     ],
+     [
+      "exception",
+      "예외 (n.)",
+      "exceptional (a.) 예외적인, 뛰어난 / with the exception of A(A를 제외하고)"
+     ],
+     [
+      "individuality",
+      "개성 (n.)",
+      "individual (a.) 개인의, 개별적인"
+     ],
+     [
+      "delve into A",
+      "A를 깊이 파고들다",
+      ""
+     ],
+     [
+      "deviation",
+      "일탈, (기준에서) 벗어남 (n.)",
+      "deviate (v.) 벗어나다 — deviate from A / 본문: slight deviations from the norm(규범에서 살짝 벗어나는 것)"
+     ],
+     [
+      "a series of A",
+      "일련의 A",
+      "본문: A series of studies(일련의 연구)"
+     ],
+     [
+      "rating",
+      "평가, 등급 (n.)",
+      "rate (v.) 평가하다 — 17강 03번 heart rate의 rate(비율)와 뜻 구별"
+     ],
+     [
+      "bow tie",
+      "나비넥타이",
+      "bow: 나비 모양 매듭 / 다른 빈출 뜻: 절하다 (v.)"
+     ],
+     [
+      "value",
+      "중시하다, 높이 평가하다 (v.)",
+      "본문: valuing uniqueness(독특함을 중시하는 것) / 다른 빈출 뜻: 가치 (n.)"
+     ],
+     [
+      "attire",
+      "복장, 의복 (n.)",
+      ""
+     ],
+     [
+      "dress code",
+      "복장 규정",
+      ""
+     ],
+     [
+      "distinctiveness",
+      "남과 구별되는 특징 (n.)",
+      "distinctive (a.) 독특한"
+     ],
+     [
+      "risk",
+      "(위험을) 감수하다, 무릅쓰다 (v.)",
+      "본문: risk the social costs(사회적 대가를 감수하다) / 다른 빈출 뜻: 위험 (n.) — at risk(위험에 처한)"
+     ],
+     [
+      "norm",
+      "(사회적) 규범 (n.)",
+      "사회에서 당연히 따라야 한다고 여기는 기준 / normal (a.) 보통의"
+     ],
+     [
+      "be viewed as A",
+      "A로 여겨지다",
+      "view A as B(A를 B로 보다) — 요약문: view an individual positively"
+     ],
+     [
+      "scenario",
+      "(가상의) 상황, 시나리오 (n.)",
+      "본문: In one scenario(한 실험 상황에서)"
+     ],
+     [
+      "A enough to V",
+      "V할 만큼 충분히 A한",
+      "본문: powerful enough to risk the social costs(사회적 대가를 감수할 만큼 힘 있는)"
+     ],
+     [
+      "surgeon",
+      "외과 의사 (n.)",
+      "surgery (n.) 수술"
+     ],
+     [
+      "article",
+      "(신문·잡지의) 기사, 논문 (n.)",
+      "다른 빈출 뜻: (법의) 조항, 물품, 관사"
+     ],
+     [
+      "scrubs",
+      "수술복 (n.)",
+      "scrub (v.) 문질러 닦다"
+     ],
+     [
+      "break a norm",
+      "규범을 어기다",
+      "본문: broke established norms only slightly(확립된 규범을 살짝 어겼다)"
+     ],
+     [
+      "departure",
+      "출발, 이탈 (n.)",
+      "depart (v.) 떠나다 — a departure from tradition(전통에서 벗어남)"
+     ],
+     [
+      "aberration",
+      "(정상에서) 벗어난 이상 행동 (n.)",
+      ""
+     ],
+     [
+      "notable",
+      "눈여겨볼 만한, 저명한 (a.)",
+      "본문: with one notable exception(눈여겨볼 예외 하나) / notably (ad.) 특히"
+     ],
+     [
+      "fashion statement",
+      "패션으로 하는 자기표현",
+      "옷차림으로 개성이나 생각을 드러내는 것"
+     ],
+     [
+      "social cost",
+      "사회적 대가",
+      "cost: 대가, 희생 — at the cost of A(A를 희생하여)"
+     ],
+     [
+      "prize",
+      "소중히 여기다 (v.)",
+      "다른 빈출 뜻: 상, 상품 (n.)"
+     ],
+     [
+      "venture",
+      "(위험을 무릅쓰고) 해 보다 (v.)",
+      "다른 빈출 뜻: (모험적) 사업 (n.) — joint venture(합작 사업)"
+     ],
+     [
+      "challenge the norm",
+      "규범에 도전하다",
+      "요약문: only slightly challenges the norm(규범에 아주 살짝 도전하다)"
+     ],
+     [
+      "formal wear",
+      "정장",
+      ""
+     ],
+     [
+      "eccentric",
+      "별난, 괴짜의 (a.)",
+      "다른 빈출 뜻: 괴짜 (n.)"
+     ],
+     [
+      "self-presentation",
+      "자기 표현, 자기 연출 (n.)",
+      "남에게 자신을 어떻게 보일지 관리하는 것"
+     ],
+     [
+      "judge A based on B",
+      "B를 근거로 A를 판단하다",
+      "based on A: A에 근거하여 / judge A as B(A를 B로 판단하다)"
+     ],
+     [
+      "black-tie affair",
+      "정장 차림의 행사",
+      "black-tie: 검은 나비넥타이 정장을 갖추는 / affair: 행사, 일 — 다른 빈출 뜻: 사건"
+     ],
+     [
+      "rebellious",
+      "반항적인 (a.)",
+      "rebel (v.) 반항하다, (n.) 반역자"
+     ],
+     [
+      "nonconformist",
+      "관습을 따르지 않는 사람 (n.)",
+      "non(아닌) + conform(따르다) + ist(사람)"
+     ],
+     [
+      "trendsetter",
+      "유행을 선도하는 사람 (n.)",
+      ""
+     ],
+     [
+      "explore",
+      "탐구하다, 탐색하다 (v.)",
+      "exploration (n.) 탐험, 탐구"
+     ],
+     [
+      "uniqueness",
+      "독특함, 유일함 (n.)",
+      "unique (a.) 독특한, 유일한"
+     ]
+    ]
+   }
+  ],
+  "note": "18강 07번 12 + 18강 08번 40"
+ }
+]
+</script>
+
+<script>
+(() => {
+'use strict';
+
+/*PURE-START*/
+const HANGUL = /[ᄀ-ᇿ㄰-㆏가-힯]/;
+const MAXB = 20;
+const PH_WORD = /^(?:sb|sth|sw|~|one's|oneself|someone|something|somebody|someone's|somewhere)$/i;
+const rnd = n => Math.floor(Math.random() * n);
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+/* 단어 뜻 칸은 통째로 외울 뜻. 참고 칸은 " / ", " — " 기준으로 줄을 나눔. 참고 칸이 비면 뜻 칸의 " — " 뒤를 참고로 봄 */
+function parseMeaning(ko, gl) {
+  let core = String(ko == null ? '' : ko).trim(), note = String(gl == null ? '' : gl).trim();
+  if (!note) { const p = core.split(/\s+[—–]\s+/); if (p.length > 1) { core = p.shift(); note = p.join(' — '); } }
+  const notes = note ? note.split(/\s+\/\s+|\s+[—–]\s+/).map(x => x.trim()).filter(Boolean) : [];
+  return { core, notes };
+}
+/* 정답 후보: "a/b" 둘 다, "(be) x" 괄호 넣고 빼고 둘 다 */
+function variants(en) {
+  const out = [];
+  String(en).split(/\s*\/\s*/).filter(Boolean).forEach(a => {
+    out.push(a.replace(/[()]/g, '').replace(/\s+/g, ' ').trim());
+    if (/\(/.test(a)) out.push(a.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim());
+  });
+  return out.length ? out : [String(en)];
+}
+function rawTokens(s) {
+  return String(s).replace(/[’‘`´]/g, "'").replace(/…|\.{3}/g, ' ~ ').replace(/~/g, ' ~ ')
+    .split(/\s+/).map(w => w.replace(/^[.,!?;:"“”]+|[.,!?;:"“”]+$/g, '')).filter(Boolean);
+}
+/* 자리표시: A·B·V 같은 대문자 한 글자, sb·sth·one's·~·+, 한글(주어·형용사 등).
+   자리표시 자리는 비워도 되고 아무 말(4단어까지)을 써도 됨. 나머지 단어는 철자까지 정확해야 함 */
+function isPh(w) { return /^[A-Z]$/.test(w) || PH_WORD.test(w) || HANGUL.test(w) || /^[+~]+$/.test(w); }
+function expTokens(v) { return rawTokens(v).map(w => ({ w, t: w.toLowerCase(), ph: isPh(w) })); }
+const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function patternFor(v) {
+  const et = expTokens(v);
+  if (!et.some(x => !x.ph)) return null;
+  let src = '^', prevPh = false;
+  et.forEach(x => {
+    if (x.ph) { if (!prevPh) src += '(?:\\S+ ){0,4}'; prevPh = true; }
+    else { src += reEsc(x.t) + ' '; prevPh = false; }
+  });
+  return new RegExp(src + '$');
+}
+function typedNorm(s) {
+  return rawTokens(String(s).replace(/[()]/g, '')).map(w => w.toLowerCase()).filter(w => !/^[+~]+$/.test(w)).join(' ') + ' ';
+}
+function matchItem(typed, item) {
+  const t = typedNorm(typed);
+  return t.trim() !== '' && item.pats.some(re => re.test(t));
+}
+function prepItem(row) {
+  const en = String(row[0] == null ? '' : row[0]).trim(), ko = String(row[1] == null ? '' : row[1]).trim();
+  if (!en || !ko) return null;
+  const m = parseMeaning(ko, row[2]);
+  const vars = variants(en);
+  const pats = vars.map(patternFor).filter(Boolean);
+  const n = expTokens(vars[0]).filter(x => !x.ph).length;
+  return { en, core: m.core, notes: m.notes, vars, pats, ke: pats.length > 0 && n <= 7, audio: row[3] ? String(row[3]) : '' };
+}
+function prepareSet(raw) {
+  const items = [], sections = [];
+  (raw.sections || []).forEach(sec => {
+    const ids = [];
+    (sec.items || []).forEach(row => { const it = prepItem(row); if (it) { ids.push(items.length); items.push(it); } });
+    if (ids.length) sections.push({ name: String(sec.name || ''), ids });
+  });
+  return { id: raw.id, title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), custom: !!raw.custom, batch: Number(raw.batch) || 0, items, sections };
+}
+/* 지문 경계와 상관없이 세트 순서대로 고르게 나눔. 묶음 크기는 세트에 batch가 있으면 그 값, 없으면 20
+   (80개 → 20×4, 87개 → 18·18·17·17·17, batch 50이면 100개 → 50×2) */
+function makeBatches(set, pool) {
+  const inPool = new Set(pool), max = set.batch > 0 ? set.batch : MAXB;
+  const ids = set.sections.flatMap(sec => sec.ids).filter(id => inPool.has(id));
+  if (!ids.length) return [];
+  const n = Math.ceil(ids.length / max), base = Math.floor(ids.length / n), extra = ids.length % n;
+  const out = [];
+  for (let k = 0, i = 0; k < n; k++) { const sz = base + (k < extra ? 1 : 0); out.push(ids.slice(i, i + sz)); i += sz; }
+  return out;
+}
+function splitLoose(s) {
+  const i = s.search(HANGUL);
+  if (i <= 0) return null;
+  const en = s.slice(0, i).replace(/[\s:=|\-–—]+$/, '').trim();
+  if (!/^[A-Za-z]/.test(en)) return null;
+  return [en, s.slice(i).trim()];
+}
+/* 엑셀 복사(탭 구분): 번호 / 영어 / 뜻 / 본문 풀이. 칸이 하나뿐인 줄은 지문 제목으로 봄 */
+function parsePaste(text) {
+  const sections = [];
+  let cur = null, skipped = 0;
+  const add = (en, ko, gl) => { if (!cur) { cur = { name: '단어', items: [] }; sections.push(cur); } cur.items.push([en, ko, gl || '']); };
+  String(text).replace(/\r/g, '').split('\n').forEach(line => {
+    if (!line.trim()) return;
+    let cells = line.split('\t').map(c => c.trim());
+    while (cells.length && !cells[0]) cells.shift();
+    while (cells.length && !cells[cells.length - 1]) cells.pop();
+    if (!cells.length) return;
+    if (cells.some(c => /^(영어|english|word|단어)$/i.test(c)) && cells.some(c => /뜻|meaning/i.test(c))) return;
+    if (cells.length >= 3 && /^\d+$/.test(cells[0])) cells = cells.slice(1);
+    if (cells.length === 1) {
+      if (/^\d+$/.test(cells[0])) return;
+      const sp = splitLoose(cells[0]);
+      if (sp) add(sp[0], sp[1], '');
+      else { cur = { name: cells[0].slice(0, 60), items: [] }; sections.push(cur); }
+      return;
+    }
+    const en = cells[0], ko = cells[1], gl = cells.slice(2).filter(Boolean).join(' ');
+    if (!/[a-z]/i.test(en) || !ko) { skipped++; return; }
+    add(en, ko, gl);
+  });
+  const clean = sections.filter(s => s.items.length);
+  return { sections: clean, n: clean.reduce((a, s) => a + s.items.length, 0), skipped };
+}
+function lcsMask(a, b) {
+  const n = a.length, m = b.length;
+  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const ma = new Array(n).fill(false), mb = new Array(m).fill(false);
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (a[i] === b[j]) { ma[i] = true; mb[j] = true; i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+    else j++;
+  }
+  return [ma, mb];
+}
+/*PURE-END*/
+
+const $ = (s, r = document) => r.querySelector(s);
+const app = $('#app');
+let BUILTIN = [];
+try { BUILTIN = JSON.parse($('#sets-data').textContent); } catch (e) { BUILTIN = []; }
+/* 학교별 페이지 설정: 상단 표시칸, 직접 넣기 허용 여부 */
+let CFG = {};
+try { const c = $('#page-config'); if (c) CFG = JSON.parse(c.textContent) || {}; } catch (e) { CFG = {}; }
+const PASTE = CFG.paste !== false;
+const FIELDS = Array.isArray(CFG.fields) && CFG.fields.length ? CFG.fields : [['과목', '영어 단어'], ['방식', '보기 전에 꺼내기']];
+const FORM = CFG.form && /^https:\/\/docs\.google\.com\/forms\//.test(CFG.form.url || '') ? CFG.form : null;
+const CAP = 45000; /* 한 장에서 45초 넘게 멈춰 있으면 그 이상은 시간에 안 셈 */
+const K = { sess: id => 'kd1:sess:' + id, rec: id => 'kd1:rec:' + id, custom: 'kd1:custom', name: 'kd1:name' };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function fmt(ms) { const t = Math.max(0, Math.floor(ms / 1000)); const m = Math.floor(t / 60), s = t % 60; return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
+
+/* 발음: 미리 만든 mp3(audio/키.mp3)를 우선 재생 — 카톡 같은 앱 안 브라우저에서도 들림.
+   파일이 없거나 재생이 막히면 폰에 들어 있는 영어 음성(TTS)으로 읽음 */
+const TTS = (() => {
+  const ok = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  let voice = null;
+  const pick = () => {
+    try {
+      const vs = window.speechSynthesis.getVoices() || [];
+      voice = vs.find(v => /^en[-_]US/i.test(v.lang) && /samantha|google|natural|aria|jenny/i.test(v.name)) ||
+        vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+    } catch (e) { voice = null; }
+  };
+  if (ok) { pick(); try { window.speechSynthesis.addEventListener('voiceschanged', pick); } catch (e) {} }
+  return {
+    ok,
+    say(text) {
+      if (!ok || !text) return;
+      try {
+        window.speechSynthesis.cancel();
+        const u = new window.SpeechSynthesisUtterance(text);
+        u.lang = voice ? voice.lang : 'en-US';
+        if (voice) u.voice = voice;
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+  };
+})();
+/* 적힌 그대로 읽되, a(n)→a, (to)→to, ~·…→쉼, 한글·+는 뺌 (A·B·V는 그대로 읽음) */
+const sayText = it => String(it.en)
+  .replace(/(\S)\([^)]*\)/g, '$1').replace(/\([^)]*\)(\S)/g, '$1').replace(/[()]/g, '')
+  .replace(/\bsb\b/gi, 'somebody').replace(/\bsth\b/gi, 'something')
+  .replace(/…|\.{3}|~/g, ',').replace(/\+/g, ' ')
+  .split(/\s+/).filter(w => w && !HANGUL.test(w)).join(' ')
+  .replace(/\s*,[\s,]*/g, ', ').replace(/^[,\s]+|[,\s]+$/g, '');
+const AUDIO_BASE = 'audio/';
+const player = (() => { try { return typeof Audio === 'function' ? new Audio() : null; } catch (e) { return null; } })();
+const audioURL = it => AUDIO_BASE + it.audio + '.mp3';
+/* 카드가 뜰 때 미리 받아 두면 눌렀을 때 바로 나옴 */
+function primeAudio(it) {
+  if (!player || !it || !it.audio) return;
+  try { if (!player.src || player.src.slice(-audioURL(it).length) !== audioURL(it)) { player.preload = 'auto'; player.src = audioURL(it); } } catch (e) {}
+}
+function speak(it) {
+  if (!it) return;
+  if (player && it.audio) {
+    try {
+      if (!player.src || player.src.slice(-audioURL(it).length) !== audioURL(it)) player.src = audioURL(it);
+      try { player.currentTime = 0; } catch (e) {}
+      const p = player.play();
+      if (p && typeof p.catch === 'function') p.catch(() => TTS.say(sayText(it)));
+      return;
+    } catch (e) {}
+  }
+  TTS.say(sayText(it));
+}
+const canSpeak = it => !!(it && ((player && it.audio) || TTS.ok));
+const SAY_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+const sayBtn = (it, id, label) => canSpeak(it) ? `<button class="say" type="button" data-say="${id}" aria-label="발음 듣기">${SAY_ICON}${label ? `<span>${label}</span>` : ''}</button>` : '';
+
+/* 기기별 저장 (없어도 동작) */
+const mem = {};
+const store = {
+  get(k) { try { const v = localStorage.getItem(k); if (v != null) return JSON.parse(v); } catch (e) {} try { return k in mem ? JSON.parse(mem[k]) : null; } catch (e) { return null; } },
+  set(k, v) { const j = JSON.stringify(v); mem[k] = j; try { localStorage.setItem(k, j); } catch (e) {} },
+  del(k) { delete mem[k]; try { localStorage.removeItem(k); } catch (e) {} }
+};
+
+const S = { view: 'home', sess: null, result: null, confirm: null, banner: '', pasteOpen: false };
+let SET = null, R = {}, C = null, clockT = null;
+
+function customSets() { const l = store.get(K.custom); return Array.isArray(l) ? l : []; }
+function rawSets() { return (PASTE ? customSets() : []).concat(BUILTIN); }
+function findRaw(id) { return rawSets().find(s => s.id === id) || null; }
+function getRec(id) { const r = store.get(K.rec(id)); return r && typeof r === 'object' ? r : {}; }
+function liveSess(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 1 && ss.n === n && ss.phase && ss.phase !== 'done' ? ss : null; }
+function save() { const s = S.sess; if (s && s.phase !== 'done') store.set(K.sess(s.setId), s); }
+
+/* ---------- 진행 엔진 ---------- */
+function newSession(set, mode) {
+  const n = set.items.length;
+  let pool = set.items.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { k: 0, ek: 0, ke: 0, m: 0, f: 0, ff: 0, sn: 0 }; });
+  const s = { v: 1, setId: set.id, n, mode, pool, st, b: 0, batches: [], phase: '', queue: [], recent: [], fDone: 0, ms: 0, lt: Date.now(), bms0: 0 };
+  if (mode === 'quick') startFinal(s);
+  else { s.batches = makeBatches(set, pool); startSort(s); }
+  return s;
+}
+function spreadRecent(q, recent) {
+  if (q.length < 4) return;
+  const r = new Set(recent.slice(-2));
+  for (let pass = 0; pass < 2; pass++) {
+    for (let i = 0; i < 2; i++) {
+      if (r.has(q[i].id)) { const c = q.splice(i, 1)[0]; q.splice(Math.min(q.length, 3 + i), 0, c); }
+    }
+  }
+}
+function startSort(s) {
+  s.phase = 'sort'; s.bms0 = s.ms;
+  s.queue = shuffle(s.batches[s.b].slice()).map(id => ({ id, d: 'ek' }));
+  spreadRecent(s.queue, s.recent);
+}
+function startLearn(s) {
+  s.phase = 'learn';
+  const q = [];
+  s.batches[s.b].forEach(id => {
+    const x = s.st[id];
+    if (x.k) { if (SET.items[id].ke) q.push({ id, d: 'ke' }); else x.m = 1; }
+    else q.push({ id, d: 'ek' });
+  });
+  shuffle(q); spreadRecent(q, s.recent);
+  s.queue = q;
+}
+function startFinal(s) {
+  s.phase = 'final'; s.fDone = 0; s.bms0 = s.ms;
+  s.queue = shuffle(s.pool.slice()).map(id => ({ id, d: SET.items[id].ke && Math.random() < 0.5 ? 'ke' : 'ek' }));
+  spreadRecent(s.queue, s.recent);
+}
+/* 틀린 카드는 3~6장 뒤로. 남은 카드가 모자라면 이미 외운 단어로 사이를 채워 바로 다시 나오지 않게 함 */
+function requeue(s, card, lo, hi) {
+  const gap = lo + rnd(hi - lo + 1);
+  if (s.queue.length < gap) pad(s, card.id, gap - s.queue.length);
+  s.queue.splice(Math.min(gap, s.queue.length), 0, card);
+}
+function pad(s, avoid, need) {
+  const scope = s.phase === 'learn' ? s.batches[s.b] : s.pool;
+  const inQ = new Set(s.queue.map(c => c.id));
+  const rec = new Set(s.recent.slice(-2));
+  const cand = shuffle(scope.filter(id => id !== avoid && !inQ.has(id) && !rec.has(id) && (s.phase !== 'learn' || s.st[id].m)));
+  const k = Math.min(need, 3, cand.length);
+  for (let i = 0; i < k; i++) s.queue.push({ id: cand[i], d: SET.items[cand[i]].ke && Math.random() < 0.5 ? 'ke' : 'ek', rv: 1 });
+}
+/* res: 영→한 'yes'|'meh'|'no', 한→영 'ok'|'hint'|'wrong'|'dunno' */
+function answer(res) {
+  const s = S.sess, card = s.queue.shift();
+  if (!card) return;
+  const id = card.id, x = s.st[id], it = SET.items[id];
+  tick(s); x.sn = 1;
+  if (s.phase === 'sort') {
+    x.k = res === 'yes' ? 1 : 0; x.ek = x.k;
+  } else if (s.phase === 'learn') {
+    if (card.d === 'ek') { if (res === 'yes') x.ek = 1; else { x.ek = 0; x.f++; } }
+    else if (res === 'ok') x.ke = 1;
+    else { x.ke = 0; if (res !== 'hint') x.f++; }
+    const need = !x.ek ? 'ek' : (it.ke && !x.ke ? 'ke' : '');
+    if (need) { x.m = 0; requeue(s, { id, d: need }, 3, need === card.d ? 5 : 6); }
+    else x.m = 1;
+  } else if (s.phase === 'final') {
+    const good = card.d === 'ek' ? res === 'yes' : res === 'ok';
+    if (good) { if (!card.rv) s.fDone++; }
+    else {
+      if (card.rv) s.fDone--;
+      x.ff = 1; if (res !== 'hint') x.f++;
+      requeue(s, { id, d: card.d }, 3, 5);
+    }
+  }
+  s.recent.push(id); if (s.recent.length > 4) s.recent.shift();
+  if (!s.queue.length) endPhase(s);
+  save();
+}
+function endPhase(s) {
+  if (s.phase === 'sort') {
+    const ids = s.batches[s.b], known = ids.filter(id => s.st[id].k).length, unknown = ids.length - known;
+    startLearn(s);
+    S.banner = `거르기 끝 · ${ids.length}개 중 ${known}개 바로 나옴. ` + (unknown ? `이제 안 나온 ${unknown}개 다시 + 철자 확인.` : '이제 철자 확인.');
+    if (!s.queue.length) { s.phase = 'bdone'; S.banner = ''; }
+  } else if (s.phase === 'learn') {
+    s.phase = 'bdone';
+  } else if (s.phase === 'final') {
+    s.phase = 'done'; finish(s);
+  }
+}
+function finish(s) {
+  const pool = s.pool;
+  const hard = pool.filter(id => s.st[id].f >= 2 || s.st[id].ff);
+  const known = s.mode === 'quick' ? pool.filter(id => !s.st[id].ff).length : pool.filter(id => s.st[id].k).length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  S.result = { setId: s.setId, title: SET.title, mode: s.mode, n: pool.length, ms: s.ms, known, hard };
+  store.del(K.sess(s.setId));
+}
+function nextBatch() {
+  const s = S.sess;
+  if (!s) { renderHome(); return; }
+  if (s.b + 1 < s.batches.length) { s.b++; startSort(s); } else startFinal(s);
+  s.lt = Date.now();
+  save(); route();
+}
+function tick(s) { const now = Date.now(); s.ms += Math.max(0, Math.min(now - (s.lt || now), CAP)); s.lt = now; }
+function startClock() {
+  stopClock();
+  const up = () => { const s = S.sess, el = R['st-clock']; if (s && el) el.textContent = fmt(s.ms + Math.max(0, Math.min(Date.now() - s.lt, CAP))); };
+  up(); clockT = setInterval(up, 1000);
+}
+function stopClock() { if (clockT) clearInterval(clockT); clockT = null; }
+
+function begin(id, mode) {
+  const raw = findRaw(id);
+  if (!raw) { renderHome(); return; }
+  SET = prepareSet(raw);
+  if (!SET.items.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveSess(id, SET.items.length);
+    if (s && !validSess(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newSession(SET, 'full');
+  } else s = newSession(SET, mode);
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+function validSess(s) {
+  const n = SET.items.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  return Array.isArray(s.pool) && s.pool.every(ok) && Array.isArray(s.queue) && s.queue.every(c => c && ok(c.id)) &&
+    s.st && typeof s.st === 'object' && s.pool.every(id => s.st[id]) && Array.isArray(s.batches) && Array.isArray(s.recent);
+}
+function route() {
+  const s = S.sess;
+  if (!s) { renderHome(); return; }
+  if (s.phase === 'bdone') { renderPause(); return; }
+  if (s.phase === 'done') { renderResult(); return; }
+  if (!s.queue.length) { endPhase(s); save(); route(); return; }
+  renderStudy();
+}
+
+/* ---------- 목록 화면 ---------- */
+function sessLabel(ss) {
+  const B = (ss.batches || []).length;
+  if (ss.phase === 'final') return `${ss.mode === 'quick' ? '빠른 점검' : '마지막 점검'} ${ss.fDone}/${ss.pool.length}`;
+  if (ss.phase === 'bdone') return `배치 ${ss.b + 1}/${B} 끝`;
+  return `배치 ${ss.b + 1}/${B}`;
+}
+function setCard(raw) {
+  const set = prepareSet(raw);
+  const n = set.items.length;
+  const nb = n ? makeBatches(set, set.items.map((_, i) => i)).length : 0;
+  const ss = liveSess(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · ${esc(sessLabel(ss))} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)}${rec.last.mode === 'quick' ? ' (빠른 점검)' : rec.last.mode === 'hard' ? ' (끈질긴 단어)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">외우기</button>`;
+  actions += `<button class="btn btn-quiet" type="button" data-act="quick" data-set="${sid}">빠른 점검</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">끈질긴 단어 ${hardN}</button>`;
+  const confirm = cf ? `
+    <div class="confirm" role="group" aria-label="확인">
+      <span>${cf === 'del' ? '이 세트를 이 기기에서 지울까?' : '진행 중인 기록이 지워져. 새로 시작할까?'}</span>
+      <div class="confirm-btns">
+        <button class="btn btn-quiet btn-small" type="button" data-act="cancel" data-set="${sid}">취소</button>
+        <button class="btn btn-primary btn-small" type="button" data-act="yes-${cf}" data-set="${sid}">${cf === 'del' ? '지우기' : '지우고 시작'}</button>
+      </div>
+    </div>` : '';
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}단어 · 배치 ${nb}</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${set.custom ? `<button class="linkish del" type="button" data-act="del" data-set="${sid}">이 세트 지우기</button>` : ''}
+    ${confirm}
+  </article>`;
+}
+function renderHome() {
+  S.view = 'home'; stopClock(); S.sess = null; C = null;
+  const sets = rawSets();
+  app.innerHTML = `
+<div class="wrap home">
+  <header class="masthead">
+    <div class="fields">${FIELDS.map(f => `<span class="field"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></span>`).join('')}</div>
+    <h1>꺼내는 단어장</h1>
+    <p class="lede">눈으로 보는 대신 먼저 떠올리고, 바로 채점해.</p>
+  </header>
+  <section class="rules" aria-labelledby="rules-h">
+    <h2 class="eyebrow" id="rules-h">외우는 방법</h2>
+    <ol>
+      <li><span class="num">1</span><span><b>소리 내서 말한 다음</b> 뜻 보기. 속으로 ‘아 그거’는 모르는 거야.</span></li>
+      <li><span class="num">2</span><span><b>5초 안에 안 나오면 애매.</b> 애매·몰랐어는 몇 장 뒤에 다시 나와.</span></li>
+      <li><span class="num">3</span><span><b>철자는 직접 쳐서</b> 채점. 틀린 단어는 맞힐 때까지 돌아와.</span></li>
+      <li><span class="num">4</span><span><b>마지막에 전체를 섞어서</b> 한 번 더. 맞힌 단어도 다시 꺼내야 오래 가.</span></li>
+    </ol>
+  </section>
+  <section class="sets" aria-labelledby="sets-h">
+    <div class="sets-h"><h2 class="eyebrow" id="sets-h">단어 세트</h2><span class="mono">${sets.length}</span></div>
+    ${groupedCards(sets)}
+  </section>
+  ${PASTE ? `<details class="paste" id="paste"${S.pasteOpen ? ' open' : ''}>
+    <summary><span class="sum-l">단어 직접 넣기</span><span class="sum-r">이 기기에만 저장</span></summary>
+    <div class="paste-body">
+      <label for="p-title">세트 이름</label>
+      <input type="text" id="p-title" maxlength="40" placeholder="예: 13강 1~2번" autocomplete="off">
+      <label for="p-text">엑셀에서 영어·뜻 칸을 복사해 붙여넣기 (번호·본문 풀이 칸이 같이 와도 괜찮아)</label>
+      <textarea id="p-text" rows="6" spellcheck="false" placeholder="deliberate&#9;의도적인 (a.)&#9;일부러 계획해서 하는"></textarea>
+      <p class="paste-status" id="p-status">한 줄에 단어 하나. 지문 제목 줄이 있으면 지문별로 묶여.</p>
+      <button class="btn btn-primary" id="p-save" type="button" disabled>세트 만들기</button>
+    </div>
+  </details>` : ''}
+  <p class="foot">외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>진행 기록은 이 기기 브라우저에만 저장돼.</p>
+</div>`;
+  bindHome();
+}
+/* 세트에 group이 있으면 묶음 제목을 달아 줌 (예: 어휘평가 2차 / 2학기 기말) */
+function groupedCards(sets) {
+  let last = null;
+  return sets.map(s => {
+    const g = s.group || '';
+    const head = g && g !== last ? `<h3 class="group-h">${esc(g)}</h3>` : '';
+    last = g;
+    return head + setCard(s);
+  }).join('');
+}
+function deleteCustom(id) {
+  store.set(K.custom, customSets().filter(s => s.id !== id));
+  store.del(K.sess(id)); store.del(K.rec(id));
+}
+function bindHome() {
+  app.onclick = e => {
+    const b = e.target.closest('[data-act]');
+    if (!b) return;
+    const act = b.dataset.act, id = b.dataset.set;
+    const raw = findRaw(id);
+    if (!raw) return;
+    const live = liveSess(id, prepareSet(raw).items.length);
+    if (act === 'resume') { begin(id, 'resume'); return; }
+    if (act === 'cancel') { S.confirm = null; renderHome(); return; }
+    if (act === 'del') { S.confirm = { setId: id, act: 'del' }; renderHome(); return; }
+    if (act === 'yes-del') { deleteCustom(id); S.confirm = null; renderHome(); return; }
+    if (act.indexOf('yes-') === 0) { store.del(K.sess(id)); S.confirm = null; begin(id, act.slice(4)); return; }
+    if (act === 'full' || act === 'quick' || act === 'hard') {
+      if (live) { S.confirm = { setId: id, act }; renderHome(); return; }
+      begin(id, act);
+    }
+  };
+  const det = $('#paste'), pt = $('#p-text'), ps = $('#p-status'), pb = $('#p-save'), pti = $('#p-title');
+  if (!det) return;
+  det.addEventListener('toggle', () => { S.pasteOpen = det.open; });
+  let parsed = null;
+  pt.addEventListener('input', () => {
+    parsed = parsePaste(pt.value);
+    if (!pt.value.trim()) { ps.className = 'paste-status'; ps.textContent = '한 줄에 단어 하나. 지문 제목 줄이 있으면 지문별로 묶여.'; pb.disabled = true; return; }
+    if (!parsed.n) { ps.className = 'paste-status bad'; ps.textContent = '영어와 뜻을 못 나눴어. 엑셀에서 영어 칸과 뜻 칸을 같이 복사해 줘.'; pb.disabled = true; return; }
+    const f = parsed.sections[0].items[0];
+    ps.className = 'paste-status ok';
+    ps.innerHTML = `단어 <b>${parsed.n}</b>개 · 묶음 ${parsed.sections.length}개 인식${parsed.skipped ? ` · ${parsed.skipped}줄은 못 읽어서 뺐어` : ''}<br><span class="mono">${esc(f[0])}</span> → ${esc(f[1])}`;
+    pb.disabled = false;
+  });
+  pb.addEventListener('click', () => {
+    if (!parsed || !parsed.n) return;
+    const d = new Date();
+    const title = pti.value.trim() || `내 단어 ${d.getMonth() + 1}/${d.getDate()}`;
+    const list = customSets();
+    list.unshift({ id: 'c' + Date.now().toString(36), title, note: '직접 넣은 단어', custom: true, sections: parsed.sections });
+    store.set(K.custom, list);
+    S.pasteOpen = false;
+    renderHome();
+    window.scrollTo(0, 0);
+  });
+}
+
+/* ---------- 공부 화면 ---------- */
+const STUDY = `
+<div class="wrap study" id="st-root">
+  <div class="bar">
+    <button class="back" id="st-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="st-title"></div><div class="bar-sub" id="st-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="st-track"></div>
+  <div class="banner" id="st-banner" hidden></div>
+  <section class="card" id="st-card">
+    <div class="card-top"><span class="dir" id="c-dir"></span><span class="left mono" id="c-left"></span></div>
+    <div class="zone" id="ek-zone">
+      <div class="word" id="ek-word" lang="en"></div>
+      <div class="say-row" id="ek-say"></div>
+      <div class="tbar" id="ek-tbar" aria-hidden="true"><i></i></div>
+      <div class="ek-hint" id="ek-hint"></div>
+      <div class="reveal" id="ek-reveal" hidden>
+        <div class="core" id="ek-core"></div>
+        <div class="notes" id="ek-notes"></div>
+      </div>
+    </div>
+    <div class="zone" id="ke-zone" hidden>
+      <div class="ko-prompt" id="ke-core"></div>
+      <div class="ke-fb" id="ke-fb" aria-live="polite"></div>
+      <div class="slots" id="ke-slots" hidden></div>
+      <form class="answer" id="ke-form" novalidate>
+        <label class="sr" for="ke-input">영어로 쓰기</label>
+        <input id="ke-input" type="text" lang="en" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go">
+        <button class="btn btn-primary" id="ke-go" type="submit">확인</button>
+      </form>
+      <div class="ke-tools" id="ke-tools">
+        <button class="linkish" id="ke-hint" type="button">힌트 · 글자 수와 첫 글자</button>
+        <button class="linkish" id="ke-dunno" type="button">모르겠어</button>
+      </div>
+    </div>
+    <div class="stamp" id="st-stamp" aria-hidden="true"></div>
+  </section>
+  <div class="actions" id="ek-actions">
+    <button class="btn btn-primary wide big" id="ek-show" type="button">뜻 보기</button>
+    <div class="grade" id="ek-grade" hidden>
+      <button class="btn" type="button" data-g="no">몰랐어</button>
+      <button class="btn" type="button" data-g="meh">애매해</button>
+      <button class="btn btn-primary" type="button" data-g="yes">알았어</button>
+    </div>
+  </div>
+</div>`;
+
+function renderStudy() {
+  S.view = 'study'; app.onclick = null;
+  app.innerHTML = STUDY;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  R['st-title'].textContent = SET.title;
+  R['st-back'].onclick = () => { if (C) { clearTimeout(C.timer); clearTimeout(C.late); } tick(S.sess); save(); renderHome(); };
+  R['ek-show'].onclick = () => reveal(false);
+  R['ek-zone'].onclick = () => reveal(false);
+  R['ek-grade'].onclick = e => { const b = e.target.closest('[data-g]'); if (b) gradeEK(b.dataset.g); };
+  R['ke-form'].onsubmit = onKESubmit;
+  ['ke-go', 'ke-hint', 'ke-dunno'].forEach(k => R[k].addEventListener('pointerdown', e => { if (document.activeElement === R['ke-input']) e.preventDefault(); }));
+  R['ke-hint'].onclick = useHint;
+  R['ke-dunno'].onclick = dunno;
+  /* 발음 버튼: 카드를 눌러 뜻이 열리지 않게 막고, 한→영 입력 중엔 키보드가 닫히지 않게 함 */
+  R['st-card'].addEventListener('pointerdown', e => { if (e.target.closest('[data-say]') && document.activeElement === R['ke-input']) e.preventDefault(); });
+  R['st-card'].addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (!b || !C) return;
+    e.stopPropagation();
+    speak(SET.items[C.id]);
+  }, true);
+  window.scrollTo(0, 0);
+  showCard();
+  startClock();
+}
+/* 묶음이 25개 이하면 OMR 동그라미, 그보다 크면 막대(외운 것 진하게 + 본 것 연하게) */
+function trackHTML(n, full, dot) {
+  if (n > 25) {
+    const w = x => (x / n * 100).toFixed(1) + '%';
+    return `<div class="meter" aria-hidden="true"><i style="width:${w(full)}"></i><b style="width:${w(dot)}"></b></div>`;
+  }
+  let b = '';
+  for (let i = 0; i < n; i++) b += `<span class="bb${i < full ? ' full' : i < full + dot ? ' dot' : ''}"></span>`;
+  return `<div class="track-grid" aria-hidden="true"><div class="ticks">${'<i></i>'.repeat(n)}</div><div class="bubbles">${b}</div></div>`;
+}
+function updateHeader() {
+  const s = S.sess;
+  let sub = s.phase === 'final'
+    ? `${s.mode === 'quick' ? '빠른 점검' : '마지막 점검'} · 전체 섞어서 한 번씩`
+    : `배치 ${s.b + 1}/${s.batches.length} · ${s.phase === 'sort' ? '거르기' : '집중'}`;
+  if (s.mode === 'hard') sub = '끈질긴 단어 · ' + sub;
+  R['st-sub'].textContent = sub;
+}
+function updateTrack() {
+  const s = S.sess, el = R['st-track'];
+  if (s.phase === 'final') {
+    const n = s.pool.length, k = Math.max(0, s.fDone);
+    el.innerHTML = `<div class="meter" role="progressbar" aria-label="점검 진행" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${k}"><i style="width:${(k / n * 100).toFixed(1)}%"></i></div><div class="track-n mono">${k}/${n}</div>`;
+    return;
+  }
+  const ids = s.batches[s.b], n = ids.length;
+  let full = 0, dot = 0;
+  ids.forEach(id => { const x = s.st[id]; if (s.phase === 'learn' && x.m) full++; else if (x.sn) dot++; });
+  const label = s.phase === 'learn' ? `${n}개 중 ${full}개 외움` : `${n}개 중 ${dot}개 거름`;
+  el.innerHTML = trackHTML(n, full, dot) + `<div class="track-n mono" aria-label="${label}">${s.phase === 'learn' ? full : dot}/${n}</div>`;
+}
+function leftText() {
+  const s = S.sess;
+  if (s.phase === 'final') return `남은 ${s.pool.length - s.fDone}`;
+  if (s.phase === 'sort') return `남은 ${s.queue.length}`;
+  return `남은 ${s.batches[s.b].filter(id => !s.st[id].m).length}`;
+}
+function showCard() {
+  const s = S.sess, card = s.queue[0];
+  if (!card) { route(); return; }
+  if (C) { clearTimeout(C.timer); clearTimeout(C.late); }
+  const it = SET.items[card.id];
+  C = { d: card.d, id: card.id, rv: !!card.rv, revealed: false, state: 'ask', hint: false, busy: false, t0: performance.now(), timer: 0, late: 0, pending: '' };
+  updateHeader(); updateTrack();
+  if (S.banner) { R['st-banner'].textContent = S.banner; R['st-banner'].hidden = false; S.banner = ''; }
+  else R['st-banner'].hidden = true;
+  R['st-stamp'].className = 'stamp';
+  R['c-dir'].innerHTML = `<b>${card.d === 'ek' ? '영→한' : '한→영'}</b><span>${card.rv ? '복습' : card.d === 'ek' ? '말하고 넘기기' : '직접 쓰기'}</span>`;
+  R['c-left'].textContent = leftText();
+  R['st-root'].classList.toggle('ke-mode', card.d === 'ke');
+  if (card.d === 'ek') {
+    if (document.activeElement === R['ke-input']) R['ke-input'].blur();
+    R['ke-zone'].hidden = true; R['ek-zone'].hidden = false; R['ek-actions'].hidden = false;
+    R['ek-word'].textContent = it.en;
+    R['ek-say'].innerHTML = sayBtn(it, card.id, '발음');
+    primeAudio(it);
+    R['ek-reveal'].hidden = true; R['ek-show'].hidden = false; R['ek-grade'].hidden = true;
+    R['ek-hint'].textContent = '뜻을 소리 내서 말한 다음 뜻 보기';
+    R['ek-hint'].classList.remove('late');
+    const bar = R['ek-tbar'];
+    bar.hidden = false; bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
+    C.late = setTimeout(() => {
+      if (C && C.d === 'ek' && !C.revealed) { R['ek-hint'].textContent = '5초 넘었으면 애매로 눌러'; R['ek-hint'].classList.add('late'); }
+    }, 5000);
+  } else {
+    R['ek-zone'].hidden = true; R['ek-actions'].hidden = true; R['ke-zone'].hidden = false;
+    R['ke-core'].textContent = kePrompt(it.core);
+    primeAudio(it);
+    R['ke-slots'].hidden = true; R['ke-slots'].innerHTML = '';
+    R['ke-fb'].innerHTML = '';
+    R['ke-tools'].hidden = false; R['ke-hint'].disabled = false;
+    R['ke-go'].textContent = '확인';
+    R['ke-input'].value = '';
+    try { R['ke-input'].focus({ preventScroll: true }); } catch (e) { R['ke-input'].focus(); }
+  }
+}
+function reveal(force) {
+  if (!C || C.d !== 'ek' || C.revealed) return;
+  if (!force && performance.now() - C.t0 < 300) return; /* 연타로 다음 카드 뜻이 바로 열리는 것 방지 */
+  C.revealed = true; clearTimeout(C.late);
+  const it = SET.items[C.id];
+  R['ek-core'].textContent = it.core;
+  R['ek-notes'].innerHTML = it.notes.map(n => `<p>${esc(n)}</p>`).join('');
+  R['ek-reveal'].hidden = false;
+  R['ek-tbar'].classList.remove('run'); R['ek-tbar'].hidden = true;
+  R['ek-hint'].classList.remove('late');
+  R['ek-hint'].textContent = '굵은 뜻이 나왔으면 알았어';
+  R['ek-show'].hidden = true; R['ek-grade'].hidden = false;
+}
+function gradeEK(g) {
+  if (!C || C.d !== 'ek' || !C.revealed || C.busy) return;
+  C.busy = true;
+  answer(g); next();
+}
+function next() {
+  const s = S.sess;
+  if (s && (s.phase === 'sort' || s.phase === 'learn' || s.phase === 'final') && s.queue.length) showCard();
+  else { stopClock(); route(); }
+}
+function stamp(kind) { const el = R['st-stamp']; el.className = 'stamp'; void el.offsetWidth; el.className = 'stamp on ' + kind; }
+/* 한→영 문제에선 답을 흘리는 영어 괄호(예: "(pl. stimuli)")를 지움. 품사 표시 (v.) (n.) 등은 남김 */
+function kePrompt(core) {
+  const s = String(core).replace(/\s*\((?!(?:n|v|a|ad|adj|adv|prep|conj|pron)\.\))[^)]*[A-Za-z][^)]*\)/g, '').trim();
+  return s || core;
+}
+function otherHit(typed, id) {
+  for (let i = 0; i < SET.items.length; i++) if (i !== id && SET.items[i].ke && matchItem(typed, SET.items[i])) return i;
+  return -1;
+}
+function diffParts(typed, ans) {
+  const A = Array.from(typed), B = Array.from(ans);
+  const mk = lcsMask(A.map(c => c.toLowerCase()), B.map(c => c.toLowerCase()));
+  return {
+    a: A.map((c, i) => mk[0][i] ? esc(c) : `<span class="xtra">${esc(c)}</span>`).join(''),
+    b: B.map((c, i) => mk[1][i] ? esc(c) : `<span class="miss">${esc(c)}</span>`).join('')
+  };
+}
+function fbDone(btnText) { R['ke-tools'].hidden = true; R['ke-go'].textContent = btnText; }
+function onKESubmit(e) {
+  e.preventDefault();
+  if (!C || C.d !== 'ke') return;
+  if (C.state === 'wait' || C.state === 'fb') { finishKE(); return; }
+  if (C.state !== 'ask') return;
+  const typed = R['ke-input'].value.trim(), it = SET.items[C.id];
+  if (!typed) { R['ke-fb'].innerHTML = `<p class="warn">써 보고 확인해. 모르겠으면 아래 ‘모르겠어’.</p>`; return; }
+  if (!/[a-z]/i.test(typed)) { R['ke-fb'].innerHTML = `<p class="warn">영어 자판으로 바꿔서 써 줘.</p>`; return; }
+  const o = matchItem(typed, it) ? -1 : otherHit(typed, C.id);
+  /* 뜻 칸이 완전히 같은 단어(예: prior / former = 이전의)는 어느 쪽을 써도 정답 */
+  const twin = o >= 0 && SET.items[o].core === it.core;
+  if (o < 0 && matchItem(typed, it) || twin) {
+    C.state = 'wait'; C.pending = C.hint ? 'hint' : 'ok';
+    stamp('ok'); fbDone('다음');
+    R['ke-fb'].innerHTML = `<p class="ok-word" lang="en">${esc(it.en)}</p>` +
+      (twin ? `<p class="note"><span lang="en">${esc(SET.items[o].en)}</span>도 같은 뜻이라 정답이야.</p>` : '') +
+      (C.hint ? `<p class="note">힌트를 봤으니 몇 장 뒤에 한 번 더 나와.</p>` : '');
+    C.timer = setTimeout(finishKE, C.hint || twin ? 1500 : 700);
+    return;
+  }
+  if (o >= 0) {
+    R['ke-fb'].innerHTML = `<p class="warn">‘<span lang="en">${esc(typed)}</span>’는 ‘${esc(SET.items[o].core)}’ 뜻의 다른 단어야. 다시 써 봐.</p>`;
+    try { R['ke-input'].select(); } catch (_) {}
+    return;
+  }
+  C.state = 'fb'; C.pending = 'wrong';
+  stamp('x'); fbDone('다음');
+  const d = diffParts(typed, it.vars[0]);
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>내 답</dt><dd class="diff" lang="en">${d.a}</dd></div><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${d.b}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">빨간 글자만 확인하고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+}
+function dunno() {
+  if (!C || C.d !== 'ke' || C.state !== 'ask') return;
+  const it = SET.items[C.id];
+  C.state = 'fb'; C.pending = 'dunno';
+  fbDone('다음');
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${esc(it.vars[0])}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">철자를 눈에 담고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+}
+function slotsHTML(it) {
+  let first = true;
+  return expTokens(it.vars[0]).map(x => {
+    if (x.ph) return `<span class="ph">${esc(x.w)}</span>`;
+    const s = Array.from(x.w).map((ch, i) => /[a-z]/i.test(ch) ? (first && i === 0 ? esc(ch.toLowerCase()) : '_') : esc(ch)).join('');
+    first = false;
+    return `<span>${s}</span>`;
+  }).join('');
+}
+function useHint() {
+  if (!C || C.d !== 'ke' || C.state !== 'ask' || C.hint) return;
+  C.hint = true;
+  R['ke-slots'].innerHTML = slotsHTML(SET.items[C.id]);
+  R['ke-slots'].hidden = false;
+  R['ke-hint'].disabled = true;
+}
+function finishKE() {
+  if (!C || C.d !== 'ke' || (C.state !== 'wait' && C.state !== 'fb')) return;
+  clearTimeout(C.timer);
+  const res = C.pending;
+  C.state = 'done';
+  answer(res); next();
+}
+
+/* ---------- 배치 끝 / 결과 ---------- */
+function renderPause() {
+  S.view = 'pause'; app.onclick = null; stopClock();
+  const s = S.sess, ids = s.batches[s.b], n = ids.length;
+  const known = ids.filter(id => s.st[id].k).length;
+  const last = s.b + 1 >= s.batches.length;
+  app.innerHTML = `
+<div class="wrap pause">
+  <div class="eyebrow">${s.mode === 'hard' ? '끈질긴 단어 · ' : ''}배치 ${s.b + 1}/${s.batches.length} 끝</div>
+  <div class="track">${trackHTML(n, n, 0)}<div class="track-n mono">${n}/${n}</div></div>
+  <h2 class="big-h">${n}개 모두 꺼냈어</h2>
+  <dl class="stats">
+    <div><dt>이번 배치</dt><dd>${fmt(s.ms - (s.bms0 || 0))}</dd></div>
+    <div><dt>바로 나온 단어</dt><dd>${known}</dd></div>
+    <div><dt>전체 시간</dt><dd>${fmt(s.ms)}</dd></div>
+  </dl>
+  <p class="note">${last ? `이제 ${s.pool.length}개 전체를 섞어서 한 번씩 꺼내. 영→한과 한→영이 섞여 나와.` : '여기까지 저장됐어. 쉬었다 와도 다음 배치부터 이어서 할 수 있어.'}</p>
+  <div class="actions">
+    <button class="btn btn-primary wide big" id="go-next" type="button">${last ? '마지막 점검 시작' : `다음 배치 (${s.b + 2}/${s.batches.length})`}</button>
+    <button class="btn btn-quiet wide" id="go-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  $('#go-next').onclick = nextBatch;
+  $('#go-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+function renderResult() {
+  S.view = 'result'; app.onclick = null; stopClock();
+  const r = S.result;
+  if (!r) { renderHome(); return; }
+  S.sess = null;
+  const hardItems = r.hard.map(id => SET.items[id]).filter(Boolean);
+  const kind = r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기';
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.mode === 'quick' ? `${r.n}개 점검 끝` : `${r.n}개 다 꺼냈어`}</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>${r.mode === 'quick' ? '한 번에 맞힘' : '바로 나온 단어'}</dt><dd>${r.known}</dd></div>
+    <div><dt>끈질긴 단어</dt><dd>${hardItems.length}</dd></div>
+  </dl>
+  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.</p>` : ''}
+  ${FORM && r.mode === 'full' ? `
+  <section class="submit" aria-labelledby="sub-h">
+    <h3 id="sub-h">선생님께 제출</h3>
+    <label for="sub-name">이름</label>
+    <div class="submit-row">
+      <input type="text" id="sub-name" maxlength="20" autocomplete="name" placeholder="이름 쓰기">
+      <a class="btn btn-primary" id="sub-go" href="#" target="_blank" rel="noopener">제출하러 가기</a>
+    </div>
+    <p class="note" id="sub-note">구글폼이 결과가 채워진 채로 열려. 거기서 <b>제출(Submit)</b>까지 눌러야 끝나.</p>
+  </section>` : ''}
+  ${hardItems.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">끈질긴 단어</h3>
+    <p class="note">여러 번 틀렸거나 마지막 점검에서 걸린 단어야.</p>
+    <ul class="${hardItems.some(canSpeak) ? 'with-say' : ''}">${hardItems.map((it, i) => `<li><span class="en" lang="en">${esc(it.en)}</span><span>${esc(it.core)}</span>${sayBtn(it, i, '') || (hardItems.some(canSpeak) ? '<span></span>' : '')}</li>`).join('')}</ul>
+  </section>` : `<p class="note">끈질긴 단어 없이 끝났어.</p>`}
+  <p class="note">시험 전날 ‘빠른 점검’을 한 번 더 하면 오래 가.</p>
+  <div class="actions">
+    ${hardItems.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">끈질긴 단어만 다시</button>` : ''}
+    <button class="btn ${hardItems.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  if (FORM && r.mode === 'full') bindSubmit(r, kind, hardItems);
+  const hl = $('.hard ul');
+  if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(hardItems[+b.dataset.say]); });
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+
+/* 결과를 선생님 구글폼으로: 미리 채워진 링크를 새 탭으로 열고, 학생이 폼에서 제출을 누름 */
+function bindSubmit(r, kind, hardItems) {
+  const nameEl = $('#sub-name'), go = $('#sub-go'), note = $('#sub-note');
+  const noteHTML = note.innerHTML;
+  const fmtKo = ms => { const t = Math.max(0, Math.round(ms / 1000)); return `${Math.floor(t / 60)}분 ${t % 60}초`; };
+  const hardText = `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : '');
+  const sync = () => {
+    const pairs = [['usp', 'pp_url'], [FORM.name, nameEl.value.trim()], [FORM.school, CFG.school || ''], [FORM.set, `${r.title} · ${kind}`], [FORM.time, fmtKo(r.ms)], [FORM.hard, hardText]];
+    go.href = FORM.url + '?' + pairs.filter(p => p[0]).map(p => encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1])).join('&');
+  };
+  nameEl.value = store.get(K.name) || '';
+  nameEl.addEventListener('input', () => { store.set(K.name, nameEl.value.trim()); note.innerHTML = noteHTML; note.classList.remove('warn'); sync(); });
+  go.addEventListener('click', e => {
+    if (!nameEl.value.trim()) { e.preventDefault(); note.textContent = '이름부터 써 줘.'; note.classList.add('warn'); nameEl.focus(); }
+  });
+  sync();
+}
+
+/* 데스크톱: 스페이스/엔터 = 뜻 보기, 1·2·3 = 몰랐어·애매해·알았어 */
+document.addEventListener('keydown', e => {
+  if (S.view !== 'study' || !C || C.d !== 'ek') return;
+  const tg = e.target && e.target.tagName;
+  if (tg === 'INPUT' || tg === 'TEXTAREA') return;
+  if (!C.revealed && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); reveal(true); }
+  else if (C.revealed && (e.key === '1' || e.key === '2' || e.key === '3')) { e.preventDefault(); gradeEK(['no', 'meh', 'yes'][+e.key - 1]); }
+});
+document.addEventListener('visibilitychange', () => {
+  const s = S.sess;
+  if (!s || S.view !== 'study') return;
+  if (document.hidden) { tick(s); save(); } else s.lt = Date.now();
+});
+
+renderHome();
+})();
+</script>
+</body>
+</html>

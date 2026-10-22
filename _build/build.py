@@ -101,6 +101,7 @@ def import_xlsx(path, name):
 # ---------- 데이터 → 학교 페이지 ----------
 def sec_name(raw, cont, default):
     if not raw: return default or '단어'
+    if re.fullmatch(r'\d+강 \d+', raw.strip()): return raw.strip() + '번'  # 지문 칸 '16강 01' → 카드에 '16강 01번 44'
     parts = [p.strip() for p in raw.strip('[]').split('|')]
     if len(parts) < 3: return raw.strip('[]')
     lesson, name = parts[1], parts[2]

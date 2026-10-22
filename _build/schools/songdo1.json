@@ -1,0 +1,10 @@
+{
+ "page": "songdo1.html",
+ "short": "송도고1",
+ "school": "송도고 1학년",
+ "fields": [["학교", "송도고 1학년"]],
+ "groups": [
+  {"data": "songdo1-2026-2f", "group": "2학기 기말 · 올림포스 16~18강 · 1,012개", "title": "기말", "id_prefix": "songdo1-2026-2f",
+   "set_size": 80, "batch": 20, "active": true}
+ ]
+}
