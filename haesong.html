@@ -204,25 +204,32 @@ details.paste summary .sum-l{margin-right:auto}
 .hard ul.with-say li{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) auto;align-items:center}
 .hard .en{font-family:var(--font-word);font-weight:700;font-size:16px;overflow-wrap:anywhere}
 
-/* order: 섞인 문장을 순서대로 탭하면 OMR 동그라미에 번호가 찍힘. 확인 뒤엔 정답 순서로 다시 나열 */
+/* order: 섞인 문장 카드를 끌어서(오른쪽 손잡이를 잡거나 꾹 눌러서) 교과서 순서로 배열. 확인 뒤엔 정답 순서로 다시 나열 */
 .od-head{position:relative;display:grid;gap:6px;padding:12px 14px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
 .od-name{margin:4px 0 0;font-size:20px;line-height:1.3;font-weight:700;text-wrap:balance}
 .od-hint{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
 .od-hint.ok{color:var(--ink)}
 .od-hint.bad{color:var(--omr);font-weight:500}
+.od-flow{margin:2px 0 0;padding-top:8px;border-top:1px dashed var(--omr-line);font-size:13px;line-height:1.55;color:var(--ink);text-wrap:pretty}
+.od-flow b{color:var(--omr);font-weight:600;margin-right:4px}
 .od-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.od-line{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card);color:var(--ink);text-align:left;font-family:var(--font-word);font-size:16.5px;line-height:1.45;overflow-wrap:anywhere}
-button.od-line{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
-button.od-line:active{background:var(--omr-wash)}
-.od-line.on{border-color:var(--ink)}
+.od-line{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card);color:var(--ink);text-align:left;font-family:var(--font-word);font-size:16.5px;line-height:1.45;overflow-wrap:anywhere}
+.od-list.pick .od-line{grid-template-columns:28px minmax(0,1fr) 34px;padding-right:0;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:grab}
+.od-grip{display:grid;place-items:center;align-self:stretch;margin:-11px 0;color:var(--muted);touch-action:none;cursor:grab}
+.od-grip svg{display:block}
+.grip-ic{display:inline-grid;place-items:center;width:18px;height:18px;margin:0 1px;vertical-align:-4px;border:1px solid var(--rule);border-radius:3px;color:var(--muted)}
+.grip-ic svg{width:9px;height:14px}
+.od-line.drag{z-index:3;border-color:var(--ink);box-shadow:0 10px 24px rgba(0,0,0,.18);background:var(--omr-wash);cursor:grabbing}
+.od-line.drag .od-grip{cursor:grabbing}
 .od-bb{width:26px;height:26px;margin-top:1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--omr);background:var(--card)}
-.od-line.on .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.od-list.pick .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
 .od-line.hit .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
 .od-line.miss{border-color:var(--omr);background:var(--omr-wash)}
 .od-line.miss .od-bb{background:var(--omr);border-color:var(--omr);color:var(--card)}
 .od-mine{display:block;margin-top:3px;font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:var(--omr)}
-.od-foot{position:sticky;bottom:0;z-index:1;display:grid;gap:4px;margin-top:4px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -10px 10px -6px var(--paper)}
-.od-foot .linkish{justify-self:center}
+.od-cue{display:block;margin-top:4px;padding-top:4px;border-top:1px dashed var(--rule);font-family:var(--font-ui);font-size:12.5px;line-height:1.45;color:var(--muted);text-wrap:pretty}
+.od-line.miss .od-cue{color:var(--ink);border-top-color:var(--omr-line)}
+.od-foot{position:sticky;bottom:0;z-index:4;display:grid;gap:4px;margin-top:4px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -10px 10px -6px var(--paper)}
 
 @media (prefers-reduced-motion: reduce){
   .stamp.on{animation:none}
@@ -1650,8 +1657,13 @@ function parsePaste(text) {
 function prepareOrder(raw) {
   const passages = [];
   (raw.passages || []).forEach(p => {
-    const lines = (p.lines || []).map(x => String(x == null ? '' : x).trim()).filter(Boolean);
-    if (lines.length >= 2) passages.push({ name: String(p.name || '지문'), kind: String(p.kind || ''), lines });
+    const lines = [], cues = [];
+    (p.lines || []).forEach((x, i) => {
+      const t = String(x == null ? '' : x).trim();
+      if (!t) return;
+      lines.push(t); cues.push(String(Array.isArray(p.cues) && p.cues[i] != null ? p.cues[i] : '').trim());
+    });
+    if (lines.length >= 2) passages.push({ name: String(p.name || '지문'), kind: String(p.kind || ''), flow: String(p.flow || '').trim(), lines, cues });
   });
   return { id: raw.id, kind: 'order', title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), passages };
 }
@@ -1926,7 +1938,7 @@ function newOrderSession(set, mode) {
 function openPassage(s) {
   const id = s.queue[0];
   if (id == null) { s.cur = null; return; }
-  s.cur = { id, order: shuffleOrder(SET.passages[id].lines.length), picks: [], fb: null };
+  s.cur = { id, picks: shuffleOrder(SET.passages[id].lines.length), fb: null };
 }
 function validOrder(s) {
   const n = SET.passages.length;
@@ -1937,26 +1949,13 @@ function validOrder(s) {
   if (!c || !ok(c.id) || (s.queue[0] !== c.id && !c.fb)) return false;
   const m = SET.passages[c.id].lines.length;
   const perm = a => Array.isArray(a) && a.length === m && a.slice().sort((x, y) => x - y).every((v, i) => v === i);
-  if (!perm(c.order) || !Array.isArray(c.picks) || !c.picks.every(v => Number.isInteger(v) && v >= 0 && v < m) || new Set(c.picks).size !== c.picks.length) return false;
-  return !c.fb || perm(c.fb.picks);
-}
-function orderTap(li) {
-  const s = S.sess, c = s && s.cur;
-  if (!c || c.fb) return;
-  const k = c.picks.indexOf(li);
-  if (k >= 0) c.picks.length = k; /* 이미 놓은 문장을 다시 탭 → 거기부터 다시 */
-  else c.picks.push(li);
-  save(); renderOrderPick();
-}
-function orderClear() {
-  const s = S.sess, c = s && s.cur;
-  if (!c || c.fb) return;
-  c.picks = []; save(); renderOrderPick();
+  return perm(c.picks) && (!c.fb || perm(c.fb.picks));
 }
 function orderCheck() {
   const s = S.sess, c = s && s.cur;
   if (!c || c.fb) return;
   const p = SET.passages[c.id];
+  if (DRAG) endDrag();
   if (c.picks.length !== p.lines.length) return;
   tick(s);
   const g = gradeOrder(c.picks, p.lines.length), x = s.st[c.id];
@@ -2112,6 +2111,8 @@ function setCard(raw) {
     ${confirmHTML(cf, sid)}
   </article>`;
 }
+/* 끌기 손잡이 아이콘(점 여섯 개) */
+const GRIP = '<svg width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="10" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="10" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="10" cy="18" r="1.8"/></g></svg>';
 /* 페이지에 단어 세트만 있으면 단어장 안내, 순서 세트만 있으면 순서 맞추기 안내, 둘 다면 둘 다 */
 const VOCAB_RULES = `
   <section class="rules" aria-labelledby="rules-h">
@@ -2128,8 +2129,8 @@ const ORDER_RULES = `
     <h2 class="eyebrow" id="orules-h">순서 맞추는 방법</h2>
     <ol>
       <li><span class="num">1</span><span><b>교과서·노트는 덮고</b> 해. 보면서 맞추면 시험장에선 안 나와.</span></li>
-      <li><span class="num">2</span><span><b>첫 문장부터 순서대로 탭.</b> 동그라미에 번호가 찍혀. 잘못 눌렀으면 그 문장을 다시 탭 — 거기부터 다시 놓게 돼.</span></li>
-      <li><span class="num">3</span><span><b>다 놓으면 확인.</b> 틀린 지문은 뒤로 갔다가 다시 나와. 다 맞혀야 끝.</span></li>
+      <li><span class="num">2</span><span><b>문장을 끌어서</b> 교과서 순서로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.</span></li>
+      <li><span class="num">3</span><span><b>다 맞췄으면 확인.</b> 틀리면 왜 그 순서인지 해설이 나오고, 그 지문은 뒤로 갔다가 다시 나와. 다 맞혀야 끝.</span></li>
       <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>
     </ol>
   </section>`;
@@ -2491,6 +2492,7 @@ const ORDER = `
     <div class="card-top"><span class="dir" id="od-dir"></span><span class="left mono" id="od-left"></span></div>
     <h2 class="od-name" id="od-name"></h2>
     <p class="od-hint" id="od-hint" aria-live="polite"></p>
+    <p class="od-flow" id="od-flow" hidden></p>
   </section>
   <ol class="od-list" id="od-list" aria-label="문장"></ol>
   <div class="od-foot" id="od-foot"></div>
@@ -2498,13 +2500,14 @@ const ORDER = `
 
 function renderOrder() {
   S.view = 'study'; app.onclick = null; C = null;
+  if (DRAG) endDrag();
   app.innerHTML = ORDER;
   R = {};
   app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
   const s = S.sess;
   R['od-title'].textContent = SET.title;
-  R['od-back'].onclick = () => { tick(s); save(); renderHome(); };
-  R['od-list'].addEventListener('click', e => { const b = e.target.closest('[data-line]'); if (b) orderTap(+b.dataset.line); });
+  R['od-back'].onclick = () => { if (DRAG) endDrag(); tick(s); save(); renderHome(); };
+  bindDrag(R['od-list']);
   window.scrollTo(0, 0);
   if (s.cur.fb) renderOrderFeedback(); else renderOrderPick();
   startClock();
@@ -2517,35 +2520,122 @@ function orderHeader() {
   R['od-name'].textContent = p.name;
 }
 function renderOrderPick() {
-  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length, k = c.picks.length;
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length;
   orderHeader();
   R['od-dir'].innerHTML = `<b>순서</b><span>${esc(p.kind)} · ${n}문장</span>`;
   R['od-hint'].className = 'od-hint';
-  R['od-hint'].textContent = k === 0 ? '안 보고, 첫 문장부터 순서대로 탭해.'
-    : k < n ? `${k}번째까지 놓았어. 잘못 눌렀으면 그 문장을 다시 탭해 — 거기부터 다시.` : '다 놓았어. 한 번 훑어보고 확인.';
-  R['od-list'].innerHTML = c.order.map(li => {
-    const at = c.picks.indexOf(li);
-    return `<li><button class="od-line${at >= 0 ? ' on' : ''}" type="button" data-line="${li}" aria-pressed="${at >= 0}"><span class="od-bb" aria-hidden="true">${at >= 0 ? at + 1 : ''}</span><span lang="en">${esc(p.lines[li])}</span></button></li>`;
-  }).join('');
-  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-go" type="button"${k === n ? '' : ' disabled'}>${k === n ? '확인' : `확인 <span class="mono">${k}/${n}</span>`}</button>`
-    + (k >= 2 && k < n ? `<button class="linkish" id="od-clear" type="button">처음부터 다시 놓기</button>` : '');
+  R['od-hint'].innerHTML = `안 보고 끌어서 교과서 순서로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.`;
+  R['od-flow'].hidden = true;
+  R['od-list'].className = 'od-list pick';
+  R['od-list'].innerHTML = c.picks.map((li, k) =>
+    `<li class="od-line" data-line="${li}"><span class="od-bb" aria-hidden="true">${k + 1}</span><span lang="en">${esc(p.lines[li])}</span><span class="od-grip" aria-label="끌어서 옮기기">${GRIP}</span></li>`).join('');
+  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-go" type="button">확인</button>`;
   $('#od-go').onclick = orderCheck;
-  const cl = $('#od-clear'); if (cl) cl.onclick = orderClear;
 }
-/* 확인 뒤: 교과서 순서대로 다시 나열하고, 자리를 틀린 문장에 내가 놓은 번호를 달아 줌 */
+/* 확인 뒤: 교과서 순서대로 다시 나열하고, 자리를 틀린 문장에 내가 놓은 번호를 달아 줌.
+   틀렸으면 지문 흐름 한 줄과 문장마다 '왜 여기인지' 한국어 단서를 같이 보여 줌 */
 function renderOrderFeedback() {
   const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length, fb = c.fb;
   orderHeader();
   R['od-dir'].innerHTML = `<b>${fb.ok ? '정답' : '다시'}</b><span>${esc(p.kind)} · ${n}문장</span>`;
   R['od-hint'].className = 'od-hint ' + (fb.ok ? 'ok' : 'bad');
-  R['od-hint'].textContent = fb.ok ? `${n}문장 다 제자리야.` : `${n}문장 중 ${fb.right}개 제자리. 빨간 문장만 다시 봐 — 이 지문은 뒤에 다시 나와.`;
+  const cued = !fb.ok && p.cues.some(Boolean);
+  R['od-hint'].textContent = fb.ok ? `${n}문장 다 제자리야.`
+    : `${n}문장 중 ${fb.right}개 제자리. 빨간 문장이 왜 그 자리인지 읽고 넘겨 — 이 지문은 뒤에 다시 나와.`;
+  if (!fb.ok && p.flow) { R['od-flow'].innerHTML = `<b>흐름</b>${esc(p.flow)}`; R['od-flow'].hidden = false; }
+  else R['od-flow'].hidden = true;
+  R['od-list'].className = 'od-list';
   R['od-list'].innerHTML = p.lines.map((t, i) => {
     const mine = fb.picks.indexOf(i) + 1, miss = mine !== i + 1;
-    return `<li class="od-line ${miss ? 'miss' : 'hit'}"><span class="od-bb" aria-hidden="true">${i + 1}</span><span><span lang="en">${esc(t)}</span>${miss ? `<span class="od-mine">내 답 ${mine}번째</span>` : ''}</span></li>`;
+    return `<li class="od-line ${miss ? 'miss' : 'hit'}"><span class="od-bb" aria-hidden="true">${i + 1}</span><span><span lang="en">${esc(t)}</span>${miss ? `<span class="od-mine">내 답 ${mine}번째</span>` : ''}${cued && p.cues[i] ? `<span class="od-cue">${esc(p.cues[i])}</span>` : ''}</span></li>`;
   }).join('');
   R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-next" type="button">${s.queue.length ? '다음 지문' : '결과 보기'}</button>`;
   $('#od-next').onclick = orderNext;
   window.scrollTo(0, 0);
+}
+
+/* ---------- 끌어서 옮기기 ----------
+   손잡이(touch-action:none)는 바로 끌림. 문장 부분은 꾹 누르면(0.25초) 끌리고, 바로 움직이면 그냥 스크롤.
+   마우스는 아무 데나 눌러서 끌기. 끌리는 동안 화면 끝에 가까우면 자동으로 스크롤됨 */
+let DRAG = null, HOLD = null;
+function rowsOf(list) { return Array.from(list.children); }
+function renumber(list) { rowsOf(list).forEach((li, k) => { const b = li.querySelector('.od-bb'); if (b) b.textContent = k + 1; }); }
+function startDrag(li, y, src) {
+  if (DRAG || !li || !li.parentNode) return;
+  const list = li.parentNode, rect = li.getBoundingClientRect();
+  DRAG = { li, list, grab: y - rect.top, y, ty: 0, src, raf: 0 };
+  li.classList.add('drag');
+  try { if (src === 'hold' && navigator.vibrate) navigator.vibrate(12); } catch (e) {}
+  moveDrag(y);
+  const loop = () => { if (!DRAG) return; autoScroll(); DRAG.raf = requestAnimationFrame(loop); };
+  DRAG.raf = requestAnimationFrame(loop);
+}
+function moveDrag(y) {
+  if (!DRAG) return;
+  DRAG.y = y;
+  const { li, list } = DRAG, rows = rowsOf(list);
+  const myIdx = rows.indexOf(li);
+  let above = 0;
+  rows.forEach(r => { if (r !== li) { const b = r.getBoundingClientRect(); if (b.top + b.height / 2 < y) above++; } });
+  if (above !== myIdx) {
+    const others = rows.filter(r => r !== li);
+    if (above >= others.length) list.appendChild(li); else list.insertBefore(li, others[above]);
+    renumber(list);
+  }
+  const top = li.getBoundingClientRect().top - DRAG.ty; /* 지금 transform을 뺀 원래 자리 */
+  DRAG.ty = y - DRAG.grab - top;
+  li.style.transform = `translateY(${DRAG.ty}px)`;
+}
+function autoScroll() {
+  if (!DRAG) return;
+  const top = 72, bot = 104, h = window.innerHeight, y = DRAG.y; /* 아래쪽은 고정된 확인 버튼 높이만큼 더 넓게 */
+  let dy = 0;
+  if (y < top) dy = -Math.ceil((top - y) / 6);
+  else if (y > h - bot) dy = Math.ceil((y - (h - bot)) / 6);
+  if (!dy) return;
+  const before = window.scrollY;
+  window.scrollBy(0, dy);
+  if (window.scrollY !== before) moveDrag(DRAG.y);
+}
+function endDrag() {
+  if (!DRAG) return;
+  const { li, list, raf } = DRAG;
+  cancelAnimationFrame(raf);
+  li.classList.remove('drag'); li.style.transform = '';
+  DRAG = null;
+  const s = S.sess;
+  if (s && s.cur && !s.cur.fb) { s.cur.picks = rowsOf(list).map(r => +r.dataset.line); save(); }
+}
+function cancelHold() { if (HOLD) { clearTimeout(HOLD.t); HOLD = null; } }
+function bindDrag(list) {
+  const rowAt = e => { const li = e.target.closest('.od-line'); return li && list.classList.contains('pick') ? li : null; };
+  /* 터치: 손잡이면 바로, 문장이면 꾹 눌러서 */
+  list.addEventListener('touchstart', e => {
+    if (DRAG || e.touches.length !== 1) return;
+    const li = rowAt(e); if (!li) return;
+    const t = e.touches[0];
+    if (e.target.closest('.od-grip')) { startDrag(li, t.clientY, 'grip'); return; }
+    cancelHold();
+    HOLD = { li, x: t.clientX, y: t.clientY, t: setTimeout(() => { if (HOLD) { const h = HOLD; HOLD = null; startDrag(h.li, h.y, 'hold'); } }, 250) };
+  }, { passive: true });
+  list.addEventListener('touchmove', e => {
+    if (DRAG) { e.preventDefault(); moveDrag(e.touches[0].clientY); return; }
+    if (HOLD) { const t = e.touches[0]; if (Math.abs(t.clientX - HOLD.x) > 8 || Math.abs(t.clientY - HOLD.y) > 8) cancelHold(); }
+  }, { passive: false });
+  list.addEventListener('touchend', () => { cancelHold(); endDrag(); });
+  list.addEventListener('touchcancel', () => { cancelHold(); endDrag(); });
+  /* 마우스: 아무 데나 눌러서 */
+  list.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0 || DRAG) return;
+    const li = rowAt(e); if (!li) return;
+    e.preventDefault();
+    startDrag(li, e.clientY, 'mouse');
+    const mv = ev => moveDrag(ev.clientY);
+    const up = () => { document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); document.removeEventListener('pointercancel', up); endDrag(); };
+    document.addEventListener('pointermove', mv); document.addEventListener('pointerup', up); document.addEventListener('pointercancel', up);
+  });
+  list.addEventListener('contextmenu', e => { if (rowAt(e)) e.preventDefault(); });
+  list.addEventListener('dragstart', e => e.preventDefault());
 }
 
 /* ---------- 배치 끝 / 결과 ---------- */

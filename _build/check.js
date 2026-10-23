@@ -1,6 +1,6 @@
 // 올리기 전 점검: node _build/check.js <page>.html
 // 스크립트 구문 · 세트별 단어 수와 묶음 · 한→영 정답 인식(모든 표제어가 자기 자신을 정답으로 받는지) · 제출 폼 설정
-// 순서 세트: 지문·문장 수, 똑같은 문장 없음, 섞기가 교과서 순서를 그대로 내지 않음, 채점이 정답/오답을 가림
+// 순서 세트: 지문·문장 수, 똑같은 문장 없음, 섞기가 교과서 순서를 그대로 내지 않음, 채점이 정답/오답을 가림, 해설(흐름·문장 단서)이 빠짐없이 있음
 const fs = require('fs'), vm = require('vm');
 const html = fs.readFileSync(process.argv[2], 'utf8');
 const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)];
@@ -15,11 +15,16 @@ for (const raw of sets) {
   if (raw.kind === 'order') {
     const set = P.prepareOrder(raw);
     const counts = set.passages.map(p => p.lines.length);
-    console.log(`${raw.title}: ${set.passages.length}지문 · 문장 [${counts.join('+')}] = ${counts.reduce((a, b) => a + b, 0)}`);
+    const cued = set.passages.filter(p => p.cues.some(Boolean)).length;
+    console.log(`${raw.title}: ${set.passages.length}지문 · 문장 [${counts.join('+')}] = ${counts.reduce((a, b) => a + b, 0)} · 해설 ${cued}/${set.passages.length}지문`);
     if (set.passages.length !== (raw.passages || []).length) bad.push(`${raw.title}: 문장이 2개 미만이라 빠진 지문 있음`);
     set.passages.forEach(p => {
       const low = p.lines.map(x => x.toLowerCase());
       if (new Set(low).size !== low.length) bad.push(`${raw.title} ${p.name}: 똑같은 문장이 두 번`);
+      if (p.cues.length !== p.lines.length) bad.push(`${raw.title} ${p.name}: 단서 수가 문장 수와 다름`);
+      const nc = p.cues.filter(Boolean).length;
+      if (nc && nc < p.lines.length) bad.push(`${raw.title} ${p.name}: 단서가 일부 문장에만 있음 (${nc}/${p.lines.length})`);
+      if (nc && !p.flow) bad.push(`${raw.title} ${p.name}: 흐름 요약이 없음`);
       const n = p.lines.length, ident = [...Array(n).keys()];
       for (let t = 0; t < 50; t++) {
         const o = P.shuffleOrder(n);

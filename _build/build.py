@@ -10,9 +10,9 @@
 id_prefix나 set_size(단어), 과 키(순서)를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
 
 순서 텍스트 형식 (_build/src/<데이터이름>.txt):
-  # L5 | 5과 · From Trash to Music          ← 과(= 세트 하나). '|' 앞이 세트 ID에 들어가는 키, 뒤가 세트 제목
-  ## Listen & Speak 1 ① | 대화문            ← 지문. '|' 앞이 지문 이름, 뒤가 종류(대화문/본문)
-  Hey, Bora. Welcome to our rock band.       ← 문장 한 줄에 하나, 교과서 순서대로. 말한 사람 표시는 쓰지 않음
+  # L5 | 5과 · From Trash to Music               ← 과(= 세트 하나). '|' 앞이 세트 ID에 들어가는 키, 뒤가 세트 제목
+  ## Listen & Speak 1 ① | 대화문 | 환영 → 감사 → … ← 지문. 이름 | 종류(대화문/본문) | 흐름 요약(오답 때 보여 줌, 선택)
+  Hey, Bora. Welcome to our rock band. | 첫 문장: …  ← 문장 | 왜 이 자리인지 한국어 단서(선택). 말한 사람 표시는 쓰지 않음
   ...
 """
 import sys, os, re, json, glob
@@ -115,7 +115,8 @@ def import_order(path, name):
         if line.startswith('## '):
             if cur_l is None: sys.exit(f'지문 앞에 과 줄(# 키 | 제목)이 없어: {line}')
             parts = [p.strip() for p in line[3:].split('|')]
-            cur_p = {'name': parts[0], 'kind': parts[1] if len(parts) > 1 else ('본문' if parts[0].startswith('본문') else '대화문'), 'lines': []}
+            cur_p = {'name': parts[0], 'kind': parts[1] if len(parts) > 1 else ('본문' if parts[0].startswith('본문') else '대화문'),
+                     'flow': parts[2] if len(parts) > 2 else '', 'lines': [], 'cues': []}
             cur_l['passages'].append(cur_p)
         elif line.startswith('# '):
             parts = [p.strip() for p in line[2:].split('|')]
@@ -125,7 +126,8 @@ def import_order(path, name):
             lessons.append(cur_l)
         else:
             if cur_p is None: sys.exit(f'문장 앞에 지문 줄(## 이름 | 종류)이 없어: {line}')
-            cur_p['lines'].append(line)
+            sent, _, cue = line.partition(' | ')  # '문장 | 왜 이 자리인지 한국어 단서' (단서는 선택)
+            cur_p['lines'].append(sent.strip()); cur_p['cues'].append(cue.strip())
 
     bad = []
     keys = [l['key'] for l in lessons]
@@ -139,13 +141,17 @@ def import_order(path, name):
             if len(set(low)) != len(low): bad.append(f"{l['key']} {p['name']}: 똑같은 문장이 두 번 (순서를 맞출 수 없음)")
             for s in p['lines']:
                 if re.match(r'^(?:[A-Z]|[A-Z][a-z]+|[가-힣]{1,3}):\s', s): bad.append(f"{l['key']} {p['name']}: 말한 사람 표시가 남아 있음 → {s[:40]}")
+            n_cue = sum(1 for c in p['cues'] if c)
+            if 0 < n_cue < len(p['lines']): bad.append(f"{l['key']} {p['name']}: 단서가 {len(p['lines'])}문장 중 {n_cue}개에만 있음")
+            if n_cue and not p['flow']: bad.append(f"{l['key']} {p['name']}: 문장 단서는 있는데 흐름(## 줄 3번째 칸)이 없음")
     out = os.path.join(HERE, 'data', name + '.json')
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, 'w', encoding='utf-8') as f:
         json.dump({'source': os.path.basename(path), 'lessons': lessons}, f, ensure_ascii=False, indent=1)
     for l in lessons:
+        cued = sum(1 for p in l['passages'] if any(p['cues']))
         print(f"{out if l is lessons[0] else ''}\n  {l['key']} {l['title']}: " + ' / '.join(f"{p['name']} {len(p['lines'])}" for p in l['passages'])
-              + f" → {len(l['passages'])}지문 {sum(len(p['lines']) for p in l['passages'])}문장")
+              + f" → {len(l['passages'])}지문 {sum(len(p['lines']) for p in l['passages'])}문장 · 해설 있는 지문 {cued}")
     if bad: print('  ! ' + '\n  ! '.join(bad))
 
 

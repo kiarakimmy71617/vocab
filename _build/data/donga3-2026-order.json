@@ -8,16 +8,24 @@
     {
      "name": "Listen & Speak 1 ①",
      "kind": "대화문",
+     "flow": "환영 인사 → 감사 + 기대 → 환영한 이유 → 약속하며 마무리",
      "lines": [
       "Hey, Bora. Welcome to our rock band.",
       "Thanks. I’m looking forward to playing in a concert with you.",
       "We’re excited to have a new guitar player.",
       "Great. See you on Friday."
+     ],
+     "cues": [
+      "첫 문장: 이름을 부르며 밴드에 온 걸 환영",
+      "환영에 'Thanks'로 답하고 기대 표현",
+      "새 기타 연주자(= Bora)가 와서 신난다 — 환영하는 쪽의 말",
+      "마무리 인사: 다음 만남 약속"
      ]
     },
     {
      "name": "Listen & Speak 1 ②",
      "kind": "대화문",
+     "flow": "뭐 읽어? → 책 소개 → 인물 확인 → 보충 → 영화 얘기 → 제목? → 답 → 같이 가자 → 약속",
      "lines": [
       "Jiho, what are you reading?",
       "I’m reading a book about a baseball player named Jim Abbott.",
@@ -28,22 +36,42 @@
       "Our Hero. I’m really looking forward to watching it.",
       "Can I join you?",
       "Sure. See you on Saturday."
+     ],
+     "cues": [
+      "첫 문장: 이름 부르며 뭐 읽는지 질문",
+      "'뭐 읽어?'에 대한 답",
+      "그 선수(Jim Abbott)가 누군지 되묻기",
+      "'That's right' = 바로 앞 확인 질문에 긍정 + 보충",
+      "'His story' = Jim Abbott 이야기 → 영화 얘기로 전환",
+      "영화 얘기를 듣고 제목 묻기",
+      "제목 답 + 기대",
+      "'같이 봐도 돼?' — 토요일에 본다는 말을 들은 뒤",
+      "허락 + 앞에 나온 '토요일'로 약속하며 마무리"
      ]
     },
     {
      "name": "Listen & Speak 2 ①",
      "kind": "대화문",
+     "flow": "숙제 끝냈어? → 아직, 어려워 → 맞아, 재밌기도 해 → 그럼 도와줄래? → 거절 + 이유",
      "lines": [
       "Minho, did you finish the math homework?",
       "Not yet. Math is difficult.",
       "Yes, but it’s interesting, too.",
       "Then can you help me with my math homework?",
       "I’d love to, but I can’t. I have to take care of my brother."
+     ],
+     "cues": [
+      "첫 문장: 숙제 끝냈는지 질문",
+      "'Not yet' = 질문에 대한 답",
+      "'어렵다'에 Yes로 동의하면서 '재밌기도' 덧붙임",
+      "'Then' = 그럼(재밌다니까) 도와달라고 부탁",
+      "부탁에 대한 거절 + 이유"
      ]
     },
     {
      "name": "Listen & Speak 2 ②",
      "kind": "대화문",
+     "flow": "대회 참가 소식 → 축하 → 기타 칠 줄 알지? → 응 → 반주 부탁 → 거절 + 이유 → 유감 → 응원 약속",
      "lines": [
       "Alex, I’m going to take part in a singing contest next Monday.",
       "That’s great, Sumin!",
@@ -53,11 +81,22 @@
       "I’d love to, but I can’t. I hurt my hand in gym class yesterday.",
       "Oh! I’m sorry to hear that.",
       "Thanks. But I’ll be there to cheer for you."
+     ],
+     "cues": [
+      "첫 문장: 노래 대회 참가 소식",
+      "소식에 대한 반응(축하)",
+      "부탁을 꺼내기 전 확인 질문",
+      "'Yes' = 기타 확인 질문에 답",
+      "칠 줄 안다니 반주 부탁",
+      "부탁 거절 + 이유(손 다침)",
+      "다쳤다는 말에 유감 표현",
+      "유감 표현에 'Thanks' + 대신 응원하겠다는 약속"
      ]
     },
     {
      "name": "Real Life Talk",
      "kind": "대화문",
+     "flow": "주말 계획? → 뮤지컬 → 무슨 내용? → 소개 → 주연? → 답 → 좋아하는 배우 → 같이 갈래? → 거절 + 이유 → 다음에",
      "lines": [
       "Hi, Tony! What are you going to do this weekend?",
       "I’m going to watch the musical, Billy Elliot.",
@@ -69,11 +108,24 @@
       "Oh, really? Do you want to join me?",
       "I’d love to, but I can’t. I have volunteer work this weekend.",
       "Okay. Maybe next time!"
+     ],
+     "cues": [
+      "첫 문장: 인사 + 주말 계획 질문",
+      "질문에 대한 답(뮤지컬)",
+      "제목을 받아서 내용 질문",
+      "'It' = Billy Elliot 내용 설명",
+      "내용 듣고 주연 배우 질문",
+      "주연 질문에 대한 답",
+      "'He' = Jason Kim에 대한 반응",
+      "좋아한다니 같이 가자고 제안",
+      "제안 거절 + 이유",
+      "거절을 받아들이며 마무리"
      ]
     },
     {
      "name": "본문 1",
      "kind": "본문",
+     "flow": "기쁨의 눈물 → 감정 → 비유 → 둘러봄 → 단원들 → 상황 설명(연주회 끝) → 감회 → 긴 여정",
      "lines": [
       "Tears of joy are rolling down my cheeks.",
       "I’m so happy and thrilled.",
@@ -83,11 +135,22 @@
       "Our concert has just finished and everyone is standing and giving us a big hand.",
       "None of us ever expected that this day would come.",
       "It has been a long journey."
+     ],
+     "cues": [
+      "첫 문장: 눈물 흘리는 장면으로 시작",
+      "눈물의 이유 = 기쁨·설렘",
+      "그 기쁨을 '새라면 날 텐데'로 비유",
+      "자기 감정에서 주변으로 시선 이동",
+      "둘러보니 보이는 것 = 단원들",
+      "왜 이런 상황인지 설명: 연주회가 막 끝남",
+      "'this day' = 박수받는 오늘 → 감회",
+      "긴 여정이었다는 마무리 → 다음 글(과거 이야기)로 연결"
      ]
     },
     {
      "name": "본문 2",
      "kind": "본문",
+     "flow": "자기소개 → 이름 질문 → 이유 → 별명 → 마을 소개 → 매립지 → 마을 자체가 매립지 → 가난 → 희망 없음 → 전환(Favio)",
      "lines": [
       "My name is Andrea and I’m a violinist in the Recycled Orchestra.",
       "Why is it called the Recycled Orchestra?",
@@ -99,11 +162,24 @@
       "Many of us are poor.",
       "There weren’t many hopes and dreams in our town.",
       "Everything began to change, however, when we met Favio Chávez."
+     ],
+     "cues": [
+      "첫 문장: 자기소개",
+      "'it' = 방금 말한 오케스트라, 이름의 이유 묻기",
+      "'It's because' = 질문에 대한 답",
+      "'That's why' = 앞 이유(landfill) → 다른 이름",
+      "단원들의 출신 마을로 화제 전환",
+      "'our town' = Cateura, 매립지 있음",
+      "'even' = 매립지 얘기를 한 단계 더 강조",
+      "마을 사정 → 사람들 사정(가난)",
+      "가난 → 희망도 꿈도 적음",
+      "'however' = 반전: 변화의 시작"
      ]
     },
     {
      "name": "본문 3",
      "kind": "본문",
+     "flow": "Favio 소개 → 가르치고 싶지만 문제 → 악기 부족 → 살 돈 없음 → 포기 안 함 → 아이디어 → Nicholas 실행 → 바이올린 → 플루트",
      "lines": [
       "Favio was an environmental educator and a musician.",
       "He wanted to teach us music, but there was a big problem.",
@@ -114,11 +190,23 @@
       "A talented man named Nicholas was able to put this idea into practice.",
       "He made violins from oil drums.",
       "He turned water pipes into flutes."
+     ],
+     "cues": [
+      "첫 문장: 앞 글 끝에 나온 Favio 소개",
+      "'He' = Favio, 'a big problem' 예고",
+      "그 문제가 뭔지: 악기가 거의 없음",
+      "'new ones' = 새 악기, 살 형편도 안 됨",
+      "'But' = 문제에도 포기 안 함",
+      "포기 안 한 Favio의 아이디어",
+      "'this idea' = 앞 문장의 아이디어 → 실행한 사람",
+      "'He' = Nicholas, 실행 예 1",
+      "실행 예 2"
      ]
     },
     {
      "name": "본문 4",
      "kind": "본문",
+     "flow": "또 다른 문제 → 연주 못함 → 악보도 못 읽음 → Favio의 인내 → 소리 내기 시작 → 첫 곡 회상 → 짧고 음 안 맞음 → 그래도 아름다움 → 새 희망 → 매일 연습 → 어느 날 소식 → 진짜 공연 → 현재(수백 명 앞) → 사랑받음 → 마지막 문장",
      "lines": [
       "We had another problem.",
       "No one knew how to play musical instruments.",
@@ -135,6 +223,23 @@
       "And here we are now in front of hundreds of people.",
       "They love our music.",
       "The world sends us trash, but we send back music!"
+     ],
+     "cues": [
+      "첫 문장: 'another problem' = 악기 문제 다음의 또 다른 문제",
+      "그 문제가 뭔지: 연주법 모름",
+      "'even' = 악보까지 못 읽음(더 심함)",
+      "문제 → Favio가 가르침",
+      "가르침의 결과: 조금씩 소리 내기 시작",
+      "소리 → 처음 연주한 곡 회상",
+      "'It' = 첫 곡의 모습",
+      "'But' = 음은 안 맞아도 우리에겐 아름다움",
+      "아름다운 음악 → 새 희망",
+      "'From then on' = 그때부터 매일 연습",
+      "'One day' = 연습하던 어느 날, 소식",
+      "그 소식의 내용 = 공연",
+      "'here we are now' = 현재(연주회 끝난 장면)로 복귀",
+      "'They' = 수백 명의 관객",
+      "글 전체를 정리하는 마지막 문장"
      ]
     }
    ]
@@ -146,16 +251,24 @@
     {
      "name": "Listen & Speak 1 ①",
      "kind": "대화문",
+     "flow": "초대 감사 → 와 줘서 기쁨 → 꽃 선물 → 감사",
      "lines": [
       "Hi, Lisa. Thank you for inviting me to your birthday party.",
       "My pleasure. I’m glad you could come.",
       "These flowers are for you. Happy birthday!",
       "They are beautiful! Thank you."
+     ],
+     "cues": [
+      "첫 문장: 인사 + 초대해 줘서 고맙다",
+      "'My pleasure' = 감사 인사에 대한 답",
+      "꽃 건네며 축하",
+      "'They' = 꽃 → 받은 쪽의 감사"
      ]
     },
     {
      "name": "Listen & Speak 1 ②",
      "kind": "대화문",
+     "flow": "기차 곧 떠남 → 여행 즐거웠길 → 물론 → 어디가 제일? → 민속촌 → 인기 장소 → 한복 → 기쁨 → 구경 감사 → 천만에·잘 가",
      "lines": [
       "Sumin, my train is leaving in five minutes.",
       "I hope you enjoyed your trip, Daniel.",
@@ -167,21 +280,41 @@
       "I’m glad to hear that.",
       "Thank you for showing me around.",
       "It was my pleasure. Have a safe trip."
+     ],
+     "cues": [
+      "첫 문장: 헤어지기 직전 상황",
+      "떠나는 Daniel에게 여행 소감 묻는 말",
+      "'I did' = enjoyed, 바로 앞 말에 대한 답",
+      "즐거웠다니 어디가 제일 좋았는지 질문",
+      "'most' 질문에 대한 답",
+      "'it' = 민속촌에 대한 보충",
+      "민속촌에서 한 일(한복) 덧붙임",
+      "좋았다는 말에 대한 반응",
+      "떠나기 전 마지막 감사",
+      "감사에 답 + 잘 가라는 작별 인사"
      ]
     },
     {
      "name": "Listen & Speak 2 ①",
      "kind": "대화문",
+     "flow": "우산 반입 금지 → 어디에 둬? → 우산꽂이 → 알겠다·감사",
      "lines": [
       "Excuse me. You’re not allowed to bring your umbrella inside.",
       "Oh, where should I put it?",
       "There is an umbrella stand outside.",
       "Okay. I’ll put it there. Thank you."
+     ],
+     "cues": [
+      "첫 문장: 안내(우산 금지)",
+      "'it' = 우산, 어디 둘지 질문",
+      "질문에 대한 답(우산꽂이)",
+      "'there' = 우산꽂이 → 수긍 + 감사"
      ]
     },
     {
      "name": "Listen & Speak 2 ②",
      "kind": "대화문",
+     "flow": "표 판매 중 → 예매하자 → 11월 5일 남음 → 학생표 2장 → 동생 데려가도? → 되지만 8세 미만 금지 → 10살 → 어린이표 추가·총액 → 좋아 → 기대",
      "lines": [
       "The tickets for the World Music Concert are on sale now.",
       "Really? Let’s book the tickets online right away.",
@@ -193,11 +326,24 @@
       "Okay, I’ll add one child ticket. The total price is 25 dollars.",
       "Great.",
       "I can’t wait to see the concert!"
+     ],
+     "cues": [
+      "첫 문장: 표 판매 소식",
+      "소식에 반응 + 예매 제안",
+      "예매 사이트 확인 → 남은 표",
+      "날짜에 동의 + 학생표 2장",
+      "2장 결정 뒤 동생 데려가도 되는지",
+      "'Not at all' = 괜찮다 + 조건(8세 미만 금지)",
+      "'He' = 동생, 8세 조건에 대한 답",
+      "동생 확인 → 어린이표 추가, 총액",
+      "총액 안내에 짧은 수긍",
+      "예매 끝 → 기대로 마무리"
      ]
     },
     {
      "name": "Real Life Talk",
      "kind": "대화문",
+     "flow": "환영 인사 → 개관 연도 → 그 이후 전시 → 오늘 볼 것 → 규칙 예고 → 규칙 내용 → 시작",
      "lines": [
       "Hello, students! Thank you for visiting our art museum.",
       "This museum opened in 1995.",
@@ -206,11 +352,21 @@
       "Before we begin the tour, let me remind you of a basic rule.",
       "You can take pictures of the artworks, but you’re not allowed to touch them.",
       "Now let’s start the tour."
+     ],
+     "cues": [
+      "첫 문장: 안내원의 환영 인사",
+      "미술관 소개 시작(개관 연도)",
+      "'Since then' = 1995년 이후",
+      "과거(전시 역사) → 오늘 볼 것",
+      "관람 전 규칙 하나 예고",
+      "예고한 규칙의 내용",
+      "'Now' = 안내 끝, 관람 시작"
      ]
     },
     {
      "name": "본문 1",
      "kind": "본문",
+     "flow": "표현 질문 → 예술가는 자연에서 영감 → 이유(자연이 아름다움) → 형태가 보기 좋음 → 예: 달걀 → 아름답지 않나 → 달걀의 특징 → 달걀 모양 건물? → 런던에 실제 존재",
      "lines": [
       "Have you heard of the expression, “Art imitates nature”?",
       "Many artists get their ideas and inspirations from the world around them.",
@@ -221,11 +377,23 @@
       "It is round and delicate, yet strong enough to protect its contents.",
       "Can you imagine a building that looks like an egg?",
       "Such a building actually exists in London."
+     ],
+     "cues": [
+      "첫 문장: 표현을 들어 봤냐는 질문으로 시작",
+      "그 표현의 뜻 풀이(예술가는 주변 세상에서 영감)",
+      "'This is because' = 왜 자연에서 얻는지 이유",
+      "아름답다는 말을 '형태'로 구체화",
+      "'For example' = 형태의 예: 달걀",
+      "'it' = 달걀",
+      "달걀이 왜 아름다운지(둥글고 섬세하지만 튼튼)",
+      "달걀 → 달걀 모양 건물로 연결",
+      "'Such a building' = 달걀 모양 건물, 실제 존재"
      ]
     },
     {
      "name": "본문 2",
      "kind": "본문",
+     "flow": "자연이 건축가에게 영감 → 사그라다 파밀리아 → 유명한 성당 → 기둥을 봐라 → 나무 같지? → 가우디가 나무 형태 사용 → 그렇게 자연을 실내로",
      "lines": [
       "Nature has inspired many architects around the world.",
       "This is the Sagrada Familia in Spain.",
@@ -234,11 +402,21 @@
       "They look like trees, don’t they?",
       "The famous architect, Antoni Gaudi, used the shape of trees in the Sagrada Familia.",
       "That’s how he brought the beauty of nature indoors."
+     ],
+     "cues": [
+      "첫 문장: 이 글의 주제(건축가 + 자연)",
+      "'This' = 예시 건물 제시",
+      "'It' = 사그라다 파밀리아 소개",
+      "'the church' = 그 성당 → 안의 기둥 보라",
+      "'They' = 기둥들 → 나무 같다",
+      "나무처럼 보이는 이유 = 가우디가 나무 형태 사용",
+      "'That's how' = 앞 내용 정리, 'he' = 가우디"
      ]
     },
     {
      "name": "본문 3",
      "kind": "본문",
+     "flow": "앞 두 예시는 쉽게 보임 → 호주 예시는 안 그럼 → 웃손: 자연 형태 + 상상력 → 뭐에서 영감? → 파도·돛단배 추측 → 사실은 오렌지 → 지붕 자세히 → 껍질 보여? → 조명 켜면 더 잘 보임",
      "lines": [
       "In the first two examples, we can easily see what inspired the architect.",
       "But in the next example from Australia, this is not so obvious.",
@@ -249,11 +427,23 @@
       "Look at the roof closely.",
       "Can you see the peels of an orange?",
       "When orange lights are shone on the building, you can see the peels more clearly."
+     ],
+     "cues": [
+      "첫 문장: 앞의 두 예시(달걀·나무) 정리",
+      "'But' = 다음 예시는 다름(쉽게 안 보임)",
+      "호주 예시 = 시드니 오페라 하우스 소개",
+      "'him' = 웃손, 영감 맞혀 보라는 질문",
+      "흔한 추측(파도·돛단배)",
+      "'But' = 추측과 다른 진짜 답: 오렌지",
+      "오렌지라니 지붕을 자세히 보라",
+      "지붕에서 오렌지 껍질이 보이는지",
+      "'more clearly' = 껍질이 더 잘 보이는 조건"
      ]
     },
     {
      "name": "본문 4",
      "kind": "본문",
+     "flow": "한국은? → DDP 가 봤어? → 우주선 같다 생각 → 하지만 자연의 곡선 → 덕분에 관광 명소 → 보다시피 많은 건물이 자연을 담음 → 완벽한 예 → 너라면?",
      "lines": [
       "What about Korea?",
       "Have you ever been to Dongdaemun Design Plaza in Seoul?",
@@ -263,6 +453,16 @@
       "As you can see, many buildings try to capture the beauty of nature in their design.",
       "They are perfect examples of “Nature meets city.”",
       "If you were an architect, what would you choose from nature?"
+     ],
+     "cues": [
+      "첫 문장: 외국 예시 → 한국으로 화제 전환",
+      "한국의 예시 건물 제시",
+      "'the building' = DDP에 대한 흔한 인상",
+      "'But' = 우주선이 아니라 자연의 곡선",
+      "'its special design' = 그 곡선 디자인 → 결과(명소)",
+      "'As you can see' = 예시 전체 정리",
+      "'They' = 지금까지의 건물들 → 제목 문구로 마무리",
+      "독자에게 던지는 마지막 질문"
      ]
     }
    ]
@@ -274,17 +474,26 @@
     {
      "name": "Listen & Speak 1 ①",
      "kind": "대화문",
+     "flow": "정상 거의 다 왔다 → 얼마나 높을까 → 약 2,000m → 와 높다 → 응, 계속 가자",
      "lines": [
       "We’re almost at the top of the mountain.",
       "I wonder how high this mountain is.",
       "It’s about 2,000m high.",
       "Wow! This is a really high mountain.",
       "Yes, it is. Let’s keep going."
+     ],
+     "cues": [
+      "첫 문장: 상황(정상 근처)",
+      "'this mountain' = 지금 오르는 산, 궁금증",
+      "높이 궁금증에 대한 답",
+      "2,000m 듣고 감탄",
+      "'Yes, it is' = 높다는 말에 동의 + 계속 가자"
      ]
     },
     {
      "name": "Listen & Speak 1 ②",
      "kind": "대화문",
+     "flow": "TV 펭귄 귀엽다 → 근데 추워 보임 → 남극이 제일 춥지 → 얼마나 추울까 → 7월 -58℃, 12월 -26℃ → 7월이 더 춥네 → 춥지만 눈은 적음 → 그것도 흥미롭다",
      "lines": [
       "Look at the baby penguins on TV. They’re so cute.",
       "Yes, but they look very cold out there.",
@@ -294,22 +503,41 @@
       "Oh, then, July is colder than December there. Interesting!",
       "Yes. Although it’s very cold there, it doesn’t snow much.",
       "That’s interesting, too!"
+     ],
+     "cues": [
+      "첫 문장: TV 펭귄을 보라",
+      "'they' = 펭귄, 귀엽지만 추워 보임",
+      "추워 보이는 이유 = 남극은 가장 추운 곳",
+      "'there' = 남극, 얼마나 추운지 궁금",
+      "궁금증에 대한 답(기온)",
+      "'then' = 기온 듣고 내린 결론(7월이 더 춥다)",
+      "'Yes' = 동의 + 또 다른 사실(눈 적음)",
+      "'too' = 앞의 'Interesting!'에 이어 두 번째 흥미"
      ]
     },
     {
      "name": "Listen & Speak 2 ①",
      "kind": "대화문",
+     "flow": "날씨 좋다 → 소풍 어때? → 좋아, 날씨 확인해 줄래? → 오후에 비 온대 → 다음에 가자",
      "lines": [
       "The weather is so nice outside.",
       "Yeah. How about going on a picnic this afternoon?",
       "Good idea. Can you check the weather?",
       "Oh, no! The weather forecast says it’ll be rainy in the afternoon.",
       "Let’s go another time, then."
+     ],
+     "cues": [
+      "첫 문장: 날씨 얘기로 시작",
+      "날씨 좋으니 소풍 제안",
+      "제안 수락 + 날씨 확인 부탁",
+      "확인 결과: 오후에 비",
+      "'then' = 비 온다니 다음에 가자"
      ]
     },
     {
      "name": "Listen & Speak 2 ②",
      "kind": "대화문",
+     "flow": "일요일에 뭐 해? → 등산, 같이 갈래? → 좋아, 어디? → 남산 → 경치 좋지 → 단풍 들었대 → 제일 짧은 코스 얼마나? → 약 2시간 → 일요일에 봐",
      "lines": [
       "Sumin, what are you going to do on Sunday?",
       "I’m going to go hiking. Do you want to join me?",
@@ -320,11 +548,23 @@
       "Great. How long does the shortest hiking course take?",
       "The Internet says it takes about two hours.",
       "Okay, see you on Sunday!"
+     ],
+     "cues": [
+      "첫 문장: 일요일 계획 질문",
+      "답 + 같이 가자는 제안",
+      "제안 수락 + 장소 질문",
+      "장소 질문에 대한 답",
+      "'there' = 남산, 경치 반응",
+      "'Right' = 동의 + 단풍 정보",
+      "가기로 하고 코스 시간 질문",
+      "시간 질문에 대한 답",
+      "마무리: 앞에 나온 일요일 약속"
      ]
     },
     {
      "name": "Real Life Talk",
      "kind": "대화문",
+     "flow": "사진 봐 → 낙타가 줄지어 → 사막 덥고 건조해 보임 → 물 없이 얼마나? → 인터넷에서 찾자 → 2주 정도 → 굉장하다 → 언젠가 같이 여행하고 싶다",
      "lines": [
       "Check out this picture!",
       "Wow! The camels are walking in a line in the desert.",
@@ -334,11 +574,22 @@
       "Okay. The Internet says they can go about two weeks without water.",
       "Wow, that’s amazing! Camels are really interesting animals.",
       "I want to travel with them in the desert someday."
+     ],
+     "cues": [
+      "첫 문장: 사진 보라고 시작",
+      "사진에 보이는 것(낙타·사막)",
+      "'The desert' = 사진 속 사막 묘사",
+      "사막 → 낙타가 물 없이 얼마나 버티는지 궁금",
+      "궁금증 → 찾아보자",
+      "찾은 결과(2주)",
+      "결과에 감탄",
+      "'them' = 낙타 → 바람으로 마무리"
      ]
     },
     {
      "name": "본문 1 · Sweet Dreams",
      "kind": "본문",
+     "flow": "지구 2/3가 바다 → 신기한 것·수많은 종 → 매일 새로 배움 → 바다 동물 알아보자 → 고래들이 뭐 하는 중? → 서 있는 듯 → 사실은 자는 중 → 꼬리로 서서 잠 → 수면 근처 → 숨 쉬러 올라옴 → 완전히 안 잠듦 → 깨면 숨 쉬고 다시 잠수",
      "lines": [
       "Two-thirds of our planet is covered by oceans.",
       "They are full of wonder and are home to millions of species.",
@@ -352,11 +603,26 @@
       "Since they are not fish, they need to come up to breathe.",
       "Also, they don’t fall asleep completely.",
       "When they wake up, they come out of the water for a deep breath and dive back into the sea."
+     ],
+     "cues": [
+      "첫 문장: 지구와 바다로 크게 시작",
+      "'They' = oceans",
+      "'them' = 바다 생물, 아직 배우는 중",
+      "도입 끝 → 바다 동물 알아보자",
+      "첫 동물: 사진 속 고래 질문",
+      "'they' = 고래들, 겉모습(서 있는 듯)",
+      "'But … actually' = 겉모습과 다른 진실(자는 중)",
+      "어떻게 자는지 구체 설명",
+      "자는 곳(수면 근처)",
+      "'Since' = 수면 근처에서 자는 이유(숨)",
+      "'Also' = 또 다른 특징 추가",
+      "깨어난 뒤 행동으로 마무리"
      ]
     },
     {
      "name": "본문 2 · Enjoy Your Meal",
      "kind": "본문",
+     "flow": "물고기가 안 똑똑하다 생각하면 tuskfish 봐라 → 조개 열려고 도구 사용 → 조개는 모래 속에 숨음 → 입김 불어 조개 찾음 → 조개가 닫혀 못 먹음 → 포기 안 함 → 바위에 내리침 → 결국 열림",
      "lines": [
       "If you think fish are not smart, take a look at the tuskfish.",
       "This small fish whose favorite food is clams uses a tool to open them.",
@@ -366,11 +632,22 @@
       "But the tuskfish doesn’t give up.",
       "It smashes the clam against a rock.",
       "In the end, the clam opens and dinner is served."
+     ],
+     "cues": [
+      "첫 문장: 통념 → tuskfish 제시",
+      "'This small fish' = tuskfish, 'them' = clams",
+      "먼저 조개 찾기가 어려운 이유",
+      "그래서 모래에 입김 → 조개 등장",
+      "'The clam' = 나온 조개, 다음 문제(닫힘)",
+      "'But' = 문제 앞에서 포기 안 함",
+      "'It' = tuskfish의 해결 행동",
+      "'In the end' = 결과로 마무리"
      ]
     },
     {
      "name": "본문 3 · One, Two, Three, Jump!",
      "kind": "본문",
+     "flow": "새가 물고기 잡는 건 봤을 것 → 물고기가 새 잡는 건? → giant trevally 조심 → 170cm 80kg → 크기에 속지 마 → 빠르고 똑똑 → 새 발견·속도·거리 계산 → 뛰어올라 잡음",
      "lines": [
       "You have probably seen a bird fly down to the sea to catch a fish.",
       "But have you ever seen a fish jump out of the water to catch a bird?",
@@ -380,6 +657,16 @@
       "This fish is quick and smart.",
       "It can spot a flying bird and calculate its speed and distance.",
       "When the bird flies nearby, the giant trevally jumps out of the water and catches it."
+     ],
+     "cues": [
+      "첫 문장: 흔히 보는 장면(새가 물고기 잡음)",
+      "'But' = 반대 상황 질문(물고기가 새를)",
+      "그런 물고기 = giant trevally 소개",
+      "'This fish' = giant trevally 크기",
+      "'its size' = 앞의 크기, 속지 말라",
+      "크기 말고 진짜 특징(빠르고 똑똑)",
+      "똑똑함의 구체 내용(새 발견·계산)",
+      "'the bird' = 계산한 그 새 → 사냥 장면으로 마무리"
      ]
     }
    ]
