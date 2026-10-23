@@ -1,0 +1,1796 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>본문 순서 맞추기 · 중3 동아</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: an OMR answer strip — one 480px column. Study screen = top bar, bubble track, a single question card, answer controls in the thumb zone. */
+:root{
+  color-scheme:light;
+  --paper:#FAF5F6;
+  --card:#FFFFFF;
+  --ink:#1B1517;
+  --muted:#6B5F63;
+  --omr:#C93549;
+  --omr-line:#EDC3CA;
+  --omr-wash:#FBEAED;
+  --rule:#E8DDE0;
+  --font-word:"Atkinson Hyperlegible","Helvetica Neue",Arial,sans-serif;
+  --font-ui:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151113;--card:#1F191C;--ink:#F2EBED;--muted:#A99CA1;
+    --omr:#F0697B;--omr-line:#5A3038;--omr-wash:#3A1F26;--rule:#342A2E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151113;--card:#1F191C;--ink:#F2EBED;--muted:#A99CA1;
+  --omr:#F0697B;--omr-line:#5A3038;--omr-wash:#3A1F26;--rule:#342A2E;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-ui);font-size:15px;line-height:1.55;word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit;color:inherit}
+#app{min-height:100%;display:flex;flex-direction:column}
+.wrap{width:100%;max-width:480px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 32px}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--omr);outline-offset:2px}
+b{font-weight:600}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:48px;padding:0 16px;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);color:var(--ink);font-weight:600;font-size:15px;line-height:1.2;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn-primary{background:var(--ink);color:var(--card)}
+.btn-quiet{border-color:var(--rule);font-weight:500}
+.btn-small{min-height:38px;padding:0 12px;font-size:14px}
+.big{min-height:56px;font-size:16px}
+.wide{width:100%}
+.linkish{background:none;border:0;padding:8px 0;color:var(--muted);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--omr-line);cursor:pointer;touch-action:manipulation}
+.linkish:disabled{opacity:.45;text-decoration:none;cursor:default}
+.eyebrow{margin:0;font-size:12px;line-height:1.4;font-weight:600;letter-spacing:.12em;color:var(--omr)}
+
+/* home */
+.home{display:flex;flex-direction:column;gap:22px}
+.masthead{display:grid;gap:10px;padding-bottom:18px;border-bottom:1.5px solid var(--omr)}
+.fields{display:flex;flex-wrap:wrap;gap:6px}
+.field{display:inline-flex;border:1px solid var(--omr);font-size:12px;line-height:1}
+.field b{background:var(--omr);color:var(--card);padding:5px 7px;letter-spacing:.08em}
+.field span{padding:5px 8px;color:var(--ink)}
+h1{margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.lede{margin:0;color:var(--muted)}
+.rules{display:grid;gap:10px;padding:14px;background:var(--card);border:1px solid var(--omr-line);border-radius:2px}
+.rules ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.rules li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.5}
+.num{width:18px;height:23px;margin-top:-1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--omr)}
+.sets{display:grid;gap:12px}
+.sets-h{display:flex;justify-content:space-between;align-items:baseline;color:var(--omr);font-size:12px}
+.group-h{margin:10px 0 -2px;padding-top:12px;border-top:1px solid var(--rule);font-size:15px;font-weight:700;line-height:1.35}
+.sets-h + .group-h{margin-top:0;padding-top:0;border-top:0}
+.set{display:grid;gap:10px;padding:14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.set-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.set-title{min-width:0;font-weight:600;font-size:16px;line-height:1.35}
+.set-count{flex:none;font-size:12.5px;color:var(--muted)}
+.set-note{margin-top:-6px;font-size:13px;color:var(--muted)}
+.set-status{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;padding:1px 9px;border:1px solid var(--omr);border-radius:999px;color:var(--omr);font-size:12.5px}
+.set-actions{display:flex;flex-wrap:wrap;gap:8px}
+.set-actions .btn{flex:1 1 auto}
+.del{justify-self:start;padding:0}
+.confirm{display:grid;gap:8px;padding:10px 12px;background:var(--omr-wash);border-radius:2px;font-size:14px}
+.confirm-btns{display:flex;gap:8px;justify-content:flex-end}
+details.paste{border-top:1px solid var(--rule);padding-top:14px}
+details.paste summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;font-weight:600}
+details.paste summary::-webkit-details-marker{display:none}
+details.paste summary::before{content:"+";font-family:var(--font-mono);color:var(--omr)}
+details.paste[open] summary::before{content:"−"}
+details.paste summary .sum-l{margin-right:auto}
+.sum-r{font-size:12.5px;font-weight:400;color:var(--muted)}
+.paste-body{display:grid;gap:8px;margin-top:12px}
+.paste-body label{font-size:13px;color:var(--muted)}
+.paste-body input,.paste-body textarea{width:100%;border:1px solid var(--rule);background:var(--card);border-radius:4px;padding:10px 12px;font-size:15px}
+.paste-body textarea{font-family:var(--font-mono);font-size:13px;line-height:1.5;resize:vertical;min-height:132px;tab-size:4}
+.paste-status{margin:0;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.paste-status.bad{color:var(--omr)}
+.paste-status.ok{color:var(--ink)}
+.foot{margin:0;font-size:12.5px;line-height:1.65;color:var(--muted)}
+
+/* study */
+.study{flex:1;display:flex;flex-direction:column;gap:10px;padding-block:10px 14px}
+.bar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
+.back{min-height:40px;padding:0 12px;border:1px solid var(--rule);border-radius:6px;background:var(--card);font-size:14px;cursor:pointer;touch-action:manipulation}
+.bar-mid{min-width:0}
+.bar-title{font-weight:600;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-sub{font-size:12px;line-height:1.4;color:var(--omr);font-weight:500}
+.clock{font-size:14px;color:var(--muted)}
+.track{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px;min-height:26px}
+.track-grid{display:grid;gap:3px}
+.ticks,.bubbles{display:flex;gap:4px}
+.ticks i{flex:1 1 0;max-width:12px;height:4px;background:var(--ink)}
+.bubbles .bb{flex:1 1 0;max-width:12px;height:16px;border:1.5px solid var(--omr);border-radius:50%}
+.bb.dot{background:radial-gradient(circle,var(--omr) 0 2.4px,transparent 2.9px)}
+.bb.full{background:var(--ink);border-color:var(--ink)}
+.track-n{font-size:13px;color:var(--muted)}
+.meter{display:flex;align-self:center;height:10px;border:1.5px solid var(--omr);border-radius:999px;overflow:hidden;background:var(--card)}
+.meter i{display:block;height:100%;background:var(--ink);transition:width .25s ease}
+.meter b{display:block;height:100%;background:var(--omr-line);transition:width .25s ease}
+.banner{font-size:13px;line-height:1.45;padding:7px 10px;background:var(--omr-wash);border-radius:2px}
+.card{position:relative;flex:1;display:flex;flex-direction:column;min-height:300px;padding:14px 16px 18px;background:var(--card);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dir{display:inline-flex;border:1px solid var(--omr);font-size:12px;line-height:1}
+.dir b{background:var(--omr);color:var(--card);padding:5px 7px;letter-spacing:.06em}
+.dir span{padding:5px 8px;color:var(--omr)}
+.left{font-size:12.5px;color:var(--muted)}
+.zone{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-top:18px}
+#ke-zone{justify-content:flex-start;padding-top:24px}
+.word{font-family:var(--font-word);font-weight:700;font-size:clamp(32px,10.5vw,50px);line-height:1.12;text-align:center;text-wrap:balance;overflow-wrap:anywhere}
+.tbar{width:min(220px,70%);height:3px;margin:0 auto;background:var(--omr-wash);border-radius:2px;overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--omr);transform-origin:left center}
+.tbar.run i{animation:drain 5s linear forwards}
+@keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.say{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;min-width:36px;padding:0 12px;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;touch-action:manipulation}
+.say:active{background:var(--omr-wash)}
+.say-row{display:flex;justify-content:center}
+.fb-say{display:flex;align-items:center;gap:10px}
+.hard li .say{padding:0;min-height:32px;min-width:32px;justify-self:end}
+.ek-hint{font-size:13px;color:var(--muted);text-align:center}
+.ek-hint.late{color:var(--omr);font-weight:500}
+.reveal{display:grid;gap:7px;padding-top:14px;border-top:1px dashed var(--omr-line);text-align:center}
+.core{font-size:23px;font-weight:700;line-height:1.35;text-wrap:balance}
+.notes{display:grid;gap:3px;font-size:14px;line-height:1.5;color:var(--muted);text-wrap:pretty}
+.notes:empty{display:none}
+.notes p{margin:0}
+.ko-prompt{font-size:26px;font-weight:700;line-height:1.3;text-wrap:balance}
+.slots{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--font-mono);font-size:18px;letter-spacing:.2em;color:var(--muted)}
+.slots .ph{color:var(--omr);letter-spacing:0}
+.answer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}
+#ke-input{width:100%;min-width:0;padding:8px 2px;border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;font-family:var(--font-mono);font-size:22px;outline:none}
+#ke-input:focus{border-bottom-color:var(--omr)}
+.ke-tools{display:flex;flex-wrap:wrap;gap:4px 18px}
+.ke-fb{display:grid;gap:6px;font-size:14px}
+.ke-fb:empty{display:none}
+.fb{display:grid;gap:4px;margin:0}
+.fb-row{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;align-items:baseline}
+.fb-row dt{font-size:12px;color:var(--muted)}
+.fb-row dd{margin:0}
+.diff{font-family:var(--font-mono);font-size:19px;overflow-wrap:anywhere}
+.diff .miss{color:var(--omr);background:var(--omr-wash);font-weight:600;box-shadow:inset 0 -2px 0 var(--omr)}
+.diff .xtra{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--omr)}
+.ok-word{margin:0;font-family:var(--font-word);font-weight:700;font-size:20px}
+.warn{margin:0;color:var(--omr)}
+.note{margin:0;font-size:14px;color:var(--muted)}
+.actions{display:grid;gap:8px}
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.grade .btn{min-height:56px;padding:0 8px}
+.stamp{position:absolute;top:40px;right:14px;width:60px;height:60px;pointer-events:none;opacity:0}
+.stamp.on{opacity:.9;animation:stamp .18s ease-out}
+.stamp.ok{border:4px solid var(--omr);border-radius:50%}
+.stamp.x::before{content:"";position:absolute;left:calc(50% - 2.5px);top:-6px;bottom:-6px;width:5px;border-radius:3px;background:var(--omr);transform:rotate(38deg)}
+@keyframes stamp{from{transform:scale(1.45);opacity:0}to{transform:scale(1);opacity:.9}}
+@media (max-height:700px){
+  .study.ke-mode .track,.study.ke-mode .banner{display:none}
+  .study.ke-mode #ke-zone{padding-top:14px}
+}
+
+/* pause + result */
+.pause,.result{flex:1;display:flex;flex-direction:column;gap:16px}
+.pause{justify-content:center}
+.big-h{margin:0;font-size:28px;line-height:1.25;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0;background:var(--rule);border:1px solid var(--rule)}
+.stats div{background:var(--card);padding:11px 12px;min-width:0}
+.stats dt{font-size:12px;color:var(--muted)}
+.stats dd{margin:2px 0 0;font-family:var(--font-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.submit{display:grid;gap:8px;padding:14px;background:var(--card);border:1.5px solid var(--omr);border-radius:2px}
+.submit h3{margin:0;font-size:15px}
+.submit label{font-size:13px;color:var(--muted)}
+.submit-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.submit input{width:100%;min-width:0;padding:10px 12px;border:1px solid var(--rule);border-radius:4px;background:var(--card);font-size:16px}
+.submit .btn{text-decoration:none}
+.hard{display:grid;gap:8px}
+.hard h3{margin:0;font-size:15px}
+.hard ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.hard li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.hard ul.with-say li{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) auto;align-items:center}
+.hard .en{font-family:var(--font-word);font-weight:700;font-size:16px;overflow-wrap:anywhere}
+
+/* order: 섞인 문장을 순서대로 탭하면 OMR 동그라미에 번호가 찍힘. 확인 뒤엔 정답 순서로 다시 나열 */
+.od-head{position:relative;display:grid;gap:6px;padding:12px 14px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.od-name{margin:4px 0 0;font-size:20px;line-height:1.3;font-weight:700;text-wrap:balance}
+.od-hint{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.od-hint.ok{color:var(--ink)}
+.od-hint.bad{color:var(--omr);font-weight:500}
+.od-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.od-line{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card);color:var(--ink);text-align:left;font-family:var(--font-word);font-size:16.5px;line-height:1.45;overflow-wrap:anywhere}
+button.od-line{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+button.od-line:active{background:var(--omr-wash)}
+.od-line.on{border-color:var(--ink)}
+.od-bb{width:26px;height:26px;margin-top:1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--omr);background:var(--card)}
+.od-line.on .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.od-line.hit .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.od-line.miss{border-color:var(--omr);background:var(--omr-wash)}
+.od-line.miss .od-bb{background:var(--omr);border-color:var(--omr);color:var(--card)}
+.od-mine{display:block;margin-top:3px;font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:var(--omr)}
+.od-foot{position:sticky;bottom:0;z-index:1;display:grid;gap:4px;margin-top:4px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -10px 10px -6px var(--paper)}
+.od-foot .linkish{justify-self:center}
+
+@media (prefers-reduced-motion: reduce){
+  .stamp.on{animation:none}
+  .tbar{display:none}
+  .meter i{transition:none}
+  .btn:active{transform:none}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script id="page-config" type="application/json">{"paste": false, "school": "중3 동아", "fields": [["학교", "중3 동아"], ["교과서", "동아(이병민)"]], "form": {"url": "https://docs.google.com/forms/d/e/1FAIpQLSfsvGXKVGASob6ylSlyCFKyEahrzGSqFNtwlaYEvA1AHOanww/viewform", "name": "entry.2087311015", "school": "entry.331616395", "set": "entry.1245213658", "time": "entry.1880995760", "hard": "entry.770504430"}}</script>
+<script id="sets-data" type="application/json">
+[
+ {
+  "id": "donga3-2026-order-L5",
+  "kind": "order",
+  "group": "순서시험 대비 · 동아 5·6·7과 (대화문 + 본문)",
+  "title": "5과 · From Trash to Music",
+  "note": "대화문 5 + 본문 4",
+  "passages": [
+   {
+    "name": "Listen & Speak 1 ①",
+    "kind": "대화문",
+    "lines": [
+     "Hey, Bora. Welcome to our rock band.",
+     "Thanks. I’m looking forward to playing in a concert with you.",
+     "We’re excited to have a new guitar player.",
+     "Great. See you on Friday."
+    ]
+   },
+   {
+    "name": "Listen & Speak 1 ②",
+    "kind": "대화문",
+    "lines": [
+     "Jiho, what are you reading?",
+     "I’m reading a book about a baseball player named Jim Abbott.",
+     "Oh, the man who was born without a right hand?",
+     "That’s right. He tried really hard and even won the MVP award.",
+     "Yeah. His story was made into a movie. I’m going to watch it this Saturday.",
+     "Really? What’s the title?",
+     "Our Hero. I’m really looking forward to watching it.",
+     "Can I join you?",
+     "Sure. See you on Saturday."
+    ]
+   },
+   {
+    "name": "Listen & Speak 2 ①",
+    "kind": "대화문",
+    "lines": [
+     "Minho, did you finish the math homework?",
+     "Not yet. Math is difficult.",
+     "Yes, but it’s interesting, too.",
+     "Then can you help me with my math homework?",
+     "I’d love to, but I can’t. I have to take care of my brother."
+    ]
+   },
+   {
+    "name": "Listen & Speak 2 ②",
+    "kind": "대화문",
+    "lines": [
+     "Alex, I’m going to take part in a singing contest next Monday.",
+     "That’s great, Sumin!",
+     "You know how to play the guitar, right?",
+     "Yes, I’ve played the guitar for 3 years.",
+     "Great. Can you play the guitar while I sing in the contest?",
+     "I’d love to, but I can’t. I hurt my hand in gym class yesterday.",
+     "Oh! I’m sorry to hear that.",
+     "Thanks. But I’ll be there to cheer for you."
+    ]
+   },
+   {
+    "name": "Real Life Talk",
+    "kind": "대화문",
+    "lines": [
+     "Hi, Tony! What are you going to do this weekend?",
+     "I’m going to watch the musical, Billy Elliot.",
+     "Billy Elliot? What is it about?",
+     "It’s about a boy who became a famous dancer. I’m looking forward to watching it.",
+     "Sounds interesting. Who is the main actor?",
+     "Jason Kim. He’s a great dancer.",
+     "He’s my favorite actor. I watched his musical last year.",
+     "Oh, really? Do you want to join me?",
+     "I’d love to, but I can’t. I have volunteer work this weekend.",
+     "Okay. Maybe next time!"
+    ]
+   },
+   {
+    "name": "본문 1",
+    "kind": "본문",
+    "lines": [
+     "Tears of joy are rolling down my cheeks.",
+     "I’m so happy and thrilled.",
+     "If I were a bird, I would fly.",
+     "I look around.",
+     "The other members in my orchestra are hugging one another.",
+     "Our concert has just finished and everyone is standing and giving us a big hand.",
+     "None of us ever expected that this day would come.",
+     "It has been a long journey."
+    ]
+   },
+   {
+    "name": "본문 2",
+    "kind": "본문",
+    "lines": [
+     "My name is Andrea and I’m a violinist in the Recycled Orchestra.",
+     "Why is it called the Recycled Orchestra?",
+     "It’s because our musical instruments are made of objects from a landfill.",
+     "That’s why it’s also known as the Landfill Harmonic Orchestra.",
+     "Most of us in the orchestra are from Cateura, a small town in Paraguay.",
+     "There is a huge landfill in our town.",
+     "Some people even say that Cateura itself is a giant landfill.",
+     "Many of us are poor.",
+     "There weren’t many hopes and dreams in our town.",
+     "Everything began to change, however, when we met Favio Chávez."
+    ]
+   },
+   {
+    "name": "본문 3",
+    "kind": "본문",
+    "lines": [
+     "Favio was an environmental educator and a musician.",
+     "He wanted to teach us music, but there was a big problem.",
+     "There were only a few musical instruments in the whole town.",
+     "We couldn’t afford to buy new ones.",
+     "But Favio didn’t give up.",
+     "He said that we could make musical instruments with objects from the landfill.",
+     "A talented man named Nicholas was able to put this idea into practice.",
+     "He made violins from oil drums.",
+     "He turned water pipes into flutes."
+    ]
+   },
+   {
+    "name": "본문 4",
+    "kind": "본문",
+    "lines": [
+     "We had another problem.",
+     "No one knew how to play musical instruments.",
+     "We didn’t even know how to read music.",
+     "Favio taught us with great patience.",
+     "Step by step, we began to make some sounds on our instruments.",
+     "I still remember the first piece of music that we played.",
+     "It was very short and mostly out of tune.",
+     "But it was the most beautiful music to us.",
+     "We felt a new hope in our hearts.",
+     "From then on, we gathered to practice every day.",
+     "One day, Favio told us some great news.",
+     "We were going to have a concert, a real concert!",
+     "And here we are now in front of hundreds of people.",
+     "They love our music.",
+     "The world sends us trash, but we send back music!"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "donga3-2026-order-L6",
+  "kind": "order",
+  "group": "순서시험 대비 · 동아 5·6·7과 (대화문 + 본문)",
+  "title": "6과 · Nature Meets City",
+  "note": "대화문 5 + 본문 4",
+  "passages": [
+   {
+    "name": "Listen & Speak 1 ①",
+    "kind": "대화문",
+    "lines": [
+     "Hi, Lisa. Thank you for inviting me to your birthday party.",
+     "My pleasure. I’m glad you could come.",
+     "These flowers are for you. Happy birthday!",
+     "They are beautiful! Thank you."
+    ]
+   },
+   {
+    "name": "Listen & Speak 1 ②",
+    "kind": "대화문",
+    "lines": [
+     "Sumin, my train is leaving in five minutes.",
+     "I hope you enjoyed your trip, Daniel.",
+     "Of course, I did.",
+     "Which place did you like most in my town?",
+     "I liked the folk village most.",
+     "Yeah, it’s the most popular place here.",
+     "I really liked walking around in hanbok. I looked really cool.",
+     "I’m glad to hear that.",
+     "Thank you for showing me around.",
+     "It was my pleasure. Have a safe trip."
+    ]
+   },
+   {
+    "name": "Listen & Speak 2 ①",
+    "kind": "대화문",
+    "lines": [
+     "Excuse me. You’re not allowed to bring your umbrella inside.",
+     "Oh, where should I put it?",
+     "There is an umbrella stand outside.",
+     "Okay. I’ll put it there. Thank you."
+    ]
+   },
+   {
+    "name": "Listen & Speak 2 ②",
+    "kind": "대화문",
+    "lines": [
+     "The tickets for the World Music Concert are on sale now.",
+     "Really? Let’s book the tickets online right away.",
+     "Okay. Let’s see.... There are still tickets left for November 5th.",
+     "Sounds good. Let’s get two student tickets.",
+     "Oh, do you mind if I bring my little brother?",
+     "Not at all. But it says that you are not allowed to bring children under 8.",
+     "No problem. He’s 10.",
+     "Okay, I’ll add one child ticket. The total price is 25 dollars.",
+     "Great.",
+     "I can’t wait to see the concert!"
+    ]
+   },
+   {
+    "name": "Real Life Talk",
+    "kind": "대화문",
+    "lines": [
+     "Hello, students! Thank you for visiting our art museum.",
+     "This museum opened in 1995.",
+     "Since then, it has exhibited many famous artworks.",
+     "Today, you will see some famous artworks from the art books.",
+     "Before we begin the tour, let me remind you of a basic rule.",
+     "You can take pictures of the artworks, but you’re not allowed to touch them.",
+     "Now let’s start the tour."
+    ]
+   },
+   {
+    "name": "본문 1",
+    "kind": "본문",
+    "lines": [
+     "Have you heard of the expression, “Art imitates nature”?",
+     "Many artists get their ideas and inspirations from the world around them.",
+     "This is because the natural world is a beautiful place.",
+     "The shapes in nature are very pleasing to the eye.",
+     "For example, look at the egg on the left.",
+     "Isn’t it beautiful?",
+     "It is round and delicate, yet strong enough to protect its contents.",
+     "Can you imagine a building that looks like an egg?",
+     "Such a building actually exists in London."
+    ]
+   },
+   {
+    "name": "본문 2",
+    "kind": "본문",
+    "lines": [
+     "Nature has inspired many architects around the world.",
+     "This is the Sagrada Familia in Spain.",
+     "It is one of the most famous churches in the world.",
+     "Look at the beautiful tall columns inside the church.",
+     "They look like trees, don’t they?",
+     "The famous architect, Antoni Gaudi, used the shape of trees in the Sagrada Familia.",
+     "That’s how he brought the beauty of nature indoors."
+    ]
+   },
+   {
+    "name": "본문 3",
+    "kind": "본문",
+    "lines": [
+     "In the first two examples, we can easily see what inspired the architect.",
+     "But in the next example from Australia, this is not so obvious.",
+     "Jørn Utzon, the architect of the Sydney Opera House, took a shape from nature and added his imagination.",
+     "Can you guess what inspired him?",
+     "Many people think that it is the waves in the ocean or a sailing boat.",
+     "But interestingly, the inspiration came from an orange.",
+     "Look at the roof closely.",
+     "Can you see the peels of an orange?",
+     "When orange lights are shone on the building, you can see the peels more clearly."
+    ]
+   },
+   {
+    "name": "본문 4",
+    "kind": "본문",
+    "lines": [
+     "What about Korea?",
+     "Have you ever been to Dongdaemun Design Plaza in Seoul?",
+     "Many people think that the building looks like a giant spaceship.",
+     "But the architect, Zaha Hadid, took the curved lines from nature so that city people could enjoy them.",
+     "Thanks to its special design, it has become a popular tourist attraction in Seoul.",
+     "As you can see, many buildings try to capture the beauty of nature in their design.",
+     "They are perfect examples of “Nature meets city.”",
+     "If you were an architect, what would you choose from nature?"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "donga3-2026-order-L7",
+  "kind": "order",
+  "group": "순서시험 대비 · 동아 5·6·7과 (대화문 + 본문)",
+  "title": "7과 · Under the Sea",
+  "note": "대화문 5 + 본문 3",
+  "passages": [
+   {
+    "name": "Listen & Speak 1 ①",
+    "kind": "대화문",
+    "lines": [
+     "We’re almost at the top of the mountain.",
+     "I wonder how high this mountain is.",
+     "It’s about 2,000m high.",
+     "Wow! This is a really high mountain.",
+     "Yes, it is. Let’s keep going."
+    ]
+   },
+   {
+    "name": "Listen & Speak 1 ②",
+    "kind": "대화문",
+    "lines": [
+     "Look at the baby penguins on TV. They’re so cute.",
+     "Yes, but they look very cold out there.",
+     "Yeah, the South Pole is the coldest place on Earth.",
+     "I wonder how cold it is there.",
+     "The average temperature is about -58℃ in July and -26℃ in December.",
+     "Oh, then, July is colder than December there. Interesting!",
+     "Yes. Although it’s very cold there, it doesn’t snow much.",
+     "That’s interesting, too!"
+    ]
+   },
+   {
+    "name": "Listen & Speak 2 ①",
+    "kind": "대화문",
+    "lines": [
+     "The weather is so nice outside.",
+     "Yeah. How about going on a picnic this afternoon?",
+     "Good idea. Can you check the weather?",
+     "Oh, no! The weather forecast says it’ll be rainy in the afternoon.",
+     "Let’s go another time, then."
+    ]
+   },
+   {
+    "name": "Listen & Speak 2 ②",
+    "kind": "대화문",
+    "lines": [
+     "Sumin, what are you going to do on Sunday?",
+     "I’m going to go hiking. Do you want to join me?",
+     "I’d love to. Where do you want to go?",
+     "I’m thinking of going to Namsan.",
+     "Oh, the scenery there is so beautiful this time of year.",
+     "Right. I heard that it’s covered with red autumn leaves now.",
+     "Great. How long does the shortest hiking course take?",
+     "The Internet says it takes about two hours.",
+     "Okay, see you on Sunday!"
+    ]
+   },
+   {
+    "name": "Real Life Talk",
+    "kind": "대화문",
+    "lines": [
+     "Check out this picture!",
+     "Wow! The camels are walking in a line in the desert.",
+     "Yeah. The desert looks very hot and dry.",
+     "I wonder how long camels can go without water in the desert.",
+     "Let’s find out on the Internet.",
+     "Okay. The Internet says they can go about two weeks without water.",
+     "Wow, that’s amazing! Camels are really interesting animals.",
+     "I want to travel with them in the desert someday."
+    ]
+   },
+   {
+    "name": "본문 1 · Sweet Dreams",
+    "kind": "본문",
+    "lines": [
+     "Two-thirds of our planet is covered by oceans.",
+     "They are full of wonder and are home to millions of species.",
+     "Every day, we are learning new things about them.",
+     "Let’s find out about some interesting sea animals.",
+     "Can you guess what these whales are doing in the picture?",
+     "It looks like they are standing up in a group.",
+     "But they are actually sleeping!",
+     "Humpback whales stand on their tails while they sleep.",
+     "They sleep near the surface.",
+     "Since they are not fish, they need to come up to breathe.",
+     "Also, they don’t fall asleep completely.",
+     "When they wake up, they come out of the water for a deep breath and dive back into the sea."
+    ]
+   },
+   {
+    "name": "본문 2 · Enjoy Your Meal",
+    "kind": "본문",
+    "lines": [
+     "If you think fish are not smart, take a look at the tuskfish.",
+     "This small fish whose favorite food is clams uses a tool to open them.",
+     "Clams usually hide under the sand, so they cannot be easily discovered.",
+     "The tuskfish blows on the sand until a clam appears.",
+     "The clam is closed tightly, so the fish cannot eat it.",
+     "But the tuskfish doesn’t give up.",
+     "It smashes the clam against a rock.",
+     "In the end, the clam opens and dinner is served."
+    ]
+   },
+   {
+    "name": "본문 3 · One, Two, Three, Jump!",
+    "kind": "본문",
+    "lines": [
+     "You have probably seen a bird fly down to the sea to catch a fish.",
+     "But have you ever seen a fish jump out of the water to catch a bird?",
+     "Well, birds have to be careful when a giant trevally is around.",
+     "This fish can grow up to 170cm and 80kg.",
+     "But don’t let its size fool you.",
+     "This fish is quick and smart.",
+     "It can spot a flying bird and calculate its speed and distance.",
+     "When the bird flies nearby, the giant trevally jumps out of the water and catches it."
+    ]
+   }
+  ]
+ }
+]
+</script>
+
+<script>
+(() => {
+'use strict';
+
+/*PURE-START*/
+const HANGUL = /[ᄀ-ᇿ㄰-㆏가-힯]/;
+const MAXB = 20;
+const PH_WORD = /^(?:sb|sth|sw|~|one's|oneself|someone|something|somebody|someone's|somewhere)$/i;
+const rnd = n => Math.floor(Math.random() * n);
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+/* 단어 뜻 칸은 통째로 외울 뜻. 참고 칸은 " / ", " — " 기준으로 줄을 나눔. 참고 칸이 비면 뜻 칸의 " — " 뒤를 참고로 봄 */
+function parseMeaning(ko, gl) {
+  let core = String(ko == null ? '' : ko).trim(), note = String(gl == null ? '' : gl).trim();
+  if (!note) { const p = core.split(/\s+[—–]\s+/); if (p.length > 1) { core = p.shift(); note = p.join(' — '); } }
+  const notes = note ? note.split(/\s+\/\s+|\s+[—–]\s+/).map(x => x.trim()).filter(Boolean) : [];
+  return { core, notes };
+}
+/* 정답 후보: "a/b" 둘 다, "(be) x" 괄호 넣고 빼고 둘 다 */
+function variants(en) {
+  const out = [];
+  String(en).split(/\s*\/\s*/).filter(Boolean).forEach(a => {
+    out.push(a.replace(/[()]/g, '').replace(/\s+/g, ' ').trim());
+    if (/\(/.test(a)) out.push(a.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim());
+  });
+  return out.length ? out : [String(en)];
+}
+function rawTokens(s) {
+  return String(s).replace(/[’‘`´]/g, "'").replace(/…|\.{3}/g, ' ~ ').replace(/~/g, ' ~ ')
+    .split(/\s+/).map(w => w.replace(/^[.,!?;:"“”]+|[.,!?;:"“”]+$/g, '')).filter(Boolean);
+}
+/* 자리표시: A·B·V 같은 대문자 한 글자, sb·sth·one's·~·+, 한글(주어·형용사 등).
+   자리표시 자리는 비워도 되고 아무 말(4단어까지)을 써도 됨. 나머지 단어는 철자까지 정확해야 함 */
+function isPh(w) { return /^[A-Z]$/.test(w) || PH_WORD.test(w) || HANGUL.test(w) || /^[+~]+$/.test(w); }
+function expTokens(v) { return rawTokens(v).map(w => ({ w, t: w.toLowerCase(), ph: isPh(w) })); }
+const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function patternFor(v) {
+  const et = expTokens(v);
+  if (!et.some(x => !x.ph)) return null;
+  let src = '^', prevPh = false;
+  et.forEach(x => {
+    if (x.ph) { if (!prevPh) src += '(?:\\S+ ){0,4}'; prevPh = true; }
+    else { src += reEsc(x.t) + ' '; prevPh = false; }
+  });
+  return new RegExp(src + '$');
+}
+function typedNorm(s) {
+  return rawTokens(String(s).replace(/[()]/g, '')).map(w => w.toLowerCase()).filter(w => !/^[+~]+$/.test(w)).join(' ') + ' ';
+}
+function matchItem(typed, item) {
+  const t = typedNorm(typed);
+  return t.trim() !== '' && item.pats.some(re => re.test(t));
+}
+function prepItem(row) {
+  const en = String(row[0] == null ? '' : row[0]).trim(), ko = String(row[1] == null ? '' : row[1]).trim();
+  if (!en || !ko) return null;
+  const m = parseMeaning(ko, row[2]);
+  const vars = variants(en);
+  const pats = vars.map(patternFor).filter(Boolean);
+  const n = expTokens(vars[0]).filter(x => !x.ph).length;
+  return { en, core: m.core, notes: m.notes, vars, pats, ke: pats.length > 0 && n <= 7, audio: row[3] ? String(row[3]) : '' };
+}
+function prepareSet(raw) {
+  const items = [], sections = [];
+  (raw.sections || []).forEach(sec => {
+    const ids = [];
+    (sec.items || []).forEach(row => { const it = prepItem(row); if (it) { ids.push(items.length); items.push(it); } });
+    if (ids.length) sections.push({ name: String(sec.name || ''), ids });
+  });
+  return { id: raw.id, title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), custom: !!raw.custom, batch: Number(raw.batch) || 0, items, sections };
+}
+/* 지문 경계와 상관없이 세트 순서대로 고르게 나눔. 묶음 크기는 세트에 batch가 있으면 그 값, 없으면 20
+   (80개 → 20×4, 87개 → 18·18·17·17·17, batch 50이면 100개 → 50×2) */
+function makeBatches(set, pool) {
+  const inPool = new Set(pool), max = set.batch > 0 ? set.batch : MAXB;
+  const ids = set.sections.flatMap(sec => sec.ids).filter(id => inPool.has(id));
+  if (!ids.length) return [];
+  const n = Math.ceil(ids.length / max), base = Math.floor(ids.length / n), extra = ids.length % n;
+  const out = [];
+  for (let k = 0, i = 0; k < n; k++) { const sz = base + (k < extra ? 1 : 0); out.push(ids.slice(i, i + sz)); i += sz; }
+  return out;
+}
+function splitLoose(s) {
+  const i = s.search(HANGUL);
+  if (i <= 0) return null;
+  const en = s.slice(0, i).replace(/[\s:=|\-–—]+$/, '').trim();
+  if (!/^[A-Za-z]/.test(en)) return null;
+  return [en, s.slice(i).trim()];
+}
+/* 엑셀 복사(탭 구분): 번호 / 영어 / 뜻 / 본문 풀이. 칸이 하나뿐인 줄은 지문 제목으로 봄 */
+function parsePaste(text) {
+  const sections = [];
+  let cur = null, skipped = 0;
+  const add = (en, ko, gl) => { if (!cur) { cur = { name: '단어', items: [] }; sections.push(cur); } cur.items.push([en, ko, gl || '']); };
+  String(text).replace(/\r/g, '').split('\n').forEach(line => {
+    if (!line.trim()) return;
+    let cells = line.split('\t').map(c => c.trim());
+    while (cells.length && !cells[0]) cells.shift();
+    while (cells.length && !cells[cells.length - 1]) cells.pop();
+    if (!cells.length) return;
+    if (cells.some(c => /^(영어|english|word|단어)$/i.test(c)) && cells.some(c => /뜻|meaning/i.test(c))) return;
+    if (cells.length >= 3 && /^\d+$/.test(cells[0])) cells = cells.slice(1);
+    if (cells.length === 1) {
+      if (/^\d+$/.test(cells[0])) return;
+      const sp = splitLoose(cells[0]);
+      if (sp) add(sp[0], sp[1], '');
+      else { cur = { name: cells[0].slice(0, 60), items: [] }; sections.push(cur); }
+      return;
+    }
+    const en = cells[0], ko = cells[1], gl = cells.slice(2).filter(Boolean).join(' ');
+    if (!/[a-z]/i.test(en) || !ko) { skipped++; return; }
+    add(en, ko, gl);
+  });
+  const clean = sections.filter(s => s.items.length);
+  return { sections: clean, n: clean.reduce((a, s) => a + s.items.length, 0), skipped };
+}
+/* 순서 세트: 과 하나가 세트, 그 안의 지문(대화문·본문)마다 교과서 순서대로 적힌 문장 목록 */
+function prepareOrder(raw) {
+  const passages = [];
+  (raw.passages || []).forEach(p => {
+    const lines = (p.lines || []).map(x => String(x == null ? '' : x).trim()).filter(Boolean);
+    if (lines.length >= 2) passages.push({ name: String(p.name || '지문'), kind: String(p.kind || ''), lines });
+  });
+  return { id: raw.id, kind: 'order', title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), passages };
+}
+/* 문장 번호(0~n-1)를 섞되, 교과서 순서 그대로 나오는 일은 없게 함 */
+function shuffleOrder(n) {
+  const a = [];
+  for (let i = 0; i < n; i++) a.push(i);
+  if (n < 2) return a;
+  for (let t = 0; t < 30; t++) { shuffle(a); if (a.some((v, i) => v !== i)) return a; }
+  a.push(a.shift());
+  return a;
+}
+/* picks: 학생이 탭한 순서(문장 번호). ok = 전부 제자리, right = 제자리에 놓인 문장 수 */
+function gradeOrder(picks, n) {
+  const ok = picks.length === n && picks.every((v, i) => v === i);
+  let right = 0;
+  picks.forEach((v, i) => { if (v === i) right++; });
+  return { ok, right };
+}
+function lcsMask(a, b) {
+  const n = a.length, m = b.length;
+  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const ma = new Array(n).fill(false), mb = new Array(m).fill(false);
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (a[i] === b[j]) { ma[i] = true; mb[j] = true; i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+    else j++;
+  }
+  return [ma, mb];
+}
+/*PURE-END*/
+
+const $ = (s, r = document) => r.querySelector(s);
+const app = $('#app');
+let BUILTIN = [];
+try { BUILTIN = JSON.parse($('#sets-data').textContent); } catch (e) { BUILTIN = []; }
+/* 학교별 페이지 설정: 상단 표시칸, 직접 넣기 허용 여부 */
+let CFG = {};
+try { const c = $('#page-config'); if (c) CFG = JSON.parse(c.textContent) || {}; } catch (e) { CFG = {}; }
+const PASTE = CFG.paste !== false;
+const FIELDS = Array.isArray(CFG.fields) && CFG.fields.length ? CFG.fields : [['과목', '영어 단어'], ['방식', '보기 전에 꺼내기']];
+const FORM = CFG.form && /^https:\/\/docs\.google\.com\/forms\//.test(CFG.form.url || '') ? CFG.form : null;
+const CAP = 45000; /* 한 장에서 45초 넘게 멈춰 있으면 그 이상은 시간에 안 셈 */
+const K = { sess: id => 'kd1:sess:' + id, rec: id => 'kd1:rec:' + id, custom: 'kd1:custom', name: 'kd1:name' };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function fmt(ms) { const t = Math.max(0, Math.floor(ms / 1000)); const m = Math.floor(t / 60), s = t % 60; return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
+
+/* 발음: 미리 만든 mp3(audio/키.mp3)를 우선 재생 — 카톡 같은 앱 안 브라우저에서도 들림.
+   파일이 없거나 재생이 막히면 폰에 들어 있는 영어 음성(TTS)으로 읽음 */
+const TTS = (() => {
+  const ok = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  let voice = null;
+  const pick = () => {
+    try {
+      const vs = window.speechSynthesis.getVoices() || [];
+      voice = vs.find(v => /^en[-_]US/i.test(v.lang) && /samantha|google|natural|aria|jenny/i.test(v.name)) ||
+        vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+    } catch (e) { voice = null; }
+  };
+  if (ok) { pick(); try { window.speechSynthesis.addEventListener('voiceschanged', pick); } catch (e) {} }
+  return {
+    ok,
+    say(text) {
+      if (!ok || !text) return;
+      try {
+        window.speechSynthesis.cancel();
+        const u = new window.SpeechSynthesisUtterance(text);
+        u.lang = voice ? voice.lang : 'en-US';
+        if (voice) u.voice = voice;
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+  };
+})();
+/* 적힌 그대로 읽되, a(n)→a, (to)→to, ~·…→쉼, 한글·+는 뺌 (A·B·V는 그대로 읽음) */
+const sayText = it => String(it.en)
+  .replace(/(\S)\([^)]*\)/g, '$1').replace(/\([^)]*\)(\S)/g, '$1').replace(/[()]/g, '')
+  .replace(/\bsb\b/gi, 'somebody').replace(/\bsth\b/gi, 'something')
+  .replace(/…|\.{3}|~/g, ',').replace(/\+/g, ' ')
+  .split(/\s+/).filter(w => w && !HANGUL.test(w)).join(' ')
+  .replace(/\s*,[\s,]*/g, ', ').replace(/^[,\s]+|[,\s]+$/g, '');
+const AUDIO_BASE = 'audio/';
+const player = (() => { try { return typeof Audio === 'function' ? new Audio() : null; } catch (e) { return null; } })();
+const audioURL = it => AUDIO_BASE + it.audio + '.mp3';
+/* 카드가 뜰 때 미리 받아 두면 눌렀을 때 바로 나옴 */
+function primeAudio(it) {
+  if (!player || !it || !it.audio) return;
+  try { if (!player.src || player.src.slice(-audioURL(it).length) !== audioURL(it)) { player.preload = 'auto'; player.src = audioURL(it); } } catch (e) {}
+}
+function speak(it) {
+  if (!it) return;
+  if (player && it.audio) {
+    try {
+      if (!player.src || player.src.slice(-audioURL(it).length) !== audioURL(it)) player.src = audioURL(it);
+      try { player.currentTime = 0; } catch (e) {}
+      const p = player.play();
+      if (p && typeof p.catch === 'function') p.catch(() => TTS.say(sayText(it)));
+      return;
+    } catch (e) {}
+  }
+  TTS.say(sayText(it));
+}
+const canSpeak = it => !!(it && ((player && it.audio) || TTS.ok));
+const SAY_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+const sayBtn = (it, id, label) => canSpeak(it) ? `<button class="say" type="button" data-say="${id}" aria-label="발음 듣기">${SAY_ICON}${label ? `<span>${label}</span>` : ''}</button>` : '';
+
+/* 기기별 저장 (없어도 동작) */
+const mem = {};
+const store = {
+  get(k) { try { const v = localStorage.getItem(k); if (v != null) return JSON.parse(v); } catch (e) {} try { return k in mem ? JSON.parse(mem[k]) : null; } catch (e) { return null; } },
+  set(k, v) { const j = JSON.stringify(v); mem[k] = j; try { localStorage.setItem(k, j); } catch (e) {} },
+  del(k) { delete mem[k]; try { localStorage.removeItem(k); } catch (e) {} }
+};
+
+const S = { view: 'home', sess: null, result: null, confirm: null, banner: '', pasteOpen: false };
+let SET = null, R = {}, C = null, clockT = null;
+
+function customSets() { const l = store.get(K.custom); return Array.isArray(l) ? l : []; }
+function rawSets() { return (PASTE ? customSets() : []).concat(BUILTIN); }
+function findRaw(id) { return rawSets().find(s => s.id === id) || null; }
+function getRec(id) { const r = store.get(K.rec(id)); return r && typeof r === 'object' ? r : {}; }
+function liveSess(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 1 && ss.n === n && ss.phase && ss.phase !== 'done' ? ss : null; }
+function liveOrder(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 2 && ss.kind === 'order' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
+function liveAny(raw) { return raw.kind === 'order' ? liveOrder(raw.id, prepareOrder(raw).passages.length) : liveSess(raw.id, prepareSet(raw).items.length); }
+function save() { const s = S.sess; if (s && s.phase !== 'done') store.set(K.sess(s.setId), s); }
+
+/* ---------- 진행 엔진 ---------- */
+function newSession(set, mode) {
+  const n = set.items.length;
+  let pool = set.items.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { k: 0, ek: 0, ke: 0, m: 0, f: 0, ff: 0, sn: 0 }; });
+  const s = { v: 1, setId: set.id, n, mode, pool, st, b: 0, batches: [], phase: '', queue: [], recent: [], fDone: 0, ms: 0, lt: Date.now(), bms0: 0 };
+  if (mode === 'quick') startFinal(s);
+  else { s.batches = makeBatches(set, pool); startSort(s); }
+  return s;
+}
+function spreadRecent(q, recent) {
+  if (q.length < 4) return;
+  const r = new Set(recent.slice(-2));
+  for (let pass = 0; pass < 2; pass++) {
+    for (let i = 0; i < 2; i++) {
+      if (r.has(q[i].id)) { const c = q.splice(i, 1)[0]; q.splice(Math.min(q.length, 3 + i), 0, c); }
+    }
+  }
+}
+function startSort(s) {
+  s.phase = 'sort'; s.bms0 = s.ms;
+  s.queue = shuffle(s.batches[s.b].slice()).map(id => ({ id, d: 'ek' }));
+  spreadRecent(s.queue, s.recent);
+}
+function startLearn(s) {
+  s.phase = 'learn';
+  const q = [];
+  s.batches[s.b].forEach(id => {
+    const x = s.st[id];
+    if (x.k) { if (SET.items[id].ke) q.push({ id, d: 'ke' }); else x.m = 1; }
+    else q.push({ id, d: 'ek' });
+  });
+  shuffle(q); spreadRecent(q, s.recent);
+  s.queue = q;
+}
+function startFinal(s) {
+  s.phase = 'final'; s.fDone = 0; s.bms0 = s.ms;
+  s.queue = shuffle(s.pool.slice()).map(id => ({ id, d: SET.items[id].ke && Math.random() < 0.5 ? 'ke' : 'ek' }));
+  spreadRecent(s.queue, s.recent);
+}
+/* 틀린 카드는 3~6장 뒤로. 남은 카드가 모자라면 이미 외운 단어로 사이를 채워 바로 다시 나오지 않게 함 */
+function requeue(s, card, lo, hi) {
+  const gap = lo + rnd(hi - lo + 1);
+  if (s.queue.length < gap) pad(s, card.id, gap - s.queue.length);
+  s.queue.splice(Math.min(gap, s.queue.length), 0, card);
+}
+function pad(s, avoid, need) {
+  const scope = s.phase === 'learn' ? s.batches[s.b] : s.pool;
+  const inQ = new Set(s.queue.map(c => c.id));
+  const rec = new Set(s.recent.slice(-2));
+  const cand = shuffle(scope.filter(id => id !== avoid && !inQ.has(id) && !rec.has(id) && (s.phase !== 'learn' || s.st[id].m)));
+  const k = Math.min(need, 3, cand.length);
+  for (let i = 0; i < k; i++) s.queue.push({ id: cand[i], d: SET.items[cand[i]].ke && Math.random() < 0.5 ? 'ke' : 'ek', rv: 1 });
+}
+/* res: 영→한 'yes'|'meh'|'no', 한→영 'ok'|'hint'|'wrong'|'dunno' */
+function answer(res) {
+  const s = S.sess, card = s.queue.shift();
+  if (!card) return;
+  const id = card.id, x = s.st[id], it = SET.items[id];
+  tick(s); x.sn = 1;
+  if (s.phase === 'sort') {
+    x.k = res === 'yes' ? 1 : 0; x.ek = x.k;
+  } else if (s.phase === 'learn') {
+    if (card.d === 'ek') { if (res === 'yes') x.ek = 1; else { x.ek = 0; x.f++; } }
+    else if (res === 'ok') x.ke = 1;
+    else { x.ke = 0; if (res !== 'hint') x.f++; }
+    const need = !x.ek ? 'ek' : (it.ke && !x.ke ? 'ke' : '');
+    if (need) { x.m = 0; requeue(s, { id, d: need }, 3, need === card.d ? 5 : 6); }
+    else x.m = 1;
+  } else if (s.phase === 'final') {
+    const good = card.d === 'ek' ? res === 'yes' : res === 'ok';
+    if (good) { if (!card.rv) s.fDone++; }
+    else {
+      if (card.rv) s.fDone--;
+      x.ff = 1; if (res !== 'hint') x.f++;
+      requeue(s, { id, d: card.d }, 3, 5);
+    }
+  }
+  s.recent.push(id); if (s.recent.length > 4) s.recent.shift();
+  if (!s.queue.length) endPhase(s);
+  save();
+}
+function endPhase(s) {
+  if (s.phase === 'sort') {
+    const ids = s.batches[s.b], known = ids.filter(id => s.st[id].k).length, unknown = ids.length - known;
+    startLearn(s);
+    S.banner = `거르기 끝 · ${ids.length}개 중 ${known}개 바로 나옴. ` + (unknown ? `이제 안 나온 ${unknown}개 다시 + 철자 확인.` : '이제 철자 확인.');
+    if (!s.queue.length) { s.phase = 'bdone'; S.banner = ''; }
+  } else if (s.phase === 'learn') {
+    s.phase = 'bdone';
+  } else if (s.phase === 'final') {
+    s.phase = 'done'; finish(s);
+  }
+}
+function finish(s) {
+  const pool = s.pool;
+  const hard = pool.filter(id => s.st[id].f >= 2 || s.st[id].ff);
+  const known = s.mode === 'quick' ? pool.filter(id => !s.st[id].ff).length : pool.filter(id => s.st[id].k).length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  S.result = { setId: s.setId, title: SET.title, mode: s.mode, n: pool.length, ms: s.ms, known, hard };
+  store.del(K.sess(s.setId));
+}
+function nextBatch() {
+  const s = S.sess;
+  if (!s) { renderHome(); return; }
+  if (s.b + 1 < s.batches.length) { s.b++; startSort(s); } else startFinal(s);
+  s.lt = Date.now();
+  save(); route();
+}
+function tick(s) { const now = Date.now(); s.ms += Math.max(0, Math.min(now - (s.lt || now), CAP)); s.lt = now; }
+function startClock() {
+  stopClock();
+  const up = () => { const s = S.sess, el = R['st-clock']; if (s && el) el.textContent = fmt(s.ms + Math.max(0, Math.min(Date.now() - s.lt, CAP))); };
+  up(); clockT = setInterval(up, 1000);
+}
+function stopClock() { if (clockT) clearInterval(clockT); clockT = null; }
+
+/* ---------- 순서 맞추기 엔진 ----------
+   세트(과)의 지문을 교과서 순서대로 하나씩 냄. 지문마다 문장을 새로 섞고, 학생이 다 놓으면 채점.
+   틀린 지문은 큐 맨 뒤로 가서 다시 나오고, 모든 지문을 맞혀야 끝. st[id] = { t: 시도 수, w: 틀린 수 } */
+function newOrderSession(set, mode) {
+  const n = set.passages.length;
+  let pool = set.passages.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { t: 0, w: 0 }; });
+  const s = { v: 2, kind: 'order', setId: set.id, n, mode, pool, st, queue: pool.slice(), cur: null, done: 0, phase: 'play', ms: 0, lt: Date.now() };
+  openPassage(s);
+  return s;
+}
+function openPassage(s) {
+  const id = s.queue[0];
+  if (id == null) { s.cur = null; return; }
+  s.cur = { id, order: shuffleOrder(SET.passages[id].lines.length), picks: [], fb: null };
+}
+function validOrder(s) {
+  const n = SET.passages.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  if (!Array.isArray(s.pool) || !s.pool.every(ok) || !Array.isArray(s.queue) || !s.queue.every(ok)) return false;
+  if (!s.st || typeof s.st !== 'object' || !s.pool.every(id => s.st[id])) return false;
+  const c = s.cur;
+  if (!c || !ok(c.id) || (s.queue[0] !== c.id && !c.fb)) return false;
+  const m = SET.passages[c.id].lines.length;
+  const perm = a => Array.isArray(a) && a.length === m && a.slice().sort((x, y) => x - y).every((v, i) => v === i);
+  if (!perm(c.order) || !Array.isArray(c.picks) || !c.picks.every(v => Number.isInteger(v) && v >= 0 && v < m) || new Set(c.picks).size !== c.picks.length) return false;
+  return !c.fb || perm(c.fb.picks);
+}
+function orderTap(li) {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const k = c.picks.indexOf(li);
+  if (k >= 0) c.picks.length = k; /* 이미 놓은 문장을 다시 탭 → 거기부터 다시 */
+  else c.picks.push(li);
+  save(); renderOrderPick();
+}
+function orderClear() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  c.picks = []; save(); renderOrderPick();
+}
+function orderCheck() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const p = SET.passages[c.id];
+  if (c.picks.length !== p.lines.length) return;
+  tick(s);
+  const g = gradeOrder(c.picks, p.lines.length), x = s.st[c.id];
+  x.t++;
+  s.queue.shift();
+  if (g.ok) s.done++; else { x.w++; s.queue.push(c.id); }
+  c.fb = { ok: g.ok, right: g.right, picks: c.picks.slice() };
+  save(); renderOrderFeedback();
+}
+function orderNext() {
+  const s = S.sess;
+  if (!s || !s.cur || !s.cur.fb) return;
+  tick(s);
+  if (!s.queue.length) { s.cur = null; finishOrder(s); stopClock(); renderResult(); return; }
+  openPassage(s); save(); renderOrder();
+}
+function finishOrder(s) {
+  const hard = s.pool.filter(id => s.st[id].w > 0);
+  const known = s.pool.length - hard.length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: s.pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  const tries = {};
+  s.pool.forEach(id => { tries[id] = s.st[id].t; });
+  S.result = { kind: 'order', setId: s.setId, title: SET.title, mode: s.mode, n: s.pool.length, ms: s.ms, known, hard, tries };
+  s.phase = 'done';
+  store.del(K.sess(s.setId));
+}
+function beginOrder(raw, mode) {
+  SET = prepareOrder(raw);
+  if (!SET.passages.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveOrder(SET.id, SET.passages.length);
+    if (s && !validOrder(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newOrderSession(SET, 'full');
+  } else s = newOrderSession(SET, mode === 'hard' ? 'hard' : 'full');
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+
+function begin(id, mode) {
+  const raw = findRaw(id);
+  if (!raw) { renderHome(); return; }
+  if (raw.kind === 'order') { beginOrder(raw, mode); return; }
+  SET = prepareSet(raw);
+  if (!SET.items.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveSess(id, SET.items.length);
+    if (s && !validSess(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newSession(SET, 'full');
+  } else s = newSession(SET, mode);
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+function validSess(s) {
+  const n = SET.items.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  return Array.isArray(s.pool) && s.pool.every(ok) && Array.isArray(s.queue) && s.queue.every(c => c && ok(c.id)) &&
+    s.st && typeof s.st === 'object' && s.pool.every(id => s.st[id]) && Array.isArray(s.batches) && Array.isArray(s.recent);
+}
+function route() {
+  const s = S.sess;
+  if (!s) { renderHome(); return; }
+  if (s.kind === 'order') {
+    if (s.phase === 'done') { renderResult(); return; }
+    if (!s.cur) { finishOrder(s); renderResult(); return; }
+    renderOrder(); return;
+  }
+  if (s.phase === 'bdone') { renderPause(); return; }
+  if (s.phase === 'done') { renderResult(); return; }
+  if (!s.queue.length) { endPhase(s); save(); route(); return; }
+  renderStudy();
+}
+
+/* ---------- 목록 화면 ---------- */
+function sessLabel(ss) {
+  const B = (ss.batches || []).length;
+  if (ss.phase === 'final') return `${ss.mode === 'quick' ? '빠른 점검' : '마지막 점검'} ${ss.fDone}/${ss.pool.length}`;
+  if (ss.phase === 'bdone') return `배치 ${ss.b + 1}/${B} 끝`;
+  return `배치 ${ss.b + 1}/${B}`;
+}
+function confirmHTML(cf, sid) {
+  if (!cf) return '';
+  return `
+    <div class="confirm" role="group" aria-label="확인">
+      <span>${cf === 'del' ? '이 세트를 이 기기에서 지울까?' : '진행 중인 기록이 지워져. 새로 시작할까?'}</span>
+      <div class="confirm-btns">
+        <button class="btn btn-quiet btn-small" type="button" data-act="cancel" data-set="${sid}">취소</button>
+        <button class="btn btn-primary btn-small" type="button" data-act="yes-${cf}" data-set="${sid}">${cf === 'del' ? '지우기' : '지우고 시작'}</button>
+      </div>
+    </div>`;
+}
+/* 순서 세트 카드: 과 하나, 지문 수·문장 수, 진행 중/지난 기록, 순서 맞추기·틀린 지문만 */
+function orderCard(raw) {
+  const set = prepareOrder(raw);
+  const n = set.passages.length, lines = set.passages.reduce((a, p) => a + p.lines.length, 0);
+  const ss = liveOrder(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · 맞힌 지문 ${ss.done}/${ss.pool.length} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)} · 한 번에 ${rec.last.known}/${rec.last.n}${rec.last.mode === 'hard' ? ' (틀린 지문만)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">순서 맞추기</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">틀린 지문만 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}지문 · ${lines}문장</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
+function setCard(raw) {
+  if (raw.kind === 'order') return orderCard(raw);
+  const set = prepareSet(raw);
+  const n = set.items.length;
+  const nb = n ? makeBatches(set, set.items.map((_, i) => i)).length : 0;
+  const ss = liveSess(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · ${esc(sessLabel(ss))} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)}${rec.last.mode === 'quick' ? ' (빠른 점검)' : rec.last.mode === 'hard' ? ' (끈질긴 단어)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">외우기</button>`;
+  actions += `<button class="btn btn-quiet" type="button" data-act="quick" data-set="${sid}">빠른 점검</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">끈질긴 단어 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}단어 · 배치 ${nb}</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${set.custom ? `<button class="linkish del" type="button" data-act="del" data-set="${sid}">이 세트 지우기</button>` : ''}
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
+/* 페이지에 단어 세트만 있으면 단어장 안내, 순서 세트만 있으면 순서 맞추기 안내, 둘 다면 둘 다 */
+const VOCAB_RULES = `
+  <section class="rules" aria-labelledby="rules-h">
+    <h2 class="eyebrow" id="rules-h">외우는 방법</h2>
+    <ol>
+      <li><span class="num">1</span><span><b>소리 내서 말한 다음</b> 뜻 보기. 속으로 ‘아 그거’는 모르는 거야.</span></li>
+      <li><span class="num">2</span><span><b>5초 안에 안 나오면 애매.</b> 애매·몰랐어는 몇 장 뒤에 다시 나와.</span></li>
+      <li><span class="num">3</span><span><b>철자는 직접 쳐서</b> 채점. 틀린 단어는 맞힐 때까지 돌아와.</span></li>
+      <li><span class="num">4</span><span><b>마지막에 전체를 섞어서</b> 한 번 더. 맞힌 단어도 다시 꺼내야 오래 가.</span></li>
+    </ol>
+  </section>`;
+const ORDER_RULES = `
+  <section class="rules" aria-labelledby="orules-h">
+    <h2 class="eyebrow" id="orules-h">순서 맞추는 방법</h2>
+    <ol>
+      <li><span class="num">1</span><span><b>교과서·노트는 덮고</b> 해. 보면서 맞추면 시험장에선 안 나와.</span></li>
+      <li><span class="num">2</span><span><b>첫 문장부터 순서대로 탭.</b> 동그라미에 번호가 찍혀. 잘못 눌렀으면 그 문장을 다시 탭 — 거기부터 다시 놓게 돼.</span></li>
+      <li><span class="num">3</span><span><b>다 놓으면 확인.</b> 틀린 지문은 뒤로 갔다가 다시 나와. 다 맞혀야 끝.</span></li>
+      <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>
+    </ol>
+  </section>`;
+function renderHome() {
+  S.view = 'home'; stopClock(); S.sess = null; C = null;
+  const sets = rawSets();
+  const hasV = sets.some(s => s.kind !== 'order'), hasO = sets.some(s => s.kind === 'order');
+  const onlyO = hasO && !hasV;
+  const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.' : hasO ? '단어는 먼저 떠올리고, 본문은 안 보고 다시 세워 봐.' : '눈으로 보는 대신 먼저 떠올리고, 바로 채점해.';
+  app.innerHTML = `
+<div class="wrap home">
+  <header class="masthead">
+    <div class="fields">${FIELDS.map(f => `<span class="field"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></span>`).join('')}</div>
+    <h1>${onlyO ? '본문 순서 맞추기' : '꺼내는 단어장'}</h1>
+    <p class="lede">${lede}</p>
+  </header>
+  ${hasV || !hasO ? VOCAB_RULES : ''}
+  ${hasO ? ORDER_RULES : ''}
+  <section class="sets" aria-labelledby="sets-h">
+    <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : hasO ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
+    ${groupedCards(sets)}
+  </section>
+  ${PASTE ? `<details class="paste" id="paste"${S.pasteOpen ? ' open' : ''}>
+    <summary><span class="sum-l">단어 직접 넣기</span><span class="sum-r">이 기기에만 저장</span></summary>
+    <div class="paste-body">
+      <label for="p-title">세트 이름</label>
+      <input type="text" id="p-title" maxlength="40" placeholder="예: 13강 1~2번" autocomplete="off">
+      <label for="p-text">엑셀에서 영어·뜻 칸을 복사해 붙여넣기 (번호·본문 풀이 칸이 같이 와도 괜찮아)</label>
+      <textarea id="p-text" rows="6" spellcheck="false" placeholder="deliberate&#9;의도적인 (a.)&#9;일부러 계획해서 하는"></textarea>
+      <p class="paste-status" id="p-status">한 줄에 단어 하나. 지문 제목 줄이 있으면 지문별로 묶여.</p>
+      <button class="btn btn-primary" id="p-save" type="button" disabled>세트 만들기</button>
+    </div>
+  </details>` : ''}
+  <p class="foot">${hasV || !hasO ? '외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>' : ''}진행 기록은 이 기기 브라우저에만 저장돼. 매번 같은 브라우저로 열어야 이어서 할 수 있어.</p>
+</div>`;
+  bindHome();
+}
+/* 세트에 group이 있으면 묶음 제목을 달아 줌 (예: 어휘평가 2차 / 2학기 기말) */
+function groupedCards(sets) {
+  let last = null;
+  return sets.map(s => {
+    const g = s.group || '';
+    const head = g && g !== last ? `<h3 class="group-h">${esc(g)}</h3>` : '';
+    last = g;
+    return head + setCard(s);
+  }).join('');
+}
+function deleteCustom(id) {
+  store.set(K.custom, customSets().filter(s => s.id !== id));
+  store.del(K.sess(id)); store.del(K.rec(id));
+}
+function bindHome() {
+  app.onclick = e => {
+    const b = e.target.closest('[data-act]');
+    if (!b) return;
+    const act = b.dataset.act, id = b.dataset.set;
+    const raw = findRaw(id);
+    if (!raw) return;
+    const live = liveAny(raw);
+    if (act === 'resume') { begin(id, 'resume'); return; }
+    if (act === 'cancel') { S.confirm = null; renderHome(); return; }
+    if (act === 'del') { S.confirm = { setId: id, act: 'del' }; renderHome(); return; }
+    if (act === 'yes-del') { deleteCustom(id); S.confirm = null; renderHome(); return; }
+    if (act.indexOf('yes-') === 0) { store.del(K.sess(id)); S.confirm = null; begin(id, act.slice(4)); return; }
+    if (act === 'full' || act === 'quick' || act === 'hard') {
+      if (live) { S.confirm = { setId: id, act }; renderHome(); return; }
+      begin(id, act);
+    }
+  };
+  const det = $('#paste'), pt = $('#p-text'), ps = $('#p-status'), pb = $('#p-save'), pti = $('#p-title');
+  if (!det) return;
+  det.addEventListener('toggle', () => { S.pasteOpen = det.open; });
+  let parsed = null;
+  pt.addEventListener('input', () => {
+    parsed = parsePaste(pt.value);
+    if (!pt.value.trim()) { ps.className = 'paste-status'; ps.textContent = '한 줄에 단어 하나. 지문 제목 줄이 있으면 지문별로 묶여.'; pb.disabled = true; return; }
+    if (!parsed.n) { ps.className = 'paste-status bad'; ps.textContent = '영어와 뜻을 못 나눴어. 엑셀에서 영어 칸과 뜻 칸을 같이 복사해 줘.'; pb.disabled = true; return; }
+    const f = parsed.sections[0].items[0];
+    ps.className = 'paste-status ok';
+    ps.innerHTML = `단어 <b>${parsed.n}</b>개 · 묶음 ${parsed.sections.length}개 인식${parsed.skipped ? ` · ${parsed.skipped}줄은 못 읽어서 뺐어` : ''}<br><span class="mono">${esc(f[0])}</span> → ${esc(f[1])}`;
+    pb.disabled = false;
+  });
+  pb.addEventListener('click', () => {
+    if (!parsed || !parsed.n) return;
+    const d = new Date();
+    const title = pti.value.trim() || `내 단어 ${d.getMonth() + 1}/${d.getDate()}`;
+    const list = customSets();
+    list.unshift({ id: 'c' + Date.now().toString(36), title, note: '직접 넣은 단어', custom: true, sections: parsed.sections });
+    store.set(K.custom, list);
+    S.pasteOpen = false;
+    renderHome();
+    window.scrollTo(0, 0);
+  });
+}
+
+/* ---------- 공부 화면 ---------- */
+const STUDY = `
+<div class="wrap study" id="st-root">
+  <div class="bar">
+    <button class="back" id="st-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="st-title"></div><div class="bar-sub" id="st-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="st-track"></div>
+  <div class="banner" id="st-banner" hidden></div>
+  <section class="card" id="st-card">
+    <div class="card-top"><span class="dir" id="c-dir"></span><span class="left mono" id="c-left"></span></div>
+    <div class="zone" id="ek-zone">
+      <div class="word" id="ek-word" lang="en"></div>
+      <div class="say-row" id="ek-say"></div>
+      <div class="tbar" id="ek-tbar" aria-hidden="true"><i></i></div>
+      <div class="ek-hint" id="ek-hint"></div>
+      <div class="reveal" id="ek-reveal" hidden>
+        <div class="core" id="ek-core"></div>
+        <div class="notes" id="ek-notes"></div>
+      </div>
+    </div>
+    <div class="zone" id="ke-zone" hidden>
+      <div class="ko-prompt" id="ke-core"></div>
+      <div class="ke-fb" id="ke-fb" aria-live="polite"></div>
+      <div class="slots" id="ke-slots" hidden></div>
+      <form class="answer" id="ke-form" novalidate>
+        <label class="sr" for="ke-input">영어로 쓰기</label>
+        <input id="ke-input" type="text" lang="en" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go">
+        <button class="btn btn-primary" id="ke-go" type="submit">확인</button>
+      </form>
+      <div class="ke-tools" id="ke-tools">
+        <button class="linkish" id="ke-hint" type="button">힌트 · 글자 수와 첫 글자</button>
+        <button class="linkish" id="ke-dunno" type="button">모르겠어</button>
+      </div>
+    </div>
+    <div class="stamp" id="st-stamp" aria-hidden="true"></div>
+  </section>
+  <div class="actions" id="ek-actions">
+    <button class="btn btn-primary wide big" id="ek-show" type="button">뜻 보기</button>
+    <div class="grade" id="ek-grade" hidden>
+      <button class="btn" type="button" data-g="no">몰랐어</button>
+      <button class="btn" type="button" data-g="meh">애매해</button>
+      <button class="btn btn-primary" type="button" data-g="yes">알았어</button>
+    </div>
+  </div>
+</div>`;
+
+function renderStudy() {
+  S.view = 'study'; app.onclick = null;
+  app.innerHTML = STUDY;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  R['st-title'].textContent = SET.title;
+  R['st-back'].onclick = () => { if (C) { clearTimeout(C.timer); clearTimeout(C.late); } tick(S.sess); save(); renderHome(); };
+  R['ek-show'].onclick = () => reveal(false);
+  R['ek-zone'].onclick = () => reveal(false);
+  R['ek-grade'].onclick = e => { const b = e.target.closest('[data-g]'); if (b) gradeEK(b.dataset.g); };
+  R['ke-form'].onsubmit = onKESubmit;
+  ['ke-go', 'ke-hint', 'ke-dunno'].forEach(k => R[k].addEventListener('pointerdown', e => { if (document.activeElement === R['ke-input']) e.preventDefault(); }));
+  R['ke-hint'].onclick = useHint;
+  R['ke-dunno'].onclick = dunno;
+  /* 발음 버튼: 카드를 눌러 뜻이 열리지 않게 막고, 한→영 입력 중엔 키보드가 닫히지 않게 함 */
+  R['st-card'].addEventListener('pointerdown', e => { if (e.target.closest('[data-say]') && document.activeElement === R['ke-input']) e.preventDefault(); });
+  R['st-card'].addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (!b || !C) return;
+    e.stopPropagation();
+    speak(SET.items[C.id]);
+  }, true);
+  window.scrollTo(0, 0);
+  showCard();
+  startClock();
+}
+/* 묶음이 25개 이하면 OMR 동그라미, 그보다 크면 막대(외운 것 진하게 + 본 것 연하게) */
+function trackHTML(n, full, dot) {
+  if (n > 25) {
+    const w = x => (x / n * 100).toFixed(1) + '%';
+    return `<div class="meter" aria-hidden="true"><i style="width:${w(full)}"></i><b style="width:${w(dot)}"></b></div>`;
+  }
+  let b = '';
+  for (let i = 0; i < n; i++) b += `<span class="bb${i < full ? ' full' : i < full + dot ? ' dot' : ''}"></span>`;
+  return `<div class="track-grid" aria-hidden="true"><div class="ticks">${'<i></i>'.repeat(n)}</div><div class="bubbles">${b}</div></div>`;
+}
+function updateHeader() {
+  const s = S.sess;
+  let sub = s.phase === 'final'
+    ? `${s.mode === 'quick' ? '빠른 점검' : '마지막 점검'} · 전체 섞어서 한 번씩`
+    : `배치 ${s.b + 1}/${s.batches.length} · ${s.phase === 'sort' ? '거르기' : '집중'}`;
+  if (s.mode === 'hard') sub = '끈질긴 단어 · ' + sub;
+  R['st-sub'].textContent = sub;
+}
+function updateTrack() {
+  const s = S.sess, el = R['st-track'];
+  if (s.phase === 'final') {
+    const n = s.pool.length, k = Math.max(0, s.fDone);
+    el.innerHTML = `<div class="meter" role="progressbar" aria-label="점검 진행" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${k}"><i style="width:${(k / n * 100).toFixed(1)}%"></i></div><div class="track-n mono">${k}/${n}</div>`;
+    return;
+  }
+  const ids = s.batches[s.b], n = ids.length;
+  let full = 0, dot = 0;
+  ids.forEach(id => { const x = s.st[id]; if (s.phase === 'learn' && x.m) full++; else if (x.sn) dot++; });
+  const label = s.phase === 'learn' ? `${n}개 중 ${full}개 외움` : `${n}개 중 ${dot}개 거름`;
+  el.innerHTML = trackHTML(n, full, dot) + `<div class="track-n mono" aria-label="${label}">${s.phase === 'learn' ? full : dot}/${n}</div>`;
+}
+function leftText() {
+  const s = S.sess;
+  if (s.phase === 'final') return `남은 ${s.pool.length - s.fDone}`;
+  if (s.phase === 'sort') return `남은 ${s.queue.length}`;
+  return `남은 ${s.batches[s.b].filter(id => !s.st[id].m).length}`;
+}
+function showCard() {
+  const s = S.sess, card = s.queue[0];
+  if (!card) { route(); return; }
+  if (C) { clearTimeout(C.timer); clearTimeout(C.late); }
+  const it = SET.items[card.id];
+  C = { d: card.d, id: card.id, rv: !!card.rv, revealed: false, state: 'ask', hint: false, busy: false, t0: performance.now(), timer: 0, late: 0, pending: '' };
+  updateHeader(); updateTrack();
+  if (S.banner) { R['st-banner'].textContent = S.banner; R['st-banner'].hidden = false; S.banner = ''; }
+  else R['st-banner'].hidden = true;
+  R['st-stamp'].className = 'stamp';
+  R['c-dir'].innerHTML = `<b>${card.d === 'ek' ? '영→한' : '한→영'}</b><span>${card.rv ? '복습' : card.d === 'ek' ? '말하고 넘기기' : '직접 쓰기'}</span>`;
+  R['c-left'].textContent = leftText();
+  R['st-root'].classList.toggle('ke-mode', card.d === 'ke');
+  if (card.d === 'ek') {
+    if (document.activeElement === R['ke-input']) R['ke-input'].blur();
+    R['ke-zone'].hidden = true; R['ek-zone'].hidden = false; R['ek-actions'].hidden = false;
+    R['ek-word'].textContent = it.en;
+    R['ek-say'].innerHTML = sayBtn(it, card.id, '발음');
+    primeAudio(it);
+    R['ek-reveal'].hidden = true; R['ek-show'].hidden = false; R['ek-grade'].hidden = true;
+    R['ek-hint'].textContent = '뜻을 소리 내서 말한 다음 뜻 보기';
+    R['ek-hint'].classList.remove('late');
+    const bar = R['ek-tbar'];
+    bar.hidden = false; bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
+    C.late = setTimeout(() => {
+      if (C && C.d === 'ek' && !C.revealed) { R['ek-hint'].textContent = '5초 넘었으면 애매로 눌러'; R['ek-hint'].classList.add('late'); }
+    }, 5000);
+  } else {
+    R['ek-zone'].hidden = true; R['ek-actions'].hidden = true; R['ke-zone'].hidden = false;
+    R['ke-core'].textContent = kePrompt(it.core);
+    primeAudio(it);
+    R['ke-slots'].hidden = true; R['ke-slots'].innerHTML = '';
+    R['ke-fb'].innerHTML = '';
+    R['ke-tools'].hidden = false; R['ke-hint'].disabled = false;
+    R['ke-go'].textContent = '확인';
+    R['ke-input'].value = '';
+    try { R['ke-input'].focus({ preventScroll: true }); } catch (e) { R['ke-input'].focus(); }
+  }
+}
+function reveal(force) {
+  if (!C || C.d !== 'ek' || C.revealed) return;
+  if (!force && performance.now() - C.t0 < 300) return; /* 연타로 다음 카드 뜻이 바로 열리는 것 방지 */
+  C.revealed = true; clearTimeout(C.late);
+  const it = SET.items[C.id];
+  R['ek-core'].textContent = it.core;
+  R['ek-notes'].innerHTML = it.notes.map(n => `<p>${esc(n)}</p>`).join('');
+  R['ek-reveal'].hidden = false;
+  R['ek-tbar'].classList.remove('run'); R['ek-tbar'].hidden = true;
+  R['ek-hint'].classList.remove('late');
+  R['ek-hint'].textContent = '굵은 뜻이 나왔으면 알았어';
+  R['ek-show'].hidden = true; R['ek-grade'].hidden = false;
+}
+function gradeEK(g) {
+  if (!C || C.d !== 'ek' || !C.revealed || C.busy) return;
+  C.busy = true;
+  answer(g); next();
+}
+function next() {
+  const s = S.sess;
+  if (s && (s.phase === 'sort' || s.phase === 'learn' || s.phase === 'final') && s.queue.length) showCard();
+  else { stopClock(); route(); }
+}
+function stamp(kind) { const el = R['st-stamp']; el.className = 'stamp'; void el.offsetWidth; el.className = 'stamp on ' + kind; }
+/* 한→영 문제에선 답을 흘리는 영어 괄호(예: "(pl. stimuli)")를 지움. 품사 표시 (v.) (n.) 등은 남김 */
+function kePrompt(core) {
+  const s = String(core).replace(/\s*\((?!(?:n|v|a|ad|adj|adv|prep|conj|pron)\.\))[^)]*[A-Za-z][^)]*\)/g, '').trim();
+  return s || core;
+}
+function otherHit(typed, id) {
+  for (let i = 0; i < SET.items.length; i++) if (i !== id && SET.items[i].ke && matchItem(typed, SET.items[i])) return i;
+  return -1;
+}
+function diffParts(typed, ans) {
+  const A = Array.from(typed), B = Array.from(ans);
+  const mk = lcsMask(A.map(c => c.toLowerCase()), B.map(c => c.toLowerCase()));
+  return {
+    a: A.map((c, i) => mk[0][i] ? esc(c) : `<span class="xtra">${esc(c)}</span>`).join(''),
+    b: B.map((c, i) => mk[1][i] ? esc(c) : `<span class="miss">${esc(c)}</span>`).join('')
+  };
+}
+function fbDone(btnText) { R['ke-tools'].hidden = true; R['ke-go'].textContent = btnText; }
+function onKESubmit(e) {
+  e.preventDefault();
+  if (!C || C.d !== 'ke') return;
+  if (C.state === 'wait' || C.state === 'fb') { finishKE(); return; }
+  if (C.state !== 'ask') return;
+  const typed = R['ke-input'].value.trim(), it = SET.items[C.id];
+  if (!typed) { R['ke-fb'].innerHTML = `<p class="warn">써 보고 확인해. 모르겠으면 아래 ‘모르겠어’.</p>`; return; }
+  if (!/[a-z]/i.test(typed)) { R['ke-fb'].innerHTML = `<p class="warn">영어 자판으로 바꿔서 써 줘.</p>`; return; }
+  const o = matchItem(typed, it) ? -1 : otherHit(typed, C.id);
+  /* 뜻 칸이 완전히 같은 단어(예: prior / former = 이전의)는 어느 쪽을 써도 정답 */
+  const twin = o >= 0 && SET.items[o].core === it.core;
+  if (o < 0 && matchItem(typed, it) || twin) {
+    C.state = 'wait'; C.pending = C.hint ? 'hint' : 'ok';
+    stamp('ok'); fbDone('다음');
+    R['ke-fb'].innerHTML = `<p class="ok-word" lang="en">${esc(it.en)}</p>` +
+      (twin ? `<p class="note"><span lang="en">${esc(SET.items[o].en)}</span>도 같은 뜻이라 정답이야.</p>` : '') +
+      (C.hint ? `<p class="note">힌트를 봤으니 몇 장 뒤에 한 번 더 나와.</p>` : '');
+    C.timer = setTimeout(finishKE, C.hint || twin ? 1500 : 700);
+    return;
+  }
+  if (o >= 0) {
+    R['ke-fb'].innerHTML = `<p class="warn">‘<span lang="en">${esc(typed)}</span>’는 ‘${esc(SET.items[o].core)}’ 뜻의 다른 단어야. 다시 써 봐.</p>`;
+    try { R['ke-input'].select(); } catch (_) {}
+    return;
+  }
+  C.state = 'fb'; C.pending = 'wrong';
+  stamp('x'); fbDone('다음');
+  const d = diffParts(typed, it.vars[0]);
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>내 답</dt><dd class="diff" lang="en">${d.a}</dd></div><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${d.b}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">빨간 글자만 확인하고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+}
+function dunno() {
+  if (!C || C.d !== 'ke' || C.state !== 'ask') return;
+  const it = SET.items[C.id];
+  C.state = 'fb'; C.pending = 'dunno';
+  fbDone('다음');
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${esc(it.vars[0])}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">철자를 눈에 담고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+}
+function slotsHTML(it) {
+  let first = true;
+  return expTokens(it.vars[0]).map(x => {
+    if (x.ph) return `<span class="ph">${esc(x.w)}</span>`;
+    const s = Array.from(x.w).map((ch, i) => /[a-z]/i.test(ch) ? (first && i === 0 ? esc(ch.toLowerCase()) : '_') : esc(ch)).join('');
+    first = false;
+    return `<span>${s}</span>`;
+  }).join('');
+}
+function useHint() {
+  if (!C || C.d !== 'ke' || C.state !== 'ask' || C.hint) return;
+  C.hint = true;
+  R['ke-slots'].innerHTML = slotsHTML(SET.items[C.id]);
+  R['ke-slots'].hidden = false;
+  R['ke-hint'].disabled = true;
+}
+function finishKE() {
+  if (!C || C.d !== 'ke' || (C.state !== 'wait' && C.state !== 'fb')) return;
+  clearTimeout(C.timer);
+  const res = C.pending;
+  C.state = 'done';
+  answer(res); next();
+}
+
+/* ---------- 순서 맞추기 화면 ---------- */
+const ORDER = `
+<div class="wrap study" id="od-root">
+  <div class="bar">
+    <button class="back" id="od-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="od-title"></div><div class="bar-sub" id="od-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="od-track"></div>
+  <section class="od-head">
+    <div class="card-top"><span class="dir" id="od-dir"></span><span class="left mono" id="od-left"></span></div>
+    <h2 class="od-name" id="od-name"></h2>
+    <p class="od-hint" id="od-hint" aria-live="polite"></p>
+  </section>
+  <ol class="od-list" id="od-list" aria-label="문장"></ol>
+  <div class="od-foot" id="od-foot"></div>
+</div>`;
+
+function renderOrder() {
+  S.view = 'study'; app.onclick = null; C = null;
+  app.innerHTML = ORDER;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  const s = S.sess;
+  R['od-title'].textContent = SET.title;
+  R['od-back'].onclick = () => { tick(s); save(); renderHome(); };
+  R['od-list'].addEventListener('click', e => { const b = e.target.closest('[data-line]'); if (b) orderTap(+b.dataset.line); });
+  window.scrollTo(0, 0);
+  if (s.cur.fb) renderOrderFeedback(); else renderOrderPick();
+  startClock();
+}
+function orderHeader() {
+  const s = S.sess, p = SET.passages[s.cur.id], n = s.pool.length;
+  R['od-sub'].textContent = (s.mode === 'hard' ? '틀린 지문만 · ' : '') + `맞힌 지문 ${s.done}/${n}`;
+  R['od-track'].innerHTML = trackHTML(n, s.done, 1) + `<div class="track-n mono" aria-label="맞힌 지문 ${s.done}/${n}">${s.done}/${n}</div>`;
+  R['od-left'].textContent = `남은 지문 ${s.queue.length}`;
+  R['od-name'].textContent = p.name;
+}
+function renderOrderPick() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length, k = c.picks.length;
+  orderHeader();
+  R['od-dir'].innerHTML = `<b>순서</b><span>${esc(p.kind)} · ${n}문장</span>`;
+  R['od-hint'].className = 'od-hint';
+  R['od-hint'].textContent = k === 0 ? '안 보고, 첫 문장부터 순서대로 탭해.'
+    : k < n ? `${k}번째까지 놓았어. 잘못 눌렀으면 그 문장을 다시 탭해 — 거기부터 다시.` : '다 놓았어. 한 번 훑어보고 확인.';
+  R['od-list'].innerHTML = c.order.map(li => {
+    const at = c.picks.indexOf(li);
+    return `<li><button class="od-line${at >= 0 ? ' on' : ''}" type="button" data-line="${li}" aria-pressed="${at >= 0}"><span class="od-bb" aria-hidden="true">${at >= 0 ? at + 1 : ''}</span><span lang="en">${esc(p.lines[li])}</span></button></li>`;
+  }).join('');
+  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-go" type="button"${k === n ? '' : ' disabled'}>${k === n ? '확인' : `확인 <span class="mono">${k}/${n}</span>`}</button>`
+    + (k >= 2 && k < n ? `<button class="linkish" id="od-clear" type="button">처음부터 다시 놓기</button>` : '');
+  $('#od-go').onclick = orderCheck;
+  const cl = $('#od-clear'); if (cl) cl.onclick = orderClear;
+}
+/* 확인 뒤: 교과서 순서대로 다시 나열하고, 자리를 틀린 문장에 내가 놓은 번호를 달아 줌 */
+function renderOrderFeedback() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length, fb = c.fb;
+  orderHeader();
+  R['od-dir'].innerHTML = `<b>${fb.ok ? '정답' : '다시'}</b><span>${esc(p.kind)} · ${n}문장</span>`;
+  R['od-hint'].className = 'od-hint ' + (fb.ok ? 'ok' : 'bad');
+  R['od-hint'].textContent = fb.ok ? `${n}문장 다 제자리야.` : `${n}문장 중 ${fb.right}개 제자리. 빨간 문장만 다시 봐 — 이 지문은 뒤에 다시 나와.`;
+  R['od-list'].innerHTML = p.lines.map((t, i) => {
+    const mine = fb.picks.indexOf(i) + 1, miss = mine !== i + 1;
+    return `<li class="od-line ${miss ? 'miss' : 'hit'}"><span class="od-bb" aria-hidden="true">${i + 1}</span><span><span lang="en">${esc(t)}</span>${miss ? `<span class="od-mine">내 답 ${mine}번째</span>` : ''}</span></li>`;
+  }).join('');
+  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-next" type="button">${s.queue.length ? '다음 지문' : '결과 보기'}</button>`;
+  $('#od-next').onclick = orderNext;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- 배치 끝 / 결과 ---------- */
+function renderPause() {
+  S.view = 'pause'; app.onclick = null; stopClock();
+  const s = S.sess, ids = s.batches[s.b], n = ids.length;
+  const known = ids.filter(id => s.st[id].k).length;
+  const last = s.b + 1 >= s.batches.length;
+  app.innerHTML = `
+<div class="wrap pause">
+  <div class="eyebrow">${s.mode === 'hard' ? '끈질긴 단어 · ' : ''}배치 ${s.b + 1}/${s.batches.length} 끝</div>
+  <div class="track">${trackHTML(n, n, 0)}<div class="track-n mono">${n}/${n}</div></div>
+  <h2 class="big-h">${n}개 모두 꺼냈어</h2>
+  <dl class="stats">
+    <div><dt>이번 배치</dt><dd>${fmt(s.ms - (s.bms0 || 0))}</dd></div>
+    <div><dt>바로 나온 단어</dt><dd>${known}</dd></div>
+    <div><dt>전체 시간</dt><dd>${fmt(s.ms)}</dd></div>
+  </dl>
+  <p class="note">${last ? `이제 ${s.pool.length}개 전체를 섞어서 한 번씩 꺼내. 영→한과 한→영이 섞여 나와.` : '여기까지 저장됐어. 쉬었다 와도 다음 배치부터 이어서 할 수 있어.'}</p>
+  <div class="actions">
+    <button class="btn btn-primary wide big" id="go-next" type="button">${last ? '마지막 점검 시작' : `다음 배치 (${s.b + 2}/${s.batches.length})`}</button>
+    <button class="btn btn-quiet wide" id="go-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  $('#go-next').onclick = nextBatch;
+  $('#go-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+/* 순서 세트 결과: 한 번에 맞힌 지문 수, 다시 한 지문 목록(몇 번 만에 맞혔는지). 제출 칸은 없음 */
+function renderOrderResult(r) {
+  S.sess = null;
+  const hardP = r.hard.map(id => ({ id, p: SET.passages[id] })).filter(x => x.p);
+  const kind = r.mode === 'hard' ? '틀린 지문만' : '순서 맞추기';
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.n}지문 다 세웠어</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>한 번에 맞힘</dt><dd>${r.known}</dd></div>
+    <div><dt>다시 한 지문</dt><dd>${hardP.length}</dd></div>
+  </dl>
+  ${hardP.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">다시 한 지문</h3>
+    <p class="note">한 번에 못 맞힌 지문이야. 시험 전에 한 번 더 세워 봐.</p>
+    <ul>${hardP.map(x => `<li><span class="en">${esc(x.p.name)}</span><span>${esc(x.p.kind)} ${x.p.lines.length}문장 · ${r.tries[x.id] || 2}번 만에</span></li>`).join('')}</ul>
+  </section>` : `<p class="note">전부 한 번에 맞혔어.</p>`}
+  <p class="note">시험 전날 한 번 더 세우면 오래 가.</p>
+  <div class="actions">
+    ${hardP.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">틀린 지문만 다시</button>` : ''}
+    <button class="btn ${hardP.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+function renderResult() {
+  S.view = 'result'; app.onclick = null; stopClock();
+  const r = S.result;
+  if (!r) { renderHome(); return; }
+  if (r.kind === 'order') { renderOrderResult(r); return; }
+  S.sess = null;
+  const hardItems = r.hard.map(id => SET.items[id]).filter(Boolean);
+  const kind = r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기';
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.mode === 'quick' ? `${r.n}개 점검 끝` : `${r.n}개 다 꺼냈어`}</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>${r.mode === 'quick' ? '한 번에 맞힘' : '바로 나온 단어'}</dt><dd>${r.known}</dd></div>
+    <div><dt>끈질긴 단어</dt><dd>${hardItems.length}</dd></div>
+  </dl>
+  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.</p>` : ''}
+  ${FORM && r.mode === 'full' ? `
+  <section class="submit" aria-labelledby="sub-h">
+    <h3 id="sub-h">선생님께 제출</h3>
+    <label for="sub-name">이름</label>
+    <div class="submit-row">
+      <input type="text" id="sub-name" maxlength="20" autocomplete="name" placeholder="이름 쓰기">
+      <a class="btn btn-primary" id="sub-go" href="#" target="_blank" rel="noopener">제출하러 가기</a>
+    </div>
+    <p class="note" id="sub-note">구글폼이 결과가 채워진 채로 열려. 거기서 <b>제출(Submit)</b>까지 눌러야 끝나.</p>
+  </section>` : ''}
+  ${hardItems.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">끈질긴 단어</h3>
+    <p class="note">여러 번 틀렸거나 마지막 점검에서 걸린 단어야.</p>
+    <ul class="${hardItems.some(canSpeak) ? 'with-say' : ''}">${hardItems.map((it, i) => `<li><span class="en" lang="en">${esc(it.en)}</span><span>${esc(it.core)}</span>${sayBtn(it, i, '') || (hardItems.some(canSpeak) ? '<span></span>' : '')}</li>`).join('')}</ul>
+  </section>` : `<p class="note">끈질긴 단어 없이 끝났어.</p>`}
+  <p class="note">시험 전날 ‘빠른 점검’을 한 번 더 하면 오래 가.</p>
+  <div class="actions">
+    ${hardItems.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">끈질긴 단어만 다시</button>` : ''}
+    <button class="btn ${hardItems.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  if (FORM && r.mode === 'full') bindSubmit(r, kind, hardItems);
+  const hl = $('.hard ul');
+  if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(hardItems[+b.dataset.say]); });
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+
+/* 결과를 선생님 구글폼으로: 미리 채워진 링크를 새 탭으로 열고, 학생이 폼에서 제출을 누름 */
+function bindSubmit(r, kind, hardItems) {
+  const nameEl = $('#sub-name'), go = $('#sub-go'), note = $('#sub-note');
+  const noteHTML = note.innerHTML;
+  const fmtKo = ms => { const t = Math.max(0, Math.round(ms / 1000)); return `${Math.floor(t / 60)}분 ${t % 60}초`; };
+  const hardText = `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : '');
+  const sync = () => {
+    const pairs = [['usp', 'pp_url'], [FORM.name, nameEl.value.trim()], [FORM.school, CFG.school || ''], [FORM.set, `${r.title} · ${kind}`], [FORM.time, fmtKo(r.ms)], [FORM.hard, hardText]];
+    go.href = FORM.url + '?' + pairs.filter(p => p[0]).map(p => encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1])).join('&');
+  };
+  nameEl.value = store.get(K.name) || '';
+  nameEl.addEventListener('input', () => { store.set(K.name, nameEl.value.trim()); note.innerHTML = noteHTML; note.classList.remove('warn'); sync(); });
+  go.addEventListener('click', e => {
+    if (!nameEl.value.trim()) { e.preventDefault(); note.textContent = '이름부터 써 줘.'; note.classList.add('warn'); nameEl.focus(); }
+  });
+  sync();
+}
+
+/* 데스크톱: 스페이스/엔터 = 뜻 보기, 1·2·3 = 몰랐어·애매해·알았어 */
+document.addEventListener('keydown', e => {
+  if (S.view !== 'study' || !C || C.d !== 'ek') return;
+  const tg = e.target && e.target.tagName;
+  if (tg === 'INPUT' || tg === 'TEXTAREA') return;
+  if (!C.revealed && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); reveal(true); }
+  else if (C.revealed && (e.key === '1' || e.key === '2' || e.key === '3')) { e.preventDefault(); gradeEK(['no', 'meh', 'yes'][+e.key - 1]); }
+});
+document.addEventListener('visibilitychange', () => {
+  const s = S.sess;
+  if (!s || S.view !== 'study') return;
+  if (document.hidden) { tick(s); save(); } else s.lt = Date.now();
+});
+
+renderHome();
+})();
+</script>
+</body>
+</html>

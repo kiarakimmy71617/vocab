@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 """꺼내는 단어장 — 학교별 학생 페이지 빌드 도구
 
-  python3 _build/build.py import <단어장.xlsx> <데이터이름>   엑셀 → _build/data/<데이터이름>.json
-  python3 _build/build.py <학교>                              _build/schools/<학교>.json → 저장소 맨 위 <page>.html
+  python3 _build/build.py import <단어장.xlsx> <데이터이름>        엑셀 → _build/data/<데이터이름>.json (단어 그룹)
+  python3 _build/build.py import-order <본문.txt> <데이터이름>     순서 텍스트 → _build/data/<데이터이름>.json (순서 그룹)
+  python3 _build/build.py <학교>                                   _build/schools/<학교>.json → 저장소 맨 위 <page>.html
+  python3 _build/build.py demo                                     템플릿의 예시 세트로 선생님 확인용 index.html
 
-세트 ID(id_prefix-첫번호-끝번호)는 학생 진행 기록의 열쇠다. 학생에게 링크가 나간 뒤에는
-id_prefix나 set_size를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
+세트 ID(단어: id_prefix-첫번호-끝번호, 순서: id_prefix-과키)는 학생 진행 기록의 열쇠다. 학생에게 링크가 나간 뒤에는
+id_prefix나 set_size(단어), 과 키(순서)를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
+
+순서 텍스트 형식 (_build/src/<데이터이름>.txt):
+  # L5 | 5과 · From Trash to Music          ← 과(= 세트 하나). '|' 앞이 세트 ID에 들어가는 키, 뒤가 세트 제목
+  ## Listen & Speak 1 ① | 대화문            ← 지문. '|' 앞이 지문 이름, 뒤가 종류(대화문/본문)
+  Hey, Bora. Welcome to our rock band.       ← 문장 한 줄에 하나, 교과서 순서대로. 말한 사람 표시는 쓰지 않음
+  ...
 """
 import sys, os, re, json, glob
 
@@ -98,6 +106,66 @@ def import_xlsx(path, name):
     if long_en: print(f'  · 8단어 이상이라 한→영 철자 문제에서 빠지는 표제어: {long_en[:10]}')
 
 
+# ---------- 순서 텍스트 → 데이터 ----------
+def import_order(path, name):
+    lessons, cur_l, cur_p = [], None, None
+    for raw in open(path, encoding='utf-8'):
+        line = raw.strip()
+        if not line: continue
+        if line.startswith('## '):
+            if cur_l is None: sys.exit(f'지문 앞에 과 줄(# 키 | 제목)이 없어: {line}')
+            parts = [p.strip() for p in line[3:].split('|')]
+            cur_p = {'name': parts[0], 'kind': parts[1] if len(parts) > 1 else ('본문' if parts[0].startswith('본문') else '대화문'), 'lines': []}
+            cur_l['passages'].append(cur_p)
+        elif line.startswith('# '):
+            parts = [p.strip() for p in line[2:].split('|')]
+            if len(parts) < 2 or not re.fullmatch(r'[A-Za-z0-9_-]+', parts[0]):
+                sys.exit(f'과 줄은 "# 키 | 제목" 형식이어야 해 (키는 영문·숫자): {line}')
+            cur_l = {'key': parts[0], 'title': parts[1], 'passages': []}; cur_p = None
+            lessons.append(cur_l)
+        else:
+            if cur_p is None: sys.exit(f'문장 앞에 지문 줄(## 이름 | 종류)이 없어: {line}')
+            cur_p['lines'].append(line)
+
+    bad = []
+    keys = [l['key'] for l in lessons]
+    if len(set(keys)) != len(keys): bad.append(f'과 키 중복: {keys}')
+    for l in lessons:
+        names = [p['name'] for p in l['passages']]
+        if len(set(names)) != len(names): bad.append(f"{l['key']} 지문 이름 중복: {names}")
+        for p in l['passages']:
+            if len(p['lines']) < 2: bad.append(f"{l['key']} {p['name']}: 문장이 {len(p['lines'])}개뿐")
+            low = [s.lower() for s in p['lines']]
+            if len(set(low)) != len(low): bad.append(f"{l['key']} {p['name']}: 똑같은 문장이 두 번 (순서를 맞출 수 없음)")
+            for s in p['lines']:
+                if re.match(r'^(?:[A-Z]|[A-Z][a-z]+|[가-힣]{1,3}):\s', s): bad.append(f"{l['key']} {p['name']}: 말한 사람 표시가 남아 있음 → {s[:40]}")
+    out = os.path.join(HERE, 'data', name + '.json')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump({'source': os.path.basename(path), 'lessons': lessons}, f, ensure_ascii=False, indent=1)
+    for l in lessons:
+        print(f"{out if l is lessons[0] else ''}\n  {l['key']} {l['title']}: " + ' / '.join(f"{p['name']} {len(p['lines'])}" for p in l['passages'])
+              + f" → {len(l['passages'])}지문 {sum(len(p['lines']) for p in l['passages'])}문장")
+    if bad: print('  ! ' + '\n  ! '.join(bad))
+
+
+def order_sets(g):
+    data = json.load(open(os.path.join(HERE, 'data', g['data'] + '.json'), encoding='utf-8'))
+    want = g.get('lessons')
+    sets = []
+    for l in data['lessons']:
+        if want and l['key'] not in want: continue
+        kinds = []
+        for p in l['passages']:
+            if not kinds or kinds[-1][0] != p['kind']: kinds.append([p['kind'], 0])
+            kinds[-1][1] += 1
+        st = {'id': f"{g['id_prefix']}-{l['key']}", 'kind': 'order', 'group': g['group'], 'title': l['title'],
+              'note': g.get('note') or ' + '.join(f'{k} {c}' for k, c in kinds), 'passages': l['passages']}
+        sets.append(st)
+        print(f"{g['group'][:24]} | {st['title']} | {st['note']} | {len(l['passages'])}지문 {sum(len(p['lines']) for p in l['passages'])}문장")
+    return sets
+
+
 # ---------- 데이터 → 학교 페이지 ----------
 def sec_name(raw, cont, default):
     if not raw: return default or '단어'
@@ -114,6 +182,8 @@ def build(school):
     cfg = json.load(open(cfg_path, encoding='utf-8'))
     sets = []
     for g in [g for g in cfg['groups'] if g.get('active', True)]:
+        if g.get('type') == 'order':
+            sets += order_sets(g); continue
         items = json.load(open(os.path.join(HERE, 'data', g['data'] + '.json'), encoding='utf-8'))['items']
         size = int(g['set_size'])
         bounds = [(i, min(i + size, len(items))) for i in range(0, len(items), size)]
@@ -136,13 +206,20 @@ def build(school):
             print(f"{g['group'][:24]} | {st['title']} | {st['note']} | {hi - lo}개")
 
     page_cfg = {'paste': False, 'school': cfg['school'], 'fields': cfg['fields'], 'form': FORM}
+    only_order = bool(sets) and all(s.get('kind') == 'order' for s in sets)  # 순서 세트만 있는 페이지는 탭 제목도 순서 맞추기
+    write_page(cfg['page'], sets, page_cfg, f"{'본문 순서 맞추기' if only_order else '꺼내는 단어장'} · {cfg['short']}")
+
+
+def write_page(page, sets, page_cfg, title):
+    """template.html을 완성된 HTML 문서로 감싸서 저장소 맨 위에 씀. sets가 None이면 템플릿의 예시 세트를 그대로 둠"""
     tpl = open(TEMPLATE, encoding='utf-8').read()
-    data = json.dumps(sets, ensure_ascii=False, indent=1)
-    assert '</script' not in data
-    tpl = re.sub(r'(<script id="sets-data" type="application/json">)[\s\S]*?(</script>)',
-                 lambda m: m.group(1) + '\n' + data + '\n' + m.group(2), tpl, count=1)
+    if sets is not None:
+        data = json.dumps(sets, ensure_ascii=False, indent=1)
+        assert '</script' not in data
+        tpl = re.sub(r'(<script id="sets-data" type="application/json">)[\s\S]*?(</script>)',
+                     lambda m: m.group(1) + '\n' + data + '\n' + m.group(2), tpl, count=1)
     tpl = tpl.replace('<script id="sets-data"', f'<script id="page-config" type="application/json">{json.dumps(page_cfg, ensure_ascii=False)}</script>\n<script id="sets-data"', 1)
-    tpl = tpl.replace('<title>꺼내는 단어장</title>', f"<title>꺼내는 단어장 · {cfg['short']}</title>", 1)
+    tpl = tpl.replace('<title>꺼내는 단어장</title>', f'<title>{title}</title>', 1)
     tpl = re.sub(r'<meta name="claude:viewport-fit-sides"[^>]*>\n?', '', tpl)
     tpl = tpl.replace(':root{\n  --paper', ':root{\n  color-scheme:light;\n  --paper', 1)
     cut = tpl.index('</style>') + len('</style>')
@@ -152,14 +229,23 @@ def build(school):
            '<meta name="robots" content="noindex,nofollow">\n'
            '<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n'
            + head + '\n</head>\n<body>\n' + body + '\n</body>\n</html>\n')
-    path = os.path.join(ROOT, cfg['page'])
+    path = os.path.join(ROOT, page)
     open(path, 'w', encoding='utf-8').write(out)
-    print(f"→ {cfg['page']} ({len(out.encode()) // 1024} KB) · 학생 링크 https://kiarakimmy71617.github.io/vocab/{cfg['page']}")
+    print(f"→ {page} ({len(out.encode()) // 1024} KB) · 링크 https://kiarakimmy71617.github.io/vocab/{page}")
+
+
+def build_demo():
+    """선생님 확인용 데모(index.html): 템플릿의 예시 세트(단어 + 순서) 그대로, 단어 직접 넣기 켜짐"""
+    write_page('index.html', None, {'paste': True, 'school': '', 'fields': []}, '꺼내는 단어장 · 데모')
 
 
 if __name__ == '__main__':
     if len(sys.argv) == 4 and sys.argv[1] == 'import':
         import_xlsx(sys.argv[2], sys.argv[3])
+    elif len(sys.argv) == 4 and sys.argv[1] == 'import-order':
+        import_order(sys.argv[2], sys.argv[3])
+    elif len(sys.argv) == 2 and sys.argv[1] == 'demo':
+        build_demo()
     elif len(sys.argv) == 2:
         build(sys.argv[1])
     else:

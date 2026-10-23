@@ -204,6 +204,26 @@ details.paste summary .sum-l{margin-right:auto}
 .hard ul.with-say li{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) auto;align-items:center}
 .hard .en{font-family:var(--font-word);font-weight:700;font-size:16px;overflow-wrap:anywhere}
 
+/* order: 섞인 문장을 순서대로 탭하면 OMR 동그라미에 번호가 찍힘. 확인 뒤엔 정답 순서로 다시 나열 */
+.od-head{position:relative;display:grid;gap:6px;padding:12px 14px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.od-name{margin:4px 0 0;font-size:20px;line-height:1.3;font-weight:700;text-wrap:balance}
+.od-hint{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.od-hint.ok{color:var(--ink)}
+.od-hint.bad{color:var(--omr);font-weight:500}
+.od-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.od-line{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card);color:var(--ink);text-align:left;font-family:var(--font-word);font-size:16.5px;line-height:1.45;overflow-wrap:anywhere}
+button.od-line{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+button.od-line:active{background:var(--omr-wash)}
+.od-line.on{border-color:var(--ink)}
+.od-bb{width:26px;height:26px;margin-top:1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--omr);background:var(--card)}
+.od-line.on .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.od-line.hit .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.od-line.miss{border-color:var(--omr);background:var(--omr-wash)}
+.od-line.miss .od-bb{background:var(--omr);border-color:var(--omr);color:var(--card)}
+.od-mine{display:block;margin-top:3px;font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:var(--omr)}
+.od-foot{position:sticky;bottom:0;z-index:1;display:grid;gap:4px;margin-top:4px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -10px 10px -6px var(--paper)}
+.od-foot .linkish{justify-self:center}
+
 @media (prefers-reduced-motion: reduce){
   .stamp.on{animation:none}
   .tbar{display:none}
@@ -1626,6 +1646,31 @@ function parsePaste(text) {
   const clean = sections.filter(s => s.items.length);
   return { sections: clean, n: clean.reduce((a, s) => a + s.items.length, 0), skipped };
 }
+/* 순서 세트: 과 하나가 세트, 그 안의 지문(대화문·본문)마다 교과서 순서대로 적힌 문장 목록 */
+function prepareOrder(raw) {
+  const passages = [];
+  (raw.passages || []).forEach(p => {
+    const lines = (p.lines || []).map(x => String(x == null ? '' : x).trim()).filter(Boolean);
+    if (lines.length >= 2) passages.push({ name: String(p.name || '지문'), kind: String(p.kind || ''), lines });
+  });
+  return { id: raw.id, kind: 'order', title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), passages };
+}
+/* 문장 번호(0~n-1)를 섞되, 교과서 순서 그대로 나오는 일은 없게 함 */
+function shuffleOrder(n) {
+  const a = [];
+  for (let i = 0; i < n; i++) a.push(i);
+  if (n < 2) return a;
+  for (let t = 0; t < 30; t++) { shuffle(a); if (a.some((v, i) => v !== i)) return a; }
+  a.push(a.shift());
+  return a;
+}
+/* picks: 학생이 탭한 순서(문장 번호). ok = 전부 제자리, right = 제자리에 놓인 문장 수 */
+function gradeOrder(picks, n) {
+  const ok = picks.length === n && picks.every((v, i) => v === i);
+  let right = 0;
+  picks.forEach((v, i) => { if (v === i) right++; });
+  return { ok, right };
+}
 function lcsMask(a, b) {
   const n = a.length, m = b.length;
   const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
@@ -1732,6 +1777,8 @@ function rawSets() { return (PASTE ? customSets() : []).concat(BUILTIN); }
 function findRaw(id) { return rawSets().find(s => s.id === id) || null; }
 function getRec(id) { const r = store.get(K.rec(id)); return r && typeof r === 'object' ? r : {}; }
 function liveSess(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 1 && ss.n === n && ss.phase && ss.phase !== 'done' ? ss : null; }
+function liveOrder(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 2 && ss.kind === 'order' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
+function liveAny(raw) { return raw.kind === 'order' ? liveOrder(raw.id, prepareOrder(raw).passages.length) : liveSess(raw.id, prepareSet(raw).items.length); }
 function save() { const s = S.sess; if (s && s.phase !== 'done') store.set(K.sess(s.setId), s); }
 
 /* ---------- 진행 엔진 ---------- */
@@ -1860,9 +1907,105 @@ function startClock() {
 }
 function stopClock() { if (clockT) clearInterval(clockT); clockT = null; }
 
+/* ---------- 순서 맞추기 엔진 ----------
+   세트(과)의 지문을 교과서 순서대로 하나씩 냄. 지문마다 문장을 새로 섞고, 학생이 다 놓으면 채점.
+   틀린 지문은 큐 맨 뒤로 가서 다시 나오고, 모든 지문을 맞혀야 끝. st[id] = { t: 시도 수, w: 틀린 수 } */
+function newOrderSession(set, mode) {
+  const n = set.passages.length;
+  let pool = set.passages.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { t: 0, w: 0 }; });
+  const s = { v: 2, kind: 'order', setId: set.id, n, mode, pool, st, queue: pool.slice(), cur: null, done: 0, phase: 'play', ms: 0, lt: Date.now() };
+  openPassage(s);
+  return s;
+}
+function openPassage(s) {
+  const id = s.queue[0];
+  if (id == null) { s.cur = null; return; }
+  s.cur = { id, order: shuffleOrder(SET.passages[id].lines.length), picks: [], fb: null };
+}
+function validOrder(s) {
+  const n = SET.passages.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  if (!Array.isArray(s.pool) || !s.pool.every(ok) || !Array.isArray(s.queue) || !s.queue.every(ok)) return false;
+  if (!s.st || typeof s.st !== 'object' || !s.pool.every(id => s.st[id])) return false;
+  const c = s.cur;
+  if (!c || !ok(c.id) || (s.queue[0] !== c.id && !c.fb)) return false;
+  const m = SET.passages[c.id].lines.length;
+  const perm = a => Array.isArray(a) && a.length === m && a.slice().sort((x, y) => x - y).every((v, i) => v === i);
+  if (!perm(c.order) || !Array.isArray(c.picks) || !c.picks.every(v => Number.isInteger(v) && v >= 0 && v < m) || new Set(c.picks).size !== c.picks.length) return false;
+  return !c.fb || perm(c.fb.picks);
+}
+function orderTap(li) {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const k = c.picks.indexOf(li);
+  if (k >= 0) c.picks.length = k; /* 이미 놓은 문장을 다시 탭 → 거기부터 다시 */
+  else c.picks.push(li);
+  save(); renderOrderPick();
+}
+function orderClear() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  c.picks = []; save(); renderOrderPick();
+}
+function orderCheck() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const p = SET.passages[c.id];
+  if (c.picks.length !== p.lines.length) return;
+  tick(s);
+  const g = gradeOrder(c.picks, p.lines.length), x = s.st[c.id];
+  x.t++;
+  s.queue.shift();
+  if (g.ok) s.done++; else { x.w++; s.queue.push(c.id); }
+  c.fb = { ok: g.ok, right: g.right, picks: c.picks.slice() };
+  save(); renderOrderFeedback();
+}
+function orderNext() {
+  const s = S.sess;
+  if (!s || !s.cur || !s.cur.fb) return;
+  tick(s);
+  if (!s.queue.length) { s.cur = null; finishOrder(s); stopClock(); renderResult(); return; }
+  openPassage(s); save(); renderOrder();
+}
+function finishOrder(s) {
+  const hard = s.pool.filter(id => s.st[id].w > 0);
+  const known = s.pool.length - hard.length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: s.pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  const tries = {};
+  s.pool.forEach(id => { tries[id] = s.st[id].t; });
+  S.result = { kind: 'order', setId: s.setId, title: SET.title, mode: s.mode, n: s.pool.length, ms: s.ms, known, hard, tries };
+  s.phase = 'done';
+  store.del(K.sess(s.setId));
+}
+function beginOrder(raw, mode) {
+  SET = prepareOrder(raw);
+  if (!SET.passages.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveOrder(SET.id, SET.passages.length);
+    if (s && !validOrder(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newOrderSession(SET, 'full');
+  } else s = newOrderSession(SET, mode === 'hard' ? 'hard' : 'full');
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+
 function begin(id, mode) {
   const raw = findRaw(id);
   if (!raw) { renderHome(); return; }
+  if (raw.kind === 'order') { beginOrder(raw, mode); return; }
   SET = prepareSet(raw);
   if (!SET.items.length) { renderHome(); return; }
   let s = null;
@@ -1885,6 +2028,11 @@ function validSess(s) {
 function route() {
   const s = S.sess;
   if (!s) { renderHome(); return; }
+  if (s.kind === 'order') {
+    if (s.phase === 'done') { renderResult(); return; }
+    if (!s.cur) { finishOrder(s); renderResult(); return; }
+    renderOrder(); return;
+  }
   if (s.phase === 'bdone') { renderPause(); return; }
   if (s.phase === 'done') { renderResult(); return; }
   if (!s.queue.length) { endPhase(s); save(); route(); return; }
@@ -1898,7 +2046,45 @@ function sessLabel(ss) {
   if (ss.phase === 'bdone') return `배치 ${ss.b + 1}/${B} 끝`;
   return `배치 ${ss.b + 1}/${B}`;
 }
+function confirmHTML(cf, sid) {
+  if (!cf) return '';
+  return `
+    <div class="confirm" role="group" aria-label="확인">
+      <span>${cf === 'del' ? '이 세트를 이 기기에서 지울까?' : '진행 중인 기록이 지워져. 새로 시작할까?'}</span>
+      <div class="confirm-btns">
+        <button class="btn btn-quiet btn-small" type="button" data-act="cancel" data-set="${sid}">취소</button>
+        <button class="btn btn-primary btn-small" type="button" data-act="yes-${cf}" data-set="${sid}">${cf === 'del' ? '지우기' : '지우고 시작'}</button>
+      </div>
+    </div>`;
+}
+/* 순서 세트 카드: 과 하나, 지문 수·문장 수, 진행 중/지난 기록, 순서 맞추기·틀린 지문만 */
+function orderCard(raw) {
+  const set = prepareOrder(raw);
+  const n = set.passages.length, lines = set.passages.reduce((a, p) => a + p.lines.length, 0);
+  const ss = liveOrder(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · 맞힌 지문 ${ss.done}/${ss.pool.length} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)} · 한 번에 ${rec.last.known}/${rec.last.n}${rec.last.mode === 'hard' ? ' (틀린 지문만)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">순서 맞추기</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">틀린 지문만 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}지문 · ${lines}문장</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
 function setCard(raw) {
+  if (raw.kind === 'order') return orderCard(raw);
   const set = prepareSet(raw);
   const n = set.items.length;
   const nb = n ? makeBatches(set, set.items.map((_, i) => i)).length : 0;
@@ -1916,14 +2102,6 @@ function setCard(raw) {
     : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">외우기</button>`;
   actions += `<button class="btn btn-quiet" type="button" data-act="quick" data-set="${sid}">빠른 점검</button>`;
   if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">끈질긴 단어 ${hardN}</button>`;
-  const confirm = cf ? `
-    <div class="confirm" role="group" aria-label="확인">
-      <span>${cf === 'del' ? '이 세트를 이 기기에서 지울까?' : '진행 중인 기록이 지워져. 새로 시작할까?'}</span>
-      <div class="confirm-btns">
-        <button class="btn btn-quiet btn-small" type="button" data-act="cancel" data-set="${sid}">취소</button>
-        <button class="btn btn-primary btn-small" type="button" data-act="yes-${cf}" data-set="${sid}">${cf === 'del' ? '지우기' : '지우고 시작'}</button>
-      </div>
-    </div>` : '';
   return `
   <article class="set">
     <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}단어 · 배치 ${nb}</div></div>
@@ -1931,19 +2109,11 @@ function setCard(raw) {
     <div class="set-status">${status.join('')}</div>
     <div class="set-actions">${actions}</div>
     ${set.custom ? `<button class="linkish del" type="button" data-act="del" data-set="${sid}">이 세트 지우기</button>` : ''}
-    ${confirm}
+    ${confirmHTML(cf, sid)}
   </article>`;
 }
-function renderHome() {
-  S.view = 'home'; stopClock(); S.sess = null; C = null;
-  const sets = rawSets();
-  app.innerHTML = `
-<div class="wrap home">
-  <header class="masthead">
-    <div class="fields">${FIELDS.map(f => `<span class="field"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></span>`).join('')}</div>
-    <h1>꺼내는 단어장</h1>
-    <p class="lede">눈으로 보는 대신 먼저 떠올리고, 바로 채점해.</p>
-  </header>
+/* 페이지에 단어 세트만 있으면 단어장 안내, 순서 세트만 있으면 순서 맞추기 안내, 둘 다면 둘 다 */
+const VOCAB_RULES = `
   <section class="rules" aria-labelledby="rules-h">
     <h2 class="eyebrow" id="rules-h">외우는 방법</h2>
     <ol>
@@ -1952,9 +2122,34 @@ function renderHome() {
       <li><span class="num">3</span><span><b>철자는 직접 쳐서</b> 채점. 틀린 단어는 맞힐 때까지 돌아와.</span></li>
       <li><span class="num">4</span><span><b>마지막에 전체를 섞어서</b> 한 번 더. 맞힌 단어도 다시 꺼내야 오래 가.</span></li>
     </ol>
-  </section>
+  </section>`;
+const ORDER_RULES = `
+  <section class="rules" aria-labelledby="orules-h">
+    <h2 class="eyebrow" id="orules-h">순서 맞추는 방법</h2>
+    <ol>
+      <li><span class="num">1</span><span><b>교과서·노트는 덮고</b> 해. 보면서 맞추면 시험장에선 안 나와.</span></li>
+      <li><span class="num">2</span><span><b>첫 문장부터 순서대로 탭.</b> 동그라미에 번호가 찍혀. 잘못 눌렀으면 그 문장을 다시 탭 — 거기부터 다시 놓게 돼.</span></li>
+      <li><span class="num">3</span><span><b>다 놓으면 확인.</b> 틀린 지문은 뒤로 갔다가 다시 나와. 다 맞혀야 끝.</span></li>
+      <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>
+    </ol>
+  </section>`;
+function renderHome() {
+  S.view = 'home'; stopClock(); S.sess = null; C = null;
+  const sets = rawSets();
+  const hasV = sets.some(s => s.kind !== 'order'), hasO = sets.some(s => s.kind === 'order');
+  const onlyO = hasO && !hasV;
+  const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.' : hasO ? '단어는 먼저 떠올리고, 본문은 안 보고 다시 세워 봐.' : '눈으로 보는 대신 먼저 떠올리고, 바로 채점해.';
+  app.innerHTML = `
+<div class="wrap home">
+  <header class="masthead">
+    <div class="fields">${FIELDS.map(f => `<span class="field"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></span>`).join('')}</div>
+    <h1>${onlyO ? '본문 순서 맞추기' : '꺼내는 단어장'}</h1>
+    <p class="lede">${lede}</p>
+  </header>
+  ${hasV || !hasO ? VOCAB_RULES : ''}
+  ${hasO ? ORDER_RULES : ''}
   <section class="sets" aria-labelledby="sets-h">
-    <div class="sets-h"><h2 class="eyebrow" id="sets-h">단어 세트</h2><span class="mono">${sets.length}</span></div>
+    <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : hasO ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
     ${groupedCards(sets)}
   </section>
   ${PASTE ? `<details class="paste" id="paste"${S.pasteOpen ? ' open' : ''}>
@@ -1968,7 +2163,7 @@ function renderHome() {
       <button class="btn btn-primary" id="p-save" type="button" disabled>세트 만들기</button>
     </div>
   </details>` : ''}
-  <p class="foot">외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>진행 기록은 이 기기 브라우저에만 저장돼.</p>
+  <p class="foot">${hasV || !hasO ? '외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>' : ''}진행 기록은 이 기기 브라우저에만 저장돼. 매번 같은 브라우저로 열어야 이어서 할 수 있어.</p>
 </div>`;
   bindHome();
 }
@@ -1993,7 +2188,7 @@ function bindHome() {
     const act = b.dataset.act, id = b.dataset.set;
     const raw = findRaw(id);
     if (!raw) return;
-    const live = liveSess(id, prepareSet(raw).items.length);
+    const live = liveAny(raw);
     if (act === 'resume') { begin(id, 'resume'); return; }
     if (act === 'cancel') { S.confirm = null; renderHome(); return; }
     if (act === 'del') { S.confirm = { setId: id, act: 'del' }; renderHome(); return; }
@@ -2283,6 +2478,76 @@ function finishKE() {
   answer(res); next();
 }
 
+/* ---------- 순서 맞추기 화면 ---------- */
+const ORDER = `
+<div class="wrap study" id="od-root">
+  <div class="bar">
+    <button class="back" id="od-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="od-title"></div><div class="bar-sub" id="od-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="od-track"></div>
+  <section class="od-head">
+    <div class="card-top"><span class="dir" id="od-dir"></span><span class="left mono" id="od-left"></span></div>
+    <h2 class="od-name" id="od-name"></h2>
+    <p class="od-hint" id="od-hint" aria-live="polite"></p>
+  </section>
+  <ol class="od-list" id="od-list" aria-label="문장"></ol>
+  <div class="od-foot" id="od-foot"></div>
+</div>`;
+
+function renderOrder() {
+  S.view = 'study'; app.onclick = null; C = null;
+  app.innerHTML = ORDER;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  const s = S.sess;
+  R['od-title'].textContent = SET.title;
+  R['od-back'].onclick = () => { tick(s); save(); renderHome(); };
+  R['od-list'].addEventListener('click', e => { const b = e.target.closest('[data-line]'); if (b) orderTap(+b.dataset.line); });
+  window.scrollTo(0, 0);
+  if (s.cur.fb) renderOrderFeedback(); else renderOrderPick();
+  startClock();
+}
+function orderHeader() {
+  const s = S.sess, p = SET.passages[s.cur.id], n = s.pool.length;
+  R['od-sub'].textContent = (s.mode === 'hard' ? '틀린 지문만 · ' : '') + `맞힌 지문 ${s.done}/${n}`;
+  R['od-track'].innerHTML = trackHTML(n, s.done, 1) + `<div class="track-n mono" aria-label="맞힌 지문 ${s.done}/${n}">${s.done}/${n}</div>`;
+  R['od-left'].textContent = `남은 지문 ${s.queue.length}`;
+  R['od-name'].textContent = p.name;
+}
+function renderOrderPick() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length, k = c.picks.length;
+  orderHeader();
+  R['od-dir'].innerHTML = `<b>순서</b><span>${esc(p.kind)} · ${n}문장</span>`;
+  R['od-hint'].className = 'od-hint';
+  R['od-hint'].textContent = k === 0 ? '안 보고, 첫 문장부터 순서대로 탭해.'
+    : k < n ? `${k}번째까지 놓았어. 잘못 눌렀으면 그 문장을 다시 탭해 — 거기부터 다시.` : '다 놓았어. 한 번 훑어보고 확인.';
+  R['od-list'].innerHTML = c.order.map(li => {
+    const at = c.picks.indexOf(li);
+    return `<li><button class="od-line${at >= 0 ? ' on' : ''}" type="button" data-line="${li}" aria-pressed="${at >= 0}"><span class="od-bb" aria-hidden="true">${at >= 0 ? at + 1 : ''}</span><span lang="en">${esc(p.lines[li])}</span></button></li>`;
+  }).join('');
+  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-go" type="button"${k === n ? '' : ' disabled'}>${k === n ? '확인' : `확인 <span class="mono">${k}/${n}</span>`}</button>`
+    + (k >= 2 && k < n ? `<button class="linkish" id="od-clear" type="button">처음부터 다시 놓기</button>` : '');
+  $('#od-go').onclick = orderCheck;
+  const cl = $('#od-clear'); if (cl) cl.onclick = orderClear;
+}
+/* 확인 뒤: 교과서 순서대로 다시 나열하고, 자리를 틀린 문장에 내가 놓은 번호를 달아 줌 */
+function renderOrderFeedback() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length, fb = c.fb;
+  orderHeader();
+  R['od-dir'].innerHTML = `<b>${fb.ok ? '정답' : '다시'}</b><span>${esc(p.kind)} · ${n}문장</span>`;
+  R['od-hint'].className = 'od-hint ' + (fb.ok ? 'ok' : 'bad');
+  R['od-hint'].textContent = fb.ok ? `${n}문장 다 제자리야.` : `${n}문장 중 ${fb.right}개 제자리. 빨간 문장만 다시 봐 — 이 지문은 뒤에 다시 나와.`;
+  R['od-list'].innerHTML = p.lines.map((t, i) => {
+    const mine = fb.picks.indexOf(i) + 1, miss = mine !== i + 1;
+    return `<li class="od-line ${miss ? 'miss' : 'hit'}"><span class="od-bb" aria-hidden="true">${i + 1}</span><span><span lang="en">${esc(t)}</span>${miss ? `<span class="od-mine">내 답 ${mine}번째</span>` : ''}</span></li>`;
+  }).join('');
+  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-next" type="button">${s.queue.length ? '다음 지문' : '결과 보기'}</button>`;
+  $('#od-next').onclick = orderNext;
+  window.scrollTo(0, 0);
+}
+
 /* ---------- 배치 끝 / 결과 ---------- */
 function renderPause() {
   S.view = 'pause'; app.onclick = null; stopClock();
@@ -2309,10 +2574,42 @@ function renderPause() {
   $('#go-home').onclick = () => renderHome();
   window.scrollTo(0, 0);
 }
+/* 순서 세트 결과: 한 번에 맞힌 지문 수, 다시 한 지문 목록(몇 번 만에 맞혔는지). 제출 칸은 없음 */
+function renderOrderResult(r) {
+  S.sess = null;
+  const hardP = r.hard.map(id => ({ id, p: SET.passages[id] })).filter(x => x.p);
+  const kind = r.mode === 'hard' ? '틀린 지문만' : '순서 맞추기';
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.n}지문 다 세웠어</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>한 번에 맞힘</dt><dd>${r.known}</dd></div>
+    <div><dt>다시 한 지문</dt><dd>${hardP.length}</dd></div>
+  </dl>
+  ${hardP.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">다시 한 지문</h3>
+    <p class="note">한 번에 못 맞힌 지문이야. 시험 전에 한 번 더 세워 봐.</p>
+    <ul>${hardP.map(x => `<li><span class="en">${esc(x.p.name)}</span><span>${esc(x.p.kind)} ${x.p.lines.length}문장 · ${r.tries[x.id] || 2}번 만에</span></li>`).join('')}</ul>
+  </section>` : `<p class="note">전부 한 번에 맞혔어.</p>`}
+  <p class="note">시험 전날 한 번 더 세우면 오래 가.</p>
+  <div class="actions">
+    ${hardP.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">틀린 지문만 다시</button>` : ''}
+    <button class="btn ${hardP.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
 function renderResult() {
   S.view = 'result'; app.onclick = null; stopClock();
   const r = S.result;
   if (!r) { renderHome(); return; }
+  if (r.kind === 'order') { renderOrderResult(r); return; }
   S.sess = null;
   const hardItems = r.hard.map(id => SET.items[id]).filter(Boolean);
   const kind = r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기';

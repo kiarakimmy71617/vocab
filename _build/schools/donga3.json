@@ -1,0 +1,9 @@
+{
+ "page": "donga3.html",
+ "short": "중3 동아",
+ "school": "중3 동아",
+ "fields": [["학교", "중3 동아"], ["교과서", "동아(이병민)"]],
+ "groups": [
+  {"type": "order", "data": "donga3-2026-order", "group": "순서시험 대비 · 동아 5·6·7과 (대화문 + 본문)", "id_prefix": "donga3-2026-order", "active": true}
+ ]
+}
