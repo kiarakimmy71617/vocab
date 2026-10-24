@@ -4,6 +4,7 @@
  "school": "송도고 1학년",
  "fields": [["학교", "송도고 1학년"]],
  "groups": [
+  {"type": "kw", "data": "songdo1-2026-kw", "group": "핵심어 고르기 · 올림포스 16~18강 (주제 객관식 대비)", "id_prefix": "songdo1-2026-kw", "active": true},
   {"data": "songdo1-2026-2f", "group": "2학기 기말 · 올림포스 16~18강 · 1,012개", "title": "기말", "id_prefix": "songdo1-2026-2f",
    "set_size": 80, "batch": 20, "active": true}
  ]

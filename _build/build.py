@@ -3,17 +3,28 @@
 
   python3 _build/build.py import <단어장.xlsx> <데이터이름>        엑셀 → _build/data/<데이터이름>.json (단어 그룹)
   python3 _build/build.py import-order <본문.txt> <데이터이름>     순서 텍스트 → _build/data/<데이터이름>.json (순서 그룹)
+  python3 _build/build.py import-kw <핵심어.txt> <데이터이름>       핵심어 텍스트 → _build/data/<데이터이름>.json (핵심어 그룹)
   python3 _build/build.py <학교>                                   _build/schools/<학교>.json → 저장소 맨 위 <page>.html
   python3 _build/build.py demo                                     템플릿의 예시 세트로 선생님 확인용 index.html
 
-세트 ID(단어: id_prefix-첫번호-끝번호, 순서: id_prefix-과키)는 학생 진행 기록의 열쇠다. 학생에게 링크가 나간 뒤에는
-id_prefix나 set_size(단어), 과 키(순서)를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
+세트 ID(단어: id_prefix-첫번호-끝번호, 순서: id_prefix-과키, 핵심어: id_prefix-강키)는 학생 진행 기록의 열쇠다. 학생에게 링크가
+나간 뒤에는 id_prefix나 set_size(단어), 과 키(순서)·강 키(핵심어)를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
 
 순서 텍스트 형식 (_build/src/<데이터이름>.txt):
   # L5 | 5과 · From Trash to Music               ← 과(= 세트 하나). '|' 앞이 세트 ID에 들어가는 키, 뒤가 세트 제목
   ## Listen & Speak 1 ① | 대화문 | 환영 → 감사 → … ← 지문. 이름 | 종류(대화문/본문) | 흐름 요약(오답 때 보여 줌, 선택)
   Hey, Bora. Welcome to our rock band. | 첫 문장: …  ← 문장 | 왜 이 자리인지 한국어 단서(선택). 말한 사람 표시는 쓰지 않음
   ...
+
+핵심어 텍스트 형식 (_build/src/<데이터이름>.txt):
+  # 16 | 16강                                       ← 세트 하나(강). '|' 앞이 세트 ID에 들어가는 키
+  ## 16강 01                                        ← 지문 이름
+  = 한 줄 주제(한국어, **핵심어** 굵게) | 영어      ← 채점 뒤 보여 줌
+  > 본문 문장                                       ← 차례대로(번호는 자동). 요약문은 넣지 않음
+  + friction | 이유                                 ← 핵심 보기. '- 보기 | 이유'는 오답(지엽·함정)
+  - pedal [pedalling] | 이유                        ← [ ] = 본문에서 찾을 꼴(보기와 꼴이 다를 때)
+  + counteract | 이유 | 흐름                        ← 끝 칸: 동의어·흐름 = 본문에 없는 말(없으면 본문에 있는 말)
+  * 메모                                            ← '* '로 시작하는 줄은 무시
 """
 import sys, os, re, json, glob
 
@@ -155,6 +166,112 @@ def import_order(path, name):
     if bad: print('  ! ' + '\n  ! '.join(bad))
 
 
+# ---------- 핵심어 텍스트 → 데이터 ----------
+KW_OPT = re.compile(r'^([+-])\s+(.+?)(?:\s+\[([^\]]+)\])?\s+\|\s+(.+?)(?:\s+\|\s+(지문|동의어|흐름))?$')
+KW_CATS = ('지문', '동의어', '흐름')
+
+
+def kw_found(lines, form):
+    pat = re.compile(r'(?<![A-Za-z-])' + re.escape(form) + r'(?![A-Za-z-])', re.I)
+    return [i + 1 for i, s in enumerate(lines) if pat.search(s)]
+
+
+def kw_inflect(w):
+    out = [w, w + 's', w + 'es', w + 'd', w + 'ed', w + 'ing']
+    if w.endswith('e'): out.append(w[:-1] + 'ing')
+    if w.endswith('y'): out += [w[:-1] + 'ies', w[:-1] + 'ied']
+    return out
+
+
+def import_kw(path, name):
+    sets, cur_s, cur_p = [], None, None
+    for no, raw in enumerate(open(path, encoding='utf-8'), 1):
+        line = raw.strip()
+        if not line or line.startswith('*'): continue
+        if line.startswith('## '):
+            if cur_s is None: sys.exit(f'{no}줄: 지문 앞에 세트 줄(# 키 | 제목)이 없어: {line}')
+            cur_p = {'name': line[3:].strip(), 'ko': '', 'en': '', 'lines': [], 'opts': [], 'forms': []}
+            cur_s['passages'].append(cur_p)
+        elif line.startswith('# '):
+            parts = [p.strip() for p in line[2:].split('|')]
+            if len(parts) < 2 or not re.fullmatch(r'[A-Za-z0-9_-]+', parts[0]):
+                sys.exit(f'{no}줄: 세트 줄은 "# 키 | 제목" 형식이어야 해 (키는 영문·숫자): {line}')
+            cur_s = {'key': parts[0], 'title': parts[1], 'passages': []}; cur_p = None
+            sets.append(cur_s)
+        else:
+            if cur_p is None: sys.exit(f'{no}줄: 지문 줄(## 이름) 앞에 내용이 있어: {line}')
+            if line.startswith('= '):
+                ko, _, en = line[2:].partition(' | ')
+                cur_p['ko'], cur_p['en'] = ko.strip(), en.strip()
+            elif line.startswith('> '):
+                cur_p['lines'].append(line[2:].strip())
+            elif line[:1] in '+-':
+                m = KW_OPT.match(line)
+                if not m: sys.exit(f'{no}줄: 보기 줄은 "+ 보기 | 이유" 또는 "- 보기 | 이유 | 동의어" 형식이어야 해: {line}')
+                sign, word, forms, why, cat = m.groups()
+                cur_p['opts'].append([word.strip(), 1 if sign == '+' else 0, why.strip(), cat or '지문'])
+                cur_p['forms'].append([f.strip() for f in forms.split(',')] if forms else [word.strip()])
+            else:
+                sys.exit(f'{no}줄: 무슨 줄인지 모르겠어 (=, >, +, -, * 중 하나로 시작해야 함): {line}')
+
+    bad = []
+    keys = [s['key'] for s in sets]
+    if len(set(keys)) != len(keys): bad.append(f'세트 키 중복: {keys}')
+    for s in sets:
+        names = [p['name'] for p in s['passages']]
+        if len(set(names)) != len(names): bad.append(f"{s['key']} 지문 이름 중복: {names}")
+        for p in s['passages']:
+            tag = f"{s['key']} {p['name']}"
+            if not p['ko'] or not p['en']: bad.append(f'{tag}: 한 줄 주제(= 한국어 | 영어)가 없음')
+            for t in (p['ko'], p['en']):
+                if t.count('**') % 2: bad.append(f'{tag}: 주제 줄의 ** 짝이 안 맞음 → {t[:40]}')
+            if len(p['lines']) < 2: bad.append(f"{tag}: 본문 문장이 {len(p['lines'])}개뿐")
+            n, nk = len(p['opts']), sum(o[1] for o in p['opts'])
+            if not 12 <= n <= 15: bad.append(f'{tag}: 보기가 {n}개 (12~15개로 정함)')
+            if not nk or nk == n: bad.append(f'{tag}: 핵심 {nk}개 / 보기 {n}개 — 핵심과 오답이 둘 다 있어야 함')
+            low = [o[0].lower() for o in p['opts']]
+            if len(set(low)) != len(low): bad.append(f'{tag}: 같은 보기가 두 번')
+            flows = sorted(o[1] for o in p['opts'] if o[3] == '흐름')
+            if flows and flows != [0, 1]: bad.append(f'{tag}: 흐름 어휘는 정답 1 + 함정 1이어야 함 (지금 {flows})')
+            for o, forms in zip(p['opts'], p['forms']):
+                if not o[2]: bad.append(f'{tag}: {o[0]} 이유가 비어 있음')
+                if o[3] == '지문':
+                    if not any(kw_found(p['lines'], f) for f in forms):
+                        bad.append(f"{tag}: '{o[0]}'가 본문에 없음 — 꼴이 다르면 [형태]로 적거나 '| 동의어'로 표시")
+                else:
+                    hit = [(f, kw_found(p['lines'], f)) for f in kw_inflect(o[0])]
+                    hit = [(f, h) for f, h in hit if h]
+                    if hit: bad.append(f"{tag}: '{o[0]}'({o[3]})가 본문에 있음 → {hit[0][0]} {hit[0][1]}번")
+            p.pop('forms')
+    out = os.path.join(HERE, 'data', name + '.json')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump({'source': os.path.basename(path), 'sets': sets}, f, ensure_ascii=False, indent=1)
+    print(out)
+    for s in sets:
+        print(f"  {s['key']} {s['title']}: " + ' / '.join(f"{p['name'].split()[-1]} {sum(o[1] for o in p['opts'])}/{len(p['opts'])}" for p in s['passages'])
+              + f" → {len(s['passages'])}지문 (정답 수/보기 수)")
+    if bad: print('  ! ' + '\n  ! '.join(bad))
+
+
+def kw_sets(g):
+    data = json.load(open(os.path.join(HERE, 'data', g['data'] + '.json'), encoding='utf-8'))
+    want = g.get('units')
+    sets = []
+    for u in data['sets']:
+        if want and u['key'] not in want: continue
+        ps = u['passages']
+        sizes = [len(p['opts']) for p in ps]
+        names = [p['name'] for p in ps]
+        span = (f"{names[0]}~{names[-1].split()[-1]}번" if len(names) > 1 and all(len(x.split()) == 2 for x in names)
+                and len({x.split()[0] for x in names}) == 1 else f'{len(ps)}지문')
+        st = {'id': f"{g['id_prefix']}-{u['key']}", 'kind': 'kw', 'group': g['group'], 'title': u['title'],
+              'note': g.get('note') or f"{span} · 지문마다 보기 {min(sizes)}~{max(sizes)}개", 'passages': ps}
+        sets.append(st)
+        print(f"{g['group'][:24]} | {st['title']} | {st['note']} | {len(ps)}지문 · 정답 " + '·'.join(str(sum(o[1] for o in p['opts'])) for p in ps))
+    return sets
+
+
 def order_sets(g):
     data = json.load(open(os.path.join(HERE, 'data', g['data'] + '.json'), encoding='utf-8'))
     want = g.get('lessons')
@@ -190,6 +307,8 @@ def build(school):
     for g in [g for g in cfg['groups'] if g.get('active', True)]:
         if g.get('type') == 'order':
             sets += order_sets(g); continue
+        if g.get('type') == 'kw':
+            sets += kw_sets(g); continue
         items = json.load(open(os.path.join(HERE, 'data', g['data'] + '.json'), encoding='utf-8'))['items']
         size = int(g['set_size'])
         bounds = [(i, min(i + size, len(items))) for i in range(0, len(items), size)]
@@ -212,8 +331,9 @@ def build(school):
             print(f"{g['group'][:24]} | {st['title']} | {st['note']} | {hi - lo}개")
 
     page_cfg = {'paste': False, 'school': cfg['school'], 'fields': cfg['fields'], 'form': FORM}
-    only_order = bool(sets) and all(s.get('kind') == 'order' for s in sets)  # 순서 세트만 있는 페이지는 탭 제목도 순서 맞추기
-    write_page(cfg['page'], sets, page_cfg, f"{'본문 순서 맞추기' if only_order else '꺼내는 단어장'} · {cfg['short']}")
+    kinds = {s.get('kind', 'vocab') for s in sets}  # 순서 세트만 / 핵심어 세트만 있는 페이지는 탭 제목도 그 이름
+    name = '본문 순서 맞추기' if kinds == {'order'} else '핵심어 고르기' if kinds == {'kw'} else '꺼내는 단어장'
+    write_page(cfg['page'], sets, page_cfg, f"{name} · {cfg['short']}")
 
 
 def write_page(page, sets, page_cfg, title):
@@ -250,6 +370,8 @@ if __name__ == '__main__':
         import_xlsx(sys.argv[2], sys.argv[3])
     elif len(sys.argv) == 4 and sys.argv[1] == 'import-order':
         import_order(sys.argv[2], sys.argv[3])
+    elif len(sys.argv) == 4 and sys.argv[1] == 'import-kw':
+        import_kw(sys.argv[2], sys.argv[3])
     elif len(sys.argv) == 2 and sys.argv[1] == 'demo':
         build_demo()
     elif len(sys.argv) == 2:

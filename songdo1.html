@@ -231,6 +231,32 @@ details.paste summary .sum-l{margin-right:auto}
 .od-line.miss .od-cue{color:var(--ink);border-top-color:var(--omr-line)}
 .od-foot{position:sticky;bottom:0;z-index:4;display:grid;gap:4px;margin-top:4px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -10px 10px -6px var(--paper)}
 
+/* keyword: 지문을 읽고 주제의 핵심어 보기를 모두 고름. 확인 뒤엔 한 줄 주제 → 핵심·오답 줄(틀린 것에만 이유) → 본문 */
+.kw-body{display:grid;gap:6px}
+.kw-cap{margin:0;font-size:12.5px;color:var(--muted)}
+.kw-text{margin:0;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px;font-family:var(--font-word);font-size:16.5px;line-height:1.62;word-break:normal;overflow-wrap:break-word}
+.kw-n{display:inline-block;margin-right:3px;font-family:var(--font-mono);font-size:10.5px;font-weight:600;line-height:1;color:var(--omr);vertical-align:2px}
+.kw-zone{display:grid;gap:10px}
+.kw-ask{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.kw-chips{display:flex;flex-wrap:wrap;gap:8px}
+.kw-chip{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 15px;border:1.5px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);font-family:var(--font-word);font-size:16px;font-weight:700;line-height:1.2;text-align:left;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.kw-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.kw-chip[aria-pressed="true"]::before{content:"✓";font-family:var(--font-ui);font-size:13px;font-weight:600}
+.kw-topic{display:grid;gap:3px;padding:12px 14px;background:var(--omr-wash);border-radius:2px;font-size:14.5px;line-height:1.55;text-wrap:pretty}
+.kw-topic .eyebrow{margin-bottom:3px}
+.kw-topic b{color:var(--omr);font-weight:700}
+.kw-topic .kw-en{font-family:var(--font-word);color:var(--muted)}
+.kw-topic .kw-en b{color:var(--ink)}
+.kw-fb{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.kw-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px;align-items:baseline;padding:9px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card)}
+.kw-tag{justify-self:start;padding:1px 8px;border:1px solid currentColor;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.kw-w{font-family:var(--font-word);font-size:16px;font-weight:700;overflow-wrap:anywhere}
+.kw-why{grid-column:2;font-size:13px;line-height:1.5;color:var(--ink);text-wrap:pretty}
+.kw-row.miss,.kw-row.wrong{border-color:var(--omr);background:var(--omr-wash)}
+.kw-row.miss .kw-tag,.kw-row.wrong .kw-tag{color:var(--omr)}
+.kw-rest{margin:0;font-size:13px;line-height:1.6;color:var(--muted)}
+.kw-rest span{font-family:var(--font-word);font-weight:700}
+
 @media (prefers-reduced-motion: reduce){
   .stamp.on{animation:none}
   .tbar{display:none}
@@ -245,6 +271,2369 @@ details.paste summary .sum-l{margin-right:auto}
 <script id="page-config" type="application/json">{"paste": false, "school": "송도고 1학년", "fields": [["학교", "송도고 1학년"]], "form": {"url": "https://docs.google.com/forms/d/e/1FAIpQLSfsvGXKVGASob6ylSlyCFKyEahrzGSqFNtwlaYEvA1AHOanww/viewform", "name": "entry.2087311015", "school": "entry.331616395", "set": "entry.1245213658", "time": "entry.1880995760", "hard": "entry.770504430"}}</script>
 <script id="sets-data" type="application/json">
 [
+ {
+  "id": "songdo1-2026-kw-16",
+  "kind": "kw",
+  "group": "핵심어 고르기 · 올림포스 16~18강 (주제 객관식 대비)",
+  "title": "16강",
+  "note": "16강 01~08번 · 지문마다 보기 12~15개",
+  "passages": [
+   {
+    "name": "16강 01",
+    "ko": "운동 방향의 **반대로 작용**하여 움직이는 물체를 **느리게** 하는 **힘**인 **마찰**",
+    "en": "**friction** as a **force** that **acts against** motion and **slows** moving objects **down**",
+    "lines": [
+     "Imagine you are pedalling your bicycle on a level road.",
+     "You stop pedalling: no force is now acting to move you forward.",
+     "What happens? You gradually slow down.",
+     "How could you slow down more suddenly, in a shorter distance? By putting the brakes on.",
+     "Because the brakes change your movement, making you slow down more suddenly, they must be exerting a force on the bicycle and you, as they grip and rub on the wheel-rims.",
+     "This is the force called friction, which tends to slow down moving things by acting in the direction opposite to movement, that is backwards.",
+     "Even without the brakes on, there are other friction forces acting on you and your bicycle, which also slow you down.",
+     "One of these is friction in the wheels rubbing on the axles.",
+     "Another is air resistance, which you can feel, pushing you backwards as you and the bicycle move forwards.",
+     "When you apply these ideas to something around you, like a cart, you can see what could be generating friction: mainly the axles rubbing on the body as they rotate."
+    ],
+    "opts": [
+     [
+      "friction",
+      1,
+      "주제의 중심(마찰)",
+      "지문"
+     ],
+     [
+      "force",
+      1,
+      "마찰의 정체(힘)",
+      "지문"
+     ],
+     [
+      "slow down",
+      1,
+      "마찰이 하는 일(느리게 함)",
+      "지문"
+     ],
+     [
+      "counteract",
+      1,
+      "주제의 방향(운동과 반대로 작용) — 본문은 opposite·backwards",
+      "흐름"
+     ],
+     [
+      "bicycle",
+      0,
+      "01번부터 쓴 예시(자전거) — 여러 번 나와도 지엽",
+      "지문"
+     ],
+     [
+      "pedal",
+      0,
+      "01·02번 상황 설정 — 첫 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "brakes",
+      0,
+      "04·05번 예시 속 장치(브레이크)",
+      "지문"
+     ],
+     [
+      "axle",
+      0,
+      "08·10번 세부(바퀴 축)",
+      "지문"
+     ],
+     [
+      "air resistance",
+      0,
+      "09번 마찰의 한 예(공기 저항) — 예시는 지엽",
+      "지문"
+     ],
+     [
+      "cart",
+      0,
+      "10번 적용 예(수레)",
+      "지문"
+     ],
+     [
+      "gradually",
+      0,
+      "03번 세부(서서히 느려짐)",
+      "지문"
+     ],
+     [
+      "clutch",
+      0,
+      "= grip → 05번 브레이크 세부",
+      "동의어"
+     ],
+     [
+      "spin",
+      0,
+      "= rotate → 10번 세부(축이 돎)",
+      "동의어"
+     ],
+     [
+      "accelerate",
+      0,
+      "방향 반대 — 마찰은 속도를 늦추는 힘",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "16강 02",
+    "ko": "**문명**이 늘 같은 **흥망**의 과정을 **되풀이**한다는 생각의 **지나친 단순화**",
+    "en": "the **oversimplification** in the idea that **civilizations** always follow the same cycle of **rise and fall**",
+    "lines": [
+     "History, people often say, repeats itself.",
+     "And looking at the historical records of the ancient civilizations, some things do seem to happen again and again.",
+     "Civilizations expand, get overextended, and then collapse as in the cases of Rome, which went under in 476 AD, and the British Empire, which fell apart more than a thousand years later in the post-World War II era.",
+     "But is this always the case?",
+     "If so, archaeology would be pretty boring; one thing would happen again and again.",
+     "But that's not what archaeologists see.",
+     "Some civilizations end suddenly, like the Aztec and Inca, conquered by invaders in the 1520s AD.",
+     "Those empires never had the chance to collapse as a result of overexpansion.",
+     "So in the case of civilizations, \"history repeats itself\" seems to be an oversimplification."
+    ],
+    "opts": [
+     [
+      "civilization",
+      1,
+      "주제의 대상(문명)",
+      "지문"
+     ],
+     [
+      "repeat",
+      1,
+      "비판받는 생각(\"역사는 되풀이된다\") — 주제 줄에 들어감",
+      "지문"
+     ],
+     [
+      "oversimplification",
+      1,
+      "주제의 결론(09번 — 지나친 단순화)",
+      "지문"
+     ],
+     [
+      "rise and fall",
+      1,
+      "= expand → collapse(흥망) — 비판받는 생각의 내용",
+      "동의어"
+     ],
+     [
+      "overgeneralization",
+      1,
+      "주제의 방향(과잉 일반화) — 09번 oversimplification과 같은 평가",
+      "흐름"
+     ],
+     [
+      "Rome",
+      0,
+      "03번 예시(고유명사)",
+      "지문"
+     ],
+     [
+      "Aztec",
+      0,
+      "07번 반례(고유명사) — 반례도 예시라 지엽",
+      "지문"
+     ],
+     [
+      "invader",
+      0,
+      "07번 세부(정복한 쪽)",
+      "지문"
+     ],
+     [
+      "archaeology",
+      0,
+      "05번 가정 속 배경(고고학)",
+      "지문"
+     ],
+     [
+      "boring",
+      0,
+      "05번 세부(지루할 것)",
+      "지문"
+     ],
+     [
+      "chronicle",
+      0,
+      "= historical records → 02번 배경(역사 기록)",
+      "동의어"
+     ],
+     [
+      "abruptly",
+      0,
+      "= suddenly → 07번 반례 세부(갑자기 끝남)",
+      "동의어"
+     ],
+     [
+      "accurate",
+      0,
+      "방향 반대 — 주제는 그 생각이 지나친 단순화라는 평가",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "16강 03",
+    "ko": "아이의 **똑똑함**이 아니라 **노력**을 **칭찬**하는 것의 **이점**",
+    "en": "the **benefit** of **praising** children's **effort** rather than their **intelligence**",
+    "lines": [
+     "Stanford psychology professor Dr. Carol Dweck is the internationally recognized pioneer of the concept of \"growth mindset\" as a way to continually grow, learn, and persevere in our efforts.",
+     "Dweck found that kids who are told they're \"smart\" actually underperform in future tasks, by choosing easier tasks to avoid evidence that they are not smart, which Dweck calls having a \"fixed mindset.\"",
+     "In contrast, Dweck found, kids who are praised not for their smarts but for their effort develop what Dweck calls a \"growth mindset.\"",
+     "They learn that their effort is what led to their success, and if they continue to try, over time they'll improve and achieve more things.",
+     "These kids end up taking on tougher things, and feel better about themselves.",
+     "\"Emphasizing effort gives a child a variable that they can control,\" Dweck has explained."
+    ],
+    "opts": [
+     [
+      "praise",
+      1,
+      "주제의 행위 — 무엇을 칭찬하나",
+      "지문"
+     ],
+     [
+      "effort",
+      1,
+      "칭찬해야 할 것(노력)",
+      "지문"
+     ],
+     [
+      "smart",
+      1,
+      "칭찬하면 안 되는 쪽 — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "compliment",
+      1,
+      "= praise(칭찬)",
+      "동의어"
+     ],
+     [
+      "intelligence",
+      1,
+      "= smarts(똑똑함)",
+      "동의어"
+     ],
+     [
+      "endeavor",
+      1,
+      "= effort(노력)",
+      "동의어"
+     ],
+     [
+      "benefit",
+      1,
+      "주제의 방향(이점) — 04·05번이 그 내용",
+      "흐름"
+     ],
+     [
+      "task",
+      0,
+      "02번 예시 속 세부(쉬운 과제)",
+      "지문"
+     ],
+     [
+      "evidence",
+      0,
+      "02번 세부(증거를 피하려고)",
+      "지문"
+     ],
+     [
+      "variable",
+      0,
+      "06번 인용문 속 표현일 뿐",
+      "지문"
+     ],
+     [
+      "psychology",
+      0,
+      "01번 배경(연구자 소개)",
+      "지문"
+     ],
+     [
+      "proof",
+      0,
+      "= evidence → 02번 세부",
+      "동의어"
+     ],
+     [
+      "assignment",
+      0,
+      "= task → 02번 세부",
+      "동의어"
+     ],
+     [
+      "disadvantage",
+      0,
+      "방향 반대 — 02번 단점은 똑똑함 칭찬 쪽(대조용), 주제는 이점",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "16강 04",
+    "ko": "뇌의 **화학적 불균형**이 아니라 **의식**의 장애로 **다시 해석**한 **우울증**",
+    "en": "**depression** **reinterpreted** as a disorder of **consciousness** rather than a **chemical imbalance** in the brain",
+    "lines": [
+     "Conventional medicine has long believed that depression is caused by an imbalance of neurotransmitters in the brain.",
+     "However, there is a major problem with this explanation.",
+     "This is because the imbalance of substances in the brain is a consequence of depression, not its cause.",
+     "In other words, depression causes a decrease in brain substances such as serotonin and noradrenaline, not a decrease in brain substances causes depression.",
+     "In this revised cause-and-effect, the key is to reframe depression as a problem of consciousness.",
+     "Our consciousness is a more fundamental entity that goes beyond the functioning of the brain.",
+     "The brain is no more than an organ of consciousness.",
+     "If it is not consciousness itself, then the root cause of depression is also a distortion of our state of consciousness: a consciousness that has lost its sense of self and the meaning of life.",
+     "Such a disease of consciousness may manifest itself in the form of depression."
+    ],
+    "opts": [
+     [
+      "depression",
+      1,
+      "주제의 대상(우울증)",
+      "지문"
+     ],
+     [
+      "consciousness",
+      1,
+      "새 해석의 중심(의식의 문제)",
+      "지문"
+     ],
+     [
+      "imbalance",
+      1,
+      "뒤집힌 기존 설명(불균형) — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "chemical",
+      1,
+      "= neurotransmitters·substances(뇌의 화학 물질) — 주제 줄 \"화학적\"",
+      "동의어"
+     ],
+     [
+      "reinterpret",
+      1,
+      "주제의 방향(다시 해석) — 본문은 reframe·revised",
+      "흐름"
+     ],
+     [
+      "conventional medicine",
+      0,
+      "01번 배경(기존 설명을 믿어 온 쪽) — 첫 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "serotonin",
+      0,
+      "04번 물질의 예 — 예시는 지엽",
+      "지문"
+     ],
+     [
+      "organ",
+      0,
+      "07번 세부(뇌는 의식의 기관일 뿐)",
+      "지문"
+     ],
+     [
+      "meaning of life",
+      0,
+      "08번 세부(삶의 의미를 잃은 의식)",
+      "지문"
+     ],
+     [
+      "sense of self",
+      0,
+      "08번 세부(자아감을 잃은 의식)",
+      "지문"
+     ],
+     [
+      "manifest",
+      0,
+      "09번 세부(드러나다)",
+      "지문"
+     ],
+     [
+      "exhibit",
+      0,
+      "= manifest → 09번 세부",
+      "동의어"
+     ],
+     [
+      "confirm",
+      0,
+      "방향 반대 — 01번 기존 설명을 확인한 글이 아니라 뒤집은 글",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "16강 05",
+    "ko": "**자기 목소리**가 **녹음**된 소리와 **다르게** 들리는 이유",
+    "en": "why our own **voice** sounds **different** to us than it does on a **recording**",
+    "lines": [
+     "Have you ever been surprised to hear a recording of your own voice?",
+     "You might have thought, \"Is that really what my voice sounds like?\"",
+     "Maybe your accent is more pronounced in the recording than you realized, or your voice is higher than it seems to your own ears.",
+     "This is of course quite a common experience.",
+     "The explanation is actually fairly simple.",
+     "There are two pathways through which we perceive our own voice when we speak.",
+     "One is the route through which we perceive most external sounds, like waves that travel from the air through the outer, middle and inner ear.",
+     "But because our vocal cords vibrate when we speak, there is a second internal path.",
+     "Vibrations are conducted through our bones and stimulate our inner ears directly.",
+     "Lower frequencies are emphasized along this pathway.",
+     "That makes your voice sound deeper and richer to yourself than it may sound to other people."
+    ],
+    "opts": [
+     [
+      "voice",
+      1,
+      "주제의 대상(자기 목소리)",
+      "지문"
+     ],
+     [
+      "recording",
+      1,
+      "비교 대상(녹음된 목소리) — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "mismatch",
+      1,
+      "주제의 방향(다르게 들림) — 본문은 higher·deeper로 비교",
+      "흐름"
+     ],
+     [
+      "surprised",
+      0,
+      "01번 도입 — 첫 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "accent",
+      0,
+      "03번 예(억양이 더 뚜렷)",
+      "지문"
+     ],
+     [
+      "inner ear",
+      0,
+      "07·09번 세부(귀 구조)",
+      "지문"
+     ],
+     [
+      "vocal cords",
+      0,
+      "08번 세부(성대 진동)",
+      "지문"
+     ],
+     [
+      "bone",
+      0,
+      "09번 이유 속 세부(뼈로 전달) — 이유의 재료일 뿐",
+      "지문"
+     ],
+     [
+      "frequency",
+      0,
+      "10번 세부(낮은 주파수 강조)",
+      "지문"
+     ],
+     [
+      "tremble",
+      0,
+      "= vibrate → 08번 세부(성대 떨림)",
+      "동의어"
+     ],
+     [
+      "noticeable",
+      0,
+      "= pronounced → 03번 세부(억양이 뚜렷)",
+      "동의어"
+     ],
+     [
+      "identical",
+      0,
+      "방향 반대 — 주제는 녹음과 다르게 들리는 것",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "16강 06",
+    "ko": "**디지털** 비즈니스 활동에 **숨어 있는** **환경** **비용**",
+    "en": "the **hidden** **environmental** **cost** of **digital** business activities",
+    "lines": [
+     "As businesses shift some core business activities to digital, such as sales, marketing, or archiving, it is assumed that the impact on the environment will be less negative.",
+     "However, digital business activities can still threaten the environment.",
+     "In some cases, the harm of digital businesses can be even more hazardous.",
+     "A few decades ago, offices used to have much more paper waste since all documents were paper based.",
+     "When workplaces shifted from paper to digital documents, invoices, and emails, it was a promising step to save trees.",
+     "However, the cost of the Internet and electricity for the environment is neglected.",
+     "A recent Wired report declared that most data centers' energy source is fossil fuels.",
+     "When we store bigger data on clouds, increased carbon emissions make our green clouds gray.",
+     "The carbon footprint of an email is smaller than mail sent via a post office, but still, it causes four grams of CO₂, and it can be as much as 50 grams if the attachment is big."
+    ],
+    "opts": [
+     [
+      "digital",
+      1,
+      "주제의 대상(디지털 비즈니스 활동)",
+      "지문"
+     ],
+     [
+      "environment",
+      1,
+      "비용을 치르는 쪽(환경)",
+      "지문"
+     ],
+     [
+      "cost",
+      1,
+      "주제의 중심(06번 — 환경 비용)",
+      "지문"
+     ],
+     [
+      "threaten",
+      1,
+      "02번 주제문 — 디지털 활동도 환경을 위협",
+      "지문"
+     ],
+     [
+      "endanger",
+      1,
+      "= threaten(위험에 빠뜨리다)",
+      "동의어"
+     ],
+     [
+      "hidden",
+      1,
+      "주제의 방향(숨은 비용) — 본문은 neglected",
+      "흐름"
+     ],
+     [
+      "paper",
+      0,
+      "04·05번 배경(예전 종이 사무실) — 주제 줄엔 디지털만",
+      "지문"
+     ],
+     [
+      "email",
+      0,
+      "05·09번 예시(이메일)",
+      "지문"
+     ],
+     [
+      "fossil fuels",
+      0,
+      "07번 세부(데이터 센터의 에너지원)",
+      "지문"
+     ],
+     [
+      "cloud",
+      0,
+      "08번 세부(클라우드 저장)",
+      "지문"
+     ],
+     [
+      "carbon footprint",
+      0,
+      "09번 예시 속 수치(이메일의 탄소 발자국) — 예시는 지엽",
+      "지문"
+     ],
+     [
+      "attachment",
+      0,
+      "09번 세부(첨부 파일)",
+      "지문"
+     ],
+     [
+      "preserve",
+      0,
+      "= save → 05번 세부(나무를 아낌)",
+      "동의어"
+     ],
+     [
+      "eco-friendly",
+      0,
+      "방향 반대 — 친환경일 거라는 건 01·05번의 예상(대조용), 주제는 숨은 환경 비용",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "16강 07",
+    "ko": "**외래종**이 **경쟁**을 통해 **토착종**에 가하는 **위협**",
+    "en": "the **threat** an **introduced species** poses to a **native** one through **competition**",
+    "lines": [
+     "Problems often arise if an exotic species is suddenly introduced to an ecosystem.",
+     "Britain's red and grey squirrels provide a clear example.",
+     "When the grey arrived from America in the 1870s, both squirrel species competed for the same food and habitat, which put the native red squirrel populations under pressure.",
+     "The grey had the edge because it can adapt its diet; it is able, for instance, to eat green acorns, while the red can only digest mature acorns.",
+     "Within the same area of forest, grey squirrels can destroy the food supply before red squirrels even have a bite.",
+     "Greys can also live more densely and in varied habitats, so have survived more easily when woodland has been destroyed.",
+     "As a result, the red squirrel has come close to extinction in England."
+    ],
+    "opts": [
+     [
+      "exotic",
+      1,
+      "주제의 주인공(외래종)",
+      "지문"
+     ],
+     [
+      "native",
+      1,
+      "위협받는 쪽(토착종)",
+      "지문"
+     ],
+     [
+      "compete",
+      1,
+      "위협의 방식(경쟁)",
+      "지문"
+     ],
+     [
+      "invasive species",
+      1,
+      "= 해를 끼치는 외래종",
+      "동의어"
+     ],
+     [
+      "indigenous",
+      1,
+      "= native(토착의)",
+      "동의어"
+     ],
+     [
+      "threat",
+      1,
+      "주제의 방향(위협) — 01번 problems, 07번 멸종 직전",
+      "흐름"
+     ],
+     [
+      "squirrel",
+      0,
+      "01번 일반 진술의 예시 — 6번 나와도 지엽",
+      "지문"
+     ],
+     [
+      "acorn",
+      0,
+      "04번 세부(어떤 도토리를 먹나)",
+      "지문"
+     ],
+     [
+      "adapt",
+      0,
+      "회색이 이긴 이유(세부)",
+      "지문"
+     ],
+     [
+      "woodland",
+      0,
+      "06번 세부(숲이 파괴될 때)",
+      "지문"
+     ],
+     [
+      "America",
+      0,
+      "회색 다람쥐의 출신(배경)",
+      "지문"
+     ],
+     [
+      "densely",
+      0,
+      "06번 세부(빽빽하게 산다)",
+      "지문"
+     ],
+     [
+      "ripe",
+      0,
+      "= mature(다 익은) → 04번 세부",
+      "동의어"
+     ],
+     [
+      "diverse",
+      0,
+      "= varied(다양한) → 06번 세부",
+      "동의어"
+     ],
+     [
+      "cooperate",
+      0,
+      "방향 반대 — 협력이 아니라 경쟁",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "16강 08",
+    "ko": "잉카 제국의 **도보** **전령** **릴레이** **체계**",
+    "en": "the Inca Empire's **relay** **system** of **foot** **messengers**",
+    "lines": [
+     "With no horses available, the Inca empire excelled at delivering messages on foot.",
+     "The messengers were stationed on the royal roads to deliver the Inca king's orders and reports coming from his lands.",
+     "Called Chasquis, they lived in groups of four to six in huts, placed from one to two miles apart along the roads.",
+     "They were all young men and especially good runners who watched the road in both directions.",
+     "If they caught sight of another messenger coming, they hurried out to meet them.",
+     "The Inca built the huts on high ground, in sight of one another.",
+     "When a messenger neared the next hut, he began to call out and repeated the message three or four times to the one who was running out to meet him.",
+     "The Inca empire could relay messages 1,000 miles (1,610 km) in three or four days under good conditions."
+    ],
+    "opts": [
+     [
+      "relay",
+      1,
+      "주제의 중심(이어 전달하기)",
+      "지문"
+     ],
+     [
+      "messenger",
+      1,
+      "누가 전했나(전령)",
+      "지문"
+     ],
+     [
+      "on foot",
+      1,
+      "어떻게 전했나(걸어서·뛰어서) — 01번, 말이 없었음",
+      "지문"
+     ],
+     [
+      "courier",
+      1,
+      "= messenger(전령)",
+      "동의어"
+     ],
+     [
+      "system",
+      1,
+      "주제의 틀(체계) — 02~07번이 그 짜임(배치·오두막·이어 달리기)",
+      "흐름"
+     ],
+     [
+      "hut",
+      0,
+      "03·06번 세부(오두막)",
+      "지문"
+     ],
+     [
+      "road",
+      0,
+      "02·03번 세부(왕의 길)",
+      "지문"
+     ],
+     [
+      "king",
+      0,
+      "02번 세부(왕의 명령)",
+      "지문"
+     ],
+     [
+      "high ground",
+      0,
+      "06번 세부(높은 곳에 지은 오두막)",
+      "지문"
+     ],
+     [
+      "call out",
+      0,
+      "07번 세부(외쳐서 넘김)",
+      "지문"
+     ],
+     [
+      "cabin",
+      0,
+      "= huts → 03·06번 세부(오두막)",
+      "동의어"
+     ],
+     [
+      "deploy",
+      0,
+      "= stationed → 02번 세부(길에 배치)",
+      "동의어"
+     ],
+     [
+      "horseback",
+      0,
+      "방향 반대 — 01번 말이 없어서 걸어서(on foot) 전함",
+      "흐름"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "songdo1-2026-kw-17",
+  "kind": "kw",
+  "group": "핵심어 고르기 · 올림포스 16~18강 (주제 객관식 대비)",
+  "title": "17강",
+  "note": "17강 01~08번 · 지문마다 보기 12~15개",
+  "passages": [
+   {
+    "name": "17강 01",
+    "ko": "**선형** 편집과 비교한 **비선형** 디지털 편집의 **편리함**",
+    "en": "the **convenience** of **nonlinear** digital editing compared with **linear** editing",
+    "lines": [
+     "All editing systems are now nonlinear computer-based systems that allow random access to any video shot or scene without having to fast forward or fast reverse to find it.",
+     "Nonlinear systems can create a range of special effects, such as slow motion, wipes and dissolves.",
+     "Another highlight of a digital nonlinear system is its random access process that makes it easy for an editor to find desired shots or scenes without having to spend time fast forwarding or rewinding videotape.",
+     "With nonlinear editing, shots or scenes can be easily added or removed anywhere in the program, and the computer adjusts the program length automatically.",
+     "Linear editing was like composing a paper on a typewriter.",
+     "If a mistake was made or new information needed to be added the whole piece had to be retyped.",
+     "Nonlinear editing, on the other hand, is like using a word processing program.",
+     "If a mistake is made, it is easily deleted and fixed with a few keystrokes, and new information can be added easily."
+    ],
+    "opts": [
+     [
+      "nonlinear",
+      1,
+      "주제의 주인공(비선형 편집)",
+      "지문"
+     ],
+     [
+      "linear",
+      1,
+      "비교 대상 — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "convenient",
+      1,
+      "주제의 방향(편리함) — 본문은 easy·easily",
+      "흐름"
+     ],
+     [
+      "typewriter",
+      0,
+      "05번 비유 — 비유로 든 물건은 핵심 아님",
+      "지문"
+     ],
+     [
+      "word processing",
+      0,
+      "07번 비유 — 비유로 든 물건은 핵심 아님",
+      "지문"
+     ],
+     [
+      "special effects",
+      0,
+      "02번 기능 나열(세부)",
+      "지문"
+     ],
+     [
+      "keystroke",
+      0,
+      "08번 세부(키 몇 번)",
+      "지문"
+     ],
+     [
+      "mistake",
+      0,
+      "06·08번 비유 속 세부",
+      "지문"
+     ],
+     [
+      "adjust",
+      0,
+      "04번 세부(길이 자동 조정)",
+      "지문"
+     ],
+     [
+      "error",
+      0,
+      "= mistake → 비유 속 세부",
+      "동의어"
+     ],
+     [
+      "modify",
+      0,
+      "= adjust → 04번 세부",
+      "동의어"
+     ],
+     [
+      "erase",
+      0,
+      "= delete → 08번 세부",
+      "동의어"
+     ],
+     [
+      "cumbersome",
+      0,
+      "방향 반대 — 06번 번거로움은 선형 쪽(대조용), 주제는 편리함",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "17강 02",
+    "ko": "우리가 **공간**을 이용하는 방식을 **좌우하는** **보이지 않는** **감정**",
+    "en": "the **invisible** **feelings** that **shape** how we use a **space**",
+    "lines": [
+     "To monitor our surroundings is to focus on what's outside of ourselves: what we see, hear, smell, feel, and perhaps even taste.",
+     "But sometimes what really marks a place is something less specific ─ a feeling within us.",
+     "An interesting example emerged from a study of subway passenger behavior.",
+     "Researchers trying to understand why people sit where they sit or stand where they stand in subway and metro trains examined the factors that shape the way riders used and navigated that space in different situations.",
+     "One of their findings involved the reasons many riders like to plant themselves close to the train's doors.",
+     "Partly this was the obvious convenience of being able to exit more quickly.",
+     "But it was shaped partly by a more abstract sensation ─ the desire to avoid the sometimes uncomfortable feeling of accidentally making eye contact with seated passengers.",
+     "We can't see feelings ─ but they're very real, and they influence our experience of the world."
+    ],
+    "opts": [
+     [
+      "feeling",
+      1,
+      "주제의 중심(감정)",
+      "지문"
+     ],
+     [
+      "emotion",
+      1,
+      "= feeling(감정)",
+      "동의어"
+     ],
+     [
+      "space",
+      1,
+      "감정이 좌우하는 것(공간 이용)",
+      "지문"
+     ],
+     [
+      "shape",
+      1,
+      "감정이 하는 일(좌우하다)",
+      "지문"
+     ],
+     [
+      "influence",
+      1,
+      "= shape — 08번 결론(감정이 경험에 영향)",
+      "지문"
+     ],
+     [
+      "invisible",
+      1,
+      "주제의 방향(보이지 않는 감정) — 본문은 abstract·less specific",
+      "흐름"
+     ],
+     [
+      "subway",
+      0,
+      "03번부터 든 예시(지하철 승객 연구) — 여러 번 나와도 지엽",
+      "지문"
+     ],
+     [
+      "doors",
+      0,
+      "05번 세부(문 가까이 서기)",
+      "지문"
+     ],
+     [
+      "eye contact",
+      0,
+      "07번 예시 속 세부(눈 마주침)",
+      "지문"
+     ],
+     [
+      "convenience",
+      0,
+      "06번 세부(빨리 내리는 편리함 — 뻔한 이유)",
+      "지문"
+     ],
+     [
+      "researchers",
+      0,
+      "04번 배경(연구자)",
+      "지문"
+     ],
+     [
+      "commuter",
+      0,
+      "= riders·passengers → 예시 속 인물",
+      "동의어"
+     ],
+     [
+      "evade",
+      0,
+      "= avoid → 07번 세부(눈 마주침 피하기)",
+      "동의어"
+     ],
+     [
+      "awkward",
+      0,
+      "= uncomfortable → 07번 예시 속 구체적인 감정(주제는 감정 일반)",
+      "동의어"
+     ],
+     [
+      "concrete",
+      0,
+      "방향 반대 — 보이고 만져지는 건 01번 바깥 감각 쪽(대조용), 주제는 보이지 않는 감정",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "17강 03",
+    "ko": "**얼굴**이 **물에 닿을 때** **작동**하는 **인간**의 **잠수 반사**",
+    "en": "the **human** **diving reflex** **triggered** by **facial** **contact with water**",
+    "lines": [
+     "We have a 'diving reflex', like other marine mammals.",
+     "This means that special nerve endings on our faces, around the mouth and nose, trigger this reflex only when the facial region goes under water.",
+     "If we are in the water, with our head out in the air, there is no diving reflex.",
+     "But if we sink just our face in a bowl of water, while the whole of the rest of our body is in the dry air, the diving reflex is triggered.",
+     "It automatically closes down the airway, reducing the risk of swallowing water, and it narrows the small air-passages in the lungs.",
+     "At the same time the heart rate is slowed down to half speed and blood is shunted to the vital organs, protecting them from the effects of the brief stop in breathing.",
+     "By contrast, if a chimpanzee or a gorilla found itself in water with its face below the surface, it would panic, its heart would race and it would quickly drown."
+    ],
+    "opts": [
+     [
+      "diving reflex",
+      1,
+      "주제의 중심(잠수 반사)",
+      "지문"
+     ],
+     [
+      "face",
+      1,
+      "반사를 일으키는 곳(얼굴)",
+      "지문"
+     ],
+     [
+      "trigger",
+      1,
+      "반사가 일어나는 방식(작동시키다)",
+      "지문"
+     ],
+     [
+      "submerge",
+      1,
+      "= goes under water·sink(물에 잠김) — 반사가 일어나는 조건",
+      "동의어"
+     ],
+     [
+      "human",
+      1,
+      "주제의 주인공(인간) — 본문은 we·our",
+      "흐름"
+     ],
+     [
+      "marine mammals",
+      0,
+      "01번 비교 대상(바다 포유류) — 첫 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "nerve endings",
+      0,
+      "02번 세부(신경 말단)",
+      "지문"
+     ],
+     [
+      "airway",
+      0,
+      "05번 반사의 효과(기도를 닫음) — 세부",
+      "지문"
+     ],
+     [
+      "heart rate",
+      0,
+      "06번 반사의 효과(심박 절반) — 세부",
+      "지문"
+     ],
+     [
+      "vital organs",
+      0,
+      "06번 세부(피를 장기로)",
+      "지문"
+     ],
+     [
+      "chimpanzee",
+      0,
+      "07번 대조 예시(침팬지) — 주제 줄엔 인간만",
+      "지문"
+     ],
+     [
+      "gulp",
+      0,
+      "= swallowing → 05번 세부(물 삼킬 위험)",
+      "동의어"
+     ],
+     [
+      "divert",
+      0,
+      "= shunted → 06번 세부(피를 장기로 보냄)",
+      "동의어"
+     ],
+     [
+      "voluntary",
+      0,
+      "방향 반대 — 반사는 저절로 일어남(05번 automatically)",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "17강 04",
+    "ko": "**증거**에 기반한 인간 **행동**의 **과학**으로서의 **심리학**",
+    "en": "**psychology** as an **evidence**-based **science** of human **behavior**",
+    "lines": [
+     "The common accounts of human nature that float around in society are generally a mixture of assumptions, tales and sometimes plain silliness.",
+     "However, psychology is different.",
+     "It is the branch of science that is devoted to understanding people: how and why we act as we do; why we see things as we do; and how we interact with one another.",
+     "The key word here is 'science.'",
+     "Psychologists don't depend on opinions and hearsay, or the generally accepted views of society at the time, or even the considered opinions of deep thinkers.",
+     "Instead, they look for evidence, to make sure that psychological ideas are firmly based, and not just derived from generally held beliefs or assumptions.",
+     "In addition to this evidence-based approach, psychology deals with fundamental processes and principles that generate our rich cultural and social diversity, as well as those shared by all human beings.",
+     "These are what modern psychology is all about."
+    ],
+    "opts": [
+     [
+      "psychology",
+      1,
+      "주제의 대상(심리학)",
+      "지문"
+     ],
+     [
+      "science",
+      1,
+      "심리학의 정체(과학) — 04번 \"핵심어는 science\"",
+      "지문"
+     ],
+     [
+      "evidence",
+      1,
+      "과학의 근거(증거)",
+      "지문"
+     ],
+     [
+      "behavior",
+      1,
+      "= how and why we act(03번 — 인간 행동)",
+      "동의어"
+     ],
+     [
+      "objective",
+      1,
+      "주제의 방향(증거로 따지는 객관적 학문) — 본문은 evidence·firmly based",
+      "흐름"
+     ],
+     [
+      "hearsay",
+      0,
+      "05번 대조 쪽(심리학이 기대지 않는 소문) — 주제 줄엔 안 들어감",
+      "지문"
+     ],
+     [
+      "opinions",
+      0,
+      "05번 대조 쪽(의견)",
+      "지문"
+     ],
+     [
+      "tales",
+      0,
+      "01번 대조 쪽(세간의 이야기)",
+      "지문"
+     ],
+     [
+      "silliness",
+      0,
+      "01번 대조 쪽(어리석음)",
+      "지문"
+     ],
+     [
+      "diversity",
+      0,
+      "07번 세부(문화적·사회적 다양성)",
+      "지문"
+     ],
+     [
+      "interact",
+      0,
+      "03번 세부(서로 어떻게 상호 작용하나)",
+      "지문"
+     ],
+     [
+      "anecdote",
+      0,
+      "= tales → 01번 대조 쪽(일화)",
+      "동의어"
+     ],
+     [
+      "conjecture",
+      0,
+      "= assumptions → 01·06번 대조 쪽(추측)",
+      "동의어"
+     ],
+     [
+      "subjective",
+      0,
+      "방향 반대 — 주관적인 건 01·05번 의견·소문 쪽(대조용), 주제는 증거 기반 과학",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "17강 05",
+    "ko": "생물학에서 **상사 형질**과 **상동 형질**을 가르는 기준과 그 **구별** 방법",
+    "en": "the **distinction** between **analogous** and **homologous** **traits** in biology and how it is drawn",
+    "lines": [
+     "Biologists distinguish two kinds of similarity.",
+     "\"Analogous\" traits are ones that have a common function but arose on different branches of the evolutionary tree and are in an important sense not \"the same\" organ.",
+     "The wings of birds and the wings of bees are both used for flight and are similar in some ways because anything used for flight has to be built in those ways, but they arose independently in evolution and have nothing in common beyond their use in flight.",
+     "\"Homologous\" traits, in contrast, may or may not have a common function, but they descended from a common ancestor and hence have some common structure that indicates their being \"the same\" organ.",
+     "The wing of a bat and the front leg of a horse have very different functions, but they are all modifications of the forelimb of the ancestor of all mammals.",
+     "As a result, they share nonfunctional traits like the number of bones and the ways they are connected.",
+     "To distinguish analogy from homology, biologists usually look at the overall architecture of the organs and focus on their most useless properties."
+    ],
+    "opts": [
+     [
+      "analogous",
+      1,
+      "구별하는 한쪽(상사 형질) — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "homologous",
+      1,
+      "구별하는 다른 쪽(상동 형질) — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "trait",
+      1,
+      "무엇을 구별하나(형질)",
+      "지문"
+     ],
+     [
+      "distinguish",
+      1,
+      "주제의 중심(구별)",
+      "지문"
+     ],
+     [
+      "discriminate",
+      1,
+      "주제의 방향(구별하다) — 본문은 distinguish",
+      "흐름"
+     ],
+     [
+      "wings",
+      0,
+      "03·05번 예시(날개)",
+      "지문"
+     ],
+     [
+      "bees",
+      0,
+      "03번 상사 형질의 예(벌)",
+      "지문"
+     ],
+     [
+      "bat",
+      0,
+      "05번 상동 형질의 예(박쥐)",
+      "지문"
+     ],
+     [
+      "horse",
+      0,
+      "05번 상동 형질의 예(말)",
+      "지문"
+     ],
+     [
+      "flight",
+      0,
+      "03번 예시 속 기능(비행)",
+      "지문"
+     ],
+     [
+      "bones",
+      0,
+      "06번 세부(뼈의 수)",
+      "지문"
+     ],
+     [
+      "limb",
+      0,
+      "= leg·forelimb → 05번 예시(다리)",
+      "동의어"
+     ],
+     [
+      "equate",
+      0,
+      "방향 반대 — 주제는 둘을 가르는 것(구별), 같다고 보는 게 아님",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "17강 06",
+    "ko": "**정착** **농경**이 **출산 간격**을 **줄여** **인구 증가**를 이끈 과정",
+    "en": "how **settling down** to **farm** **shortened** **birth intervals** and drove **population growth**",
+    "lines": [
+     "Growing crops forced people to stay in one place.",
+     "Hunter-gatherers typically moved around frequently, and they had to be able to carry all their possessions with them every time they moved.",
+     "In particular, mothers had to carry their young children.",
+     "As a result, hunter-gatherer mothers could have only one baby every four years or so, spacing their births so that they never had to carry more than one child at a time.",
+     "Farmers, on the other hand, could live in the same place year after year and did not have to worry about transporting young children long distances.",
+     "Societies that settled down in one place were able to shorten their birth intervals from four years to about two.",
+     "This meant that each woman could have more children than her hunter-gatherer counterpart, which in turn resulted in rapid population growth among farming communities.",
+     "An increased population was actually an advantage to agricultural societies, because farming required large amounts of human labor."
+    ],
+    "opts": [
+     [
+      "settle down",
+      1,
+      "주제의 출발(정착)",
+      "지문"
+     ],
+     [
+      "farming",
+      1,
+      "정착하게 만든 것(농경)",
+      "지문"
+     ],
+     [
+      "birth intervals",
+      1,
+      "줄어든 것(출산 간격)",
+      "지문"
+     ],
+     [
+      "shorten",
+      1,
+      "간격의 변화(줄어듦)",
+      "지문"
+     ],
+     [
+      "population growth",
+      1,
+      "결과(인구 증가)",
+      "지문"
+     ],
+     [
+      "expand",
+      1,
+      "주제의 방향(인구가 늘어남) — 본문은 population growth·increased",
+      "흐름"
+     ],
+     [
+      "hunter-gatherers",
+      0,
+      "02·04번 대조 쪽(수렵 채집인) — 주제 줄엔 정착 농경만",
+      "지문"
+     ],
+     [
+      "carry",
+      0,
+      "02·03번 대조 쪽 세부(아이를 업고 다님)",
+      "지문"
+     ],
+     [
+      "labor",
+      0,
+      "08번 덧붙인 이유(노동력)",
+      "지문"
+     ],
+     [
+      "advantage",
+      0,
+      "08번 덧붙인 내용(이점) — 마지막 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "belongings",
+      0,
+      "= possessions → 02번 세부(소지품)",
+      "동의어"
+     ],
+     [
+      "infant",
+      0,
+      "= baby → 04번 세부(아기)",
+      "동의어"
+     ],
+     [
+      "itinerant",
+      0,
+      "= moved around → 02번 대조 쪽(떠돌이 생활)",
+      "동의어"
+     ],
+     [
+      "prolong",
+      0,
+      "방향 반대 — 정착하면 출산 간격이 줄어듦(06번), 늘어난 게 아님",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "17강 07",
+    "ko": "**유년기**가 동물에게 주는 **적응**의 **유연성**",
+    "en": "the **adaptive** **flexibility** that a period of **childhood** gives animals",
+    "lines": [
+     "Spending time as children allows animals to learn about their environment.",
+     "Without childhood, animals must rely more fully on hardware, and therefore be less flexible.",
+     "Among migratory bird species, those that are born knowing how, when, and where to migrate ─ those that are migrating entirely with instructions they were born with ─ sometimes have very inefficient migration routes.",
+     "These birds, born knowing how to migrate, don't adapt easily.",
+     "So when lakes dry up, forest becomes farmland, or climate change pushes breeding grounds farther north, those birds that are born knowing how to migrate keep flying by the old rules and maps.",
+     "By comparison, birds with the longest childhoods, and those that migrate with their parents, tend to have the most efficient migration routes.",
+     "Childhood facilitates the passing on of cultural information, and culture can evolve faster than genes.",
+     "Childhood gives flexibility in a changing world."
+    ],
+    "opts": [
+     [
+      "childhood",
+      1,
+      "주제의 중심(유년기)",
+      "지문"
+     ],
+     [
+      "flexibility",
+      1,
+      "유년기가 주는 것(유연성)",
+      "지문"
+     ],
+     [
+      "adaptable",
+      1,
+      "주제의 방향(적응력) — 본문은 adapt·flexible",
+      "흐름"
+     ],
+     [
+      "migration",
+      0,
+      "03번부터 든 예시(철새 이동) — 여러 번 나와도 지엽",
+      "지문"
+     ],
+     [
+      "hardware",
+      0,
+      "02번 비유(타고난 장치) — 비유는 핵심 아님",
+      "지문"
+     ],
+     [
+      "routes",
+      0,
+      "03·06번 세부(이동 경로)",
+      "지문"
+     ],
+     [
+      "climate change",
+      0,
+      "05번 환경 변화의 예",
+      "지문"
+     ],
+     [
+      "genes",
+      0,
+      "07번 비교 대상(유전자)",
+      "지문"
+     ],
+     [
+      "parents",
+      0,
+      "06번 세부(부모와 함께 이동)",
+      "지문"
+     ],
+     [
+      "hereditary",
+      0,
+      "= born with → 03번 대조 쪽(타고난 지시)",
+      "동의어"
+     ],
+     [
+      "directive",
+      0,
+      "= instructions → 03번 대조 쪽(타고난 지시)",
+      "동의어"
+     ],
+     [
+      "rigid",
+      0,
+      "방향 반대 — 경직된 건 03~05번 타고난 지시대로만 나는 새(대조용), 주제는 유연성",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "17강 08",
+    "ko": "**연구**를 **잘못 해석**해 생겨난 '**혀 지도**'의 **오류**",
+    "en": "the **tongue map** as a **myth** born of **misread** **research**",
+    "lines": [
+     "The tongue was mapped into separate areas where certain tastes were registered: sweetness at the tip, sourness on the sides, and bitterness at the back of the mouth.",
+     "Research in the 1980s and 1990s, however, demonstrated that the \"tongue map\" explanation of how we taste was, in fact, totally wrong.",
+     "As it turns out, the map was a misinterpretation and mistranslation of research conducted in Germany at the turn of the twentieth century.",
+     "Today, leading taste researchers believe that taste buds are not grouped according to specialty.",
+     "Sweetness, saltiness, bitterness, and sourness can be tasted everywhere in the mouth, although they may be perceived at a little different intensities at different sites.",
+     "Moreover, the mechanism at work is not place, but time.",
+     "It's not that you taste sweetness at the tip of your tongue, but rather that you register that perception first."
+    ],
+    "opts": [
+     [
+      "tongue map",
+      1,
+      "주제의 대상(혀 지도)",
+      "지문"
+     ],
+     [
+      "misinterpretation",
+      1,
+      "오류가 생긴 까닭(잘못된 해석)",
+      "지문"
+     ],
+     [
+      "research",
+      1,
+      "잘못 해석된 것(연구)",
+      "지문"
+     ],
+     [
+      "misread",
+      1,
+      "= misinterpretation(잘못 해석하다)",
+      "동의어"
+     ],
+     [
+      "myth",
+      1,
+      "주제의 방향(잘못된 통념) — 본문은 totally wrong",
+      "흐름"
+     ],
+     [
+      "sweetness",
+      0,
+      "01·05번 맛의 예(단맛)",
+      "지문"
+     ],
+     [
+      "tip",
+      0,
+      "01·07번 세부(혀끝)",
+      "지문"
+     ],
+     [
+      "Germany",
+      0,
+      "03번 세부(연구한 곳 — 고유명사)",
+      "지문"
+     ],
+     [
+      "taste buds",
+      0,
+      "04번 세부(미뢰)",
+      "지문"
+     ],
+     [
+      "time",
+      0,
+      "06번 세부(실제 원리 — 장소가 아니라 시간)",
+      "지문"
+     ],
+     [
+      "acidic",
+      0,
+      "= sourness → 01번 맛의 예(신맛)",
+      "동의어"
+     ],
+     [
+      "foremost",
+      0,
+      "= leading → 04번 세부(일류 연구자)",
+      "동의어"
+     ],
+     [
+      "valid",
+      0,
+      "방향 반대 — 02번 혀 지도는 완전히 틀린 설명",
+      "흐름"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "songdo1-2026-kw-18",
+  "kind": "kw",
+  "group": "핵심어 고르기 · 올림포스 16~18강 (주제 객관식 대비)",
+  "title": "18강",
+  "note": "18강 01~08번 · 지문마다 보기 12~15개",
+  "passages": [
+   {
+    "name": "18강 01",
+    "ko": "**기대**에 의해 형성되는 인간의 **시각**과 **카메라**의 **공평한** 기록 사이의 **대비**",
+    "en": "the **contrast** between human **vision** shaped by **expectation** and the **camera**'s **impartial** record",
+    "lines": [
+     "Vision is influenced by our preconceptions about reality.",
+     "In viewing a scene, we establish unconscious hierarchies that reflect our functional relationship to objects and our momentary priorities.",
+     "For example, when visualizing a hammer in our mind's eye, we tend to \"see\" it in profile or at some other \"ready for use\" angle.",
+     "One would probably not visualize a hammer as seen from the top so that the handle is hidden by the hammer's head.",
+     "The functional relationship we have with objects creates visual expectations that interfere with our ability to see \"like a camera.\"",
+     "The camera, like the human eye, sees only shapes and colors.",
+     "It documents the world impartially through a lens that is similar to the eye.",
+     "When we look at them carefully, photographs are often surprising because they don't interpret confusing details but simply serve them up to us with a mechanical indifference.",
+     "And because of their flatness, photographs often contain areas that appear as unrecognizable colors and shapes."
+    ],
+    "opts": [
+     [
+      "vision",
+      1,
+      "대조 한쪽(사람의 시각)",
+      "지문"
+     ],
+     [
+      "expectation",
+      1,
+      "사람의 시각을 만드는 것(기대) — 05번",
+      "지문"
+     ],
+     [
+      "preconception",
+      1,
+      "= expectation — 01번 주제문(선입견)",
+      "지문"
+     ],
+     [
+      "camera",
+      1,
+      "대조 다른 쪽(카메라) — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "impartial",
+      1,
+      "카메라 기록의 성질(공평함) — 07번",
+      "지문"
+     ],
+     [
+      "contrast",
+      1,
+      "주제의 틀(사람 눈 ↔ 카메라의 대비) — 05번까지 사람 눈, 06번부터 카메라",
+      "흐름"
+     ],
+     [
+      "hammer",
+      0,
+      "03·04번 예시(망치) — 여러 번 나와도 지엽",
+      "지문"
+     ],
+     [
+      "handle",
+      0,
+      "04번 예시 세부(손잡이)",
+      "지문"
+     ],
+     [
+      "angle",
+      0,
+      "03번 예시 세부(각도)",
+      "지문"
+     ],
+     [
+      "lens",
+      0,
+      "07번 세부(렌즈)",
+      "지문"
+     ],
+     [
+      "flatness",
+      0,
+      "09번 세부(사진의 평면성)",
+      "지문"
+     ],
+     [
+      "perplexing",
+      0,
+      "= confusing → 08번 세부(헷갈리는 세부 모습)",
+      "동의어"
+     ],
+     [
+      "two-dimensional",
+      0,
+      "= flatness → 09번 세부(평면)",
+      "동의어"
+     ],
+     [
+      "identical",
+      0,
+      "방향 반대 — 06번에 비슷한 점이 하나 있지만 주제는 둘의 대비",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "18강 02",
+    "ko": "**논리**만으로 **새로운** 것을 **다룰 수 없을 때** 필요한 **비선형적**·**창의적** 사고",
+    "en": "the need for **nonlinear**, **creative** thinking when **logic** alone **cannot handle** the **new**",
+    "lines": [
+     "In the course of trying to solve a problem with an invention, you may encounter a brick wall of resistance when you try to think your way logically through the problem.",
+     "Such logical thinking is a linear type of process, which uses our reasoning skills.",
+     "This works fine when we're operating in the area of what we know or have experienced.",
+     "However, when we need to deal with new information, ideas, and viewpoints, linear thinking will often come up short.",
+     "On the other hand, creativity by definition involves the application of new information to old problems and the conception of new viewpoints and ideas.",
+     "For this you will be most effective if you learn to operate in a nonlinear manner; that is, use your creative brain.",
+     "Stated differently, if you think in a linear manner, you'll tend to be conservative and keep coming up with techniques which are already known.",
+     "This, of course, is just what you don't want."
+    ],
+    "opts": [
+     [
+      "nonlinear",
+      1,
+      "필요한 사고방식(비선형적)",
+      "지문"
+     ],
+     [
+      "creative",
+      1,
+      "필요한 사고방식(창의적)",
+      "지문"
+     ],
+     [
+      "logical",
+      1,
+      "대조 쪽(논리적 사고) — 주제 줄에 들어감",
+      "지문"
+     ],
+     [
+      "new",
+      1,
+      "논리가 못 다루는 것(새로운 것)",
+      "지문"
+     ],
+     [
+      "inadequate",
+      1,
+      "주제의 방향(논리만으로는 모자람) — 본문은 come up short",
+      "흐름"
+     ],
+     [
+      "invention",
+      0,
+      "01번 상황 설정(발명) — 첫 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "brick wall",
+      0,
+      "01번 비유(벽돌 벽) — 비유는 핵심 아님",
+      "지문"
+     ],
+     [
+      "conservative",
+      0,
+      "07번 세부(선형 사고의 결과)",
+      "지문"
+     ],
+     [
+      "techniques",
+      0,
+      "07번 세부(이미 아는 기법)",
+      "지문"
+     ],
+     [
+      "deadlock",
+      0,
+      "= brick wall → 01번 비유(꽉 막힘)",
+      "동의어"
+     ],
+     [
+      "confront",
+      0,
+      "= encounter → 01번 상황 설정(맞닥뜨림)",
+      "동의어"
+     ],
+     [
+      "sufficient",
+      0,
+      "방향 반대 — 아는 문제엔 논리로 충분하지만(03번), 주제는 새로운 것 앞에서 모자란다는 것",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "18강 03",
+    "ko": "**꾸중**이 아이의 **나쁜 행동**을 오히려 **강화**하는 이유와 부모가 **대신 취해야 할 방법**",
+    "en": "why **scolding** can **reinforce** a child's **misbehavior** and what parents should do **instead**",
+    "lines": [
+     "Punishing a child may not be effective due to what Alvaro Bilbao, a neuropsychologist, calls 'trick-punishments.'",
+     "A trick-punishment is a scolding, a moment of anger or a punishment in the most classic sense of the word.",
+     "Instead of discouraging the child from doing something, it encourages them to do it.",
+     "For example, Hugh learns that when he hits his little brother, his mother scolds him.",
+     "For a child who feels lonely, being scolded is much better than feeling invisible, so he will continue to hit his brother.",
+     "In this case, his mother would be better adopting a different strategy.",
+     "For instance, she could congratulate Hugh when he has not hit his brother for a certain length of time.",
+     "The mother clearly cannot allow the child to hit his little brother, but instead of constantly pointing out the negatives, she can choose to reward the positives.",
+     "In this way, any parent can avoid trick-punishments."
+    ],
+    "opts": [
+     [
+      "scolding",
+      1,
+      "주제의 중심(꾸중)",
+      "지문"
+     ],
+     [
+      "reprimand",
+      1,
+      "= scolding(꾸짖다)",
+      "동의어"
+     ],
+     [
+      "trick-punishment",
+      1,
+      "본문이 붙인 이름(역효과 나는 꾸중)",
+      "지문"
+     ],
+     [
+      "misbehavior",
+      1,
+      "= hit his brother·negatives(나쁜 행동)",
+      "동의어"
+     ],
+     [
+      "reward",
+      1,
+      "부모가 대신 할 일(좋은 행동에 보상) — 08번",
+      "지문"
+     ],
+     [
+      "reinforce",
+      1,
+      "주제의 방향(오히려 강화) — 본문은 encourages·continue",
+      "흐름"
+     ],
+     [
+      "Hugh",
+      0,
+      "04·07번 예시 인물(고유명사)",
+      "지문"
+     ],
+     [
+      "little brother",
+      0,
+      "04번 예시 세부(동생)",
+      "지문"
+     ],
+     [
+      "lonely",
+      0,
+      "05번 예시 속 감정(외로움) — 이유의 세부",
+      "지문"
+     ],
+     [
+      "neuropsychologist",
+      0,
+      "01번 배경(학자 소개)",
+      "지문"
+     ],
+     [
+      "anger",
+      0,
+      "02번 세부(꾸중의 한 형태)",
+      "지문"
+     ],
+     [
+      "sibling",
+      0,
+      "= brother → 04번 예시 세부",
+      "동의어"
+     ],
+     [
+      "isolated",
+      0,
+      "= lonely → 05번 예시 속 감정",
+      "동의어"
+     ],
+     [
+      "dissuade",
+      0,
+      "방향 반대 — 꾸중은 나쁜 행동을 막을 것 같지만(03번) 오히려 부추김",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "18강 04",
+    "ko": "다른 개체와 **비교**해 **불공평**해 보이는 **보상**을 **거부**하는 원숭이",
+    "en": "monkeys' **rejection** of a **reward** that seems **unfair** in **comparison** with another's",
+    "lines": [
+     "Capuchins ─ New World Monkeys that live in large social groups ─ will, in captivity, trade with people all day long, especially if food is involved.",
+     "I give you this rock and you give me a treat to eat.",
+     "If you put two monkeys in cages next to each other, and offer them both slices of cucumber for the rocks they already have, they will happily eat the cucumbers.",
+     "If, however, you give one monkey grapes instead ─ grapes being universally preferred to cucumbers ─ the monkey that is still receiving cucumbers will begin to throw them back at the experimenter.",
+     "Even though she is still getting \"paid\" the same amount for her effort of sourcing rocks, and so her particular situation has not changed, the comparison to another makes the situation unfair.",
+     "Furthermore, she is now willing to abandon all gains ─ the cucumbers themselves ─ to communicate her displeasure to the experimenter."
+    ],
+    "opts": [
+     [
+      "unfair",
+      1,
+      "주제의 중심(보상이 불공평)",
+      "지문"
+     ],
+     [
+      "comparison",
+      1,
+      "불공평을 느낀 이유(옆과 비교)",
+      "지문"
+     ],
+     [
+      "inequality",
+      1,
+      "= unfair(불평등)",
+      "동의어"
+     ],
+     [
+      "reward",
+      1,
+      "= treat·paid·gains(보상)",
+      "동의어"
+     ],
+     [
+      "reject",
+      1,
+      "주제의 방향(거부) — 본문은 throw back·abandon",
+      "흐름"
+     ],
+     [
+      "cucumber",
+      0,
+      "실험에 쓴 먹이(세부)",
+      "지문"
+     ],
+     [
+      "grape",
+      0,
+      "실험에 쓴 먹이(세부)",
+      "지문"
+     ],
+     [
+      "rock",
+      0,
+      "돈 대신 주고받은 물건(세부)",
+      "지문"
+     ],
+     [
+      "captivity",
+      0,
+      "실험 환경(배경)",
+      "지문"
+     ],
+     [
+      "trade",
+      0,
+      "01번 실험 설정 — 첫 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "experimenter",
+      0,
+      "등장인물(세부)",
+      "지문"
+     ],
+     [
+      "barter",
+      0,
+      "= trade → 01번 실험 설정",
+      "동의어"
+     ],
+     [
+      "accept",
+      0,
+      "방향 반대 — 받아들인 건 03번(둘 다 오이일 때)뿐, 주제는 거부",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "18강 05",
+    "ko": "**학술** **디지털** 프로젝트에서 **간과되는** **장애인** **접근성**",
+    "en": "the **neglect** of **accessibility** for people with **disabilities** in **scholarly** **digital** projects",
+    "lines": [
+     "Over the last several decades, scholars have developed standards for how best to create, organize, present, and preserve digital information for future generations.",
+     "What has remained neglected for the most part, however, are the needs of people with disabilities.",
+     "As a result, many of the otherwise most valuable digital resources are useless for people who are deaf or hard of hearing, as well as for people who are blind, have low vision, or have difficulty distinguishing particular colors.",
+     "While professionals working in educational technology and commercial web design have made significant progress in meeting the needs of such users, some scholars creating digital projects all too often fail to take these needs into account.",
+     "This situation would be much improved if more projects embraced the idea that we should always keep the largest possible audience in mind as we make design decisions, ensuring that our final product serves the needs of those with disabilities as well as those without."
+    ],
+    "opts": [
+     [
+      "neglected",
+      1,
+      "주제의 방향(간과됨) — 02번",
+      "지문"
+     ],
+     [
+      "overlook",
+      1,
+      "= neglected(간과하다)",
+      "동의어"
+     ],
+     [
+      "disabilities",
+      1,
+      "누가 소외되나(장애인)",
+      "지문"
+     ],
+     [
+      "impairment",
+      1,
+      "= disabilities(장애)",
+      "동의어"
+     ],
+     [
+      "scholars",
+      1,
+      "간과한 쪽(학자들) — 주제 줄 \"학술\"",
+      "지문"
+     ],
+     [
+      "digital",
+      1,
+      "주제의 무대(디지털 프로젝트)",
+      "지문"
+     ],
+     [
+      "accessibility",
+      1,
+      "주제의 대상(장애인 접근성) — 본문은 needs of people with disabilities",
+      "흐름"
+     ],
+     [
+      "deaf",
+      0,
+      "03번 장애의 예(청각 장애)",
+      "지문"
+     ],
+     [
+      "blind",
+      0,
+      "03번 장애의 예(시각 장애)",
+      "지문"
+     ],
+     [
+      "standards",
+      0,
+      "01번 배경(학자들이 만든 기준) — 첫 문장이지만 주제 아님",
+      "지문"
+     ],
+     [
+      "web design",
+      0,
+      "04번 대조 쪽(잘 해 온 분야)",
+      "지문"
+     ],
+     [
+      "audience",
+      0,
+      "05번 해결책 세부(가장 많은 사용자)",
+      "지문"
+     ],
+     [
+      "benchmark",
+      0,
+      "= standards → 01번 배경(기준)",
+      "동의어"
+     ],
+     [
+      "color-blind",
+      0,
+      "= difficulty distinguishing → 03번 장애의 예(색 구별이 어려움)",
+      "동의어"
+     ],
+     [
+      "prioritize",
+      0,
+      "방향 반대 — 04번 교육 기술·웹 디자인 쪽은 잘 챙겨 왔지만(대조용), 주제는 학술 프로젝트가 간과한다는 것",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "18강 06",
+    "ko": "**두려움**과 **결정**을 만들어 내는 **의식**과 **잠재의식**의 **역할 분담**",
+    "en": "the **division of labor** between the **conscious** and **subconscious** minds in shaping **fears** and **decisions**",
+    "lines": [
+     "The mind has parts that are known as the conscious mind and the subconscious mind.",
+     "The subconscious mind is very fast to act and doesn't deal with emotions.",
+     "It deals with memories of your responses to life, your memories and recognition.",
+     "However, the conscious mind is the one that you have more control over.",
+     "You think. You can choose whether to carry on a thought or to add emotion to it and this is the part of your mind that lets you down frequently because ─ fueled by emotions ─ you make the wrong decisions time and time again.",
+     "When your judgment is clouded by emotions, this puts in biases and all kinds of other negativities that hold you back.",
+     "Scared of spiders? Scared of the dark?",
+     "There are reasons for all of these fears, but they originate in the conscious mind.",
+     "They only become real fears when the subconscious mind records your reactions."
+    ],
+    "opts": [
+     [
+      "conscious",
+      1,
+      "역할 분담의 한쪽(의식)",
+      "지문"
+     ],
+     [
+      "subconscious",
+      1,
+      "역할 분담의 다른 쪽(잠재의식) — 대조 양쪽 다 핵심",
+      "지문"
+     ],
+     [
+      "fears",
+      1,
+      "두 마음이 만들어 내는 것(두려움)",
+      "지문"
+     ],
+     [
+      "decisions",
+      1,
+      "두 마음이 만들어 내는 것(결정)",
+      "지문"
+     ],
+     [
+      "division of labor",
+      1,
+      "주제의 틀(두 마음이 일을 나눔) — 02~04번이 각자 하는 일",
+      "흐름"
+     ],
+     [
+      "spiders",
+      0,
+      "07번 두려움의 예(거미)",
+      "지문"
+     ],
+     [
+      "dark",
+      0,
+      "07번 두려움의 예(어둠)",
+      "지문"
+     ],
+     [
+      "biases",
+      0,
+      "06번 세부(감정이 끼어든 판단의 결과)",
+      "지문"
+     ],
+     [
+      "pessimism",
+      0,
+      "= negativities → 06번 세부",
+      "동의어"
+     ],
+     [
+      "inhibit",
+      0,
+      "= hold you back → 06번 세부(발목 잡음)",
+      "동의어"
+     ],
+     [
+      "disappoint",
+      0,
+      "= lets you down → 05번 세부(의식이 실망시킴)",
+      "동의어"
+     ],
+     [
+      "innate",
+      0,
+      "방향 반대 — 두려움은 의식에서 생겨(08번) 잠재의식이 반응을 기록하며 굳어짐(09번), 타고난 게 아님",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "18강 07",
+    "ko": "**문화의 진화**를 **유전**의 원리로 설명하는 **모델**의 **한계**",
+    "en": "the **limits** of **modeling** **cultural evolution** on **genetic** **inheritance**",
+    "lines": [
+     "Many of the first models of cultural evolution drew noticeable connections between culture and genes by using concepts from theoretical population genetics and applying them to culture.",
+     "Cultural patterns of transmission, innovation, and selection are conceptually likened to genetic processes of transmission, mutation, and selection.",
+     "However, these approaches had to be modified to account for the differences between genetic and cultural transmission.",
+     "For example, we do not expect the cultural transmission to follow the rules of genetic transmission strictly.",
+     "If two biological parents have different forms of a cultural trait, their child is not necessarily equally likely to acquire the mother's or father's form of that trait.",
+     "Further, a child can acquire cultural traits not only from its parents but also from nonparental adults and peers; thus, the frequency of a cultural trait in the population is relevant beyond just the probability that an individual's parents had that trait."
+    ],
+    "opts": [
+     [
+      "model",
+      1,
+      "주제의 대상(초기 모델)",
+      "지문"
+     ],
+     [
+      "cultural evolution",
+      1,
+      "모델이 설명하려던 것(문화의 진화)",
+      "지문"
+     ],
+     [
+      "genetic",
+      1,
+      "빌려 온 원리(유전)",
+      "지문"
+     ],
+     [
+      "limit",
+      1,
+      "주제의 방향(한계) — 본문은 had to be modified",
+      "흐름"
+     ],
+     [
+      "mutation",
+      0,
+      "02번 세부(유전 쪽 과정 — 돌연변이)",
+      "지문"
+     ],
+     [
+      "innovation",
+      0,
+      "02번 세부(문화 쪽 과정 — 혁신)",
+      "지문"
+     ],
+     [
+      "peers",
+      0,
+      "06번 예(또래에게서도 배움)",
+      "지문"
+     ],
+     [
+      "parents",
+      0,
+      "05·06번 예(부모)",
+      "지문"
+     ],
+     [
+      "frequency",
+      0,
+      "06번 세부(집단 속 빈도)",
+      "지문"
+     ],
+     [
+      "variation",
+      0,
+      "= mutation → 02번 세부(변이)",
+      "동의어"
+     ],
+     [
+      "pertinent",
+      0,
+      "= relevant → 06번 세부",
+      "동의어"
+     ],
+     [
+      "flawless",
+      0,
+      "방향 반대 — 03번 초기 모델은 고쳐야 했음(한계)",
+      "흐름"
+     ]
+    ]
+   },
+   {
+    "name": "18강 08",
+    "ko": "**복장 규범**을 **살짝** **어기는** 사람에게 사람들이 **부여하는** **더 높은 지위**",
+    "en": "the **higher status** people **attribute** to those who **break** **dress codes** only **slightly**",
+    "lines": [
+     "It's not news to anyone that we judge others based on their clothes.",
+     "In general, studies that investigate these judgments find that people prefer clothing that matches expectations ─ surgeons in scrubs, little boys in blue ─ with one notable exception.",
+     "A series of studies published in an article in June 2014 in the Journal of Consumer Research explored observers' reactions to people who broke established norms only slightly.",
+     "In one scenario, a man at a black-tie affair was viewed as having higher status and competence when wearing a red bow tie.",
+     "The researchers also found that valuing uniqueness increased audience members' ratings of the status and competence of a professor who wore red sneakers while giving a lecture.",
+     "The results suggest that people judge these slight deviations from the norm as positive because they suggest that the individual is powerful enough to risk the social costs of such behaviors."
+    ],
+    "opts": [
+     [
+      "norm",
+      1,
+      "어기는 대상(규범)",
+      "지문"
+     ],
+     [
+      "break",
+      1,
+      "주제의 행동(어기다) — 03번",
+      "지문"
+     ],
+     [
+      "slightly",
+      1,
+      "어기는 정도(살짝) — 03·06번",
+      "지문"
+     ],
+     [
+      "status",
+      1,
+      "결과(더 높은 지위)",
+      "지문"
+     ],
+     [
+      "dress code",
+      1,
+      "= established norms(03번) — 옷차림 규범",
+      "동의어"
+     ],
+     [
+      "favorable",
+      1,
+      "주제의 방향(오히려 좋게 봄) — 본문은 positive",
+      "흐름"
+     ],
+     [
+      "bow tie",
+      0,
+      "04번 예시(빨간 나비넥타이)",
+      "지문"
+     ],
+     [
+      "sneakers",
+      0,
+      "05번 예시(빨간 운동화)",
+      "지문"
+     ],
+     [
+      "surgeons",
+      0,
+      "02번 예(기대에 맞는 옷 — 수술복)",
+      "지문"
+     ],
+     [
+      "professor",
+      0,
+      "05번 예시 인물(교수)",
+      "지문"
+     ],
+     [
+      "uniqueness",
+      0,
+      "05번 세부(독특함을 중시하는 사람일수록)",
+      "지문"
+     ],
+     [
+      "individuality",
+      0,
+      "= uniqueness → 05번 세부(개성)",
+      "동의어"
+     ],
+     [
+      "formal wear",
+      0,
+      "= black-tie → 04번 상황(정장 행사)",
+      "동의어"
+     ],
+     [
+      "disapprove",
+      0,
+      "방향 반대 — 보통은 기대에 맞는 옷을 좋아하지만(02번), 살짝 어긴 사람은 오히려 높게 봄",
+      "흐름"
+     ]
+    ]
+   }
+  ]
+ },
  {
   "id": "songdo1-2026-2f-1-80",
   "group": "2학기 기말 · 올림포스 16~18강 · 1,012개",
@@ -5751,6 +8140,43 @@ function lcsMask(a, b) {
   }
   return [ma, mb];
 }
+/* 핵심어 세트: 강 하나가 세트, 지문마다 본문 문장 · 한 줄 주제(** = 굵게) · 보기 [단어, 핵심 1/0, 이유, 종류] */
+function prepareKw(raw) {
+  const passages = [];
+  (raw.passages || []).forEach(p => {
+    const lines = (p.lines || []).map(x => String(x == null ? '' : x).trim()).filter(Boolean);
+    const opts = [], seen = new Set();
+    (p.opts || []).forEach(o => {
+      const w = String(o && o[0] != null ? o[0] : '').trim();
+      if (!w || seen.has(w.toLowerCase())) return;
+      seen.add(w.toLowerCase());
+      opts.push({ w, key: !!Number(o[1]), why: String(o[2] == null ? '' : o[2]).trim(), cat: String(o[3] || '') });
+    });
+    const nk = opts.filter(o => o.key).length;
+    if (lines.length && nk && nk < opts.length) passages.push({ name: String(p.name || '지문'), ko: String(p.ko || '').trim(), en: String(p.en || '').trim(), lines, opts });
+  });
+  return { id: raw.id, kind: 'kw', title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), passages };
+}
+/* 보기 번호(0~n-1)를 섞되, 원본 순서 그대로거나 핵심이 한데 몰려 나오는 일은 없게 함 (원본은 핵심을 먼저 적어 둠).
+   keys[i] = i번 보기가 핵심인지 */
+function shuffleKw(keys) {
+  const n = keys.length, a = [];
+  for (let i = 0; i < n; i++) a.push(i);
+  if (n < 2) return a;
+  const bad = o => {
+    if (o.every((v, i) => v === i)) return true;
+    const pos = o.map((v, i) => keys[v] ? i : -1).filter(i => i >= 0);
+    return pos.length > 1 && pos.length < n && pos[pos.length - 1] - pos[0] === pos.length - 1;
+  };
+  for (let t = 0; t < 60; t++) { shuffle(a); if (!bad(a)) return a; }
+  return a;
+}
+/* picks: 학생이 고른 보기 번호. 핵심을 하나도 안 빠뜨리고 오답은 하나도 안 골라야 정답 */
+function gradeKw(picks, opts) {
+  const on = new Set(picks), hit = [], miss = [], wrong = [];
+  opts.forEach((o, i) => { if (o.key) (on.has(i) ? hit : miss).push(i); else if (on.has(i)) wrong.push(i); });
+  return { ok: !miss.length && !wrong.length, hit, miss, wrong };
+}
 /*PURE-END*/
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -5845,7 +8271,12 @@ function findRaw(id) { return rawSets().find(s => s.id === id) || null; }
 function getRec(id) { const r = store.get(K.rec(id)); return r && typeof r === 'object' ? r : {}; }
 function liveSess(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 1 && ss.n === n && ss.phase && ss.phase !== 'done' ? ss : null; }
 function liveOrder(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 2 && ss.kind === 'order' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
-function liveAny(raw) { return raw.kind === 'order' ? liveOrder(raw.id, prepareOrder(raw).passages.length) : liveSess(raw.id, prepareSet(raw).items.length); }
+function liveKw(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 3 && ss.kind === 'kw' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
+function liveAny(raw) {
+  if (raw.kind === 'order') return liveOrder(raw.id, prepareOrder(raw).passages.length);
+  if (raw.kind === 'kw') return liveKw(raw.id, prepareKw(raw).passages.length);
+  return liveSess(raw.id, prepareSet(raw).items.length);
+}
 function save() { const s = S.sess; if (s && s.phase !== 'done') store.set(K.sess(s.setId), s); }
 
 /* ---------- 진행 엔진 ---------- */
@@ -6056,10 +8487,98 @@ function beginOrder(raw, mode) {
   save(); route();
 }
 
+/* ---------- 핵심어 고르기 엔진 ----------
+   세트(강)의 지문을 차례대로 하나씩 냄. 지문마다 보기를 새로 섞고, 고른 보기가 핵심어와 똑같아야 정답
+   (핵심을 하나라도 빠뜨리거나 오답을 하나라도 고르면 다시). 틀린 지문은 큐 맨 뒤로 가서 보기가 새로 섞인 채 다시 나오고,
+   모든 지문을 맞혀야 끝. st[id] = { t: 시도 수, w: 틀린 수 } */
+function newKwSession(set, mode) {
+  const n = set.passages.length;
+  let pool = set.passages.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { t: 0, w: 0 }; });
+  const s = { v: 3, kind: 'kw', setId: set.id, n, mode, pool, st, queue: pool.slice(), cur: null, done: 0, phase: 'play', ms: 0, lt: Date.now() };
+  openKw(s);
+  return s;
+}
+function openKw(s) {
+  const id = s.queue[0];
+  if (id == null) { s.cur = null; return; }
+  s.cur = { id, order: shuffleKw(SET.passages[id].opts.map(o => o.key)), picks: [], fb: null };
+}
+function validKw(s) {
+  const n = SET.passages.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  if (!Array.isArray(s.pool) || !s.pool.every(ok) || !Array.isArray(s.queue) || !s.queue.every(ok)) return false;
+  if (!s.st || typeof s.st !== 'object' || !s.pool.every(id => s.st[id])) return false;
+  const c = s.cur;
+  if (!c || !ok(c.id) || (s.queue[0] !== c.id && !c.fb)) return false;
+  const m = SET.passages[c.id].opts.length;
+  const sub = a => Array.isArray(a) && a.every(v => Number.isInteger(v) && v >= 0 && v < m) && new Set(a).size === a.length;
+  return sub(c.order) && c.order.length === m && sub(c.picks) && (!c.fb || sub(c.fb.picks));
+}
+function kwToggle(i) {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const k = c.picks.indexOf(i);
+  if (k >= 0) c.picks.splice(k, 1); else c.picks.push(i);
+  save();
+}
+function kwCheck() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb || !c.picks.length) return;
+  tick(s);
+  const g = gradeKw(c.picks, SET.passages[c.id].opts), x = s.st[c.id];
+  x.t++;
+  s.queue.shift();
+  if (g.ok) s.done++; else { x.w++; s.queue.push(c.id); }
+  c.fb = { ok: g.ok, picks: c.picks.slice() };
+  save(); renderKwFeedback();
+}
+function kwNext() {
+  const s = S.sess;
+  if (!s || !s.cur || !s.cur.fb) return;
+  tick(s);
+  if (!s.queue.length) { s.cur = null; finishKw(s); stopClock(); renderResult(); return; }
+  openKw(s); save(); renderKw();
+}
+function finishKw(s) {
+  const hard = s.pool.filter(id => s.st[id].w > 0);
+  const known = s.pool.length - hard.length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: s.pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  const tries = {};
+  s.pool.forEach(id => { tries[id] = s.st[id].t; });
+  S.result = { kind: 'kw', setId: s.setId, title: SET.title, mode: s.mode, n: s.pool.length, ms: s.ms, known, hard, tries };
+  s.phase = 'done';
+  store.del(K.sess(s.setId));
+}
+function beginKw(raw, mode) {
+  SET = prepareKw(raw);
+  if (!SET.passages.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveKw(SET.id, SET.passages.length);
+    if (s && !validKw(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newKwSession(SET, 'full');
+  } else s = newKwSession(SET, mode === 'hard' ? 'hard' : 'full');
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+
 function begin(id, mode) {
   const raw = findRaw(id);
   if (!raw) { renderHome(); return; }
   if (raw.kind === 'order') { beginOrder(raw, mode); return; }
+  if (raw.kind === 'kw') { beginKw(raw, mode); return; }
   SET = prepareSet(raw);
   if (!SET.items.length) { renderHome(); return; }
   let s = null;
@@ -6086,6 +8605,11 @@ function route() {
     if (s.phase === 'done') { renderResult(); return; }
     if (!s.cur) { finishOrder(s); renderResult(); return; }
     renderOrder(); return;
+  }
+  if (s.kind === 'kw') {
+    if (s.phase === 'done') { renderResult(); return; }
+    if (!s.cur) { finishKw(s); renderResult(); return; }
+    renderKw(); return;
   }
   if (s.phase === 'bdone') { renderPause(); return; }
   if (s.phase === 'done') { renderResult(); return; }
@@ -6137,8 +8661,35 @@ function orderCard(raw) {
     ${confirmHTML(cf, sid)}
   </article>`;
 }
+/* 핵심어 세트 카드: 강 하나, 지문 수, 진행 중/지난 기록, 핵심어 고르기·틀린 지문만 */
+function kwCard(raw) {
+  const set = prepareKw(raw);
+  const n = set.passages.length;
+  const ss = liveKw(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · 맞힌 지문 ${ss.done}/${ss.pool.length} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)} · 한 번에 ${rec.last.known}/${rec.last.n}${rec.last.mode === 'hard' ? ' (틀린 지문만)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">핵심어 고르기</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">틀린 지문만 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}지문</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
 function setCard(raw) {
   if (raw.kind === 'order') return orderCard(raw);
+  if (raw.kind === 'kw') return kwCard(raw);
   const set = prepareSet(raw);
   const n = set.items.length;
   const nb = n ? makeBatches(set, set.items.map((_, i) => i)).length : 0;
@@ -6189,23 +8740,40 @@ const ORDER_RULES = `
       <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>
     </ol>
   </section>`;
+const KW_RULES = `
+  <section class="rules" aria-labelledby="krules-h">
+    <h2 class="eyebrow" id="krules-h">핵심어 고르는 방법</h2>
+    <ol>
+      <li><span class="num">1</span><span><b>필기·해석은 덮고</b> 지문만 읽어. 주제를 한 줄로 먼저 떠올려 봐.</span></li>
+      <li><span class="num">2</span><span><b>주제의 핵심어를 모두</b> 골라. 지문에 나왔다고 다 핵심은 아니야 — 예시·고유명사·세부는 지엽.</span></li>
+      <li><span class="num">3</span><span><b>지문에 없는 말도 섞여 있어.</b> 핵심어를 바꿔 쓴 말이면 정답, 주제의 방향을 뒤집은 말이면 함정.</span></li>
+      <li><span class="num">4</span><span><b>하나라도 빠뜨리거나 더 고르면 다시.</b> 이유와 한 줄 주제가 나오고, 그 지문은 보기가 새로 섞여 뒤에 다시 나와.</span></li>
+    </ol>
+  </section>`;
 function renderHome() {
   S.view = 'home'; stopClock(); S.sess = null; C = null;
   const sets = rawSets();
-  const hasV = sets.some(s => s.kind !== 'order'), hasO = sets.some(s => s.kind === 'order');
-  const onlyO = hasO && !hasV;
-  const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.' : hasO ? '단어는 먼저 떠올리고, 본문은 안 보고 다시 세워 봐.' : '눈으로 보는 대신 먼저 떠올리고, 바로 채점해.';
+  const hasO = sets.some(s => s.kind === 'order'), hasK = sets.some(s => s.kind === 'kw');
+  const hasV = sets.some(s => s.kind !== 'order' && s.kind !== 'kw');
+  const onlyO = hasO && !hasV && !hasK, onlyK = hasK && !hasV && !hasO;
+  const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.'
+    : onlyK ? '지문을 읽고 주제의 핵심어만 골라 봐. 나왔다고 다 핵심은 아니야.'
+    : hasO && hasK ? '단어는 먼저 떠올리고, 본문은 다시 세우고, 지문은 핵심어만 골라 봐.'
+    : hasO ? '단어는 먼저 떠올리고, 본문은 안 보고 다시 세워 봐.'
+    : hasK ? '단어는 먼저 떠올리고, 지문은 주제의 핵심어만 골라 봐.'
+    : '눈으로 보는 대신 먼저 떠올리고, 바로 채점해.';
   app.innerHTML = `
 <div class="wrap home">
   <header class="masthead">
     <div class="fields">${FIELDS.map(f => `<span class="field"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></span>`).join('')}</div>
-    <h1>${onlyO ? '본문 순서 맞추기' : '꺼내는 단어장'}</h1>
+    <h1>${onlyO ? '본문 순서 맞추기' : onlyK ? '핵심어 고르기' : '꺼내는 단어장'}</h1>
     <p class="lede">${lede}</p>
   </header>
-  ${hasV || !hasO ? VOCAB_RULES : ''}
+  ${hasV || (!hasO && !hasK) ? VOCAB_RULES : ''}
   ${hasO ? ORDER_RULES : ''}
+  ${hasK ? KW_RULES : ''}
   <section class="sets" aria-labelledby="sets-h">
-    <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : hasO ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
+    <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : onlyK ? '핵심어 세트' : hasO || hasK ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
     ${groupedCards(sets)}
   </section>
   ${PASTE ? `<details class="paste" id="paste"${S.pasteOpen ? ' open' : ''}>
@@ -6219,7 +8787,7 @@ function renderHome() {
       <button class="btn btn-primary" id="p-save" type="button" disabled>세트 만들기</button>
     </div>
   </details>` : ''}
-  <p class="foot">${hasV || !hasO ? '외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>' : ''}진행 기록은 이 기기 브라우저에만 저장돼. 매번 같은 브라우저로 열어야 이어서 할 수 있어.</p>
+  <p class="foot">${hasV || (!hasO && !hasK) ? '외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>' : ''}진행 기록은 이 기기 브라우저에만 저장돼. 매번 같은 브라우저로 열어야 이어서 할 수 있어.</p>
 </div>`;
   bindHome();
 }
@@ -6609,6 +9177,103 @@ function renderOrderFeedback() {
   window.scrollTo(0, 0);
 }
 
+/* ---------- 핵심어 고르기 화면 ---------- */
+const KW = `
+<div class="wrap study" id="kw-root">
+  <div class="bar">
+    <button class="back" id="kw-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="kw-title"></div><div class="bar-sub" id="kw-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="kw-track"></div>
+  <section class="od-head">
+    <div class="card-top"><span class="dir" id="kw-dir"></span><span class="left mono" id="kw-left"></span></div>
+    <h2 class="od-name" id="kw-name"></h2>
+    <p class="od-hint" id="kw-hint" aria-live="polite"></p>
+  </section>
+  <div class="kw-body" id="kw-body">
+    <p class="kw-cap" id="kw-cap" hidden>본문 · 이유에 적힌 번호가 문장 번호야</p>
+    <p class="kw-text" id="kw-text" lang="en"></p>
+  </div>
+  <section class="kw-zone" id="kw-zone"></section>
+  <div class="od-foot" id="kw-foot"></div>
+</div>`;
+/* 한 줄 주제의 **…**를 굵게 */
+const boldHTML = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+
+function renderKw() {
+  S.view = 'study'; app.onclick = null; C = null;
+  app.innerHTML = KW;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  const s = S.sess, p = SET.passages[s.cur.id];
+  R['kw-title'].textContent = SET.title;
+  R['kw-back'].onclick = () => { tick(s); save(); renderHome(); };
+  R['kw-text'].innerHTML = p.lines.map((t, i) => `<span class="kw-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>${esc(t)}`).join(' ');
+  window.scrollTo(0, 0);
+  if (s.cur.fb) renderKwFeedback(); else renderKwPick();
+  startClock();
+}
+function kwHeader() {
+  const s = S.sess, p = SET.passages[s.cur.id], n = s.pool.length;
+  R['kw-sub'].textContent = (s.mode === 'hard' ? '틀린 지문만 · ' : '') + `맞힌 지문 ${s.done}/${n}`;
+  R['kw-track'].innerHTML = trackHTML(n, s.done, 1) + `<div class="track-n mono" aria-label="맞힌 지문 ${s.done}/${n}">${s.done}/${n}</div>`;
+  R['kw-left'].textContent = `남은 지문 ${s.queue.length}`;
+  R['kw-name'].textContent = p.name;
+}
+function renderKwPick() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id];
+  kwHeader();
+  R['kw-dir'].innerHTML = `<b>핵심어</b><span>보기 ${p.opts.length}개</span>`;
+  R['kw-hint'].className = 'od-hint';
+  R['kw-hint'].textContent = '지문을 읽고 주제의 핵심어를 모두 골라. 몇 개인지는 안 알려 줘.';
+  R['kw-zone'].innerHTML = `<p class="kw-ask">나왔다고 다 핵심은 아니야 · 지문에 없어도 핵심어를 바꿔 쓴 말이면 정답</p>
+    <div class="kw-chips" id="kw-chips" role="group" aria-label="보기">${c.order.map(i =>
+      `<button class="kw-chip" type="button" data-i="${i}" aria-pressed="${c.picks.includes(i)}" lang="en">${esc(p.opts[i].w)}</button>`).join('')}</div>`;
+  R['kw-foot'].innerHTML = `<button class="btn btn-primary wide big" id="kw-go" type="button">확인</button>`;
+  const go = $('#kw-go');
+  const sync = () => { go.disabled = !c.picks.length; go.textContent = c.picks.length ? `확인 · ${c.picks.length}개 골랐어` : '확인'; };
+  $('#kw-chips').onclick = e => {
+    const b = e.target.closest('[data-i]');
+    if (!b) return;
+    const i = +b.dataset.i;
+    kwToggle(i);
+    b.setAttribute('aria-pressed', String(c.picks.includes(i)));
+    sync();
+  };
+  go.onclick = kwCheck;
+  sync();
+}
+/* 확인 뒤: 한 줄 주제(핵심어 굵게) → 핵심 보기(빠뜨린 것은 빨갛게 + 이유) → 잘못 고른 보기(빨갛게 + 이유)
+   → 안 고른 오답 보기 한 줄 → 본문(이유의 번호를 찾아보게). 맞혀도 한 줄 주제는 보여 줌 */
+function renderKwFeedback() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], g = gradeKw(c.fb.picks, p.opts);
+  kwHeader();
+  const nk = g.hit.length + g.miss.length;
+  R['kw-dir'].innerHTML = `<b>${g.ok ? '정답' : '다시'}</b><span>핵심어 ${nk}개</span>`;
+  R['kw-hint'].className = 'od-hint ' + (g.ok ? 'ok' : 'bad');
+  const parts = [];
+  if (g.miss.length) parts.push(`빠뜨린 핵심 ${g.miss.length}개`);
+  if (g.wrong.length) parts.push(`잘못 고른 보기 ${g.wrong.length}개`);
+  R['kw-hint'].textContent = g.ok ? `핵심어 ${nk}개 다 골랐어.` : `${parts.join(' · ')}. 빨간 칸의 이유를 읽고 넘겨 — 이 지문은 뒤에 다시 나와.`;
+  const hitS = new Set(g.hit), wrongS = new Set(g.wrong);
+  const row = (i, cls, tag, why) => `<li class="kw-row ${cls}"><span class="kw-tag">${tag}</span><span class="kw-w" lang="en">${esc(p.opts[i].w)}</span>${why ? `<span class="kw-why">${esc(p.opts[i].why)}</span>` : ''}</li>`;
+  const keys = p.opts.map((o, i) => i).filter(i => p.opts[i].key);
+  const rest = p.opts.map((o, i) => i).filter(i => !p.opts[i].key && !wrongS.has(i));
+  R['kw-zone'].innerHTML = `
+    <div class="kw-topic"><span class="eyebrow">한 줄 주제</span><span>${boldHTML(p.ko)}</span>${p.en ? `<span class="kw-en" lang="en">${boldHTML(p.en)}</span>` : ''}</div>
+    <ul class="kw-fb" aria-label="채점">
+      ${keys.map(i => hitS.has(i) ? row(i, 'hit', '핵심', false) : row(i, 'miss', '빠뜨린 핵심', true)).join('')}
+      ${g.wrong.map(i => row(i, 'wrong', '잘못 고름', true)).join('')}
+    </ul>
+    ${rest.length ? `<p class="kw-rest">안 고른 오답 보기 · ${rest.map(i => `<span lang="en">${esc(p.opts[i].w)}</span>`).join(' · ')}</p>` : ''}`;
+  R['kw-zone'].after(R['kw-body']);
+  R['kw-cap'].hidden = false;
+  R['kw-foot'].innerHTML = `<button class="btn btn-primary wide big" id="kw-next" type="button">${s.queue.length ? '다음 지문' : '결과 보기'}</button>`;
+  $('#kw-next').onclick = kwNext;
+  window.scrollTo(0, 0);
+}
+
 /* ---------- 끌어서 옮기기 ----------
    손잡이(touch-action:none)는 바로 끌림. 문장 부분은 꾹 누르면(0.25초) 끌리고, 바로 움직이면 그냥 스크롤.
    마우스는 아무 데나 눌러서 끌기. 끌리는 동안 화면 끝에 가까우면 자동으로 스크롤됨 */
@@ -6750,11 +9415,62 @@ function renderOrderResult(r) {
   $('#r-home').onclick = () => renderHome();
   window.scrollTo(0, 0);
 }
+/* 핵심어 세트 결과: 한 번에 맞힌 지문 수, 다시 한 지문 목록. 처음부터 끝까지 했으면 구글폼 제출 칸
+   (세트 '핵심어 · 16강', 끈질긴 단어 칸에는 다시 한 지문 '2지문: 16강 03(2번 만에), …') */
+function renderKwResult(r) {
+  S.sess = null;
+  const hardP = r.hard.map(id => ({ id, p: SET.passages[id] })).filter(x => x.p);
+  const kind = r.mode === 'hard' ? '틀린 지문만' : '핵심어 고르기';
+  const tries = id => r.tries[id] || 2;
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.n}지문 핵심어 다 골랐어</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>한 번에 맞힘</dt><dd>${r.known}</dd></div>
+    <div><dt>다시 한 지문</dt><dd>${hardP.length}</dd></div>
+  </dl>
+  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘핵심어 고르기’를 처음부터 끝까지 했을 때만 할 수 있어.</p>` : ''}
+  ${FORM && r.mode === 'full' ? submitHTML() : ''}
+  ${hardP.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">다시 한 지문</h3>
+    <p class="note">한 번에 못 맞힌 지문이야. 주제의 핵심어가 뭐였는지 한 번 더 떠올려 봐.</p>
+    <ul>${hardP.map(x => `<li><span class="en">${esc(x.p.name)}</span><span>핵심어 ${x.p.opts.filter(o => o.key).length}개 · ${tries(x.id)}번 만에</span></li>`).join('')}</ul>
+  </section>` : `<p class="note">전부 한 번에 맞혔어.</p>`}
+  <p class="note">시험 전에 한 번 더 고르면 주제가 더 빨리 보여.</p>
+  <div class="actions">
+    ${hardP.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">틀린 지문만 다시</button>` : ''}
+    <button class="btn ${hardP.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  if (FORM && r.mode === 'full') {
+    bindSubmit(r, `핵심어 · ${r.title}`, `${hardP.length}지문` + (hardP.length ? ': ' + hardP.map(x => `${x.p.name}(${tries(x.id)}번 만에)`).join(', ') : ''));
+  }
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+function submitHTML() {
+  return `
+  <section class="submit" aria-labelledby="sub-h">
+    <h3 id="sub-h">선생님께 제출</h3>
+    <label for="sub-name">이름</label>
+    <div class="submit-row">
+      <input type="text" id="sub-name" maxlength="20" autocomplete="name" placeholder="이름 쓰기">
+      <a class="btn btn-primary" id="sub-go" href="#" target="_blank" rel="noopener">제출하러 가기</a>
+    </div>
+    <p class="note" id="sub-note">구글폼이 결과가 채워진 채로 열려. 거기서 <b>제출(Submit)</b>까지 눌러야 끝나.</p>
+  </section>`;
+}
 function renderResult() {
   S.view = 'result'; app.onclick = null; stopClock();
   const r = S.result;
   if (!r) { renderHome(); return; }
   if (r.kind === 'order') { renderOrderResult(r); return; }
+  if (r.kind === 'kw') { renderKwResult(r); return; }
   S.sess = null;
   const hardItems = r.hard.map(id => SET.items[id]).filter(Boolean);
   const kind = r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기';
@@ -6768,16 +9484,7 @@ function renderResult() {
     <div><dt>끈질긴 단어</dt><dd>${hardItems.length}</dd></div>
   </dl>
   ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.</p>` : ''}
-  ${FORM && r.mode === 'full' ? `
-  <section class="submit" aria-labelledby="sub-h">
-    <h3 id="sub-h">선생님께 제출</h3>
-    <label for="sub-name">이름</label>
-    <div class="submit-row">
-      <input type="text" id="sub-name" maxlength="20" autocomplete="name" placeholder="이름 쓰기">
-      <a class="btn btn-primary" id="sub-go" href="#" target="_blank" rel="noopener">제출하러 가기</a>
-    </div>
-    <p class="note" id="sub-note">구글폼이 결과가 채워진 채로 열려. 거기서 <b>제출(Submit)</b>까지 눌러야 끝나.</p>
-  </section>` : ''}
+  ${FORM && r.mode === 'full' ? submitHTML() : ''}
   ${hardItems.length ? `
   <section class="hard" aria-labelledby="hard-h">
     <h3 id="hard-h">끈질긴 단어</h3>
@@ -6790,7 +9497,7 @@ function renderResult() {
     <button class="btn ${hardItems.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
   </div>
 </div>`;
-  if (FORM && r.mode === 'full') bindSubmit(r, kind, hardItems);
+  if (FORM && r.mode === 'full') bindSubmit(r, `${r.title} · ${kind}`, `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : ''));
   const hl = $('.hard ul');
   if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(hardItems[+b.dataset.say]); });
   const h = $('#r-hard');
@@ -6799,14 +9506,14 @@ function renderResult() {
   window.scrollTo(0, 0);
 }
 
-/* 결과를 선생님 구글폼으로: 미리 채워진 링크를 새 탭으로 열고, 학생이 폼에서 제출을 누름 */
-function bindSubmit(r, kind, hardItems) {
+/* 결과를 선생님 구글폼으로: 미리 채워진 링크를 새 탭으로 열고, 학생이 폼에서 제출을 누름.
+   setText = 세트 칸(단어 '기말 · 1~80번 · 외우기', 핵심어 '핵심어 · 16강'), hardText = 끈질긴 단어 칸 */
+function bindSubmit(r, setText, hardText) {
   const nameEl = $('#sub-name'), go = $('#sub-go'), note = $('#sub-note');
   const noteHTML = note.innerHTML;
   const fmtKo = ms => { const t = Math.max(0, Math.round(ms / 1000)); return `${Math.floor(t / 60)}분 ${t % 60}초`; };
-  const hardText = `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : '');
   const sync = () => {
-    const pairs = [['usp', 'pp_url'], [FORM.name, nameEl.value.trim()], [FORM.school, CFG.school || ''], [FORM.set, `${r.title} · ${kind}`], [FORM.time, fmtKo(r.ms)], [FORM.hard, hardText]];
+    const pairs = [['usp', 'pp_url'], [FORM.name, nameEl.value.trim()], [FORM.school, CFG.school || ''], [FORM.set, setText], [FORM.time, fmtKo(r.ms)], [FORM.hard, hardText]];
     go.href = FORM.url + '?' + pairs.filter(p => p[0]).map(p => encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1])).join('&');
   };
   nameEl.value = store.get(K.name) || '';

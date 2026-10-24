@@ -1,0 +1,618 @@
+* 핵심어 고르기 원본 — 송도고1 2학기 기말 · 올림포스 16~18강 (24지문, 2026-10-24 검수 끝)
+* 형식: '# 키 | 세트 제목' = 세트(강) 하나 · '## 지문 이름' · '= 한 줄 주제(한국어) | 영어' (**굵게** = 핵심어)
+*       '> 본문 문장' (차례대로, 번호는 자동 · 요약문은 넣지 않음)
+*       '+ 보기 | 이유' = 핵심 · '- 보기 | 이유' = 오답 · 끝에 '| 동의어' 또는 '| 흐름'(본문에 없는 말), 없으면 본문에 있는 말
+*       '보기 [형태, 형태]' = 본문에서 찾을 꼴(보기와 꼴이 다를 때) · '* '로 시작하는 줄은 메모(페이지에 안 나옴)
+* 고친 뒤: python3 _build/build.py import-kw _build/src/songdo1-2026-kw.txt songdo1-2026-kw
+
+# 16 | 16강
+
+## 16강 01
+= 운동 방향의 **반대로 작용**하여 움직이는 물체를 **느리게** 하는 **힘**인 **마찰** | **friction** as a **force** that **acts against** motion and **slows** moving objects **down**
+> Imagine you are pedalling your bicycle on a level road.
+> You stop pedalling: no force is now acting to move you forward.
+> What happens? You gradually slow down.
+> How could you slow down more suddenly, in a shorter distance? By putting the brakes on.
+> Because the brakes change your movement, making you slow down more suddenly, they must be exerting a force on the bicycle and you, as they grip and rub on the wheel-rims.
+> This is the force called friction, which tends to slow down moving things by acting in the direction opposite to movement, that is backwards.
+> Even without the brakes on, there are other friction forces acting on you and your bicycle, which also slow you down.
+> One of these is friction in the wheels rubbing on the axles.
+> Another is air resistance, which you can feel, pushing you backwards as you and the bicycle move forwards.
+> When you apply these ideas to something around you, like a cart, you can see what could be generating friction: mainly the axles rubbing on the body as they rotate.
++ friction | 주제의 중심(마찰)
++ force [force, forces] | 마찰의 정체(힘)
++ slow down [slow down, slow you down] | 마찰이 하는 일(느리게 함)
++ counteract | 주제의 방향(운동과 반대로 작용) — 본문은 opposite·backwards | 흐름
+- bicycle | 01번부터 쓴 예시(자전거) — 여러 번 나와도 지엽
+- pedal [pedalling] | 01·02번 상황 설정 — 첫 문장이지만 주제 아님
+- brakes | 04·05번 예시 속 장치(브레이크)
+- axle [axles] | 08·10번 세부(바퀴 축)
+- air resistance | 09번 마찰의 한 예(공기 저항) — 예시는 지엽
+- cart | 10번 적용 예(수레)
+- gradually | 03번 세부(서서히 느려짐)
+- clutch | = grip → 05번 브레이크 세부 | 동의어
+- spin | = rotate → 10번 세부(축이 돎) | 동의어
+- accelerate | 방향 반대 — 마찰은 속도를 늦추는 힘 | 흐름
+* 보기에서 뺀 말 — 겹침: opposite·backwards(= counteract) / 뻔함: movement·move / 애매: rub(세 번 나오지만 마찰이 생기는 방식 — 세부인지 애매)
+
+## 16강 02
+= **문명**이 늘 같은 **흥망**의 과정을 **되풀이**한다는 생각의 **지나친 단순화** | the **oversimplification** in the idea that **civilizations** always follow the same cycle of **rise and fall**
+> History, people often say, repeats itself.
+> And looking at the historical records of the ancient civilizations, some things do seem to happen again and again.
+> Civilizations expand, get overextended, and then collapse as in the cases of Rome, which went under in 476 AD, and the British Empire, which fell apart more than a thousand years later in the post-World War II era.
+> But is this always the case?
+> If so, archaeology would be pretty boring; one thing would happen again and again.
+> But that's not what archaeologists see.
+> Some civilizations end suddenly, like the Aztec and Inca, conquered by invaders in the 1520s AD.
+> Those empires never had the chance to collapse as a result of overexpansion.
+> So in the case of civilizations, "history repeats itself" seems to be an oversimplification.
++ civilization [civilizations] | 주제의 대상(문명)
++ repeat [repeats] | 비판받는 생각("역사는 되풀이된다") — 주제 줄에 들어감
++ oversimplification | 주제의 결론(09번 — 지나친 단순화)
++ rise and fall | = expand → collapse(흥망) — 비판받는 생각의 내용 | 동의어
++ overgeneralization | 주제의 방향(과잉 일반화) — 09번 oversimplification과 같은 평가 | 흐름
+- Rome | 03번 예시(고유명사)
+- Aztec | 07번 반례(고유명사) — 반례도 예시라 지엽
+- invader [invaders] | 07번 세부(정복한 쪽)
+- archaeology [archaeology, archaeologists] | 05번 가정 속 배경(고고학)
+- boring | 05번 세부(지루할 것)
+- chronicle | = historical records → 02번 배경(역사 기록) | 동의어
+- abruptly | = suddenly → 07번 반례 세부(갑자기 끝남) | 동의어
+- accurate | 방향 반대 — 주제는 그 생각이 지나친 단순화라는 평가 | 흐름
+* 보기에서 뺀 말 — 겹침: expand·collapse(= rise and fall) · again and again·cyclical(= repeat) · simplistic(= oversimplification) / 애매: history · empire(= civilization인지 애매) · overexpansion·overextended(흥망 과정의 세부인지 애매)
+
+## 16강 03
+= 아이의 **똑똑함**이 아니라 **노력**을 **칭찬**하는 것의 **이점** | the **benefit** of **praising** children's **effort** rather than their **intelligence**
+> Stanford psychology professor Dr. Carol Dweck is the internationally recognized pioneer of the concept of "growth mindset" as a way to continually grow, learn, and persevere in our efforts.
+> Dweck found that kids who are told they're "smart" actually underperform in future tasks, by choosing easier tasks to avoid evidence that they are not smart, which Dweck calls having a "fixed mindset."
+> In contrast, Dweck found, kids who are praised not for their smarts but for their effort develop what Dweck calls a "growth mindset."
+> They learn that their effort is what led to their success, and if they continue to try, over time they'll improve and achieve more things.
+> These kids end up taking on tougher things, and feel better about themselves.
+> "Emphasizing effort gives a child a variable that they can control," Dweck has explained.
++ praise [praise, praised, praising] | 주제의 행위 — 무엇을 칭찬하나
++ effort [effort, efforts] | 칭찬해야 할 것(노력)
++ smart [smart, smarts] | 칭찬하면 안 되는 쪽 — 대조 양쪽 다 핵심
++ compliment | = praise(칭찬) | 동의어
++ intelligence | = smarts(똑똑함) | 동의어
++ endeavor | = effort(노력) | 동의어
++ benefit | 주제의 방향(이점) — 04·05번이 그 내용 | 흐름
+- task [task, tasks] | 02번 예시 속 세부(쉬운 과제)
+- evidence | 02번 세부(증거를 피하려고)
+- variable | 06번 인용문 속 표현일 뿐
+- psychology | 01번 배경(연구자 소개)
+- proof | = evidence → 02번 세부 | 동의어
+- assignment | = task → 02번 세부 | 동의어
+- disadvantage | 방향 반대 — 02번 단점은 똑똑함 칭찬 쪽(대조용), 주제는 이점 | 흐름
+* 보기에서 뺀 말 — 애매: mindset(growth·fixed) · success · control · underperform / 뻔함: kid
+
+## 16강 04
+= 뇌의 **화학적 불균형**이 아니라 **의식**의 장애로 **다시 해석**한 **우울증** | **depression** **reinterpreted** as a disorder of **consciousness** rather than a **chemical imbalance** in the brain
+> Conventional medicine has long believed that depression is caused by an imbalance of neurotransmitters in the brain.
+> However, there is a major problem with this explanation.
+> This is because the imbalance of substances in the brain is a consequence of depression, not its cause.
+> In other words, depression causes a decrease in brain substances such as serotonin and noradrenaline, not a decrease in brain substances causes depression.
+> In this revised cause-and-effect, the key is to reframe depression as a problem of consciousness.
+> Our consciousness is a more fundamental entity that goes beyond the functioning of the brain.
+> The brain is no more than an organ of consciousness.
+> If it is not consciousness itself, then the root cause of depression is also a distortion of our state of consciousness: a consciousness that has lost its sense of self and the meaning of life.
+> Such a disease of consciousness may manifest itself in the form of depression.
++ depression | 주제의 대상(우울증)
++ consciousness | 새 해석의 중심(의식의 문제)
++ imbalance | 뒤집힌 기존 설명(불균형) — 대조 양쪽 다 핵심
++ chemical | = neurotransmitters·substances(뇌의 화학 물질) — 주제 줄 "화학적" | 동의어
++ reinterpret | 주제의 방향(다시 해석) — 본문은 reframe·revised | 흐름
+- conventional medicine | 01번 배경(기존 설명을 믿어 온 쪽) — 첫 문장이지만 주제 아님
+- serotonin | 04번 물질의 예 — 예시는 지엽
+- organ | 07번 세부(뇌는 의식의 기관일 뿐)
+- meaning of life | 08번 세부(삶의 의미를 잃은 의식)
+- sense of self | 08번 세부(자아감을 잃은 의식)
+- manifest | 09번 세부(드러나다)
+- exhibit | = manifest → 09번 세부 | 동의어
+- confirm | 방향 반대 — 01번 기존 설명을 확인한 글이 아니라 뒤집은 글 | 흐름
+* 보기에서 뺀 말 — 겹침: neurotransmitter·substance(= chemical) · reframe·revised(= reinterpret) / 애매: brain(대조 쪽 말이지만 07번에선 의식의 기관) · cause·consequence(인과를 뒤집는 근거 — 주제인지 세부인지 애매) · distortion / 뻔함: disorder·problem·disease(우울증이 병인 건 당연)
+
+## 16강 05
+= **자기 목소리**가 **녹음**된 소리와 **다르게** 들리는 이유 | why our own **voice** sounds **different** to us than it does on a **recording**
+> Have you ever been surprised to hear a recording of your own voice?
+> You might have thought, "Is that really what my voice sounds like?"
+> Maybe your accent is more pronounced in the recording than you realized, or your voice is higher than it seems to your own ears.
+> This is of course quite a common experience.
+> The explanation is actually fairly simple.
+> There are two pathways through which we perceive our own voice when we speak.
+> One is the route through which we perceive most external sounds, like waves that travel from the air through the outer, middle and inner ear.
+> But because our vocal cords vibrate when we speak, there is a second internal path.
+> Vibrations are conducted through our bones and stimulate our inner ears directly.
+> Lower frequencies are emphasized along this pathway.
+> That makes your voice sound deeper and richer to yourself than it may sound to other people.
++ voice | 주제의 대상(자기 목소리)
++ recording | 비교 대상(녹음된 목소리) — 대조 양쪽 다 핵심
++ mismatch | 주제의 방향(다르게 들림) — 본문은 higher·deeper로 비교 | 흐름
+- surprised | 01번 도입 — 첫 문장이지만 주제 아님
+- accent | 03번 예(억양이 더 뚜렷)
+- inner ear [inner ear, inner ears] | 07·09번 세부(귀 구조)
+- vocal cords | 08번 세부(성대 진동)
+- bone [bones] | 09번 이유 속 세부(뼈로 전달) — 이유의 재료일 뿐
+- frequency [frequencies] | 10번 세부(낮은 주파수 강조)
+- tremble | = vibrate → 08번 세부(성대 떨림) | 동의어
+- noticeable | = pronounced → 03번 세부(억양이 뚜렷) | 동의어
+- identical | 방향 반대 — 주제는 녹음과 다르게 들리는 것 | 흐름
+* 보기에서 뺀 말 — 애매: pathway·route·internal·external(이유의 큰 틀 — 핵심인지 세부인지 애매) · higher·deeper(다르게 들리는 모습 — 핵심인지 세부인지 애매) · explanation · perceive / 뻔함: sound·hear
+
+## 16강 06
+= **디지털** 비즈니스 활동에 **숨어 있는** **환경** **비용** | the **hidden** **environmental** **cost** of **digital** business activities
+> As businesses shift some core business activities to digital, such as sales, marketing, or archiving, it is assumed that the impact on the environment will be less negative.
+> However, digital business activities can still threaten the environment.
+> In some cases, the harm of digital businesses can be even more hazardous.
+> A few decades ago, offices used to have much more paper waste since all documents were paper based.
+> When workplaces shifted from paper to digital documents, invoices, and emails, it was a promising step to save trees.
+> However, the cost of the Internet and electricity for the environment is neglected.
+> A recent Wired report declared that most data centers' energy source is fossil fuels.
+> When we store bigger data on clouds, increased carbon emissions make our green clouds gray.
+> The carbon footprint of an email is smaller than mail sent via a post office, but still, it causes four grams of CO₂, and it can be as much as 50 grams if the attachment is big.
++ digital | 주제의 대상(디지털 비즈니스 활동)
++ environment | 비용을 치르는 쪽(환경)
++ cost | 주제의 중심(06번 — 환경 비용)
++ threaten | 02번 주제문 — 디지털 활동도 환경을 위협
++ endanger | = threaten(위험에 빠뜨리다) | 동의어
++ hidden | 주제의 방향(숨은 비용) — 본문은 neglected | 흐름
+- paper | 04·05번 배경(예전 종이 사무실) — 주제 줄엔 디지털만
+- email [emails, email] | 05·09번 예시(이메일)
+- fossil fuels | 07번 세부(데이터 센터의 에너지원)
+- cloud [clouds] | 08번 세부(클라우드 저장)
+- carbon footprint | 09번 예시 속 수치(이메일의 탄소 발자국) — 예시는 지엽
+- attachment | 09번 세부(첨부 파일)
+- preserve | = save → 05번 세부(나무를 아낌) | 동의어
+- eco-friendly | 방향 반대 — 친환경일 거라는 건 01·05번의 예상(대조용), 주제는 숨은 환경 비용 | 흐름
+* 보기에서 뺀 말 — 겹침: neglected·overlook(= hidden) · harm·hazardous(= threaten) · green(= eco-friendly 쪽) / 뻔함: business·activity
+
+## 16강 07
+= **외래종**이 **경쟁**을 통해 **토착종**에 가하는 **위협** | the **threat** an **introduced species** poses to a **native** one through **competition**
+> Problems often arise if an exotic species is suddenly introduced to an ecosystem.
+> Britain's red and grey squirrels provide a clear example.
+> When the grey arrived from America in the 1870s, both squirrel species competed for the same food and habitat, which put the native red squirrel populations under pressure.
+> The grey had the edge because it can adapt its diet; it is able, for instance, to eat green acorns, while the red can only digest mature acorns.
+> Within the same area of forest, grey squirrels can destroy the food supply before red squirrels even have a bite.
+> Greys can also live more densely and in varied habitats, so have survived more easily when woodland has been destroyed.
+> As a result, the red squirrel has come close to extinction in England.
++ exotic | 주제의 주인공(외래종)
++ native | 위협받는 쪽(토착종)
++ compete [compete, competed, competition] | 위협의 방식(경쟁)
++ invasive species | = 해를 끼치는 외래종 | 동의어
++ indigenous | = native(토착의) | 동의어
++ threat | 주제의 방향(위협) — 01번 problems, 07번 멸종 직전 | 흐름
+- squirrel [squirrel, squirrels] | 01번 일반 진술의 예시 — 6번 나와도 지엽
+- acorn [acorn, acorns] | 04번 세부(어떤 도토리를 먹나)
+- adapt | 회색이 이긴 이유(세부)
+- woodland | 06번 세부(숲이 파괴될 때)
+- America | 회색 다람쥐의 출신(배경)
+- densely | 06번 세부(빽빽하게 산다)
+- ripe | = mature(다 익은) → 04번 세부 | 동의어
+- diverse | = varied(다양한) → 06번 세부 | 동의어
+- cooperate | 방향 반대 — 협력이 아니라 경쟁 | 흐름
+* 보기에서 뺀 말 — 겹침: introduced(= exotic) · problem·under pressure(= threat) / 애매: ecosystem · habitat · extinction · population
+
+## 16강 08
+= 잉카 제국의 **도보** **전령** **릴레이** **체계** | the Inca Empire's **relay** **system** of **foot** **messengers**
+> With no horses available, the Inca empire excelled at delivering messages on foot.
+> The messengers were stationed on the royal roads to deliver the Inca king's orders and reports coming from his lands.
+> Called Chasquis, they lived in groups of four to six in huts, placed from one to two miles apart along the roads.
+> They were all young men and especially good runners who watched the road in both directions.
+> If they caught sight of another messenger coming, they hurried out to meet them.
+> The Inca built the huts on high ground, in sight of one another.
+> When a messenger neared the next hut, he began to call out and repeated the message three or four times to the one who was running out to meet him.
+> The Inca empire could relay messages 1,000 miles (1,610 km) in three or four days under good conditions.
++ relay | 주제의 중심(이어 전달하기)
++ messenger [messengers, messenger] | 누가 전했나(전령)
++ on foot | 어떻게 전했나(걸어서·뛰어서) — 01번, 말이 없었음
++ courier | = messenger(전령) | 동의어
++ system | 주제의 틀(체계) — 02~07번이 그 짜임(배치·오두막·이어 달리기) | 흐름
+- hut [huts, hut] | 03·06번 세부(오두막)
+- road [roads, road] | 02·03번 세부(왕의 길)
+- king | 02번 세부(왕의 명령)
+- high ground | 06번 세부(높은 곳에 지은 오두막)
+- call out | 07번 세부(외쳐서 넘김)
+- cabin | = huts → 03·06번 세부(오두막) | 동의어
+- deploy | = stationed → 02번 세부(길에 배치) | 동의어
+- horseback | 방향 반대 — 01번 말이 없어서 걸어서(on foot) 전함 | 흐름
+* 보기에서 뺀 말 — 일부러 뺌: Inca·empire(주제에 들어가지만 18강 04 monkey와 같은 기준 — 16강 02에선 반례로 나와 헷갈릴 수 있음) / 겹침: horses(= horseback 쪽) · runner·Chasquis(= messenger) / 애매: 1,000 miles·three or four days(빠르기 — 결과인지 세부인지 애매)
+
+# 17 | 17강
+
+## 17강 01
+= **선형** 편집과 비교한 **비선형** 디지털 편집의 **편리함** | the **convenience** of **nonlinear** digital editing compared with **linear** editing
+> All editing systems are now nonlinear computer-based systems that allow random access to any video shot or scene without having to fast forward or fast reverse to find it.
+> Nonlinear systems can create a range of special effects, such as slow motion, wipes and dissolves.
+> Another highlight of a digital nonlinear system is its random access process that makes it easy for an editor to find desired shots or scenes without having to spend time fast forwarding or rewinding videotape.
+> With nonlinear editing, shots or scenes can be easily added or removed anywhere in the program, and the computer adjusts the program length automatically.
+> Linear editing was like composing a paper on a typewriter.
+> If a mistake was made or new information needed to be added the whole piece had to be retyped.
+> Nonlinear editing, on the other hand, is like using a word processing program.
+> If a mistake is made, it is easily deleted and fixed with a few keystrokes, and new information can be added easily.
++ nonlinear | 주제의 주인공(비선형 편집)
++ linear | 비교 대상 — 대조 양쪽 다 핵심
++ convenient | 주제의 방향(편리함) — 본문은 easy·easily | 흐름
+- typewriter | 05번 비유 — 비유로 든 물건은 핵심 아님
+- word processing | 07번 비유 — 비유로 든 물건은 핵심 아님
+- special effects | 02번 기능 나열(세부)
+- keystroke [keystroke, keystrokes] | 08번 세부(키 몇 번)
+- mistake | 06·08번 비유 속 세부
+- adjust [adjust, adjusts] | 04번 세부(길이 자동 조정)
+- error | = mistake → 비유 속 세부 | 동의어
+- modify | = adjust → 04번 세부 | 동의어
+- erase | = delete → 08번 세부 | 동의어
+- cumbersome | 방향 반대 — 06번 번거로움은 선형 쪽(대조용), 주제는 편리함 | 흐름
+* 보기에서 뺀 말 — 겹침: easy·easily(= convenient) · sequential(= linear) / 뻔함: editing · digital / 애매: random access
+
+## 17강 02
+= 우리가 **공간**을 이용하는 방식을 **좌우하는** **보이지 않는** **감정** | the **invisible** **feelings** that **shape** how we use a **space**
+> To monitor our surroundings is to focus on what's outside of ourselves: what we see, hear, smell, feel, and perhaps even taste.
+> But sometimes what really marks a place is something less specific ─ a feeling within us.
+> An interesting example emerged from a study of subway passenger behavior.
+> Researchers trying to understand why people sit where they sit or stand where they stand in subway and metro trains examined the factors that shape the way riders used and navigated that space in different situations.
+> One of their findings involved the reasons many riders like to plant themselves close to the train's doors.
+> Partly this was the obvious convenience of being able to exit more quickly.
+> But it was shaped partly by a more abstract sensation ─ the desire to avoid the sometimes uncomfortable feeling of accidentally making eye contact with seated passengers.
+> We can't see feelings ─ but they're very real, and they influence our experience of the world.
++ feeling [feeling, feelings] | 주제의 중심(감정)
++ emotion | = feeling(감정) | 동의어
++ space | 감정이 좌우하는 것(공간 이용)
++ shape [shape, shaped] | 감정이 하는 일(좌우하다)
++ influence | = shape — 08번 결론(감정이 경험에 영향)
++ invisible | 주제의 방향(보이지 않는 감정) — 본문은 abstract·less specific | 흐름
+- subway | 03번부터 든 예시(지하철 승객 연구) — 여러 번 나와도 지엽
+- doors | 05번 세부(문 가까이 서기)
+- eye contact | 07번 예시 속 세부(눈 마주침)
+- convenience | 06번 세부(빨리 내리는 편리함 — 뻔한 이유)
+- researchers | 04번 배경(연구자)
+- commuter | = riders·passengers → 예시 속 인물 | 동의어
+- evade | = avoid → 07번 세부(눈 마주침 피하기) | 동의어
+- awkward | = uncomfortable → 07번 예시 속 구체적인 감정(주제는 감정 일반) | 동의어
+- concrete | 방향 반대 — 보이고 만져지는 건 01번 바깥 감각 쪽(대조용), 주제는 보이지 않는 감정 | 흐름
+* 보기에서 뺀 말 — 겹침: abstract·less specific·can't see(= invisible) · sensation(= feeling) · place(= space) / 뻔함: use / 애매: mark·navigate · surroundings(01번 바깥 환경 — space와 헷갈림)
+
+## 17강 03
+= **얼굴**이 **물에 닿을 때** **작동**하는 **인간**의 **잠수 반사** | the **human** **diving reflex** **triggered** by **facial** **contact with water**
+> We have a 'diving reflex', like other marine mammals.
+> This means that special nerve endings on our faces, around the mouth and nose, trigger this reflex only when the facial region goes under water.
+> If we are in the water, with our head out in the air, there is no diving reflex.
+> But if we sink just our face in a bowl of water, while the whole of the rest of our body is in the dry air, the diving reflex is triggered.
+> It automatically closes down the airway, reducing the risk of swallowing water, and it narrows the small air-passages in the lungs.
+> At the same time the heart rate is slowed down to half speed and blood is shunted to the vital organs, protecting them from the effects of the brief stop in breathing.
+> By contrast, if a chimpanzee or a gorilla found itself in water with its face below the surface, it would panic, its heart would race and it would quickly drown.
++ diving reflex | 주제의 중심(잠수 반사)
++ face [face, faces, facial] | 반사를 일으키는 곳(얼굴)
++ trigger [trigger, triggered] | 반사가 일어나는 방식(작동시키다)
++ submerge | = goes under water·sink(물에 잠김) — 반사가 일어나는 조건 | 동의어
++ human | 주제의 주인공(인간) — 본문은 we·our | 흐름
+- marine mammals | 01번 비교 대상(바다 포유류) — 첫 문장이지만 주제 아님
+- nerve endings | 02번 세부(신경 말단)
+- airway | 05번 반사의 효과(기도를 닫음) — 세부
+- heart rate | 06번 반사의 효과(심박 절반) — 세부
+- vital organs | 06번 세부(피를 장기로)
+- chimpanzee | 07번 대조 예시(침팬지) — 주제 줄엔 인간만
+- gulp | = swallowing → 05번 세부(물 삼킬 위험) | 동의어
+- divert | = shunted → 06번 세부(피를 장기로 보냄) | 동의어
+- voluntary | 방향 반대 — 반사는 저절로 일어남(05번 automatically) | 흐름
+* 보기에서 뺀 말 — 겹침: go under water·sink(= submerge) · we·our(= human) · gorilla(= chimpanzee) / 뻔함: water / 애매: automatically(반사의 성질 — 주제 일부인지 애매) · protect(06번 — 반사가 하는 일, 주제인지 세부인지 애매)
+
+## 17강 04
+= **증거**에 기반한 인간 **행동**의 **과학**으로서의 **심리학** | **psychology** as an **evidence**-based **science** of human **behavior**
+> The common accounts of human nature that float around in society are generally a mixture of assumptions, tales and sometimes plain silliness.
+> However, psychology is different.
+> It is the branch of science that is devoted to understanding people: how and why we act as we do; why we see things as we do; and how we interact with one another.
+> The key word here is 'science.'
+> Psychologists don't depend on opinions and hearsay, or the generally accepted views of society at the time, or even the considered opinions of deep thinkers.
+> Instead, they look for evidence, to make sure that psychological ideas are firmly based, and not just derived from generally held beliefs or assumptions.
+> In addition to this evidence-based approach, psychology deals with fundamental processes and principles that generate our rich cultural and social diversity, as well as those shared by all human beings.
+> These are what modern psychology is all about.
++ psychology | 주제의 대상(심리학)
++ science | 심리학의 정체(과학) — 04번 "핵심어는 science"
++ evidence [evidence, evidence-based] | 과학의 근거(증거)
++ behavior | = how and why we act(03번 — 인간 행동) | 동의어
++ objective | 주제의 방향(증거로 따지는 객관적 학문) — 본문은 evidence·firmly based | 흐름
+- hearsay | 05번 대조 쪽(심리학이 기대지 않는 소문) — 주제 줄엔 안 들어감
+- opinions | 05번 대조 쪽(의견)
+- tales | 01번 대조 쪽(세간의 이야기)
+- silliness | 01번 대조 쪽(어리석음)
+- diversity | 07번 세부(문화적·사회적 다양성)
+- interact | 03번 세부(서로 어떻게 상호 작용하나)
+- anecdote | = tales → 01번 대조 쪽(일화) | 동의어
+- conjecture | = assumptions → 01·06번 대조 쪽(추측) | 동의어
+- subjective | 방향 반대 — 주관적인 건 01·05번 의견·소문 쪽(대조용), 주제는 증거 기반 과학 | 흐름
+* 보기에서 뺀 말 — 겹침: views·beliefs(= opinions) / 뻔함: human / 애매: human nature(01번 — 세간의 설명이 다루는 것, behavior와 헷갈림) · principles·processes(07번 — 심리학이 다루는 것, 주제 일부인지 애매)
+
+## 17강 05
+= 생물학에서 **상사 형질**과 **상동 형질**을 가르는 기준과 그 **구별** 방법 | the **distinction** between **analogous** and **homologous** **traits** in biology and how it is drawn
+> Biologists distinguish two kinds of similarity.
+> "Analogous" traits are ones that have a common function but arose on different branches of the evolutionary tree and are in an important sense not "the same" organ.
+> The wings of birds and the wings of bees are both used for flight and are similar in some ways because anything used for flight has to be built in those ways, but they arose independently in evolution and have nothing in common beyond their use in flight.
+> "Homologous" traits, in contrast, may or may not have a common function, but they descended from a common ancestor and hence have some common structure that indicates their being "the same" organ.
+> The wing of a bat and the front leg of a horse have very different functions, but they are all modifications of the forelimb of the ancestor of all mammals.
+> As a result, they share nonfunctional traits like the number of bones and the ways they are connected.
+> To distinguish analogy from homology, biologists usually look at the overall architecture of the organs and focus on their most useless properties.
++ analogous | 구별하는 한쪽(상사 형질) — 대조 양쪽 다 핵심
++ homologous | 구별하는 다른 쪽(상동 형질) — 대조 양쪽 다 핵심
++ trait [traits] | 무엇을 구별하나(형질)
++ distinguish | 주제의 중심(구별)
++ discriminate | 주제의 방향(구별하다) — 본문은 distinguish | 흐름
+- wings [wings, wing] | 03·05번 예시(날개)
+- bees | 03번 상사 형질의 예(벌)
+- bat | 05번 상동 형질의 예(박쥐)
+- horse | 05번 상동 형질의 예(말)
+- flight | 03번 예시 속 기능(비행)
+- bones | 06번 세부(뼈의 수)
+- limb | = leg·forelimb → 05번 예시(다리) | 동의어
+- equate | 방향 반대 — 주제는 둘을 가르는 것(구별), 같다고 보는 게 아님 | 흐름
+* 보기에서 뺀 말 — 애매: function·ancestor·structure(가르는 기준의 내용 — 주제 일부인지 세부인지 애매) · architecture·useless·properties(07번 구별 방법의 내용 — 같은 이유) · similarity(두 형질을 묶는 말 — 핵심인지 애매) / 뻔함: biologist·evolution
+
+## 17강 06
+= **정착** **농경**이 **출산 간격**을 **줄여** **인구 증가**를 이끈 과정 | how **settling down** to **farm** **shortened** **birth intervals** and drove **population growth**
+> Growing crops forced people to stay in one place.
+> Hunter-gatherers typically moved around frequently, and they had to be able to carry all their possessions with them every time they moved.
+> In particular, mothers had to carry their young children.
+> As a result, hunter-gatherer mothers could have only one baby every four years or so, spacing their births so that they never had to carry more than one child at a time.
+> Farmers, on the other hand, could live in the same place year after year and did not have to worry about transporting young children long distances.
+> Societies that settled down in one place were able to shorten their birth intervals from four years to about two.
+> This meant that each woman could have more children than her hunter-gatherer counterpart, which in turn resulted in rapid population growth among farming communities.
+> An increased population was actually an advantage to agricultural societies, because farming required large amounts of human labor.
++ settle down [settled down] | 주제의 출발(정착)
++ farming [farming, farmers] | 정착하게 만든 것(농경)
++ birth intervals | 줄어든 것(출산 간격)
++ shorten | 간격의 변화(줄어듦)
++ population growth | 결과(인구 증가)
++ expand | 주제의 방향(인구가 늘어남) — 본문은 population growth·increased | 흐름
+- hunter-gatherers [hunter-gatherers, hunter-gatherer] | 02·04번 대조 쪽(수렵 채집인) — 주제 줄엔 정착 농경만
+- carry | 02·03번 대조 쪽 세부(아이를 업고 다님)
+- labor | 08번 덧붙인 이유(노동력)
+- advantage | 08번 덧붙인 내용(이점) — 마지막 문장이지만 주제 아님
+- belongings | = possessions → 02번 세부(소지품) | 동의어
+- infant | = baby → 04번 세부(아기) | 동의어
+- itinerant | = moved around → 02번 대조 쪽(떠돌이 생활) | 동의어
+- prolong | 방향 반대 — 정착하면 출산 간격이 줄어듦(06번), 늘어난 게 아님 | 흐름
+* 보기에서 뺀 말 — 겹침: agricultural·crops(= farming) · increased(= expand) / 애매: more children(07번 — 간격이 줄어든 결과, 핵심인지 애매) · birth rate / 일부러 뺌: four years·two(수치)
+
+## 17강 07
+= **유년기**가 동물에게 주는 **적응**의 **유연성** | the **adaptive** **flexibility** that a period of **childhood** gives animals
+> Spending time as children allows animals to learn about their environment.
+> Without childhood, animals must rely more fully on hardware, and therefore be less flexible.
+> Among migratory bird species, those that are born knowing how, when, and where to migrate ─ those that are migrating entirely with instructions they were born with ─ sometimes have very inefficient migration routes.
+> These birds, born knowing how to migrate, don't adapt easily.
+> So when lakes dry up, forest becomes farmland, or climate change pushes breeding grounds farther north, those birds that are born knowing how to migrate keep flying by the old rules and maps.
+> By comparison, birds with the longest childhoods, and those that migrate with their parents, tend to have the most efficient migration routes.
+> Childhood facilitates the passing on of cultural information, and culture can evolve faster than genes.
+> Childhood gives flexibility in a changing world.
++ childhood [childhood, childhoods] | 주제의 중심(유년기)
++ flexibility [flexibility, flexible] | 유년기가 주는 것(유연성)
++ adaptable | 주제의 방향(적응력) — 본문은 adapt·flexible | 흐름
+- migration [migration, migrate, migrating, migratory] | 03번부터 든 예시(철새 이동) — 여러 번 나와도 지엽
+- hardware | 02번 비유(타고난 장치) — 비유는 핵심 아님
+- routes | 03·06번 세부(이동 경로)
+- climate change | 05번 환경 변화의 예
+- genes | 07번 비교 대상(유전자)
+- parents | 06번 세부(부모와 함께 이동)
+- hereditary | = born with → 03번 대조 쪽(타고난 지시) | 동의어
+- directive | = instructions → 03번 대조 쪽(타고난 지시) | 동의어
+- rigid | 방향 반대 — 경직된 건 03~05번 타고난 지시대로만 나는 새(대조용), 주제는 유연성 | 흐름
+* 보기에서 뺀 말 — 겹침: adapt(= adaptable) / 뻔함: animal / 애매: learn(01번 — 유연성이 생기는 방식) · culture(07번 — 유연성의 이유, 주제 일부인지 애매) · efficient(06번 — 결과)
+
+## 17강 08
+= **연구**를 **잘못 해석**해 생겨난 '**혀 지도**'의 **오류** | the **tongue map** as a **myth** born of **misread** **research**
+> The tongue was mapped into separate areas where certain tastes were registered: sweetness at the tip, sourness on the sides, and bitterness at the back of the mouth.
+> Research in the 1980s and 1990s, however, demonstrated that the "tongue map" explanation of how we taste was, in fact, totally wrong.
+> As it turns out, the map was a misinterpretation and mistranslation of research conducted in Germany at the turn of the twentieth century.
+> Today, leading taste researchers believe that taste buds are not grouped according to specialty.
+> Sweetness, saltiness, bitterness, and sourness can be tasted everywhere in the mouth, although they may be perceived at a little different intensities at different sites.
+> Moreover, the mechanism at work is not place, but time.
+> It's not that you taste sweetness at the tip of your tongue, but rather that you register that perception first.
++ tongue map | 주제의 대상(혀 지도)
++ misinterpretation | 오류가 생긴 까닭(잘못된 해석)
++ research | 잘못 해석된 것(연구)
++ misread | = misinterpretation(잘못 해석하다) | 동의어
++ myth | 주제의 방향(잘못된 통념) — 본문은 totally wrong | 흐름
+- sweetness | 01·05번 맛의 예(단맛)
+- tip | 01·07번 세부(혀끝)
+- Germany | 03번 세부(연구한 곳 — 고유명사)
+- taste buds | 04번 세부(미뢰)
+- time | 06번 세부(실제 원리 — 장소가 아니라 시간)
+- acidic | = sourness → 01번 맛의 예(신맛) | 동의어
+- foremost | = leading → 04번 세부(일류 연구자) | 동의어
+- valid | 방향 반대 — 02번 혀 지도는 완전히 틀린 설명 | 흐름
+* 보기에서 뺀 말 — 겹침: wrong(= myth) · mistranslation(= misinterpretation·misread) / 애매: place(06번 — 혀 지도의 원리, 대조 쪽) · separate areas(01번 혀 지도의 내용) / 뻔함: taste·tongue
+
+# 18 | 18강
+
+## 18강 01
+= **기대**에 의해 형성되는 인간의 **시각**과 **카메라**의 **공평한** 기록 사이의 **대비** | the **contrast** between human **vision** shaped by **expectation** and the **camera**'s **impartial** record
+> Vision is influenced by our preconceptions about reality.
+> In viewing a scene, we establish unconscious hierarchies that reflect our functional relationship to objects and our momentary priorities.
+> For example, when visualizing a hammer in our mind's eye, we tend to "see" it in profile or at some other "ready for use" angle.
+> One would probably not visualize a hammer as seen from the top so that the handle is hidden by the hammer's head.
+> The functional relationship we have with objects creates visual expectations that interfere with our ability to see "like a camera."
+> The camera, like the human eye, sees only shapes and colors.
+> It documents the world impartially through a lens that is similar to the eye.
+> When we look at them carefully, photographs are often surprising because they don't interpret confusing details but simply serve them up to us with a mechanical indifference.
+> And because of their flatness, photographs often contain areas that appear as unrecognizable colors and shapes.
++ vision | 대조 한쪽(사람의 시각)
++ expectation [expectations] | 사람의 시각을 만드는 것(기대) — 05번
++ preconception [preconceptions] | = expectation — 01번 주제문(선입견)
++ camera | 대조 다른 쪽(카메라) — 대조 양쪽 다 핵심
++ impartial [impartially] | 카메라 기록의 성질(공평함) — 07번
++ contrast | 주제의 틀(사람 눈 ↔ 카메라의 대비) — 05번까지 사람 눈, 06번부터 카메라 | 흐름
+- hammer | 03·04번 예시(망치) — 여러 번 나와도 지엽
+- handle | 04번 예시 세부(손잡이)
+- angle | 03번 예시 세부(각도)
+- lens | 07번 세부(렌즈)
+- flatness | 09번 세부(사진의 평면성)
+- perplexing | = confusing → 08번 세부(헷갈리는 세부 모습) | 동의어
+- two-dimensional | = flatness → 09번 세부(평면) | 동의어
+- identical | 방향 반대 — 06번에 비슷한 점이 하나 있지만 주제는 둘의 대비 | 흐름
+* 보기에서 뺀 말 — 일부러 뺌: document(주제 줄의 "기록" — 정답이 이미 여섯 개) / 겹침: influenced(= shaped) / 뻔함: human·eye / 애매: hierarchy·functional relationship(02·05번 — 기대가 생기는 방식, 주제 일부인지 애매) · photographs·indifference(08번 — 카메라 쪽 세부인지 핵심인지 애매)
+
+## 18강 02
+= **논리**만으로 **새로운** 것을 **다룰 수 없을 때** 필요한 **비선형적**·**창의적** 사고 | the need for **nonlinear**, **creative** thinking when **logic** alone **cannot handle** the **new**
+> In the course of trying to solve a problem with an invention, you may encounter a brick wall of resistance when you try to think your way logically through the problem.
+> Such logical thinking is a linear type of process, which uses our reasoning skills.
+> This works fine when we're operating in the area of what we know or have experienced.
+> However, when we need to deal with new information, ideas, and viewpoints, linear thinking will often come up short.
+> On the other hand, creativity by definition involves the application of new information to old problems and the conception of new viewpoints and ideas.
+> For this you will be most effective if you learn to operate in a nonlinear manner; that is, use your creative brain.
+> Stated differently, if you think in a linear manner, you'll tend to be conservative and keep coming up with techniques which are already known.
+> This, of course, is just what you don't want.
++ nonlinear | 필요한 사고방식(비선형적)
++ creative [creative, creativity] | 필요한 사고방식(창의적)
++ logical [logical, logically] | 대조 쪽(논리적 사고) — 주제 줄에 들어감
++ new | 논리가 못 다루는 것(새로운 것)
++ inadequate | 주제의 방향(논리만으로는 모자람) — 본문은 come up short | 흐름
+- invention | 01번 상황 설정(발명) — 첫 문장이지만 주제 아님
+- brick wall | 01번 비유(벽돌 벽) — 비유는 핵심 아님
+- conservative | 07번 세부(선형 사고의 결과)
+- techniques | 07번 세부(이미 아는 기법)
+- deadlock | = brick wall → 01번 비유(꽉 막힘) | 동의어
+- confront | = encounter → 01번 상황 설정(맞닥뜨림) | 동의어
+- sufficient | 방향 반대 — 아는 문제엔 논리로 충분하지만(03번), 주제는 새로운 것 앞에서 모자란다는 것 | 흐름
+* 보기에서 뺀 말 — 겹침: linear·reasoning(= logical) · come up short(= inadequate) / 애매: viewpoints·ideas·information(04·05번 — "새로운 것"의 내용) · effective(06번) / 뻔함: thinking·problem
+
+## 18강 03
+= **꾸중**이 아이의 **나쁜 행동**을 오히려 **강화**하는 이유와 부모가 **대신 취해야 할 방법** | why **scolding** can **reinforce** a child's **misbehavior** and what parents should do **instead**
+> Punishing a child may not be effective due to what Alvaro Bilbao, a neuropsychologist, calls 'trick-punishments.'
+> A trick-punishment is a scolding, a moment of anger or a punishment in the most classic sense of the word.
+> Instead of discouraging the child from doing something, it encourages them to do it.
+> For example, Hugh learns that when he hits his little brother, his mother scolds him.
+> For a child who feels lonely, being scolded is much better than feeling invisible, so he will continue to hit his brother.
+> In this case, his mother would be better adopting a different strategy.
+> For instance, she could congratulate Hugh when he has not hit his brother for a certain length of time.
+> The mother clearly cannot allow the child to hit his little brother, but instead of constantly pointing out the negatives, she can choose to reward the positives.
+> In this way, any parent can avoid trick-punishments.
++ scolding [scolding, scolds, scolded] | 주제의 중심(꾸중)
++ reprimand | = scolding(꾸짖다) | 동의어
++ trick-punishment [trick-punishments, trick-punishment] | 본문이 붙인 이름(역효과 나는 꾸중)
++ misbehavior | = hit his brother·negatives(나쁜 행동) | 동의어
++ reward | 부모가 대신 할 일(좋은 행동에 보상) — 08번
++ reinforce | 주제의 방향(오히려 강화) — 본문은 encourages·continue | 흐름
+- Hugh | 04·07번 예시 인물(고유명사)
+- little brother | 04번 예시 세부(동생)
+- lonely | 05번 예시 속 감정(외로움) — 이유의 세부
+- neuropsychologist | 01번 배경(학자 소개)
+- anger | 02번 세부(꾸중의 한 형태)
+- sibling | = brother → 04번 예시 세부 | 동의어
+- isolated | = lonely → 05번 예시 속 감정 | 동의어
+- dissuade | 방향 반대 — 꾸중은 나쁜 행동을 막을 것 같지만(03번) 오히려 부추김 | 흐름
+* 보기에서 뺀 말 — 겹침: encourage·continue(= reinforce) · congratulate(= reward) · punish(= scolding) / 뻔함: child·parent / 애매: invisible·attention(05번 — 꾸중이 통하는 이유의 내용)
+
+## 18강 04
+= 다른 개체와 **비교**해 **불공평**해 보이는 **보상**을 **거부**하는 원숭이 | monkeys' **rejection** of a **reward** that seems **unfair** in **comparison** with another's
+> Capuchins ─ New World Monkeys that live in large social groups ─ will, in captivity, trade with people all day long, especially if food is involved.
+> I give you this rock and you give me a treat to eat.
+> If you put two monkeys in cages next to each other, and offer them both slices of cucumber for the rocks they already have, they will happily eat the cucumbers.
+> If, however, you give one monkey grapes instead ─ grapes being universally preferred to cucumbers ─ the monkey that is still receiving cucumbers will begin to throw them back at the experimenter.
+> Even though she is still getting "paid" the same amount for her effort of sourcing rocks, and so her particular situation has not changed, the comparison to another makes the situation unfair.
+> Furthermore, she is now willing to abandon all gains ─ the cucumbers themselves ─ to communicate her displeasure to the experimenter.
++ unfair | 주제의 중심(보상이 불공평)
++ comparison | 불공평을 느낀 이유(옆과 비교)
++ inequality | = unfair(불평등) | 동의어
++ reward | = treat·paid·gains(보상) | 동의어
++ reject | 주제의 방향(거부) — 본문은 throw back·abandon | 흐름
+- cucumber [cucumber, cucumbers] | 실험에 쓴 먹이(세부)
+- grape [grape, grapes] | 실험에 쓴 먹이(세부)
+- rock [rock, rocks] | 돈 대신 주고받은 물건(세부)
+- captivity | 실험 환경(배경)
+- trade | 01번 실험 설정 — 첫 문장이지만 주제 아님
+- experimenter | 등장인물(세부)
+- barter | = trade → 01번 실험 설정 | 동의어
+- accept | 방향 반대 — 받아들인 건 03번(둘 다 오이일 때)뿐, 주제는 거부 | 흐름
+* 보기에서 뺀 말 — 겹침: abandon(= reject) · treat·paid·gains(= reward) / 애매: displeasure · fairness(공정성 — unfair와 같은 축이라 핵심인지 애매) / 일부러 뺌: monkey·Capuchin(주제에 들어가지만 16강 07 squirrel과 헷갈릴 수 있음)
+
+## 18강 05
+= **학술** **디지털** 프로젝트에서 **간과되는** **장애인** **접근성** | the **neglect** of **accessibility** for people with **disabilities** in **scholarly** **digital** projects
+> Over the last several decades, scholars have developed standards for how best to create, organize, present, and preserve digital information for future generations.
+> What has remained neglected for the most part, however, are the needs of people with disabilities.
+> As a result, many of the otherwise most valuable digital resources are useless for people who are deaf or hard of hearing, as well as for people who are blind, have low vision, or have difficulty distinguishing particular colors.
+> While professionals working in educational technology and commercial web design have made significant progress in meeting the needs of such users, some scholars creating digital projects all too often fail to take these needs into account.
+> This situation would be much improved if more projects embraced the idea that we should always keep the largest possible audience in mind as we make design decisions, ensuring that our final product serves the needs of those with disabilities as well as those without.
++ neglected | 주제의 방향(간과됨) — 02번
++ overlook | = neglected(간과하다) | 동의어
++ disabilities | 누가 소외되나(장애인)
++ impairment | = disabilities(장애) | 동의어
++ scholars | 간과한 쪽(학자들) — 주제 줄 "학술"
++ digital | 주제의 무대(디지털 프로젝트)
++ accessibility | 주제의 대상(장애인 접근성) — 본문은 needs of people with disabilities | 흐름
+- deaf | 03번 장애의 예(청각 장애)
+- blind | 03번 장애의 예(시각 장애)
+- standards | 01번 배경(학자들이 만든 기준) — 첫 문장이지만 주제 아님
+- web design | 04번 대조 쪽(잘 해 온 분야)
+- audience | 05번 해결책 세부(가장 많은 사용자)
+- benchmark | = standards → 01번 배경(기준) | 동의어
+- color-blind | = difficulty distinguishing → 03번 장애의 예(색 구별이 어려움) | 동의어
+- prioritize | 방향 반대 — 04번 교육 기술·웹 디자인 쪽은 잘 챙겨 왔지만(대조용), 주제는 학술 프로젝트가 간과한다는 것 | 흐름
+* 보기에서 뺀 말 — 겹침: needs(= accessibility) · fail to take into account(= neglected) / 뻔함: projects·people
+
+## 18강 06
+= **두려움**과 **결정**을 만들어 내는 **의식**과 **잠재의식**의 **역할 분담** | the **division of labor** between the **conscious** and **subconscious** minds in shaping **fears** and **decisions**
+> The mind has parts that are known as the conscious mind and the subconscious mind.
+> The subconscious mind is very fast to act and doesn't deal with emotions.
+> It deals with memories of your responses to life, your memories and recognition.
+> However, the conscious mind is the one that you have more control over.
+> You think. You can choose whether to carry on a thought or to add emotion to it and this is the part of your mind that lets you down frequently because ─ fueled by emotions ─ you make the wrong decisions time and time again.
+> When your judgment is clouded by emotions, this puts in biases and all kinds of other negativities that hold you back.
+> Scared of spiders? Scared of the dark?
+> There are reasons for all of these fears, but they originate in the conscious mind.
+> They only become real fears when the subconscious mind records your reactions.
++ conscious | 역할 분담의 한쪽(의식)
++ subconscious | 역할 분담의 다른 쪽(잠재의식) — 대조 양쪽 다 핵심
++ fears | 두 마음이 만들어 내는 것(두려움)
++ decisions | 두 마음이 만들어 내는 것(결정)
++ division of labor | 주제의 틀(두 마음이 일을 나눔) — 02~04번이 각자 하는 일 | 흐름
+- spiders | 07번 두려움의 예(거미)
+- dark | 07번 두려움의 예(어둠)
+- biases | 06번 세부(감정이 끼어든 판단의 결과)
+- pessimism | = negativities → 06번 세부 | 동의어
+- inhibit | = hold you back → 06번 세부(발목 잡음) | 동의어
+- disappoint | = lets you down → 05번 세부(의식이 실망시킴) | 동의어
+- innate | 방향 반대 — 두려움은 의식에서 생겨(08번) 잠재의식이 반응을 기록하며 굳어짐(09번), 타고난 게 아님 | 흐름
+* 보기에서 뺀 말 — 애매: control·fast·emotion·memories·recognition·records(두 마음이 각자 하는 일 — 역할 분담의 내용이라 핵심인지 세부인지 애매, 17강 05와 같은 기준) · judgment(= decisions인지 애매) / 뻔함: mind
+
+## 18강 07
+= **문화의 진화**를 **유전**의 원리로 설명하는 **모델**의 **한계** | the **limits** of **modeling** **cultural evolution** on **genetic** **inheritance**
+> Many of the first models of cultural evolution drew noticeable connections between culture and genes by using concepts from theoretical population genetics and applying them to culture.
+> Cultural patterns of transmission, innovation, and selection are conceptually likened to genetic processes of transmission, mutation, and selection.
+> However, these approaches had to be modified to account for the differences between genetic and cultural transmission.
+> For example, we do not expect the cultural transmission to follow the rules of genetic transmission strictly.
+> If two biological parents have different forms of a cultural trait, their child is not necessarily equally likely to acquire the mother's or father's form of that trait.
+> Further, a child can acquire cultural traits not only from its parents but also from nonparental adults and peers; thus, the frequency of a cultural trait in the population is relevant beyond just the probability that an individual's parents had that trait.
++ model [models] | 주제의 대상(초기 모델)
++ cultural evolution | 모델이 설명하려던 것(문화의 진화)
++ genetic [genetic, genes, genetics] | 빌려 온 원리(유전)
++ limit | 주제의 방향(한계) — 본문은 had to be modified | 흐름
+- mutation | 02번 세부(유전 쪽 과정 — 돌연변이)
+- innovation | 02번 세부(문화 쪽 과정 — 혁신)
+- peers | 06번 예(또래에게서도 배움)
+- parents | 05·06번 예(부모)
+- frequency | 06번 세부(집단 속 빈도)
+- variation | = mutation → 02번 세부(변이) | 동의어
+- pertinent | = relevant → 06번 세부 | 동의어
+- flawless | 방향 반대 — 03번 초기 모델은 고쳐야 했음(한계) | 흐름
+* 보기에서 뺀 말 — 겹침: modified·differences(= limit) · culture(= cultural evolution) · inheritance(= genetic) / 애매: transmission(02~04번 — 유전·문화 양쪽에 쓰는 말이라 핵심인지 애매) · trait(05·06번 예시 속 개념) · likened(02번 — 모델의 내용) / 뻔함: child
+
+## 18강 08
+= **복장 규범**을 **살짝** **어기는** 사람에게 사람들이 **부여하는** **더 높은 지위** | the **higher status** people **attribute** to those who **break** **dress codes** only **slightly**
+> It's not news to anyone that we judge others based on their clothes.
+> In general, studies that investigate these judgments find that people prefer clothing that matches expectations ─ surgeons in scrubs, little boys in blue ─ with one notable exception.
+> A series of studies published in an article in June 2014 in the Journal of Consumer Research explored observers' reactions to people who broke established norms only slightly.
+> In one scenario, a man at a black-tie affair was viewed as having higher status and competence when wearing a red bow tie.
+> The researchers also found that valuing uniqueness increased audience members' ratings of the status and competence of a professor who wore red sneakers while giving a lecture.
+> The results suggest that people judge these slight deviations from the norm as positive because they suggest that the individual is powerful enough to risk the social costs of such behaviors.
++ norm [norms, norm] | 어기는 대상(규범)
++ break [broke] | 주제의 행동(어기다) — 03번
++ slightly [slightly, slight] | 어기는 정도(살짝) — 03·06번
++ status | 결과(더 높은 지위)
++ dress code | = established norms(03번) — 옷차림 규범 | 동의어
++ favorable | 주제의 방향(오히려 좋게 봄) — 본문은 positive | 흐름
+- bow tie | 04번 예시(빨간 나비넥타이)
+- sneakers | 05번 예시(빨간 운동화)
+- surgeons | 02번 예(기대에 맞는 옷 — 수술복)
+- professor | 05번 예시 인물(교수)
+- uniqueness | 05번 세부(독특함을 중시하는 사람일수록)
+- individuality | = uniqueness → 05번 세부(개성) | 동의어
+- formal wear | = black-tie → 04번 상황(정장 행사) | 동의어
+- disapprove | 방향 반대 — 보통은 기대에 맞는 옷을 좋아하지만(02번), 살짝 어긴 사람은 오히려 높게 봄 | 흐름
+* 보기에서 뺀 말 — 겹침: deviations(= break) · positive(= favorable) / 애매: competence(04·05번 — 지위와 함께 나오지만 주제 줄엔 지위만) · powerful(06번 — 높게 보는 이유의 내용) / 뻔함: clothes·judge

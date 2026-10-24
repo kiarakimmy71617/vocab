@@ -224,6 +224,32 @@ details.paste summary .sum-l{margin-right:auto}
 .od-line.miss .od-cue{color:var(--ink);border-top-color:var(--omr-line)}
 .od-foot{position:sticky;bottom:0;z-index:4;display:grid;gap:4px;margin-top:4px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -10px 10px -6px var(--paper)}
 
+/* keyword: 지문을 읽고 주제의 핵심어 보기를 모두 고름. 확인 뒤엔 한 줄 주제 → 핵심·오답 줄(틀린 것에만 이유) → 본문 */
+.kw-body{display:grid;gap:6px}
+.kw-cap{margin:0;font-size:12.5px;color:var(--muted)}
+.kw-text{margin:0;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px;font-family:var(--font-word);font-size:16.5px;line-height:1.62;word-break:normal;overflow-wrap:break-word}
+.kw-n{display:inline-block;margin-right:3px;font-family:var(--font-mono);font-size:10.5px;font-weight:600;line-height:1;color:var(--omr);vertical-align:2px}
+.kw-zone{display:grid;gap:10px}
+.kw-ask{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.kw-chips{display:flex;flex-wrap:wrap;gap:8px}
+.kw-chip{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 15px;border:1.5px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);font-family:var(--font-word);font-size:16px;font-weight:700;line-height:1.2;text-align:left;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.kw-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.kw-chip[aria-pressed="true"]::before{content:"✓";font-family:var(--font-ui);font-size:13px;font-weight:600}
+.kw-topic{display:grid;gap:3px;padding:12px 14px;background:var(--omr-wash);border-radius:2px;font-size:14.5px;line-height:1.55;text-wrap:pretty}
+.kw-topic .eyebrow{margin-bottom:3px}
+.kw-topic b{color:var(--omr);font-weight:700}
+.kw-topic .kw-en{font-family:var(--font-word);color:var(--muted)}
+.kw-topic .kw-en b{color:var(--ink)}
+.kw-fb{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.kw-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px;align-items:baseline;padding:9px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card)}
+.kw-tag{justify-self:start;padding:1px 8px;border:1px solid currentColor;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.kw-w{font-family:var(--font-word);font-size:16px;font-weight:700;overflow-wrap:anywhere}
+.kw-why{grid-column:2;font-size:13px;line-height:1.5;color:var(--ink);text-wrap:pretty}
+.kw-row.miss,.kw-row.wrong{border-color:var(--omr);background:var(--omr-wash)}
+.kw-row.miss .kw-tag,.kw-row.wrong .kw-tag{color:var(--omr)}
+.kw-rest{margin:0;font-size:13px;line-height:1.6;color:var(--muted)}
+.kw-rest span{font-family:var(--font-word);font-weight:700}
+
 @media (prefers-reduced-motion: reduce){
   .stamp.on{animation:none}
   .tbar{display:none}
@@ -339,6 +365,69 @@ details.paste summary .sum-l{margin-right:auto}
           "'Instead' = 걱정과 반대되는 행동",
           "'Now' = 수리 뒤 현재 상태",
           "'The story' = 전체 이야기의 교훈으로 마무리"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sample-kw-demo",
+    "kind": "kw",
+    "title": "예시 세트 · 핵심어 고르기",
+    "note": "시제품 확인용 2지문 (실제 교재 아님)",
+    "passages": [
+      {
+        "name": "예시 1 · 다리",
+        "ko": "**마을** 사람들이 **힘을 모아** 낡은 **다리**를 **고친** 일",
+        "en": "how a **town** **worked together** to **repair** its old **bridge**",
+        "lines": [
+          "Our town has an old bridge over the river.",
+          "It was built more than a hundred years ago.",
+          "Last year, a storm damaged part of it.",
+          "People worried that the bridge would be closed forever.",
+          "Instead, they raised money together and repaired it.",
+          "Now the bridge is stronger than before.",
+          "The story shows what a town can do when it works together."
+        ],
+        "opts": [
+          ["bridge", 1, "주제의 대상(다리)", "지문"],
+          ["town", 1, "고친 쪽(마을) — 01·07번", "지문"],
+          ["together", 1, "어떻게 고쳤나(힘을 모아) — 05·07번", "지문"],
+          ["repair", 1, "주제의 행동(고침) — 05번", "지문"],
+          ["fix", 1, "= repair(고치다)", "동의어"],
+          ["cooperation", 1, "주제의 방향(협력) — 본문은 together", "흐름"],
+          ["storm", 0, "03번 사건(폭풍) — 다리가 망가진 계기일 뿐", "지문"],
+          ["river", 0, "01번 배경(강)", "지문"],
+          ["hundred", 0, "02번 세부(백 년도 더 전에 지음)", "지문"],
+          ["money", 0, "05번 세부(돈을 모음)", "지문"],
+          ["forever", 0, "04번 세부(영영 닫힐까 걱정)", "지문"],
+          ["conflict", 0, "방향 반대 — 다툰 게 아니라 힘을 모음", "흐름"]
+        ]
+      },
+      {
+        "name": "예시 2 · 잠과 기억",
+        "ko": "배운 것을 **기억**으로 굳혀 주는 **잠**의 **역할**",
+        "en": "the **role** of **sleep** in turning what we learn into **memory**",
+        "lines": [
+          "Many students stay up late before a test.",
+          "They believe more hours of study will help.",
+          "However, sleep plays an important role in memory.",
+          "While we sleep, the brain sorts and stores what we learned during the day.",
+          "In one study, students who slept after studying remembered more words than those who stayed awake.",
+          "So a good night's sleep may be the best last step of studying."
+        ],
+        "opts": [
+          ["sleep", 1, "주제의 중심(잠)", "지문"],
+          ["memory", 1, "잠이 굳혀 주는 것(기억)", "지문"],
+          ["role", 1, "주제의 틀(역할) — 03번", "지문"],
+          ["store", 1, "잠자는 동안 뇌가 하는 일(저장) — 04번", "지문"],
+          ["beneficial", 1, "주제의 방향(잠은 공부에 도움) — 06번", "흐름"],
+          ["test", 0, "01번 상황 설정(시험 전) — 첫 문장이지만 주제 아님", "지문"],
+          ["hours", 0, "02번 세부(공부 시간)", "지문"],
+          ["students", 0, "01·05번 예시 속 인물", "지문"],
+          ["brain", 0, "04번 세부(뇌)", "지문"],
+          ["words", 0, "05번 실험 세부(단어)", "지문"],
+          ["awake", 0, "05번 비교 대상(깨어 있던 학생)", "지문"],
+          ["harmful", 0, "방향 반대 — 잠이 공부를 방해한다는 게 아님", "흐름"]
         ]
       }
     ]
@@ -505,6 +594,43 @@ function lcsMask(a, b) {
   }
   return [ma, mb];
 }
+/* 핵심어 세트: 강 하나가 세트, 지문마다 본문 문장 · 한 줄 주제(** = 굵게) · 보기 [단어, 핵심 1/0, 이유, 종류] */
+function prepareKw(raw) {
+  const passages = [];
+  (raw.passages || []).forEach(p => {
+    const lines = (p.lines || []).map(x => String(x == null ? '' : x).trim()).filter(Boolean);
+    const opts = [], seen = new Set();
+    (p.opts || []).forEach(o => {
+      const w = String(o && o[0] != null ? o[0] : '').trim();
+      if (!w || seen.has(w.toLowerCase())) return;
+      seen.add(w.toLowerCase());
+      opts.push({ w, key: !!Number(o[1]), why: String(o[2] == null ? '' : o[2]).trim(), cat: String(o[3] || '') });
+    });
+    const nk = opts.filter(o => o.key).length;
+    if (lines.length && nk && nk < opts.length) passages.push({ name: String(p.name || '지문'), ko: String(p.ko || '').trim(), en: String(p.en || '').trim(), lines, opts });
+  });
+  return { id: raw.id, kind: 'kw', title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), passages };
+}
+/* 보기 번호(0~n-1)를 섞되, 원본 순서 그대로거나 핵심이 한데 몰려 나오는 일은 없게 함 (원본은 핵심을 먼저 적어 둠).
+   keys[i] = i번 보기가 핵심인지 */
+function shuffleKw(keys) {
+  const n = keys.length, a = [];
+  for (let i = 0; i < n; i++) a.push(i);
+  if (n < 2) return a;
+  const bad = o => {
+    if (o.every((v, i) => v === i)) return true;
+    const pos = o.map((v, i) => keys[v] ? i : -1).filter(i => i >= 0);
+    return pos.length > 1 && pos.length < n && pos[pos.length - 1] - pos[0] === pos.length - 1;
+  };
+  for (let t = 0; t < 60; t++) { shuffle(a); if (!bad(a)) return a; }
+  return a;
+}
+/* picks: 학생이 고른 보기 번호. 핵심을 하나도 안 빠뜨리고 오답은 하나도 안 골라야 정답 */
+function gradeKw(picks, opts) {
+  const on = new Set(picks), hit = [], miss = [], wrong = [];
+  opts.forEach((o, i) => { if (o.key) (on.has(i) ? hit : miss).push(i); else if (on.has(i)) wrong.push(i); });
+  return { ok: !miss.length && !wrong.length, hit, miss, wrong };
+}
 /*PURE-END*/
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -599,7 +725,12 @@ function findRaw(id) { return rawSets().find(s => s.id === id) || null; }
 function getRec(id) { const r = store.get(K.rec(id)); return r && typeof r === 'object' ? r : {}; }
 function liveSess(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 1 && ss.n === n && ss.phase && ss.phase !== 'done' ? ss : null; }
 function liveOrder(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 2 && ss.kind === 'order' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
-function liveAny(raw) { return raw.kind === 'order' ? liveOrder(raw.id, prepareOrder(raw).passages.length) : liveSess(raw.id, prepareSet(raw).items.length); }
+function liveKw(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 3 && ss.kind === 'kw' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
+function liveAny(raw) {
+  if (raw.kind === 'order') return liveOrder(raw.id, prepareOrder(raw).passages.length);
+  if (raw.kind === 'kw') return liveKw(raw.id, prepareKw(raw).passages.length);
+  return liveSess(raw.id, prepareSet(raw).items.length);
+}
 function save() { const s = S.sess; if (s && s.phase !== 'done') store.set(K.sess(s.setId), s); }
 
 /* ---------- 진행 엔진 ---------- */
@@ -810,10 +941,98 @@ function beginOrder(raw, mode) {
   save(); route();
 }
 
+/* ---------- 핵심어 고르기 엔진 ----------
+   세트(강)의 지문을 차례대로 하나씩 냄. 지문마다 보기를 새로 섞고, 고른 보기가 핵심어와 똑같아야 정답
+   (핵심을 하나라도 빠뜨리거나 오답을 하나라도 고르면 다시). 틀린 지문은 큐 맨 뒤로 가서 보기가 새로 섞인 채 다시 나오고,
+   모든 지문을 맞혀야 끝. st[id] = { t: 시도 수, w: 틀린 수 } */
+function newKwSession(set, mode) {
+  const n = set.passages.length;
+  let pool = set.passages.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { t: 0, w: 0 }; });
+  const s = { v: 3, kind: 'kw', setId: set.id, n, mode, pool, st, queue: pool.slice(), cur: null, done: 0, phase: 'play', ms: 0, lt: Date.now() };
+  openKw(s);
+  return s;
+}
+function openKw(s) {
+  const id = s.queue[0];
+  if (id == null) { s.cur = null; return; }
+  s.cur = { id, order: shuffleKw(SET.passages[id].opts.map(o => o.key)), picks: [], fb: null };
+}
+function validKw(s) {
+  const n = SET.passages.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  if (!Array.isArray(s.pool) || !s.pool.every(ok) || !Array.isArray(s.queue) || !s.queue.every(ok)) return false;
+  if (!s.st || typeof s.st !== 'object' || !s.pool.every(id => s.st[id])) return false;
+  const c = s.cur;
+  if (!c || !ok(c.id) || (s.queue[0] !== c.id && !c.fb)) return false;
+  const m = SET.passages[c.id].opts.length;
+  const sub = a => Array.isArray(a) && a.every(v => Number.isInteger(v) && v >= 0 && v < m) && new Set(a).size === a.length;
+  return sub(c.order) && c.order.length === m && sub(c.picks) && (!c.fb || sub(c.fb.picks));
+}
+function kwToggle(i) {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const k = c.picks.indexOf(i);
+  if (k >= 0) c.picks.splice(k, 1); else c.picks.push(i);
+  save();
+}
+function kwCheck() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb || !c.picks.length) return;
+  tick(s);
+  const g = gradeKw(c.picks, SET.passages[c.id].opts), x = s.st[c.id];
+  x.t++;
+  s.queue.shift();
+  if (g.ok) s.done++; else { x.w++; s.queue.push(c.id); }
+  c.fb = { ok: g.ok, picks: c.picks.slice() };
+  save(); renderKwFeedback();
+}
+function kwNext() {
+  const s = S.sess;
+  if (!s || !s.cur || !s.cur.fb) return;
+  tick(s);
+  if (!s.queue.length) { s.cur = null; finishKw(s); stopClock(); renderResult(); return; }
+  openKw(s); save(); renderKw();
+}
+function finishKw(s) {
+  const hard = s.pool.filter(id => s.st[id].w > 0);
+  const known = s.pool.length - hard.length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: s.pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  const tries = {};
+  s.pool.forEach(id => { tries[id] = s.st[id].t; });
+  S.result = { kind: 'kw', setId: s.setId, title: SET.title, mode: s.mode, n: s.pool.length, ms: s.ms, known, hard, tries };
+  s.phase = 'done';
+  store.del(K.sess(s.setId));
+}
+function beginKw(raw, mode) {
+  SET = prepareKw(raw);
+  if (!SET.passages.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveKw(SET.id, SET.passages.length);
+    if (s && !validKw(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newKwSession(SET, 'full');
+  } else s = newKwSession(SET, mode === 'hard' ? 'hard' : 'full');
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+
 function begin(id, mode) {
   const raw = findRaw(id);
   if (!raw) { renderHome(); return; }
   if (raw.kind === 'order') { beginOrder(raw, mode); return; }
+  if (raw.kind === 'kw') { beginKw(raw, mode); return; }
   SET = prepareSet(raw);
   if (!SET.items.length) { renderHome(); return; }
   let s = null;
@@ -840,6 +1059,11 @@ function route() {
     if (s.phase === 'done') { renderResult(); return; }
     if (!s.cur) { finishOrder(s); renderResult(); return; }
     renderOrder(); return;
+  }
+  if (s.kind === 'kw') {
+    if (s.phase === 'done') { renderResult(); return; }
+    if (!s.cur) { finishKw(s); renderResult(); return; }
+    renderKw(); return;
   }
   if (s.phase === 'bdone') { renderPause(); return; }
   if (s.phase === 'done') { renderResult(); return; }
@@ -891,8 +1115,35 @@ function orderCard(raw) {
     ${confirmHTML(cf, sid)}
   </article>`;
 }
+/* 핵심어 세트 카드: 강 하나, 지문 수, 진행 중/지난 기록, 핵심어 고르기·틀린 지문만 */
+function kwCard(raw) {
+  const set = prepareKw(raw);
+  const n = set.passages.length;
+  const ss = liveKw(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · 맞힌 지문 ${ss.done}/${ss.pool.length} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)} · 한 번에 ${rec.last.known}/${rec.last.n}${rec.last.mode === 'hard' ? ' (틀린 지문만)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">핵심어 고르기</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">틀린 지문만 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}지문</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
 function setCard(raw) {
   if (raw.kind === 'order') return orderCard(raw);
+  if (raw.kind === 'kw') return kwCard(raw);
   const set = prepareSet(raw);
   const n = set.items.length;
   const nb = n ? makeBatches(set, set.items.map((_, i) => i)).length : 0;
@@ -943,23 +1194,40 @@ const ORDER_RULES = `
       <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>
     </ol>
   </section>`;
+const KW_RULES = `
+  <section class="rules" aria-labelledby="krules-h">
+    <h2 class="eyebrow" id="krules-h">핵심어 고르는 방법</h2>
+    <ol>
+      <li><span class="num">1</span><span><b>필기·해석은 덮고</b> 지문만 읽어. 주제를 한 줄로 먼저 떠올려 봐.</span></li>
+      <li><span class="num">2</span><span><b>주제의 핵심어를 모두</b> 골라. 지문에 나왔다고 다 핵심은 아니야 — 예시·고유명사·세부는 지엽.</span></li>
+      <li><span class="num">3</span><span><b>지문에 없는 말도 섞여 있어.</b> 핵심어를 바꿔 쓴 말이면 정답, 주제의 방향을 뒤집은 말이면 함정.</span></li>
+      <li><span class="num">4</span><span><b>하나라도 빠뜨리거나 더 고르면 다시.</b> 이유와 한 줄 주제가 나오고, 그 지문은 보기가 새로 섞여 뒤에 다시 나와.</span></li>
+    </ol>
+  </section>`;
 function renderHome() {
   S.view = 'home'; stopClock(); S.sess = null; C = null;
   const sets = rawSets();
-  const hasV = sets.some(s => s.kind !== 'order'), hasO = sets.some(s => s.kind === 'order');
-  const onlyO = hasO && !hasV;
-  const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.' : hasO ? '단어는 먼저 떠올리고, 본문은 안 보고 다시 세워 봐.' : '눈으로 보는 대신 먼저 떠올리고, 바로 채점해.';
+  const hasO = sets.some(s => s.kind === 'order'), hasK = sets.some(s => s.kind === 'kw');
+  const hasV = sets.some(s => s.kind !== 'order' && s.kind !== 'kw');
+  const onlyO = hasO && !hasV && !hasK, onlyK = hasK && !hasV && !hasO;
+  const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.'
+    : onlyK ? '지문을 읽고 주제의 핵심어만 골라 봐. 나왔다고 다 핵심은 아니야.'
+    : hasO && hasK ? '단어는 먼저 떠올리고, 본문은 다시 세우고, 지문은 핵심어만 골라 봐.'
+    : hasO ? '단어는 먼저 떠올리고, 본문은 안 보고 다시 세워 봐.'
+    : hasK ? '단어는 먼저 떠올리고, 지문은 주제의 핵심어만 골라 봐.'
+    : '눈으로 보는 대신 먼저 떠올리고, 바로 채점해.';
   app.innerHTML = `
 <div class="wrap home">
   <header class="masthead">
     <div class="fields">${FIELDS.map(f => `<span class="field"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></span>`).join('')}</div>
-    <h1>${onlyO ? '본문 순서 맞추기' : '꺼내는 단어장'}</h1>
+    <h1>${onlyO ? '본문 순서 맞추기' : onlyK ? '핵심어 고르기' : '꺼내는 단어장'}</h1>
     <p class="lede">${lede}</p>
   </header>
-  ${hasV || !hasO ? VOCAB_RULES : ''}
+  ${hasV || (!hasO && !hasK) ? VOCAB_RULES : ''}
   ${hasO ? ORDER_RULES : ''}
+  ${hasK ? KW_RULES : ''}
   <section class="sets" aria-labelledby="sets-h">
-    <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : hasO ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
+    <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : onlyK ? '핵심어 세트' : hasO || hasK ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
     ${groupedCards(sets)}
   </section>
   ${PASTE ? `<details class="paste" id="paste"${S.pasteOpen ? ' open' : ''}>
@@ -973,7 +1241,7 @@ function renderHome() {
       <button class="btn btn-primary" id="p-save" type="button" disabled>세트 만들기</button>
     </div>
   </details>` : ''}
-  <p class="foot">${hasV || !hasO ? '외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>' : ''}진행 기록은 이 기기 브라우저에만 저장돼. 매번 같은 브라우저로 열어야 이어서 할 수 있어.</p>
+  <p class="foot">${hasV || (!hasO && !hasK) ? '외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>' : ''}진행 기록은 이 기기 브라우저에만 저장돼. 매번 같은 브라우저로 열어야 이어서 할 수 있어.</p>
 </div>`;
   bindHome();
 }
@@ -1363,6 +1631,103 @@ function renderOrderFeedback() {
   window.scrollTo(0, 0);
 }
 
+/* ---------- 핵심어 고르기 화면 ---------- */
+const KW = `
+<div class="wrap study" id="kw-root">
+  <div class="bar">
+    <button class="back" id="kw-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="kw-title"></div><div class="bar-sub" id="kw-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="kw-track"></div>
+  <section class="od-head">
+    <div class="card-top"><span class="dir" id="kw-dir"></span><span class="left mono" id="kw-left"></span></div>
+    <h2 class="od-name" id="kw-name"></h2>
+    <p class="od-hint" id="kw-hint" aria-live="polite"></p>
+  </section>
+  <div class="kw-body" id="kw-body">
+    <p class="kw-cap" id="kw-cap" hidden>본문 · 이유에 적힌 번호가 문장 번호야</p>
+    <p class="kw-text" id="kw-text" lang="en"></p>
+  </div>
+  <section class="kw-zone" id="kw-zone"></section>
+  <div class="od-foot" id="kw-foot"></div>
+</div>`;
+/* 한 줄 주제의 **…**를 굵게 */
+const boldHTML = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+
+function renderKw() {
+  S.view = 'study'; app.onclick = null; C = null;
+  app.innerHTML = KW;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  const s = S.sess, p = SET.passages[s.cur.id];
+  R['kw-title'].textContent = SET.title;
+  R['kw-back'].onclick = () => { tick(s); save(); renderHome(); };
+  R['kw-text'].innerHTML = p.lines.map((t, i) => `<span class="kw-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>${esc(t)}`).join(' ');
+  window.scrollTo(0, 0);
+  if (s.cur.fb) renderKwFeedback(); else renderKwPick();
+  startClock();
+}
+function kwHeader() {
+  const s = S.sess, p = SET.passages[s.cur.id], n = s.pool.length;
+  R['kw-sub'].textContent = (s.mode === 'hard' ? '틀린 지문만 · ' : '') + `맞힌 지문 ${s.done}/${n}`;
+  R['kw-track'].innerHTML = trackHTML(n, s.done, 1) + `<div class="track-n mono" aria-label="맞힌 지문 ${s.done}/${n}">${s.done}/${n}</div>`;
+  R['kw-left'].textContent = `남은 지문 ${s.queue.length}`;
+  R['kw-name'].textContent = p.name;
+}
+function renderKwPick() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id];
+  kwHeader();
+  R['kw-dir'].innerHTML = `<b>핵심어</b><span>보기 ${p.opts.length}개</span>`;
+  R['kw-hint'].className = 'od-hint';
+  R['kw-hint'].textContent = '지문을 읽고 주제의 핵심어를 모두 골라. 몇 개인지는 안 알려 줘.';
+  R['kw-zone'].innerHTML = `<p class="kw-ask">나왔다고 다 핵심은 아니야 · 지문에 없어도 핵심어를 바꿔 쓴 말이면 정답</p>
+    <div class="kw-chips" id="kw-chips" role="group" aria-label="보기">${c.order.map(i =>
+      `<button class="kw-chip" type="button" data-i="${i}" aria-pressed="${c.picks.includes(i)}" lang="en">${esc(p.opts[i].w)}</button>`).join('')}</div>`;
+  R['kw-foot'].innerHTML = `<button class="btn btn-primary wide big" id="kw-go" type="button">확인</button>`;
+  const go = $('#kw-go');
+  const sync = () => { go.disabled = !c.picks.length; go.textContent = c.picks.length ? `확인 · ${c.picks.length}개 골랐어` : '확인'; };
+  $('#kw-chips').onclick = e => {
+    const b = e.target.closest('[data-i]');
+    if (!b) return;
+    const i = +b.dataset.i;
+    kwToggle(i);
+    b.setAttribute('aria-pressed', String(c.picks.includes(i)));
+    sync();
+  };
+  go.onclick = kwCheck;
+  sync();
+}
+/* 확인 뒤: 한 줄 주제(핵심어 굵게) → 핵심 보기(빠뜨린 것은 빨갛게 + 이유) → 잘못 고른 보기(빨갛게 + 이유)
+   → 안 고른 오답 보기 한 줄 → 본문(이유의 번호를 찾아보게). 맞혀도 한 줄 주제는 보여 줌 */
+function renderKwFeedback() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], g = gradeKw(c.fb.picks, p.opts);
+  kwHeader();
+  const nk = g.hit.length + g.miss.length;
+  R['kw-dir'].innerHTML = `<b>${g.ok ? '정답' : '다시'}</b><span>핵심어 ${nk}개</span>`;
+  R['kw-hint'].className = 'od-hint ' + (g.ok ? 'ok' : 'bad');
+  const parts = [];
+  if (g.miss.length) parts.push(`빠뜨린 핵심 ${g.miss.length}개`);
+  if (g.wrong.length) parts.push(`잘못 고른 보기 ${g.wrong.length}개`);
+  R['kw-hint'].textContent = g.ok ? `핵심어 ${nk}개 다 골랐어.` : `${parts.join(' · ')}. 빨간 칸의 이유를 읽고 넘겨 — 이 지문은 뒤에 다시 나와.`;
+  const hitS = new Set(g.hit), wrongS = new Set(g.wrong);
+  const row = (i, cls, tag, why) => `<li class="kw-row ${cls}"><span class="kw-tag">${tag}</span><span class="kw-w" lang="en">${esc(p.opts[i].w)}</span>${why ? `<span class="kw-why">${esc(p.opts[i].why)}</span>` : ''}</li>`;
+  const keys = p.opts.map((o, i) => i).filter(i => p.opts[i].key);
+  const rest = p.opts.map((o, i) => i).filter(i => !p.opts[i].key && !wrongS.has(i));
+  R['kw-zone'].innerHTML = `
+    <div class="kw-topic"><span class="eyebrow">한 줄 주제</span><span>${boldHTML(p.ko)}</span>${p.en ? `<span class="kw-en" lang="en">${boldHTML(p.en)}</span>` : ''}</div>
+    <ul class="kw-fb" aria-label="채점">
+      ${keys.map(i => hitS.has(i) ? row(i, 'hit', '핵심', false) : row(i, 'miss', '빠뜨린 핵심', true)).join('')}
+      ${g.wrong.map(i => row(i, 'wrong', '잘못 고름', true)).join('')}
+    </ul>
+    ${rest.length ? `<p class="kw-rest">안 고른 오답 보기 · ${rest.map(i => `<span lang="en">${esc(p.opts[i].w)}</span>`).join(' · ')}</p>` : ''}`;
+  R['kw-zone'].after(R['kw-body']);
+  R['kw-cap'].hidden = false;
+  R['kw-foot'].innerHTML = `<button class="btn btn-primary wide big" id="kw-next" type="button">${s.queue.length ? '다음 지문' : '결과 보기'}</button>`;
+  $('#kw-next').onclick = kwNext;
+  window.scrollTo(0, 0);
+}
+
 /* ---------- 끌어서 옮기기 ----------
    손잡이(touch-action:none)는 바로 끌림. 문장 부분은 꾹 누르면(0.25초) 끌리고, 바로 움직이면 그냥 스크롤.
    마우스는 아무 데나 눌러서 끌기. 끌리는 동안 화면 끝에 가까우면 자동으로 스크롤됨 */
@@ -1504,11 +1869,62 @@ function renderOrderResult(r) {
   $('#r-home').onclick = () => renderHome();
   window.scrollTo(0, 0);
 }
+/* 핵심어 세트 결과: 한 번에 맞힌 지문 수, 다시 한 지문 목록. 처음부터 끝까지 했으면 구글폼 제출 칸
+   (세트 '핵심어 · 16강', 끈질긴 단어 칸에는 다시 한 지문 '2지문: 16강 03(2번 만에), …') */
+function renderKwResult(r) {
+  S.sess = null;
+  const hardP = r.hard.map(id => ({ id, p: SET.passages[id] })).filter(x => x.p);
+  const kind = r.mode === 'hard' ? '틀린 지문만' : '핵심어 고르기';
+  const tries = id => r.tries[id] || 2;
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.n}지문 핵심어 다 골랐어</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>한 번에 맞힘</dt><dd>${r.known}</dd></div>
+    <div><dt>다시 한 지문</dt><dd>${hardP.length}</dd></div>
+  </dl>
+  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘핵심어 고르기’를 처음부터 끝까지 했을 때만 할 수 있어.</p>` : ''}
+  ${FORM && r.mode === 'full' ? submitHTML() : ''}
+  ${hardP.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">다시 한 지문</h3>
+    <p class="note">한 번에 못 맞힌 지문이야. 주제의 핵심어가 뭐였는지 한 번 더 떠올려 봐.</p>
+    <ul>${hardP.map(x => `<li><span class="en">${esc(x.p.name)}</span><span>핵심어 ${x.p.opts.filter(o => o.key).length}개 · ${tries(x.id)}번 만에</span></li>`).join('')}</ul>
+  </section>` : `<p class="note">전부 한 번에 맞혔어.</p>`}
+  <p class="note">시험 전에 한 번 더 고르면 주제가 더 빨리 보여.</p>
+  <div class="actions">
+    ${hardP.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">틀린 지문만 다시</button>` : ''}
+    <button class="btn ${hardP.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  if (FORM && r.mode === 'full') {
+    bindSubmit(r, `핵심어 · ${r.title}`, `${hardP.length}지문` + (hardP.length ? ': ' + hardP.map(x => `${x.p.name}(${tries(x.id)}번 만에)`).join(', ') : ''));
+  }
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+function submitHTML() {
+  return `
+  <section class="submit" aria-labelledby="sub-h">
+    <h3 id="sub-h">선생님께 제출</h3>
+    <label for="sub-name">이름</label>
+    <div class="submit-row">
+      <input type="text" id="sub-name" maxlength="20" autocomplete="name" placeholder="이름 쓰기">
+      <a class="btn btn-primary" id="sub-go" href="#" target="_blank" rel="noopener">제출하러 가기</a>
+    </div>
+    <p class="note" id="sub-note">구글폼이 결과가 채워진 채로 열려. 거기서 <b>제출(Submit)</b>까지 눌러야 끝나.</p>
+  </section>`;
+}
 function renderResult() {
   S.view = 'result'; app.onclick = null; stopClock();
   const r = S.result;
   if (!r) { renderHome(); return; }
   if (r.kind === 'order') { renderOrderResult(r); return; }
+  if (r.kind === 'kw') { renderKwResult(r); return; }
   S.sess = null;
   const hardItems = r.hard.map(id => SET.items[id]).filter(Boolean);
   const kind = r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기';
@@ -1522,16 +1938,7 @@ function renderResult() {
     <div><dt>끈질긴 단어</dt><dd>${hardItems.length}</dd></div>
   </dl>
   ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.</p>` : ''}
-  ${FORM && r.mode === 'full' ? `
-  <section class="submit" aria-labelledby="sub-h">
-    <h3 id="sub-h">선생님께 제출</h3>
-    <label for="sub-name">이름</label>
-    <div class="submit-row">
-      <input type="text" id="sub-name" maxlength="20" autocomplete="name" placeholder="이름 쓰기">
-      <a class="btn btn-primary" id="sub-go" href="#" target="_blank" rel="noopener">제출하러 가기</a>
-    </div>
-    <p class="note" id="sub-note">구글폼이 결과가 채워진 채로 열려. 거기서 <b>제출(Submit)</b>까지 눌러야 끝나.</p>
-  </section>` : ''}
+  ${FORM && r.mode === 'full' ? submitHTML() : ''}
   ${hardItems.length ? `
   <section class="hard" aria-labelledby="hard-h">
     <h3 id="hard-h">끈질긴 단어</h3>
@@ -1544,7 +1951,7 @@ function renderResult() {
     <button class="btn ${hardItems.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
   </div>
 </div>`;
-  if (FORM && r.mode === 'full') bindSubmit(r, kind, hardItems);
+  if (FORM && r.mode === 'full') bindSubmit(r, `${r.title} · ${kind}`, `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : ''));
   const hl = $('.hard ul');
   if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(hardItems[+b.dataset.say]); });
   const h = $('#r-hard');
@@ -1553,14 +1960,14 @@ function renderResult() {
   window.scrollTo(0, 0);
 }
 
-/* 결과를 선생님 구글폼으로: 미리 채워진 링크를 새 탭으로 열고, 학생이 폼에서 제출을 누름 */
-function bindSubmit(r, kind, hardItems) {
+/* 결과를 선생님 구글폼으로: 미리 채워진 링크를 새 탭으로 열고, 학생이 폼에서 제출을 누름.
+   setText = 세트 칸(단어 '기말 · 1~80번 · 외우기', 핵심어 '핵심어 · 16강'), hardText = 끈질긴 단어 칸 */
+function bindSubmit(r, setText, hardText) {
   const nameEl = $('#sub-name'), go = $('#sub-go'), note = $('#sub-note');
   const noteHTML = note.innerHTML;
   const fmtKo = ms => { const t = Math.max(0, Math.round(ms / 1000)); return `${Math.floor(t / 60)}분 ${t % 60}초`; };
-  const hardText = `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : '');
   const sync = () => {
-    const pairs = [['usp', 'pp_url'], [FORM.name, nameEl.value.trim()], [FORM.school, CFG.school || ''], [FORM.set, `${r.title} · ${kind}`], [FORM.time, fmtKo(r.ms)], [FORM.hard, hardText]];
+    const pairs = [['usp', 'pp_url'], [FORM.name, nameEl.value.trim()], [FORM.school, CFG.school || ''], [FORM.set, setText], [FORM.time, fmtKo(r.ms)], [FORM.hard, hardText]];
     go.href = FORM.url + '?' + pairs.filter(p => p[0]).map(p => encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1])).join('&');
   };
   nameEl.value = store.get(K.name) || '';
