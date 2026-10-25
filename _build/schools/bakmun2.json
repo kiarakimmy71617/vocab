@@ -1,0 +1,9 @@
+{
+ "page": "bakmun2.html",
+ "short": "박문여고2",
+ "school": "박문여고 2학년",
+ "fields": [["학교", "박문여고 2학년"]],
+ "groups": [
+  {"type": "order", "data": "bakmun2-2026-2f-order", "group": "2학기 기말 순서 · 10월 고2 학평 18~40번 · 20지문", "id_prefix": "bakmun2-2026-2f-order", "active": true}
+ ]
+}

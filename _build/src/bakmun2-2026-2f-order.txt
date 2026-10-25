@@ -1,0 +1,206 @@
+# S1 | 18~22번 | 목적 · 심경 · 주장 · 함축 · 요지
+
+## 18번 · 글의 목적 | 본문 | 받는 사람 → 쓰는 이유(인근 학교 사건 우려) → 제안 예고 → 방안 ① 나무 → 방안 ② CCTV·경비원 → 검토 부탁 → 감사 → 보내는 사람
+Dear Principal, | 편지 첫머리: 받는 사람(교장 선생님)
+I am writing as the head student because many students have expressed their concerns about the recent security incidents at nearby schools. | 첫 내용: 쓰는 이유 — 인근 학교 보안 사건 우려
+We propose a few measures to increase students’ privacy and safety. | 우려를 받아 '몇 가지 방안'을 제안한다고 예고
+First, planting trees around the school would prevent outsiders from watching students, which helps protect students’ privacy and reduces their exposure to external risks. | 'First' = 방안 ①: 학교 주변에 나무 심기
+Additionally, more CCTV cameras and security guards could be added near the entrances to detect unauthorized access and respond quickly to any incidents. | 'Additionally' = 방안 ②: 출입구에 CCTV·경비원
+On behalf of the students, I hope that you will kindly consider these suggestions. | 'these suggestions' = 앞의 두 방안, 검토 부탁
+Thank you. | 맺음 인사: 감사합니다
+Sincerely, David Miller | 편지 끝: 보내는 사람 서명
+
+## 19번 · 심경 변화 | 본문 | 무대 위 → 도입부 연주 → 머리가 하얘짐 → 얼어붙음 → 걱정 ① 가사 → 걱정 ② 소리 → 친구 말이 떠오름 → 그 말 → 노래 시작 → 리듬을 찾음 → 부담이 사라짐 → 거침없이 → 내 순간임을 깨달음 (긴장 → 자신감)
+Beryl was standing on stage for her singing performance at the school festival. | 첫 문장: 장면 — 축제 무대에 선 Beryl
+The opening melody began to play, a soft tune that Beryl had practiced over and over. | 도입부 멜로디가 흐르기 시작
+She knew the lyrics by heart, but now that she was here, everything seemed to have faded from her mind. | 'but now that she was here' = 외웠는데 막상 서니 머리가 하얘짐
+She almost froze. | 그 결과: 거의 얼어붙음
+What if I forgot the words? | 얼어붙은 속마음 ①: 가사를 잊으면? (앞의 '머릿속에서 사라짐'과 연결)
+What if I sounded awful? | 속마음 ② (같은 'What if' 이어서): 소리가 형편없으면?
+But then she remembered her best friend Naomi’s words. | 'But then' = 걱정하다가 친구 말이 떠오름
+“You’re doing something brave by just getting up there.” | 'Naomi’s words'의 내용(따옴표)
+When the moment came, Beryl took a deep breath and began to sing. | 'When the moment came' = 마음을 잡고 노래 시작
+Her voice, shaky at first, soon found its rhythm as she focused. | 'shaky at first, soon' = 처음엔 떨렸지만 리듬을 찾음
+The weight on her shoulders slowly lifted, and the words began to flow more easily. | 어깨의 부담이 사라지고 가사가 술술
+As she continued singing, each note rang out without hesitation. | 'As she continued' = 계속 부를수록 거침없이
+She realized that this was her moment. | 마지막: 이게 내 순간이라는 깨달음
+
+## 20번 · 필자의 주장 | 본문 | 삶은 가능성 → 정원사처럼 하면 → 그런 아이들(긍정) → 하지만 목수처럼 하면 → 그런 아이들(부정) → 주장: 정원사 역할 → 목수 역할은 X → 교육의 핵심
+Life is full of possibilities. | 첫 문장: 삶은 가능성으로 가득함
+If we, like gardeners, provide a suitable environment and let children grow at their own pace, they will spontaneously explore the world, developing curiosity, creativity, and independence. | 정원사처럼: 환경만 주면 아이가 스스로 탐색
+Such children love life, dare to challenge, and possess initiative. | 'Such children' = 정원사식으로 자란 아이들(긍정)
+But if we, like carpenters, always try to “shape” children into our ideal image, they will gradually lose autonomy, becoming accustomed to following others’ instructions. | 'But' = 목수처럼: 틀에 맞추면 자율성을 잃음
+Such children quickly lose their sense of direction as they grow, because they are used to being arranged for, rather than actively choosing their path. | 'Such children' = 목수식으로 자란 아이들(방향을 잃음)
+As parents, our role should be that of gardeners, providing sunlight, rain, and fertile soil, allowing children to grow naturally at their own pace. | 주장: 부모는 정원사 역할이어야
+It should not be that of carpenters, trying to carve out a “perfect” piece according to our will. | 'It should not be' = 목수 역할은 아니어야
+The core of education starts with understanding life and helping children find their own “map” to find their direction in a complex world. | 마무리: 교육의 핵심 = 아이가 자기 '지도'를 찾게
+
+## 21번 · 함축 의미 추론 | 본문 | 이자율이 시간 인식에 주는 영향을 보자 → 상상: 10%로 5년 빌려줌 → 이 이율 = 위험 + 기회비용 → 기간이 길수록 둘 다 커짐 → 그래서 돈에 가격 → 그 가격에 시간 가치 → 속담으로 정리
+To see how borrowing and lending changes a person’s worldview, consider what the rate of interest does to people’s perception of time. | 첫 문장: 이자율이 시간 인식에 미치는 영향을 보자
+Imagine you are lending to somebody at an interest rate of 10 percent per year for five years. | 'Imagine' = 구체 상황: 10%로 5년 빌려줌
+This rate tells us that the money lent has a cost that reflects the risk of you not being repaid and the opportunity cost of not spending that money yourself. | 'This rate' = 그 10% 이율이 담은 것(위험 + 기회비용)
+The longer the term of the loan, the higher the chance you won’t be paid back because it is further into the future — which by definition is unknowable — and the longer you will have to wait before spending the money yourself. | 'The longer ..., the higher' = 기간이 길수록 위험·기다림이 커짐
+In order to make this worthwhile for the lender, money has to have a price — a cost to the borrower and income to the lender. | 'this' = 빌려주는 일, 할 만하려면 돈에 가격이 있어야
+This price factors in the value of time. | 'This price' = 앞의 가격 → 시간의 가치를 반영
+To put it another way, a bird in the hand is worth two in the bush. | 'To put it another way' = 속담으로 정리
+
+## 22번 · 요지 | 본문 | 콘텐츠 제작자의 사회·환경 책임 → 인식이 커지며 더 넓은 영향 고려 요구 → 다룰 주제들 → 플랫폼 영향력과 책임 → 예 → 윤리적 제작자는 가치까지 고려
+Social and environmental responsibility has become an increasingly important ethical consideration for content creators. | 첫 문장: 주제 — 콘텐츠 제작자의 사회·환경 책임
+As global awareness of social, environmental, and sustainability issues grows, many content creators are being called upon to consider the broader impact of their work. | 왜 중요해졌나: 인식이 커지며 더 넓은 영향을 고려하라는 요구
+This includes addressing topics such as climate change, social justice, and ethical consumerism in their content. | 'This' = 더 넓은 영향 고려 → 다룰 주제들
+Content creators have a platform that can influence their audience’s attitudes and behaviors, and they have a responsibility to use that platform for positive change. | 책임의 근거: 청중에게 영향을 주는 플랫폼
+For example, promoting environmentally sustainable products or supporting causes related to equality and justice can help raise awareness and drive meaningful social impact. | 'For example' = 긍정적 변화에 플랫폼을 쓰는 예
+Ethical content creators not only focus on promoting their products or services but also consider the values and causes they support, ensuring that their content aligns with their social and environmental principles. | 마무리: 윤리적 제작자는 홍보 + 가치까지 고려
+
+# S2 | 23~30번 | 주제 · 제목 · 내용 불일치 · 어법 · 어휘
+
+## 23번 · 주제 | 본문 | 뉴런 약 5억 개 → 특이한 건 위치 → 절반 이상이 팔에 → 팔마다 신경망 → 뇌의 지시 없이도 → 팔이 신경계의 연장 → 빨판이 중요 → 잡기 + 화학 신호 → 촉각으로 화학 정보 → 만지는 걸 맛봄
+Research on cephalopod neurobiology suggests that an octopus possesses roughly five hundred million neurons. | 첫 문장: 문어의 뉴런은 약 5억 개
+What makes this system unusual is where many of those neurons are located. | 'this system' = 그 뉴런 체계, 특이한 건 '위치'
+More than half are distributed throughout the arms rather than concentrated entirely in the central brain. | 위치의 답: 절반 이상이 팔에 퍼져 있음
+Each arm contains networks of nerve cells capable of controlling complex movements and responding to sensory input locally. | 'Each arm' = 팔마다 스스로 움직이고 반응하는 신경망
+This means that many actions do not require detailed instructions from the brain itself. | 'This means' = 그래서 뇌의 자세한 지시가 필요 없음
+Instead, the arms function as highly capable extensions of the nervous system that interact with the environment directly. | 'Instead' = 뇌 대신 팔이 신경계의 연장으로 직접
+The suckers lining each arm play an important role in this process. | 'this process' = 팔이 환경과 직접 상호작용 → 빨판의 역할
+These structures provide strong grip but also detect chemical signals on surfaces they contact. | 'These structures' = 빨판: 잡기 + 화학 신호 감지
+Marine biologists studying octopus behavior have shown that this allows the animal to gather chemical information through touch. | 'this' = 화학 신호 감지 → 촉각으로 화학 정보 수집
+In practical terms, an octopus can effectively taste what it touches. | 'In practical terms' = 쉽게 말해 만지는 걸 맛봄
+
+## 24번 · 제목 | 본문 | 일부 생각은 지금 보면 이상함 → 예: 노예제·철학자 특권 → 특권의 이유 → 자기 잇속 같음 → 모든 사상가는 그 시대 사람 → 번영 개념이 포용적이지 않음 → 특권층의 이해 방식 → 그래서 결함
+Consistent though he may be, some of Aristotle’s ideas meet us today as strange. | 첫 문장: 아리스토텔레스의 생각 중 일부는 지금 보면 이상함
+He had no difficulty justifying slavery, for example, and in his era, philosophers enjoyed positions of high privilege and influence. | 'for example' = 이상한 예: 노예제 정당화·철학자의 특권
+Because of their practice of contemplation for the highest human good, philosophers were considered worthy to have all the best things in life. | 철학자 특권의 이유: 최고선을 관조하니 최고의 것을 누릴 자격
+Somehow that assertion seems oddly self-serving. | 'that assertion' = 앞의 주장 → 자기 잇속 같음
+It serves us to remember that every great thinker is of her own time and speaks to a particular audience, and certainly Aristotle is no exception. | 모든 사상가는 자기 시대 사람, 아리스토텔레스도 예외 아님
+Human flourishing as he understood it probably would not be nearly as inclusive as we would want it to be today. | 'he' = 아리스토텔레스, 그의 '번영'은 포용적이지 않음
+How he understood right and good is best taken to be an indicator of how the privileged elite of ancient Greek society tended to understand right and good. | 그의 옳음·선 = 고대 그리스 특권층의 이해 방식
+As a result, for all it does well, it is also deeply flawed. | 'As a result' = 그래서 잘한 점이 있어도 깊은 결함
+
+## 26번 · 내용 불일치 | 본문 | 출생(1922) → 대학 졸업·경제학 강의 + 아버지 도움 → 6,000m 성공 → 교직을 떠남 → 1960 잠수 기록 → 1970년대 환경 보호 → 단체 설립 → 사망(2008)·유산 (시간 순서)
+Jacques Piccard was born on July 28, 1922 in Belgium to a family of scientists famous for exploring both the oceans and the skies. | 첫 문장: 출생(1922년, 벨기에, 과학자 집안)
+After graduating university in Switzerland, he taught economics at the University of Geneva, while helping his father develop bathyscaphes, deep-sea exploration machines. | 대학 졸업 후: 경제학 강의 + 아버지의 잠수정 개발 도움
+When their machines successfully reached a depth of 6,000 meters, Jacques was inspired to leave his teaching career to focus on improving bathyscaphes for underwater research. | 'their machines' = 그 잠수정, 6,000m 성공 → 교직을 떠남
+In 1960, Jacques, together with U.S. Naval Officer Don Walsh, set a diving record, descending 10,916 meters. | 1960년: 10,916m 잠수 기록
+In the 1970s, Jacques focused on protecting the environment after seeing the ocean pollution during his deep-sea dives. | 1970년대: 바다 오염을 보고 환경 보호에 집중
+He even founded an organization in Switzerland to study oceans and lakes. | 'even' = 환경 보호 활동에서 한 단계 더: 연구 단체 설립
+He died on November 1, 2008, but his legacy remains an inspiration and example for his fellow ocean explorers. | 마지막: 사망(2008년)과 남긴 유산
+
+## 29번 · 어법 | 본문 | 생존 = 해마다 허들 넘기 → 초기 허들은 높았음 → 자연은 생명을 낭비 → 예: 무화과 씨 → 개코원숭이 → 전근대 농경 사회 영아 사망률 → 수렵채집인도 → 그렇지 않았다면 인구 증가가 더 일찍
+You might think of survival as a race in which a hurdle has to be jumped every year. | 첫 문장: 비유 — 생존 = 해마다 넘는 허들 경주
+The early hurdles were once very high, and many people fell before clearing the first few. | 'The early hurdles' = 그 허들 중 초기 것들은 높았음
+Demographically, humankind was living close to a state of nature, and nature is extremely wasteful of life. | 왜 높았나: 자연 상태에 가까웠고 자연은 생명을 낭비
+From only a very small number of figs will even one of many seeds become a fig tree. | 자연의 낭비 예 ①: 무화과 씨앗(식물)
+Almost a quarter of baboons born in the wild die before they are a year old, which is fairly typical for primates. | 예 ②: 개코원숭이 — 영장류의 전형
+Infant mortality rates for humans in pre-modern agricultural societies were similar to, and sometimes higher, than those of apes. | 'those of apes' = 사람의 영아 사망률도 유인원과 비슷(농경 사회)
+Things were little better for our hunter-gatherer ancestors, a quarter of whom failed to reach their first birthday, while another quarter didn’t live long enough to reproduce just about everywhere until the nineteenth century. | 'little better' = 수렵채집 조상도 마찬가지
+Had it been otherwise, the huge recent growth in human population would have occurred much earlier. | 'Had it been otherwise' = 그렇지 않았다면 인구 증가가 더 일찍
+
+## 30번 · 어휘 | 본문 | 비언어 신호가 우세(연구) → 메시지가 엇갈릴 때 특히 → 그래서 말로 조종하면 실패 → 이유: 비언어를 더 믿음 → 예 ① 억지 미소 → 예 ② 직장 동료 → 그 말을 안 믿게 됨
+A study by Eva McMahan, professor of speech communication, confirmed the dominance of nonverbal signals. | 첫 문장: 연구 결과 — 비언어 신호가 우세
+The phenomenon, however, was especially pronounced when adults found themselves in situations with conflicting messages (i.e., situations in which the contents of the verbal and nonverbal messages differ). | 'The phenomenon' = 그 우세 현상, 메시지가 엇갈릴 때 특히
+Attempts to manipulate another person verbally are therefore likely to fail if the accompanying nonverbal communication does not match the spoken message. | 'therefore' = 그래서 말로 조종하려 해도 실패
+This is because people trust nonverbal messages more than verbal ones. | 'This is because' = 실패 이유: 비언어를 더 믿음
+When somebody tells you that they enjoy spending time with you, but you notice how they are looking away and are forcing a smile, you are probably less inclined to believe their words. | 예 ①: 같이 있어 좋다면서 눈을 피함 → 안 믿음
+The same is probably true when you are back at the office after a sickness and your colleague tells you with a displeased expression that they were happy to take over your workload. | 'The same' = 예 ② 같은 상황: 불쾌한 표정의 동료
+You might not believe that they enjoyed replacing you while you were gone. | 'they' = 그 동료, 대신 일한 게 좋았다는 말을 안 믿음
+
+# S3 | 31~35번 | 빈칸 31~34 · 무관한 문장
+
+## 31번 · 빈칸 추론 | 본문 | 행동 대부분은 오래전 설정대로 → 절망할 일 아님 → 공학의 승리 → 다 의식적으로 정하면 못 삶 → 자동화가 선장을 자유롭게 → 기본값은 결함이 아님 → 핵심 특징
+A person who lives eighty years lives some twenty-nine thousand days, and the overwhelming majority of the behaviour packed into them runs on settings laid down, most of them, decades earlier and rarely inspected since. | 첫 문장: 행동 대부분이 오래전 설정대로 돌아감
+This need not be a hopeless thought. | 'This' = 앞의 사실, 절망할 생각은 아님
+In one light it is a triumph of engineering. | 'In one light it' = 그 자동 설정, 오히려 공학의 승리
+If you had to consciously decide every footstep and every fork-grip and every word, you would never make it out of bed; the deliberate mind is far too slow and too costly to run a whole life in real time, and any creature that tried would be outcompeted by a creature that didn’t. | 왜 승리인가: 모든 걸 의식적으로 정하면 침대에서도 못 나옴
+The automation is precisely what frees the captain to come up on deck for the few problems that actually require him. | 'The automation' = 그 자동 설정 → 선장(의식)을 자유롭게
+The default is not a flaw in the human design. | 정리: 기본값은 결함이 아님
+It is arguably the central feature, the thing that makes a complex life affordable at all. | 'It' = 기본값, 'not A' 뒤의 진짜 정체(핵심 특징)
+
+## 32번 · 빈칸 추론 | 본문 | 대중문화가 중간 기관을 약화 → 예: 법원 → 하지만 SNS로 판결 압박 → 정의는 광장(SNS)에서 X → 정의의 자리는 법원
+If we understand mass culture as a weakening factor of the cultural ties that unite people to their traditions, mass culture weakens the intermediary institutions in society (e.g. the family or the school), diminishing their role and overlapping these institutions. | 첫 문장: 대중문화가 사회의 중간 기관을 약화시킴
+For example, courts are traditional social institutions and important for the normal and harmonious functioning of collective life. | 'For example' = 중간 기관의 예: 법원
+However, when people turn to social networks to put pressure on judicial decisions in certain mediated and politicized processes, this practice is popularized and becomes a habitual form of culture, which is harmful. | 'However' = 그런데 SNS로 판결에 압력 → 해로운 문화로
+Justice must not be done in the public square, which today is converted into a virtual dimension, the social networks. | 그래서 주장: 정의는 광장(지금은 SNS)에서 하면 안 됨
+In a democratic state of law, the appropriate place to judge and make justice is the court and in a way that is immune to popular pressure. | 마무리: 정의를 내릴 곳은 법원, 대중 압력 없이
+
+## 33번 · 빈칸 추론 | 본문 | 발달 = 계속되는 유연한 과정 → 핵심 개념: 가소성 → 가소성의 정의 → 개인은 능동적 주체 → 예전 견해: 어린 시절에만 → 가소성은 그 견해에 도전 → 모든 단계에 변화의 여지
+Human development is now increasingly understood as an ongoing, flexible, and evolving process rather than a fixed sequence of stages. | 첫 문장: 발달은 고정된 단계가 아니라 계속되는 과정
+At the core of this perspective lies the concept of plasticity. | 'this perspective' = 그 관점의 핵심: 가소성
+Plasticity refers to the human capacity to change, adapt, and reorganize cognitive, emotional, and behavioural patterns in response to life experiences, environmental demands, and biological changes. | 'Plasticity' = 가소성의 정의
+It highlights that individuals are not merely passive recipients of development but active agents capable of growth throughout their lives. | 'It' = 가소성이 강조하는 것: 개인은 능동적 주체
+In earlier views, development was believed to occur mainly during childhood, with adulthood seen as a period of stability and old age as a phase of decline. | 'In earlier views' = 대비되는 예전 견해: 어린 시절에만 발달
+The concept of plasticity challenges this rigid outlook by emphasizing that development continues across the entire lifespan. | 'this rigid outlook' = 그 예전 견해에 가소성이 도전
+Although the extent of change may vary at different stages, every phase of life allows room for adaptation and transformation. | 마무리: 정도는 달라도 모든 단계에 변화의 여지
+
+## 34번 · 빈칸 추론 | 본문 | 연결 예 ① SNS → ② 금융 → 예전엔 분리돼 보호됨 → 이젠 아님 → 정보 디지털화 → 스마트 시스템 → 이 상호의존 = 복잡한 실패의 온상 → 맥그래스의 말 → 결론
+Social media has altered business, politics, and friendships, making going viral a household term. | 첫 문장: 연결의 예 ①: SNS가 사업·정치·우정을 바꿈
+The global financial industry links every bank and countless households in every country, making us vulnerable to human error taking place on the other side of the world. | 연결의 예 ②: 금융이 전 세계를 이어 남의 실수에도 취약
+As Columbia University strategy professor Rita McGrath explains, years ago most of our institutions were separate and thereby buffered from the effects of errors outside their walls. | 처음 소개되는 인물(전체 이름): 예전엔 기관이 분리돼 보호됨
+That is no longer the case. | 'That' = 분리·보호되던 상황 → 이젠 아님
+The digitization of massive amounts of information has continued to grow enormously as the cost of computing power has decreased. | 왜 아닌가 ①: 정보 디지털화가 급증
+The development of smart systems that communicate autonomously gave rise to an infinite variety of potential breakdowns. | ②: 스스로 통신하는 스마트 시스템 → 무수한 고장 가능성
+This interdependence is a breeding ground for complex failure. | 'This interdependence' = 앞의 연결들 → 복잡한 실패의 온상
+As Rita puts it, when “things that used to be kept separate bump up against each other, it becomes far more difficult to predict what’s going to happen next.” | 'Rita' = 앞에서 전체 이름으로 소개된 사람 → 그의 말
+Information technology creates new vulnerabilities because interconnectedness instantly spreads the impact of small failures. | 마무리: 연결성이 작은 실패도 즉시 퍼뜨림
+
+## 35번 · 무관한 문장 | 본문 | 의학 발전 → 치료·예방 → 치료 예: 페니실린 → 예방 예: 제너 → 백신의 기여·천연두 퇴치 → 다른 전염병: 위생·치료
+Scientific developments and technologies in medical practice have brought us enormous progress in the treatment and prevention of infectious diseases. | 첫 문장: 주제 — 의학 발전이 전염병 치료·예방에 큰 진보
+The discovery of penicillin in 1928 by Alexander Fleming, for which he later received the Nobel Prize, was one of the biggest breakthroughs in the battle against infectious diseases. | 'treatment and prevention' 중 치료의 예: 페니실린
+Edward Jenner discovered around 1796 that humans were protected against the deadly smallpox virus after exposure to the cowpox virus, which is harmless to humans. | 예방의 예: 제너 — 우두 노출로 천연두 예방(백신의 시작)
+Vaccines developed in laboratories have contributed enormously to the reduction of the burden of bacterial and viral diseases and have even led to the elimination of poxvirus. | 'Vaccines' = 제너의 발견에서 이어진 백신 → 천연두 퇴치
+For other infectious diseases (for example cholera and malaria), control and hygiene management measures have reduced their burden, while for others treatment therapies turned viral diseases that were deadly into chronic manageable diseases. | 'other infectious diseases' = 앞의 질병 말고 다른 것들
+
+# S4 | 36~40번 | 순서 36·37 · 삽입 38·39 · 요약문
+
+## 36번 · 글의 순서 | 본문 | 디자이너는 사용자가 아니다 → 너무 가까워 객관적으로 못 봄 → 최고의 UI는 실제 사용자 관찰로 → 그럼 어떻게? → 사용성 테스트 → 목표 → 효과 → 활용
+A simple truth that designers must embrace in order to create more effective products and experiences is the fact that we are not the user. | 첫 문장: 진리 — 디자이너는 사용자가 아니다
+We’re much too close to what we build to objectively see it and understand how users will interact with it. | 왜 아닌가: 너무 가까워서 객관적으로 못 봄
+The best user interfaces are those that have been shaped by observations of real users and their interactions with them. | 그래서 최고의 UI는 실제 사용자 관찰로 만들어짐
+So how can designers shape their work to be more effective? | 'So' = 그럼 어떻게? 질문
+An incredibly effective way is with usability testing. | 질문의 답: 사용성 테스트
+The goal of this method is to uncover problems in a design, discover existing opportunities, and learn more about the behaviors and preferences of users by asking participants to engage in realistic activities. | 'this method' = 사용성 테스트의 목표
+This technique is effective for understanding how well a design will perform once it is in the hands of real users. | 'This technique' = 같은 방법, 무엇에 효과적인지
+Designers can use this method to improve their work through subsequent revisions based on the findings from representative users. | 'this method' 활용: 발견을 바탕으로 수정
+
+## 37번 · 글의 순서 | 본문 | 재평가 = 감정 조절의 효과적 방법 → 예: 이혼 → 다르게 해석 가능 → 해석 ① 큰 상실 → 해석 ② 길게 보면 긍정적 → 해석이 다르면 감정도 → ①의 감정 → ②의 감정 → 게다가 긍정 감정 → 예가 보여 주는 것 → 반복되면 심리 건강 → 회복력의 열쇠
+Reappraisal — changing the way one thinks about emotional situations — might present a particularly effective avenue to regulating emotions because it transforms emotions at their root. | 첫 문장: 재평가 = 감정을 뿌리부터 바꾸는 방법
+Take, for example, someone who is going through a divorce. | 'for example' = 예: 이혼을 겪는 사람
+This is often an adverse event, and yet, it can be construed in different ways. | 'This' = 이혼, 나쁜 일이지만 다르게 해석 가능
+One might view it as an overpowering loss that will mark one’s family for life. | 해석 ①: 평생 남을 큰 상실
+Alternatively, one might see it as something that is painful but that might lead to positive outcomes in the long run, such as improved relationships. | 'Alternatively' = 해석 ②: 아프지만 길게 보면 긍정적
+As a result of these different construals, one might feel different emotions. | 'these different construals' = 두 해석 → 감정도 달라짐
+The first construal may bring intense sadness and anger. | 'The first construal' = 해석 ①의 감정: 강한 슬픔·분노
+The second construal might also bring sadness and anger but perhaps at lower levels. | 'The second construal' = 해석 ②의 감정: 덜한 슬픔·분노
+Crucially, it might also bring some positive emotions, such as hope, strength, or gratitude. | 'it' = 해석 ②, 게다가 긍정 감정까지
+This example illustrates how reappraisal might powerfully transform short-term emotional responses. | 'This example' = 이혼 예가 보여 주는 것(단기 감정)
+When repeated over time, these short-term emotional consequences of reappraisal might accumulate to shape people’s psychological health. | 'these short-term ... consequences' = 반복되면 심리 건강
+Thereby, reappraisal might be a key to resilience. | 'Thereby' = 결론: 재평가는 회복력의 열쇠
+
+## 38번 · 문장 삽입 | 본문 | '깨끗한 물'은 겉모습만이 아님 → 수질 = 기준 → 기준이 알려 주는 것 → 기준이 보장하는 것 → 하나의 규칙으론 안 됨 → 예: 발전소 vs 수돗물 → 그래서 용도별 안전 한계
+When we say that water is “clean,” we don’t just mean that it looks like a glass of water. | 첫 문장: '깨끗한' 물은 겉모습만 뜻하지 않음
+Water quality is about following a certain set of criteria, or “benchmarks.” | 그럼 무엇? 수질 = 기준(benchmarks)을 따르는 것
+These guidelines inform us exactly how much physical, chemical, or biological stuff can be in the water. | 'These guidelines' = 그 기준, 물속 물질의 양을 알려 줌
+These rules ensure the water is safe for anything we want to do with it, whether that’s drinking it at home, watering crops on a farm, or running it through a huge industrial boiler. | 'These rules' = 같은 기준, 어떤 용도든 안전 보장
+We can’t utilize the same “one size fits all” rule for everyone because we use water for so many diverse things. | 용도가 다양하니 하나의 규칙으론 안 됨
+For instance, the water that cools down a huge power plant generator doesn’t need to be as clean as the water you drink from the kitchen tap. | 'For instance' = 발전소 냉각수 vs 마시는 물
+This is why groups set different “safety limits” for the water dependent on how it will be utilized. | 'This is why' = 그래서 용도별로 안전 한계를 다르게
+
+## 39번 · 문장 삽입 | 본문 | 사회사가도 1차 자료 → 사회사는 평범한 사람 중심 → 하지만 기록을 거의 안 남김 → 남겨도 보관 안 됨 → 그런 편향 → 창의적이어야 → 엘리트 자료를 분석 → 거꾸로 읽음 → 예: 법률 문서
+Like all historians, social historians draw from a variety of primary sources. | 첫 문장: 사회사가도 다양한 1차 자료를 씀
+Social history often emphasizes ordinary people rather than elites. | 사회사의 특징: 엘리트보다 평범한 사람 중심
+Yet, in most places and times, non-elites lacked access to education and, thus, did not produce substantial amounts of documentation. | 'Yet' = 그런데 평범한 사람들은 기록을 거의 안 남김
+Even when they did produce documentation, these materials rarely ended up in archives where they could be preserved and made available to researchers. | 'Even when they did' = 남겨도 보관소에 남지 않음
+Because of such biases in the historical record, social historians have to be very creative in their work. | 'such biases' = 앞의 기록 편향 → 창의적이어야
+Like other historians, social historians analyze textual sources produced by government officials, employers, and other elites. | 창의적인 방법: 엘리트가 만든 자료를 분석
+Yet rather than simply take such sources at face value, they read them “against the grain”. | 'Yet ... such sources' = 그 자료를 그대로 믿지 않고 거꾸로 읽음
+So, for example, a social historian will read legal documents not only for the “facts” provided by slaveowners; she will also examine the silences, interruptions, rumors, and other details that offer hints about the enslaved peoples’ attitudes and actions. | 'for example' = 거꾸로 읽기의 예: 법률 문서
+
+## 40번 · 요약문 완성 | 본문 | 돌고래 뇌 = 반향 정위 특화 구역 → 핵심 적응: 청각 경로 → 신호가 청각 피질로 → 하지만 구역별로 특화된 피질 → 구역마다 맡은 일 → 이 특화 = 병렬 처리 → 비유: 조립 라인 → 나눠서 빠르게 → 병렬 처리의 효과
+Dolphins’ brains have evolved specialized areas dedicated to echolocation, allowing them to process acoustic information more quickly and with less energy. | 첫 문장: 돌고래 뇌에는 반향 정위 특화 구역
+One key adaptation is the structure of the dolphin’s auditory pathway. | 'One key adaptation' = 특화의 핵심: 청각 경로 구조
+The signals from the ears are rapidly transmitted to the auditory cortex, the brain region responsible for processing sound. | 경로를 따라: 귀의 신호가 청각 피질로
+However, unlike many other mammals, dolphins have a highly specialized auditory cortex with distinct areas dedicated to processing different aspects of echolocation signals. | 'However, unlike ...' = 그 청각 피질이 다른 포유류와 달리 구역별로 특화
+Some areas may be responsible for analyzing the timing of echoes, while others focus on the frequency content or the intensity of the sound. | 'Some areas ... others' = 구역마다 맡은 일
+This specialization allows the dolphin’s brain to process echo information in parallel, rather than sequentially. | 'This specialization' = 구역별 분담 → 병렬 처리
+Imagine a factory assembly line, where different workers are responsible for different tasks. | 병렬 처리의 비유: 공장 조립 라인
+By dividing the work among specialized areas, the brain can process information much faster and more efficiently. | 비유를 뇌에 적용: 나눠서 더 빠르고 효율적으로
+This parallel processing reduces the cognitive load associated with echolocation, allowing dolphins to react quickly to changes in their environment. | 'This parallel processing' = 결과: 인지 부하↓·빠른 반응

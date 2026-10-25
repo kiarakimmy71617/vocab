@@ -1,0 +1,2375 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>본문 순서 맞추기 · 박문여고2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: an OMR answer strip — one 480px column. Study screen = top bar, bubble track, a single question card, answer controls in the thumb zone. */
+:root{
+  color-scheme:light;
+  --paper:#FAF5F6;
+  --card:#FFFFFF;
+  --ink:#1B1517;
+  --muted:#6B5F63;
+  --omr:#C93549;
+  --omr-line:#EDC3CA;
+  --omr-wash:#FBEAED;
+  --rule:#E8DDE0;
+  --font-word:"Atkinson Hyperlegible","Helvetica Neue",Arial,sans-serif;
+  --font-ui:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151113;--card:#1F191C;--ink:#F2EBED;--muted:#A99CA1;
+    --omr:#F0697B;--omr-line:#5A3038;--omr-wash:#3A1F26;--rule:#342A2E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151113;--card:#1F191C;--ink:#F2EBED;--muted:#A99CA1;
+  --omr:#F0697B;--omr-line:#5A3038;--omr-wash:#3A1F26;--rule:#342A2E;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-ui);font-size:15px;line-height:1.55;word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit;color:inherit}
+#app{min-height:100%;display:flex;flex-direction:column}
+.wrap{width:100%;max-width:480px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 32px}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--omr);outline-offset:2px}
+b{font-weight:600}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:48px;padding:0 16px;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);color:var(--ink);font-weight:600;font-size:15px;line-height:1.2;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn-primary{background:var(--ink);color:var(--card)}
+.btn-quiet{border-color:var(--rule);font-weight:500}
+.btn-small{min-height:38px;padding:0 12px;font-size:14px}
+.big{min-height:56px;font-size:16px}
+.wide{width:100%}
+.linkish{background:none;border:0;padding:8px 0;color:var(--muted);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--omr-line);cursor:pointer;touch-action:manipulation}
+.linkish:disabled{opacity:.45;text-decoration:none;cursor:default}
+.eyebrow{margin:0;font-size:12px;line-height:1.4;font-weight:600;letter-spacing:.12em;color:var(--omr)}
+
+/* home */
+.home{display:flex;flex-direction:column;gap:22px}
+.masthead{display:grid;gap:10px;padding-bottom:18px;border-bottom:1.5px solid var(--omr)}
+.fields{display:flex;flex-wrap:wrap;gap:6px}
+.field{display:inline-flex;border:1px solid var(--omr);font-size:12px;line-height:1}
+.field b{background:var(--omr);color:var(--card);padding:5px 7px;letter-spacing:.08em}
+.field span{padding:5px 8px;color:var(--ink)}
+h1{margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.lede{margin:0;color:var(--muted)}
+.rules{display:grid;gap:10px;padding:14px;background:var(--card);border:1px solid var(--omr-line);border-radius:2px}
+.rules ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.rules li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.5}
+.rules-fold{background:var(--card);border:1px solid var(--omr-line);border-radius:2px}
+.rules-fold summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;cursor:pointer;list-style:none;font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--omr);touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.rules-fold summary::-webkit-details-marker{display:none}
+.rules-fold summary::before{content:"+";font-family:var(--font-mono);font-size:15px;letter-spacing:0}
+.rules-fold[open] summary::before{content:"−"}
+.rules-fold ol{list-style:none;margin:0;padding:0 14px 14px;display:grid;gap:9px}
+.rules-fold li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.5}
+.num{width:18px;height:23px;margin-top:-1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--omr)}
+.sets{display:grid;gap:12px}
+.sets-h{display:flex;justify-content:space-between;align-items:baseline;color:var(--omr);font-size:12px}
+.group-h{margin:10px 0 -2px;padding-top:12px;border-top:1px solid var(--rule);font-size:15px;font-weight:700;line-height:1.35}
+.sets-h + .group-h{margin-top:0;padding-top:0;border-top:0}
+.set{display:grid;gap:10px;padding:14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.set-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.set-title{min-width:0;font-weight:600;font-size:16px;line-height:1.35}
+.set-count{flex:none;font-size:12.5px;color:var(--muted)}
+.set-note{margin-top:-6px;font-size:13px;color:var(--muted)}
+.set-status{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;padding:1px 9px;border:1px solid var(--omr);border-radius:999px;color:var(--omr);font-size:12.5px}
+.set-actions{display:flex;flex-wrap:wrap;gap:8px}
+.set-actions .btn{flex:1 1 auto}
+.del{justify-self:start;padding:0}
+.confirm{display:grid;gap:8px;padding:10px 12px;background:var(--omr-wash);border-radius:2px;font-size:14px}
+.confirm-btns{display:flex;gap:8px;justify-content:flex-end}
+details.paste{border-top:1px solid var(--rule);padding-top:14px}
+details.paste summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;font-weight:600}
+details.paste summary::-webkit-details-marker{display:none}
+details.paste summary::before{content:"+";font-family:var(--font-mono);color:var(--omr)}
+details.paste[open] summary::before{content:"−"}
+details.paste summary .sum-l{margin-right:auto}
+.sum-r{font-size:12.5px;font-weight:400;color:var(--muted)}
+.paste-body{display:grid;gap:8px;margin-top:12px}
+.paste-body label{font-size:13px;color:var(--muted)}
+.paste-body input,.paste-body textarea{width:100%;border:1px solid var(--rule);background:var(--card);border-radius:4px;padding:10px 12px;font-size:15px}
+.paste-body textarea{font-family:var(--font-mono);font-size:13px;line-height:1.5;resize:vertical;min-height:132px;tab-size:4}
+.paste-status{margin:0;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.paste-status.bad{color:var(--omr)}
+.paste-status.ok{color:var(--ink)}
+.foot{margin:0;font-size:12.5px;line-height:1.65;color:var(--muted)}
+
+/* study */
+.study{flex:1;display:flex;flex-direction:column;gap:10px;padding-block:10px 14px}
+.bar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
+.back{min-height:40px;padding:0 12px;border:1px solid var(--rule);border-radius:6px;background:var(--card);font-size:14px;cursor:pointer;touch-action:manipulation}
+.bar-mid{min-width:0}
+.bar-title{font-weight:600;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-sub{font-size:12px;line-height:1.4;color:var(--omr);font-weight:500}
+.clock{font-size:14px;color:var(--muted)}
+.track{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px;min-height:26px}
+.track-grid{display:grid;gap:3px}
+.ticks,.bubbles{display:flex;gap:4px}
+.ticks i{flex:1 1 0;max-width:12px;height:4px;background:var(--ink)}
+.bubbles .bb{flex:1 1 0;max-width:12px;height:16px;border:1.5px solid var(--omr);border-radius:50%}
+.bb.dot{background:radial-gradient(circle,var(--omr) 0 2.4px,transparent 2.9px)}
+.bb.full{background:var(--ink);border-color:var(--ink)}
+.track-n{font-size:13px;color:var(--muted)}
+.meter{display:flex;align-self:center;height:10px;border:1.5px solid var(--omr);border-radius:999px;overflow:hidden;background:var(--card)}
+.meter i{display:block;height:100%;background:var(--ink);transition:width .25s ease}
+.meter b{display:block;height:100%;background:var(--omr-line);transition:width .25s ease}
+.banner{font-size:13px;line-height:1.45;padding:7px 10px;background:var(--omr-wash);border-radius:2px}
+.card{position:relative;flex:1;display:flex;flex-direction:column;min-height:300px;padding:14px 16px 18px;background:var(--card);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dir{display:inline-flex;border:1px solid var(--omr);font-size:12px;line-height:1}
+.dir b{background:var(--omr);color:var(--card);padding:5px 7px;letter-spacing:.06em}
+.dir span{padding:5px 8px;color:var(--omr)}
+.left{font-size:12.5px;color:var(--muted)}
+.zone{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-top:18px}
+#ke-zone{justify-content:flex-start;padding-top:24px}
+.word{font-family:var(--font-word);font-weight:700;font-size:clamp(32px,10.5vw,50px);line-height:1.12;text-align:center;text-wrap:balance;overflow-wrap:anywhere}
+.tbar{width:min(220px,70%);height:3px;margin:0 auto;background:var(--omr-wash);border-radius:2px;overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--omr);transform-origin:left center}
+.tbar.run i{animation:drain 5s linear forwards}
+@keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.say{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;min-width:36px;padding:0 12px;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;touch-action:manipulation}
+.say:active{background:var(--omr-wash)}
+.say-row{display:flex;justify-content:center}
+.fb-say{display:flex;align-items:center;gap:10px}
+.hard li .say{padding:0;min-height:32px;min-width:32px;justify-self:end}
+.ek-hint{font-size:13px;color:var(--muted);text-align:center}
+.ek-hint.late{color:var(--omr);font-weight:500}
+.reveal{display:grid;gap:7px;padding-top:14px;border-top:1px dashed var(--omr-line);text-align:center}
+.core{font-size:23px;font-weight:700;line-height:1.35;text-wrap:balance}
+.notes{display:grid;gap:3px;font-size:14px;line-height:1.5;color:var(--muted);text-wrap:pretty}
+.notes:empty{display:none}
+.notes p{margin:0}
+.ko-prompt{font-size:26px;font-weight:700;line-height:1.3;text-wrap:balance}
+.slots{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--font-mono);font-size:18px;letter-spacing:.2em;color:var(--muted)}
+.slots .ph{color:var(--omr);letter-spacing:0}
+.answer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}
+#ke-input{width:100%;min-width:0;padding:8px 2px;border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;font-family:var(--font-mono);font-size:22px;outline:none}
+#ke-input:focus{border-bottom-color:var(--omr)}
+.ke-tools{display:flex;flex-wrap:wrap;gap:4px 18px}
+.ke-fb{display:grid;gap:6px;font-size:14px}
+.ke-fb:empty{display:none}
+.fb{display:grid;gap:4px;margin:0}
+.fb-row{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;align-items:baseline}
+.fb-row dt{font-size:12px;color:var(--muted)}
+.fb-row dd{margin:0}
+.diff{font-family:var(--font-mono);font-size:19px;overflow-wrap:anywhere}
+.diff .miss{color:var(--omr);background:var(--omr-wash);font-weight:600;box-shadow:inset 0 -2px 0 var(--omr)}
+.diff .xtra{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--omr)}
+.ok-word{margin:0;font-family:var(--font-word);font-weight:700;font-size:20px}
+.warn{margin:0;color:var(--omr)}
+.note{margin:0;font-size:14px;color:var(--muted)}
+.actions{display:grid;gap:8px}
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.grade .btn{min-height:56px;padding:0 8px}
+.stamp{position:absolute;top:40px;right:14px;width:60px;height:60px;pointer-events:none;opacity:0}
+.stamp.on{opacity:.9;animation:stamp .18s ease-out}
+.stamp.ok{border:4px solid var(--omr);border-radius:50%}
+.stamp.x::before{content:"";position:absolute;left:calc(50% - 2.5px);top:-6px;bottom:-6px;width:5px;border-radius:3px;background:var(--omr);transform:rotate(38deg)}
+@keyframes stamp{from{transform:scale(1.45);opacity:0}to{transform:scale(1);opacity:.9}}
+@media (max-height:700px){
+  .study.ke-mode .track,.study.ke-mode .banner{display:none}
+  .study.ke-mode #ke-zone{padding-top:14px}
+}
+
+/* pause + result */
+.pause,.result{flex:1;display:flex;flex-direction:column;gap:16px}
+.pause{justify-content:center}
+.big-h{margin:0;font-size:28px;line-height:1.25;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0;background:var(--rule);border:1px solid var(--rule)}
+.stats div{background:var(--card);padding:11px 12px;min-width:0}
+.stats dt{font-size:12px;color:var(--muted)}
+.stats dd{margin:2px 0 0;font-family:var(--font-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.submit{display:grid;gap:8px;padding:14px;background:var(--card);border:1.5px solid var(--omr);border-radius:2px}
+.submit h3{margin:0;font-size:15px}
+.submit label{font-size:13px;color:var(--muted)}
+.submit-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.submit input{width:100%;min-width:0;padding:10px 12px;border:1px solid var(--rule);border-radius:4px;background:var(--card);font-size:16px}
+.submit .btn{text-decoration:none}
+.hard{display:grid;gap:8px}
+.hard h3{margin:0;font-size:15px}
+.hard ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.hard li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.hard ul.with-say li{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) auto;align-items:center}
+.hard .en{font-family:var(--font-word);font-weight:700;font-size:16px;overflow-wrap:anywhere}
+
+/* order: 섞인 문장 카드를 끌어서(오른쪽 손잡이를 잡거나 꾹 눌러서) 교과서 순서로 배열. 확인 뒤엔 정답 순서로 다시 나열 */
+.od-head{position:relative;display:grid;gap:6px;padding:12px 14px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.od-name{margin:4px 0 0;font-size:20px;line-height:1.3;font-weight:700;text-wrap:balance}
+.od-hint{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.od-hint.ok{color:var(--ink)}
+.od-hint.bad{color:var(--omr);font-weight:500}
+.od-flow{margin:2px 0 0;padding-top:8px;border-top:1px dashed var(--omr-line);font-size:13px;line-height:1.55;color:var(--ink);text-wrap:pretty}
+.od-flow b{color:var(--omr);font-weight:600;margin-right:4px}
+.od-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.od-line{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card);color:var(--ink);text-align:left;font-family:var(--font-word);font-size:16.5px;line-height:1.45;overflow-wrap:anywhere}
+.od-list.pick .od-line{grid-template-columns:28px minmax(0,1fr) 34px;padding-right:0;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:grab}
+.od-grip{display:grid;place-items:center;align-self:stretch;margin:-11px 0;color:var(--muted);touch-action:none;cursor:grab}
+.od-grip svg{display:block}
+.grip-ic{display:inline-grid;place-items:center;width:18px;height:18px;margin:0 1px;vertical-align:-4px;border:1px solid var(--rule);border-radius:3px;color:var(--muted)}
+.grip-ic svg{width:9px;height:14px}
+.od-line.drag{z-index:3;border-color:var(--ink);box-shadow:0 10px 24px rgba(0,0,0,.18);background:var(--omr-wash);cursor:grabbing}
+.od-line.drag .od-grip{cursor:grabbing}
+.od-bb{width:26px;height:26px;margin-top:1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--omr);background:var(--card)}
+.od-list.pick .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.od-line.hit .od-bb{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.od-line.miss{border-color:var(--omr);background:var(--omr-wash)}
+.od-line.miss .od-bb{background:var(--omr);border-color:var(--omr);color:var(--card)}
+.od-mine{display:block;margin-top:3px;font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:var(--omr)}
+.od-cue{display:block;margin-top:4px;padding-top:4px;border-top:1px dashed var(--rule);font-family:var(--font-ui);font-size:12.5px;line-height:1.45;color:var(--muted);text-wrap:pretty}
+.od-line.miss .od-cue{color:var(--ink);border-top-color:var(--omr-line)}
+.od-foot{position:sticky;bottom:0;z-index:4;display:grid;gap:4px;margin-top:4px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -10px 10px -6px var(--paper)}
+
+/* keyword: 지문을 읽고 주제의 핵심어 보기를 모두 고름. 확인 뒤엔 한 줄 주제 → 핵심·오답 줄(틀린 것에만 이유) → 본문 */
+.kw-body{display:grid;gap:6px}
+.kw-cap{margin:0;font-size:12.5px;color:var(--muted)}
+.kw-text{margin:0;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px;font-family:var(--font-word);font-size:16.5px;line-height:1.62;word-break:normal;overflow-wrap:break-word}
+.kw-n{display:inline-block;margin-right:3px;font-family:var(--font-mono);font-size:10.5px;font-weight:600;line-height:1;color:var(--omr);vertical-align:2px}
+.kw-zone{display:grid;gap:10px}
+.kw-ask{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.kw-chips{display:flex;flex-wrap:wrap;gap:8px}
+.kw-chip{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 15px;border:1.5px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);font-family:var(--font-word);font-size:16px;font-weight:700;line-height:1.2;text-align:left;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.kw-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.kw-chip[aria-pressed="true"]::before{content:"✓";font-family:var(--font-ui);font-size:13px;font-weight:600}
+.kw-topic{display:grid;gap:3px;padding:12px 14px;background:var(--omr-wash);border-radius:2px;font-size:14.5px;line-height:1.55;text-wrap:pretty}
+.kw-topic .eyebrow{margin-bottom:3px}
+.kw-topic b{color:var(--omr);font-weight:700}
+.kw-topic .kw-en{font-family:var(--font-word);color:var(--muted)}
+.kw-topic .kw-en b{color:var(--ink)}
+.kw-fb{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.kw-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px;align-items:baseline;padding:9px 12px;border:1px solid var(--rule);border-radius:2px;background:var(--card)}
+.kw-tag{justify-self:start;padding:1px 8px;border:1px solid currentColor;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.kw-w{font-family:var(--font-word);font-size:16px;font-weight:700;overflow-wrap:anywhere}
+.kw-why{grid-column:2;font-size:13px;line-height:1.5;color:var(--ink);text-wrap:pretty}
+.kw-row.miss,.kw-row.wrong{border-color:var(--omr);background:var(--omr-wash)}
+.kw-row.miss .kw-tag,.kw-row.wrong .kw-tag{color:var(--omr)}
+.kw-rest{margin:0;font-size:13px;line-height:1.6;color:var(--muted)}
+.kw-rest span{font-family:var(--font-word);font-weight:700}
+
+@media (prefers-reduced-motion: reduce){
+  .stamp.on{animation:none}
+  .tbar{display:none}
+  .meter i{transition:none}
+  .btn:active{transform:none}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script id="page-config" type="application/json">{"paste": false, "school": "박문여고 2학년", "fields": [["학교", "박문여고 2학년"]], "form": {"url": "https://docs.google.com/forms/d/e/1FAIpQLSfsvGXKVGASob6ylSlyCFKyEahrzGSqFNtwlaYEvA1AHOanww/viewform", "name": "entry.2087311015", "school": "entry.331616395", "set": "entry.1245213658", "time": "entry.1880995760", "hard": "entry.770504430"}}</script>
+<script id="sets-data" type="application/json">
+[
+ {
+  "id": "bakmun2-2026-2f-order-S1",
+  "kind": "order",
+  "group": "2학기 기말 순서 · 10월 고2 학평 18~40번 · 20지문",
+  "title": "18~22번",
+  "note": "목적 · 심경 · 주장 · 함축 · 요지",
+  "passages": [
+   {
+    "name": "18번 · 글의 목적",
+    "kind": "본문",
+    "flow": "받는 사람 → 쓰는 이유(인근 학교 사건 우려) → 제안 예고 → 방안 ① 나무 → 방안 ② CCTV·경비원 → 검토 부탁 → 감사 → 보내는 사람",
+    "lines": [
+     "Dear Principal,",
+     "I am writing as the head student because many students have expressed their concerns about the recent security incidents at nearby schools.",
+     "We propose a few measures to increase students’ privacy and safety.",
+     "First, planting trees around the school would prevent outsiders from watching students, which helps protect students’ privacy and reduces their exposure to external risks.",
+     "Additionally, more CCTV cameras and security guards could be added near the entrances to detect unauthorized access and respond quickly to any incidents.",
+     "On behalf of the students, I hope that you will kindly consider these suggestions.",
+     "Thank you.",
+     "Sincerely, David Miller"
+    ],
+    "cues": [
+     "편지 첫머리: 받는 사람(교장 선생님)",
+     "첫 내용: 쓰는 이유 — 인근 학교 보안 사건 우려",
+     "우려를 받아 '몇 가지 방안'을 제안한다고 예고",
+     "'First' = 방안 ①: 학교 주변에 나무 심기",
+     "'Additionally' = 방안 ②: 출입구에 CCTV·경비원",
+     "'these suggestions' = 앞의 두 방안, 검토 부탁",
+     "맺음 인사: 감사합니다",
+     "편지 끝: 보내는 사람 서명"
+    ]
+   },
+   {
+    "name": "19번 · 심경 변화",
+    "kind": "본문",
+    "flow": "무대 위 → 도입부 연주 → 머리가 하얘짐 → 얼어붙음 → 걱정 ① 가사 → 걱정 ② 소리 → 친구 말이 떠오름 → 그 말 → 노래 시작 → 리듬을 찾음 → 부담이 사라짐 → 거침없이 → 내 순간임을 깨달음 (긴장 → 자신감)",
+    "lines": [
+     "Beryl was standing on stage for her singing performance at the school festival.",
+     "The opening melody began to play, a soft tune that Beryl had practiced over and over.",
+     "She knew the lyrics by heart, but now that she was here, everything seemed to have faded from her mind.",
+     "She almost froze.",
+     "What if I forgot the words?",
+     "What if I sounded awful?",
+     "But then she remembered her best friend Naomi’s words.",
+     "“You’re doing something brave by just getting up there.”",
+     "When the moment came, Beryl took a deep breath and began to sing.",
+     "Her voice, shaky at first, soon found its rhythm as she focused.",
+     "The weight on her shoulders slowly lifted, and the words began to flow more easily.",
+     "As she continued singing, each note rang out without hesitation.",
+     "She realized that this was her moment."
+    ],
+    "cues": [
+     "첫 문장: 장면 — 축제 무대에 선 Beryl",
+     "도입부 멜로디가 흐르기 시작",
+     "'but now that she was here' = 외웠는데 막상 서니 머리가 하얘짐",
+     "그 결과: 거의 얼어붙음",
+     "얼어붙은 속마음 ①: 가사를 잊으면? (앞의 '머릿속에서 사라짐'과 연결)",
+     "속마음 ② (같은 'What if' 이어서): 소리가 형편없으면?",
+     "'But then' = 걱정하다가 친구 말이 떠오름",
+     "'Naomi’s words'의 내용(따옴표)",
+     "'When the moment came' = 마음을 잡고 노래 시작",
+     "'shaky at first, soon' = 처음엔 떨렸지만 리듬을 찾음",
+     "어깨의 부담이 사라지고 가사가 술술",
+     "'As she continued' = 계속 부를수록 거침없이",
+     "마지막: 이게 내 순간이라는 깨달음"
+    ]
+   },
+   {
+    "name": "20번 · 필자의 주장",
+    "kind": "본문",
+    "flow": "삶은 가능성 → 정원사처럼 하면 → 그런 아이들(긍정) → 하지만 목수처럼 하면 → 그런 아이들(부정) → 주장: 정원사 역할 → 목수 역할은 X → 교육의 핵심",
+    "lines": [
+     "Life is full of possibilities.",
+     "If we, like gardeners, provide a suitable environment and let children grow at their own pace, they will spontaneously explore the world, developing curiosity, creativity, and independence.",
+     "Such children love life, dare to challenge, and possess initiative.",
+     "But if we, like carpenters, always try to “shape” children into our ideal image, they will gradually lose autonomy, becoming accustomed to following others’ instructions.",
+     "Such children quickly lose their sense of direction as they grow, because they are used to being arranged for, rather than actively choosing their path.",
+     "As parents, our role should be that of gardeners, providing sunlight, rain, and fertile soil, allowing children to grow naturally at their own pace.",
+     "It should not be that of carpenters, trying to carve out a “perfect” piece according to our will.",
+     "The core of education starts with understanding life and helping children find their own “map” to find their direction in a complex world."
+    ],
+    "cues": [
+     "첫 문장: 삶은 가능성으로 가득함",
+     "정원사처럼: 환경만 주면 아이가 스스로 탐색",
+     "'Such children' = 정원사식으로 자란 아이들(긍정)",
+     "'But' = 목수처럼: 틀에 맞추면 자율성을 잃음",
+     "'Such children' = 목수식으로 자란 아이들(방향을 잃음)",
+     "주장: 부모는 정원사 역할이어야",
+     "'It should not be' = 목수 역할은 아니어야",
+     "마무리: 교육의 핵심 = 아이가 자기 '지도'를 찾게"
+    ]
+   },
+   {
+    "name": "21번 · 함축 의미 추론",
+    "kind": "본문",
+    "flow": "이자율이 시간 인식에 주는 영향을 보자 → 상상: 10%로 5년 빌려줌 → 이 이율 = 위험 + 기회비용 → 기간이 길수록 둘 다 커짐 → 그래서 돈에 가격 → 그 가격에 시간 가치 → 속담으로 정리",
+    "lines": [
+     "To see how borrowing and lending changes a person’s worldview, consider what the rate of interest does to people’s perception of time.",
+     "Imagine you are lending to somebody at an interest rate of 10 percent per year for five years.",
+     "This rate tells us that the money lent has a cost that reflects the risk of you not being repaid and the opportunity cost of not spending that money yourself.",
+     "The longer the term of the loan, the higher the chance you won’t be paid back because it is further into the future — which by definition is unknowable — and the longer you will have to wait before spending the money yourself.",
+     "In order to make this worthwhile for the lender, money has to have a price — a cost to the borrower and income to the lender.",
+     "This price factors in the value of time.",
+     "To put it another way, a bird in the hand is worth two in the bush."
+    ],
+    "cues": [
+     "첫 문장: 이자율이 시간 인식에 미치는 영향을 보자",
+     "'Imagine' = 구체 상황: 10%로 5년 빌려줌",
+     "'This rate' = 그 10% 이율이 담은 것(위험 + 기회비용)",
+     "'The longer ..., the higher' = 기간이 길수록 위험·기다림이 커짐",
+     "'this' = 빌려주는 일, 할 만하려면 돈에 가격이 있어야",
+     "'This price' = 앞의 가격 → 시간의 가치를 반영",
+     "'To put it another way' = 속담으로 정리"
+    ]
+   },
+   {
+    "name": "22번 · 요지",
+    "kind": "본문",
+    "flow": "콘텐츠 제작자의 사회·환경 책임 → 인식이 커지며 더 넓은 영향 고려 요구 → 다룰 주제들 → 플랫폼 영향력과 책임 → 예 → 윤리적 제작자는 가치까지 고려",
+    "lines": [
+     "Social and environmental responsibility has become an increasingly important ethical consideration for content creators.",
+     "As global awareness of social, environmental, and sustainability issues grows, many content creators are being called upon to consider the broader impact of their work.",
+     "This includes addressing topics such as climate change, social justice, and ethical consumerism in their content.",
+     "Content creators have a platform that can influence their audience’s attitudes and behaviors, and they have a responsibility to use that platform for positive change.",
+     "For example, promoting environmentally sustainable products or supporting causes related to equality and justice can help raise awareness and drive meaningful social impact.",
+     "Ethical content creators not only focus on promoting their products or services but also consider the values and causes they support, ensuring that their content aligns with their social and environmental principles."
+    ],
+    "cues": [
+     "첫 문장: 주제 — 콘텐츠 제작자의 사회·환경 책임",
+     "왜 중요해졌나: 인식이 커지며 더 넓은 영향을 고려하라는 요구",
+     "'This' = 더 넓은 영향 고려 → 다룰 주제들",
+     "책임의 근거: 청중에게 영향을 주는 플랫폼",
+     "'For example' = 긍정적 변화에 플랫폼을 쓰는 예",
+     "마무리: 윤리적 제작자는 홍보 + 가치까지 고려"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bakmun2-2026-2f-order-S2",
+  "kind": "order",
+  "group": "2학기 기말 순서 · 10월 고2 학평 18~40번 · 20지문",
+  "title": "23~30번",
+  "note": "주제 · 제목 · 내용 불일치 · 어법 · 어휘",
+  "passages": [
+   {
+    "name": "23번 · 주제",
+    "kind": "본문",
+    "flow": "뉴런 약 5억 개 → 특이한 건 위치 → 절반 이상이 팔에 → 팔마다 신경망 → 뇌의 지시 없이도 → 팔이 신경계의 연장 → 빨판이 중요 → 잡기 + 화학 신호 → 촉각으로 화학 정보 → 만지는 걸 맛봄",
+    "lines": [
+     "Research on cephalopod neurobiology suggests that an octopus possesses roughly five hundred million neurons.",
+     "What makes this system unusual is where many of those neurons are located.",
+     "More than half are distributed throughout the arms rather than concentrated entirely in the central brain.",
+     "Each arm contains networks of nerve cells capable of controlling complex movements and responding to sensory input locally.",
+     "This means that many actions do not require detailed instructions from the brain itself.",
+     "Instead, the arms function as highly capable extensions of the nervous system that interact with the environment directly.",
+     "The suckers lining each arm play an important role in this process.",
+     "These structures provide strong grip but also detect chemical signals on surfaces they contact.",
+     "Marine biologists studying octopus behavior have shown that this allows the animal to gather chemical information through touch.",
+     "In practical terms, an octopus can effectively taste what it touches."
+    ],
+    "cues": [
+     "첫 문장: 문어의 뉴런은 약 5억 개",
+     "'this system' = 그 뉴런 체계, 특이한 건 '위치'",
+     "위치의 답: 절반 이상이 팔에 퍼져 있음",
+     "'Each arm' = 팔마다 스스로 움직이고 반응하는 신경망",
+     "'This means' = 그래서 뇌의 자세한 지시가 필요 없음",
+     "'Instead' = 뇌 대신 팔이 신경계의 연장으로 직접",
+     "'this process' = 팔이 환경과 직접 상호작용 → 빨판의 역할",
+     "'These structures' = 빨판: 잡기 + 화학 신호 감지",
+     "'this' = 화학 신호 감지 → 촉각으로 화학 정보 수집",
+     "'In practical terms' = 쉽게 말해 만지는 걸 맛봄"
+    ]
+   },
+   {
+    "name": "24번 · 제목",
+    "kind": "본문",
+    "flow": "일부 생각은 지금 보면 이상함 → 예: 노예제·철학자 특권 → 특권의 이유 → 자기 잇속 같음 → 모든 사상가는 그 시대 사람 → 번영 개념이 포용적이지 않음 → 특권층의 이해 방식 → 그래서 결함",
+    "lines": [
+     "Consistent though he may be, some of Aristotle’s ideas meet us today as strange.",
+     "He had no difficulty justifying slavery, for example, and in his era, philosophers enjoyed positions of high privilege and influence.",
+     "Because of their practice of contemplation for the highest human good, philosophers were considered worthy to have all the best things in life.",
+     "Somehow that assertion seems oddly self-serving.",
+     "It serves us to remember that every great thinker is of her own time and speaks to a particular audience, and certainly Aristotle is no exception.",
+     "Human flourishing as he understood it probably would not be nearly as inclusive as we would want it to be today.",
+     "How he understood right and good is best taken to be an indicator of how the privileged elite of ancient Greek society tended to understand right and good.",
+     "As a result, for all it does well, it is also deeply flawed."
+    ],
+    "cues": [
+     "첫 문장: 아리스토텔레스의 생각 중 일부는 지금 보면 이상함",
+     "'for example' = 이상한 예: 노예제 정당화·철학자의 특권",
+     "철학자 특권의 이유: 최고선을 관조하니 최고의 것을 누릴 자격",
+     "'that assertion' = 앞의 주장 → 자기 잇속 같음",
+     "모든 사상가는 자기 시대 사람, 아리스토텔레스도 예외 아님",
+     "'he' = 아리스토텔레스, 그의 '번영'은 포용적이지 않음",
+     "그의 옳음·선 = 고대 그리스 특권층의 이해 방식",
+     "'As a result' = 그래서 잘한 점이 있어도 깊은 결함"
+    ]
+   },
+   {
+    "name": "26번 · 내용 불일치",
+    "kind": "본문",
+    "flow": "출생(1922) → 대학 졸업·경제학 강의 + 아버지 도움 → 6,000m 성공 → 교직을 떠남 → 1960 잠수 기록 → 1970년대 환경 보호 → 단체 설립 → 사망(2008)·유산 (시간 순서)",
+    "lines": [
+     "Jacques Piccard was born on July 28, 1922 in Belgium to a family of scientists famous for exploring both the oceans and the skies.",
+     "After graduating university in Switzerland, he taught economics at the University of Geneva, while helping his father develop bathyscaphes, deep-sea exploration machines.",
+     "When their machines successfully reached a depth of 6,000 meters, Jacques was inspired to leave his teaching career to focus on improving bathyscaphes for underwater research.",
+     "In 1960, Jacques, together with U.S. Naval Officer Don Walsh, set a diving record, descending 10,916 meters.",
+     "In the 1970s, Jacques focused on protecting the environment after seeing the ocean pollution during his deep-sea dives.",
+     "He even founded an organization in Switzerland to study oceans and lakes.",
+     "He died on November 1, 2008, but his legacy remains an inspiration and example for his fellow ocean explorers."
+    ],
+    "cues": [
+     "첫 문장: 출생(1922년, 벨기에, 과학자 집안)",
+     "대학 졸업 후: 경제학 강의 + 아버지의 잠수정 개발 도움",
+     "'their machines' = 그 잠수정, 6,000m 성공 → 교직을 떠남",
+     "1960년: 10,916m 잠수 기록",
+     "1970년대: 바다 오염을 보고 환경 보호에 집중",
+     "'even' = 환경 보호 활동에서 한 단계 더: 연구 단체 설립",
+     "마지막: 사망(2008년)과 남긴 유산"
+    ]
+   },
+   {
+    "name": "29번 · 어법",
+    "kind": "본문",
+    "flow": "생존 = 해마다 허들 넘기 → 초기 허들은 높았음 → 자연은 생명을 낭비 → 예: 무화과 씨 → 개코원숭이 → 전근대 농경 사회 영아 사망률 → 수렵채집인도 → 그렇지 않았다면 인구 증가가 더 일찍",
+    "lines": [
+     "You might think of survival as a race in which a hurdle has to be jumped every year.",
+     "The early hurdles were once very high, and many people fell before clearing the first few.",
+     "Demographically, humankind was living close to a state of nature, and nature is extremely wasteful of life.",
+     "From only a very small number of figs will even one of many seeds become a fig tree.",
+     "Almost a quarter of baboons born in the wild die before they are a year old, which is fairly typical for primates.",
+     "Infant mortality rates for humans in pre-modern agricultural societies were similar to, and sometimes higher, than those of apes.",
+     "Things were little better for our hunter-gatherer ancestors, a quarter of whom failed to reach their first birthday, while another quarter didn’t live long enough to reproduce just about everywhere until the nineteenth century.",
+     "Had it been otherwise, the huge recent growth in human population would have occurred much earlier."
+    ],
+    "cues": [
+     "첫 문장: 비유 — 생존 = 해마다 넘는 허들 경주",
+     "'The early hurdles' = 그 허들 중 초기 것들은 높았음",
+     "왜 높았나: 자연 상태에 가까웠고 자연은 생명을 낭비",
+     "자연의 낭비 예 ①: 무화과 씨앗(식물)",
+     "예 ②: 개코원숭이 — 영장류의 전형",
+     "'those of apes' = 사람의 영아 사망률도 유인원과 비슷(농경 사회)",
+     "'little better' = 수렵채집 조상도 마찬가지",
+     "'Had it been otherwise' = 그렇지 않았다면 인구 증가가 더 일찍"
+    ]
+   },
+   {
+    "name": "30번 · 어휘",
+    "kind": "본문",
+    "flow": "비언어 신호가 우세(연구) → 메시지가 엇갈릴 때 특히 → 그래서 말로 조종하면 실패 → 이유: 비언어를 더 믿음 → 예 ① 억지 미소 → 예 ② 직장 동료 → 그 말을 안 믿게 됨",
+    "lines": [
+     "A study by Eva McMahan, professor of speech communication, confirmed the dominance of nonverbal signals.",
+     "The phenomenon, however, was especially pronounced when adults found themselves in situations with conflicting messages (i.e., situations in which the contents of the verbal and nonverbal messages differ).",
+     "Attempts to manipulate another person verbally are therefore likely to fail if the accompanying nonverbal communication does not match the spoken message.",
+     "This is because people trust nonverbal messages more than verbal ones.",
+     "When somebody tells you that they enjoy spending time with you, but you notice how they are looking away and are forcing a smile, you are probably less inclined to believe their words.",
+     "The same is probably true when you are back at the office after a sickness and your colleague tells you with a displeased expression that they were happy to take over your workload.",
+     "You might not believe that they enjoyed replacing you while you were gone."
+    ],
+    "cues": [
+     "첫 문장: 연구 결과 — 비언어 신호가 우세",
+     "'The phenomenon' = 그 우세 현상, 메시지가 엇갈릴 때 특히",
+     "'therefore' = 그래서 말로 조종하려 해도 실패",
+     "'This is because' = 실패 이유: 비언어를 더 믿음",
+     "예 ①: 같이 있어 좋다면서 눈을 피함 → 안 믿음",
+     "'The same' = 예 ② 같은 상황: 불쾌한 표정의 동료",
+     "'they' = 그 동료, 대신 일한 게 좋았다는 말을 안 믿음"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bakmun2-2026-2f-order-S3",
+  "kind": "order",
+  "group": "2학기 기말 순서 · 10월 고2 학평 18~40번 · 20지문",
+  "title": "31~35번",
+  "note": "빈칸 31~34 · 무관한 문장",
+  "passages": [
+   {
+    "name": "31번 · 빈칸 추론",
+    "kind": "본문",
+    "flow": "행동 대부분은 오래전 설정대로 → 절망할 일 아님 → 공학의 승리 → 다 의식적으로 정하면 못 삶 → 자동화가 선장을 자유롭게 → 기본값은 결함이 아님 → 핵심 특징",
+    "lines": [
+     "A person who lives eighty years lives some twenty-nine thousand days, and the overwhelming majority of the behaviour packed into them runs on settings laid down, most of them, decades earlier and rarely inspected since.",
+     "This need not be a hopeless thought.",
+     "In one light it is a triumph of engineering.",
+     "If you had to consciously decide every footstep and every fork-grip and every word, you would never make it out of bed; the deliberate mind is far too slow and too costly to run a whole life in real time, and any creature that tried would be outcompeted by a creature that didn’t.",
+     "The automation is precisely what frees the captain to come up on deck for the few problems that actually require him.",
+     "The default is not a flaw in the human design.",
+     "It is arguably the central feature, the thing that makes a complex life affordable at all."
+    ],
+    "cues": [
+     "첫 문장: 행동 대부분이 오래전 설정대로 돌아감",
+     "'This' = 앞의 사실, 절망할 생각은 아님",
+     "'In one light it' = 그 자동 설정, 오히려 공학의 승리",
+     "왜 승리인가: 모든 걸 의식적으로 정하면 침대에서도 못 나옴",
+     "'The automation' = 그 자동 설정 → 선장(의식)을 자유롭게",
+     "정리: 기본값은 결함이 아님",
+     "'It' = 기본값, 'not A' 뒤의 진짜 정체(핵심 특징)"
+    ]
+   },
+   {
+    "name": "32번 · 빈칸 추론",
+    "kind": "본문",
+    "flow": "대중문화가 중간 기관을 약화 → 예: 법원 → 하지만 SNS로 판결 압박 → 정의는 광장(SNS)에서 X → 정의의 자리는 법원",
+    "lines": [
+     "If we understand mass culture as a weakening factor of the cultural ties that unite people to their traditions, mass culture weakens the intermediary institutions in society (e.g. the family or the school), diminishing their role and overlapping these institutions.",
+     "For example, courts are traditional social institutions and important for the normal and harmonious functioning of collective life.",
+     "However, when people turn to social networks to put pressure on judicial decisions in certain mediated and politicized processes, this practice is popularized and becomes a habitual form of culture, which is harmful.",
+     "Justice must not be done in the public square, which today is converted into a virtual dimension, the social networks.",
+     "In a democratic state of law, the appropriate place to judge and make justice is the court and in a way that is immune to popular pressure."
+    ],
+    "cues": [
+     "첫 문장: 대중문화가 사회의 중간 기관을 약화시킴",
+     "'For example' = 중간 기관의 예: 법원",
+     "'However' = 그런데 SNS로 판결에 압력 → 해로운 문화로",
+     "그래서 주장: 정의는 광장(지금은 SNS)에서 하면 안 됨",
+     "마무리: 정의를 내릴 곳은 법원, 대중 압력 없이"
+    ]
+   },
+   {
+    "name": "33번 · 빈칸 추론",
+    "kind": "본문",
+    "flow": "발달 = 계속되는 유연한 과정 → 핵심 개념: 가소성 → 가소성의 정의 → 개인은 능동적 주체 → 예전 견해: 어린 시절에만 → 가소성은 그 견해에 도전 → 모든 단계에 변화의 여지",
+    "lines": [
+     "Human development is now increasingly understood as an ongoing, flexible, and evolving process rather than a fixed sequence of stages.",
+     "At the core of this perspective lies the concept of plasticity.",
+     "Plasticity refers to the human capacity to change, adapt, and reorganize cognitive, emotional, and behavioural patterns in response to life experiences, environmental demands, and biological changes.",
+     "It highlights that individuals are not merely passive recipients of development but active agents capable of growth throughout their lives.",
+     "In earlier views, development was believed to occur mainly during childhood, with adulthood seen as a period of stability and old age as a phase of decline.",
+     "The concept of plasticity challenges this rigid outlook by emphasizing that development continues across the entire lifespan.",
+     "Although the extent of change may vary at different stages, every phase of life allows room for adaptation and transformation."
+    ],
+    "cues": [
+     "첫 문장: 발달은 고정된 단계가 아니라 계속되는 과정",
+     "'this perspective' = 그 관점의 핵심: 가소성",
+     "'Plasticity' = 가소성의 정의",
+     "'It' = 가소성이 강조하는 것: 개인은 능동적 주체",
+     "'In earlier views' = 대비되는 예전 견해: 어린 시절에만 발달",
+     "'this rigid outlook' = 그 예전 견해에 가소성이 도전",
+     "마무리: 정도는 달라도 모든 단계에 변화의 여지"
+    ]
+   },
+   {
+    "name": "34번 · 빈칸 추론",
+    "kind": "본문",
+    "flow": "연결 예 ① SNS → ② 금융 → 예전엔 분리돼 보호됨 → 이젠 아님 → 정보 디지털화 → 스마트 시스템 → 이 상호의존 = 복잡한 실패의 온상 → 맥그래스의 말 → 결론",
+    "lines": [
+     "Social media has altered business, politics, and friendships, making going viral a household term.",
+     "The global financial industry links every bank and countless households in every country, making us vulnerable to human error taking place on the other side of the world.",
+     "As Columbia University strategy professor Rita McGrath explains, years ago most of our institutions were separate and thereby buffered from the effects of errors outside their walls.",
+     "That is no longer the case.",
+     "The digitization of massive amounts of information has continued to grow enormously as the cost of computing power has decreased.",
+     "The development of smart systems that communicate autonomously gave rise to an infinite variety of potential breakdowns.",
+     "This interdependence is a breeding ground for complex failure.",
+     "As Rita puts it, when “things that used to be kept separate bump up against each other, it becomes far more difficult to predict what’s going to happen next.”",
+     "Information technology creates new vulnerabilities because interconnectedness instantly spreads the impact of small failures."
+    ],
+    "cues": [
+     "첫 문장: 연결의 예 ①: SNS가 사업·정치·우정을 바꿈",
+     "연결의 예 ②: 금융이 전 세계를 이어 남의 실수에도 취약",
+     "처음 소개되는 인물(전체 이름): 예전엔 기관이 분리돼 보호됨",
+     "'That' = 분리·보호되던 상황 → 이젠 아님",
+     "왜 아닌가 ①: 정보 디지털화가 급증",
+     "②: 스스로 통신하는 스마트 시스템 → 무수한 고장 가능성",
+     "'This interdependence' = 앞의 연결들 → 복잡한 실패의 온상",
+     "'Rita' = 앞에서 전체 이름으로 소개된 사람 → 그의 말",
+     "마무리: 연결성이 작은 실패도 즉시 퍼뜨림"
+    ]
+   },
+   {
+    "name": "35번 · 무관한 문장",
+    "kind": "본문",
+    "flow": "의학 발전 → 치료·예방 → 치료 예: 페니실린 → 예방 예: 제너 → 백신의 기여·천연두 퇴치 → 다른 전염병: 위생·치료",
+    "lines": [
+     "Scientific developments and technologies in medical practice have brought us enormous progress in the treatment and prevention of infectious diseases.",
+     "The discovery of penicillin in 1928 by Alexander Fleming, for which he later received the Nobel Prize, was one of the biggest breakthroughs in the battle against infectious diseases.",
+     "Edward Jenner discovered around 1796 that humans were protected against the deadly smallpox virus after exposure to the cowpox virus, which is harmless to humans.",
+     "Vaccines developed in laboratories have contributed enormously to the reduction of the burden of bacterial and viral diseases and have even led to the elimination of poxvirus.",
+     "For other infectious diseases (for example cholera and malaria), control and hygiene management measures have reduced their burden, while for others treatment therapies turned viral diseases that were deadly into chronic manageable diseases."
+    ],
+    "cues": [
+     "첫 문장: 주제 — 의학 발전이 전염병 치료·예방에 큰 진보",
+     "'treatment and prevention' 중 치료의 예: 페니실린",
+     "예방의 예: 제너 — 우두 노출로 천연두 예방(백신의 시작)",
+     "'Vaccines' = 제너의 발견에서 이어진 백신 → 천연두 퇴치",
+     "'other infectious diseases' = 앞의 질병 말고 다른 것들"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bakmun2-2026-2f-order-S4",
+  "kind": "order",
+  "group": "2학기 기말 순서 · 10월 고2 학평 18~40번 · 20지문",
+  "title": "36~40번",
+  "note": "순서 36·37 · 삽입 38·39 · 요약문",
+  "passages": [
+   {
+    "name": "36번 · 글의 순서",
+    "kind": "본문",
+    "flow": "디자이너는 사용자가 아니다 → 너무 가까워 객관적으로 못 봄 → 최고의 UI는 실제 사용자 관찰로 → 그럼 어떻게? → 사용성 테스트 → 목표 → 효과 → 활용",
+    "lines": [
+     "A simple truth that designers must embrace in order to create more effective products and experiences is the fact that we are not the user.",
+     "We’re much too close to what we build to objectively see it and understand how users will interact with it.",
+     "The best user interfaces are those that have been shaped by observations of real users and their interactions with them.",
+     "So how can designers shape their work to be more effective?",
+     "An incredibly effective way is with usability testing.",
+     "The goal of this method is to uncover problems in a design, discover existing opportunities, and learn more about the behaviors and preferences of users by asking participants to engage in realistic activities.",
+     "This technique is effective for understanding how well a design will perform once it is in the hands of real users.",
+     "Designers can use this method to improve their work through subsequent revisions based on the findings from representative users."
+    ],
+    "cues": [
+     "첫 문장: 진리 — 디자이너는 사용자가 아니다",
+     "왜 아닌가: 너무 가까워서 객관적으로 못 봄",
+     "그래서 최고의 UI는 실제 사용자 관찰로 만들어짐",
+     "'So' = 그럼 어떻게? 질문",
+     "질문의 답: 사용성 테스트",
+     "'this method' = 사용성 테스트의 목표",
+     "'This technique' = 같은 방법, 무엇에 효과적인지",
+     "'this method' 활용: 발견을 바탕으로 수정"
+    ]
+   },
+   {
+    "name": "37번 · 글의 순서",
+    "kind": "본문",
+    "flow": "재평가 = 감정 조절의 효과적 방법 → 예: 이혼 → 다르게 해석 가능 → 해석 ① 큰 상실 → 해석 ② 길게 보면 긍정적 → 해석이 다르면 감정도 → ①의 감정 → ②의 감정 → 게다가 긍정 감정 → 예가 보여 주는 것 → 반복되면 심리 건강 → 회복력의 열쇠",
+    "lines": [
+     "Reappraisal — changing the way one thinks about emotional situations — might present a particularly effective avenue to regulating emotions because it transforms emotions at their root.",
+     "Take, for example, someone who is going through a divorce.",
+     "This is often an adverse event, and yet, it can be construed in different ways.",
+     "One might view it as an overpowering loss that will mark one’s family for life.",
+     "Alternatively, one might see it as something that is painful but that might lead to positive outcomes in the long run, such as improved relationships.",
+     "As a result of these different construals, one might feel different emotions.",
+     "The first construal may bring intense sadness and anger.",
+     "The second construal might also bring sadness and anger but perhaps at lower levels.",
+     "Crucially, it might also bring some positive emotions, such as hope, strength, or gratitude.",
+     "This example illustrates how reappraisal might powerfully transform short-term emotional responses.",
+     "When repeated over time, these short-term emotional consequences of reappraisal might accumulate to shape people’s psychological health.",
+     "Thereby, reappraisal might be a key to resilience."
+    ],
+    "cues": [
+     "첫 문장: 재평가 = 감정을 뿌리부터 바꾸는 방법",
+     "'for example' = 예: 이혼을 겪는 사람",
+     "'This' = 이혼, 나쁜 일이지만 다르게 해석 가능",
+     "해석 ①: 평생 남을 큰 상실",
+     "'Alternatively' = 해석 ②: 아프지만 길게 보면 긍정적",
+     "'these different construals' = 두 해석 → 감정도 달라짐",
+     "'The first construal' = 해석 ①의 감정: 강한 슬픔·분노",
+     "'The second construal' = 해석 ②의 감정: 덜한 슬픔·분노",
+     "'it' = 해석 ②, 게다가 긍정 감정까지",
+     "'This example' = 이혼 예가 보여 주는 것(단기 감정)",
+     "'these short-term ... consequences' = 반복되면 심리 건강",
+     "'Thereby' = 결론: 재평가는 회복력의 열쇠"
+    ]
+   },
+   {
+    "name": "38번 · 문장 삽입",
+    "kind": "본문",
+    "flow": "'깨끗한 물'은 겉모습만이 아님 → 수질 = 기준 → 기준이 알려 주는 것 → 기준이 보장하는 것 → 하나의 규칙으론 안 됨 → 예: 발전소 vs 수돗물 → 그래서 용도별 안전 한계",
+    "lines": [
+     "When we say that water is “clean,” we don’t just mean that it looks like a glass of water.",
+     "Water quality is about following a certain set of criteria, or “benchmarks.”",
+     "These guidelines inform us exactly how much physical, chemical, or biological stuff can be in the water.",
+     "These rules ensure the water is safe for anything we want to do with it, whether that’s drinking it at home, watering crops on a farm, or running it through a huge industrial boiler.",
+     "We can’t utilize the same “one size fits all” rule for everyone because we use water for so many diverse things.",
+     "For instance, the water that cools down a huge power plant generator doesn’t need to be as clean as the water you drink from the kitchen tap.",
+     "This is why groups set different “safety limits” for the water dependent on how it will be utilized."
+    ],
+    "cues": [
+     "첫 문장: '깨끗한' 물은 겉모습만 뜻하지 않음",
+     "그럼 무엇? 수질 = 기준(benchmarks)을 따르는 것",
+     "'These guidelines' = 그 기준, 물속 물질의 양을 알려 줌",
+     "'These rules' = 같은 기준, 어떤 용도든 안전 보장",
+     "용도가 다양하니 하나의 규칙으론 안 됨",
+     "'For instance' = 발전소 냉각수 vs 마시는 물",
+     "'This is why' = 그래서 용도별로 안전 한계를 다르게"
+    ]
+   },
+   {
+    "name": "39번 · 문장 삽입",
+    "kind": "본문",
+    "flow": "사회사가도 1차 자료 → 사회사는 평범한 사람 중심 → 하지만 기록을 거의 안 남김 → 남겨도 보관 안 됨 → 그런 편향 → 창의적이어야 → 엘리트 자료를 분석 → 거꾸로 읽음 → 예: 법률 문서",
+    "lines": [
+     "Like all historians, social historians draw from a variety of primary sources.",
+     "Social history often emphasizes ordinary people rather than elites.",
+     "Yet, in most places and times, non-elites lacked access to education and, thus, did not produce substantial amounts of documentation.",
+     "Even when they did produce documentation, these materials rarely ended up in archives where they could be preserved and made available to researchers.",
+     "Because of such biases in the historical record, social historians have to be very creative in their work.",
+     "Like other historians, social historians analyze textual sources produced by government officials, employers, and other elites.",
+     "Yet rather than simply take such sources at face value, they read them “against the grain”.",
+     "So, for example, a social historian will read legal documents not only for the “facts” provided by slaveowners; she will also examine the silences, interruptions, rumors, and other details that offer hints about the enslaved peoples’ attitudes and actions."
+    ],
+    "cues": [
+     "첫 문장: 사회사가도 다양한 1차 자료를 씀",
+     "사회사의 특징: 엘리트보다 평범한 사람 중심",
+     "'Yet' = 그런데 평범한 사람들은 기록을 거의 안 남김",
+     "'Even when they did' = 남겨도 보관소에 남지 않음",
+     "'such biases' = 앞의 기록 편향 → 창의적이어야",
+     "창의적인 방법: 엘리트가 만든 자료를 분석",
+     "'Yet ... such sources' = 그 자료를 그대로 믿지 않고 거꾸로 읽음",
+     "'for example' = 거꾸로 읽기의 예: 법률 문서"
+    ]
+   },
+   {
+    "name": "40번 · 요약문 완성",
+    "kind": "본문",
+    "flow": "돌고래 뇌 = 반향 정위 특화 구역 → 핵심 적응: 청각 경로 → 신호가 청각 피질로 → 하지만 구역별로 특화된 피질 → 구역마다 맡은 일 → 이 특화 = 병렬 처리 → 비유: 조립 라인 → 나눠서 빠르게 → 병렬 처리의 효과",
+    "lines": [
+     "Dolphins’ brains have evolved specialized areas dedicated to echolocation, allowing them to process acoustic information more quickly and with less energy.",
+     "One key adaptation is the structure of the dolphin’s auditory pathway.",
+     "The signals from the ears are rapidly transmitted to the auditory cortex, the brain region responsible for processing sound.",
+     "However, unlike many other mammals, dolphins have a highly specialized auditory cortex with distinct areas dedicated to processing different aspects of echolocation signals.",
+     "Some areas may be responsible for analyzing the timing of echoes, while others focus on the frequency content or the intensity of the sound.",
+     "This specialization allows the dolphin’s brain to process echo information in parallel, rather than sequentially.",
+     "Imagine a factory assembly line, where different workers are responsible for different tasks.",
+     "By dividing the work among specialized areas, the brain can process information much faster and more efficiently.",
+     "This parallel processing reduces the cognitive load associated with echolocation, allowing dolphins to react quickly to changes in their environment."
+    ],
+    "cues": [
+     "첫 문장: 돌고래 뇌에는 반향 정위 특화 구역",
+     "'One key adaptation' = 특화의 핵심: 청각 경로 구조",
+     "경로를 따라: 귀의 신호가 청각 피질로",
+     "'However, unlike ...' = 그 청각 피질이 다른 포유류와 달리 구역별로 특화",
+     "'Some areas ... others' = 구역마다 맡은 일",
+     "'This specialization' = 구역별 분담 → 병렬 처리",
+     "병렬 처리의 비유: 공장 조립 라인",
+     "비유를 뇌에 적용: 나눠서 더 빠르고 효율적으로",
+     "'This parallel processing' = 결과: 인지 부하↓·빠른 반응"
+    ]
+   }
+  ]
+ }
+]
+</script>
+
+<script>
+(() => {
+'use strict';
+
+/*PURE-START*/
+const HANGUL = /[ᄀ-ᇿ㄰-㆏가-힯]/;
+const MAXB = 20;
+const PH_WORD = /^(?:sb|sth|sw|~|one's|oneself|someone|something|somebody|someone's|somewhere)$/i;
+const rnd = n => Math.floor(Math.random() * n);
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+/* 단어 뜻 칸은 통째로 외울 뜻. 참고 칸은 " / ", " — " 기준으로 줄을 나눔. 참고 칸이 비면 뜻 칸의 " — " 뒤를 참고로 봄 */
+function parseMeaning(ko, gl) {
+  let core = String(ko == null ? '' : ko).trim(), note = String(gl == null ? '' : gl).trim();
+  if (!note) { const p = core.split(/\s+[—–]\s+/); if (p.length > 1) { core = p.shift(); note = p.join(' — '); } }
+  const notes = note ? note.split(/\s+\/\s+|\s+[—–]\s+/).map(x => x.trim()).filter(Boolean) : [];
+  return { core, notes };
+}
+/* 정답 후보: "a/b" 둘 다, "(be) x" 괄호 넣고 빼고 둘 다 */
+function variants(en) {
+  const out = [];
+  String(en).split(/\s*\/\s*/).filter(Boolean).forEach(a => {
+    out.push(a.replace(/[()]/g, '').replace(/\s+/g, ' ').trim());
+    if (/\(/.test(a)) out.push(a.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim());
+  });
+  return out.length ? out : [String(en)];
+}
+function rawTokens(s) {
+  return String(s).replace(/[’‘`´]/g, "'").replace(/…|\.{3}/g, ' ~ ').replace(/~/g, ' ~ ')
+    .split(/\s+/).map(w => w.replace(/^[.,!?;:"“”]+|[.,!?;:"“”]+$/g, '')).filter(Boolean);
+}
+/* 자리표시: A·B·V 같은 대문자 한 글자, sb·sth·one's·~·+, 한글(주어·형용사 등).
+   자리표시 자리는 비워도 되고 아무 말(4단어까지)을 써도 됨. 나머지 단어는 철자까지 정확해야 함 */
+function isPh(w) { return /^[A-Z]$/.test(w) || PH_WORD.test(w) || HANGUL.test(w) || /^[+~]+$/.test(w); }
+function expTokens(v) { return rawTokens(v).map(w => ({ w, t: w.toLowerCase(), ph: isPh(w) })); }
+const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function patternFor(v) {
+  const et = expTokens(v);
+  if (!et.some(x => !x.ph)) return null;
+  let src = '^', prevPh = false;
+  et.forEach(x => {
+    if (x.ph) { if (!prevPh) src += '(?:\\S+ ){0,4}'; prevPh = true; }
+    else { src += reEsc(x.t) + ' '; prevPh = false; }
+  });
+  return new RegExp(src + '$');
+}
+function typedNorm(s) {
+  return rawTokens(String(s).replace(/[()]/g, '')).map(w => w.toLowerCase()).filter(w => !/^[+~]+$/.test(w)).join(' ') + ' ';
+}
+function matchItem(typed, item) {
+  const t = typedNorm(typed);
+  return t.trim() !== '' && item.pats.some(re => re.test(t));
+}
+function prepItem(row) {
+  const en = String(row[0] == null ? '' : row[0]).trim(), ko = String(row[1] == null ? '' : row[1]).trim();
+  if (!en || !ko) return null;
+  const m = parseMeaning(ko, row[2]);
+  const vars = variants(en);
+  const pats = vars.map(patternFor).filter(Boolean);
+  const n = expTokens(vars[0]).filter(x => !x.ph).length;
+  return { en, core: m.core, notes: m.notes, vars, pats, ke: pats.length > 0 && n <= 7, audio: row[3] ? String(row[3]) : '' };
+}
+function prepareSet(raw) {
+  const items = [], sections = [];
+  (raw.sections || []).forEach(sec => {
+    const ids = [];
+    (sec.items || []).forEach(row => { const it = prepItem(row); if (it) { ids.push(items.length); items.push(it); } });
+    if (ids.length) sections.push({ name: String(sec.name || ''), ids });
+  });
+  return { id: raw.id, title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), custom: !!raw.custom, batch: Number(raw.batch) || 0, items, sections };
+}
+/* 지문 경계와 상관없이 세트 순서대로 고르게 나눔. 묶음 크기는 세트에 batch가 있으면 그 값, 없으면 20
+   (80개 → 20×4, 87개 → 18·18·17·17·17, batch 50이면 100개 → 50×2) */
+function makeBatches(set, pool) {
+  const inPool = new Set(pool), max = set.batch > 0 ? set.batch : MAXB;
+  const ids = set.sections.flatMap(sec => sec.ids).filter(id => inPool.has(id));
+  if (!ids.length) return [];
+  const n = Math.ceil(ids.length / max), base = Math.floor(ids.length / n), extra = ids.length % n;
+  const out = [];
+  for (let k = 0, i = 0; k < n; k++) { const sz = base + (k < extra ? 1 : 0); out.push(ids.slice(i, i + sz)); i += sz; }
+  return out;
+}
+function splitLoose(s) {
+  const i = s.search(HANGUL);
+  if (i <= 0) return null;
+  const en = s.slice(0, i).replace(/[\s:=|\-–—]+$/, '').trim();
+  if (!/^[A-Za-z]/.test(en)) return null;
+  return [en, s.slice(i).trim()];
+}
+/* 엑셀 복사(탭 구분): 번호 / 영어 / 뜻 / 본문 풀이. 칸이 하나뿐인 줄은 지문 제목으로 봄 */
+function parsePaste(text) {
+  const sections = [];
+  let cur = null, skipped = 0;
+  const add = (en, ko, gl) => { if (!cur) { cur = { name: '단어', items: [] }; sections.push(cur); } cur.items.push([en, ko, gl || '']); };
+  String(text).replace(/\r/g, '').split('\n').forEach(line => {
+    if (!line.trim()) return;
+    let cells = line.split('\t').map(c => c.trim());
+    while (cells.length && !cells[0]) cells.shift();
+    while (cells.length && !cells[cells.length - 1]) cells.pop();
+    if (!cells.length) return;
+    if (cells.some(c => /^(영어|english|word|단어)$/i.test(c)) && cells.some(c => /뜻|meaning/i.test(c))) return;
+    if (cells.length >= 3 && /^\d+$/.test(cells[0])) cells = cells.slice(1);
+    if (cells.length === 1) {
+      if (/^\d+$/.test(cells[0])) return;
+      const sp = splitLoose(cells[0]);
+      if (sp) add(sp[0], sp[1], '');
+      else { cur = { name: cells[0].slice(0, 60), items: [] }; sections.push(cur); }
+      return;
+    }
+    const en = cells[0], ko = cells[1], gl = cells.slice(2).filter(Boolean).join(' ');
+    if (!/[a-z]/i.test(en) || !ko) { skipped++; return; }
+    add(en, ko, gl);
+  });
+  const clean = sections.filter(s => s.items.length);
+  return { sections: clean, n: clean.reduce((a, s) => a + s.items.length, 0), skipped };
+}
+/* 순서 세트: 과 하나가 세트, 그 안의 지문(대화문·본문)마다 교과서 순서대로 적힌 문장 목록 */
+function prepareOrder(raw) {
+  const passages = [];
+  (raw.passages || []).forEach(p => {
+    const lines = [], cues = [];
+    (p.lines || []).forEach((x, i) => {
+      const t = String(x == null ? '' : x).trim();
+      if (!t) return;
+      lines.push(t); cues.push(String(Array.isArray(p.cues) && p.cues[i] != null ? p.cues[i] : '').trim());
+    });
+    if (lines.length >= 2) passages.push({ name: String(p.name || '지문'), kind: String(p.kind || ''), flow: String(p.flow || '').trim(), lines, cues });
+  });
+  return { id: raw.id, kind: 'order', title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), passages };
+}
+/* 문장 번호(0~n-1)를 섞되, 교과서 순서 그대로 나오는 일은 없게 함 */
+function shuffleOrder(n) {
+  const a = [];
+  for (let i = 0; i < n; i++) a.push(i);
+  if (n < 2) return a;
+  for (let t = 0; t < 30; t++) { shuffle(a); if (a.some((v, i) => v !== i)) return a; }
+  a.push(a.shift());
+  return a;
+}
+/* picks: 학생이 탭한 순서(문장 번호). ok = 전부 제자리, right = 제자리에 놓인 문장 수 */
+function gradeOrder(picks, n) {
+  const ok = picks.length === n && picks.every((v, i) => v === i);
+  let right = 0;
+  picks.forEach((v, i) => { if (v === i) right++; });
+  return { ok, right };
+}
+function lcsMask(a, b) {
+  const n = a.length, m = b.length;
+  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const ma = new Array(n).fill(false), mb = new Array(m).fill(false);
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (a[i] === b[j]) { ma[i] = true; mb[j] = true; i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+    else j++;
+  }
+  return [ma, mb];
+}
+/* 핵심어 세트: 강 하나가 세트, 지문마다 본문 문장 · 한 줄 주제(** = 굵게) · 보기 [단어, 핵심 1/0, 이유, 종류] */
+function prepareKw(raw) {
+  const passages = [];
+  (raw.passages || []).forEach(p => {
+    const lines = (p.lines || []).map(x => String(x == null ? '' : x).trim()).filter(Boolean);
+    const opts = [], seen = new Set();
+    (p.opts || []).forEach(o => {
+      const w = String(o && o[0] != null ? o[0] : '').trim();
+      if (!w || seen.has(w.toLowerCase())) return;
+      seen.add(w.toLowerCase());
+      opts.push({ w, key: !!Number(o[1]), why: String(o[2] == null ? '' : o[2]).trim(), cat: String(o[3] || '') });
+    });
+    const nk = opts.filter(o => o.key).length;
+    if (lines.length && nk && nk < opts.length) passages.push({ name: String(p.name || '지문'), ko: String(p.ko || '').trim(), en: String(p.en || '').trim(), lines, opts });
+  });
+  return { id: raw.id, kind: 'kw', title: String(raw.title || '이름 없는 세트'), note: String(raw.note || ''), passages };
+}
+/* 보기 번호(0~n-1)를 섞되, 원본 순서 그대로거나 핵심이 한데 몰려 나오는 일은 없게 함 (원본은 핵심을 먼저 적어 둠).
+   keys[i] = i번 보기가 핵심인지 */
+function shuffleKw(keys) {
+  const n = keys.length, a = [];
+  for (let i = 0; i < n; i++) a.push(i);
+  if (n < 2) return a;
+  const bad = o => {
+    if (o.every((v, i) => v === i)) return true;
+    const pos = o.map((v, i) => keys[v] ? i : -1).filter(i => i >= 0);
+    return pos.length > 1 && pos.length < n && pos[pos.length - 1] - pos[0] === pos.length - 1;
+  };
+  for (let t = 0; t < 60; t++) { shuffle(a); if (!bad(a)) return a; }
+  return a;
+}
+/* picks: 학생이 고른 보기 번호. 핵심을 하나도 안 빠뜨리고 오답은 하나도 안 골라야 정답 */
+function gradeKw(picks, opts) {
+  const on = new Set(picks), hit = [], miss = [], wrong = [];
+  opts.forEach((o, i) => { if (o.key) (on.has(i) ? hit : miss).push(i); else if (on.has(i)) wrong.push(i); });
+  return { ok: !miss.length && !wrong.length, hit, miss, wrong };
+}
+/*PURE-END*/
+
+const $ = (s, r = document) => r.querySelector(s);
+const app = $('#app');
+let BUILTIN = [];
+try { BUILTIN = JSON.parse($('#sets-data').textContent); } catch (e) { BUILTIN = []; }
+/* 학교별 페이지 설정: 상단 표시칸, 직접 넣기 허용 여부 */
+let CFG = {};
+try { const c = $('#page-config'); if (c) CFG = JSON.parse(c.textContent) || {}; } catch (e) { CFG = {}; }
+const PASTE = CFG.paste !== false;
+const FIELDS = Array.isArray(CFG.fields) && CFG.fields.length ? CFG.fields : [['과목', '영어 단어'], ['방식', '보기 전에 꺼내기']];
+const FORM = CFG.form && /^https:\/\/docs\.google\.com\/forms\//.test(CFG.form.url || '') ? CFG.form : null;
+const CAP = 45000; /* 한 장에서 45초 넘게 멈춰 있으면 그 이상은 시간에 안 셈 */
+const K = { sess: id => 'kd1:sess:' + id, rec: id => 'kd1:rec:' + id, custom: 'kd1:custom', name: 'kd1:name' };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function fmt(ms) { const t = Math.max(0, Math.floor(ms / 1000)); const m = Math.floor(t / 60), s = t % 60; return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
+
+/* 발음: 미리 만든 mp3(audio/키.mp3)를 우선 재생 — 카톡 같은 앱 안 브라우저에서도 들림.
+   파일이 없거나 재생이 막히면 폰에 들어 있는 영어 음성(TTS)으로 읽음 */
+const TTS = (() => {
+  const ok = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  let voice = null;
+  const pick = () => {
+    try {
+      const vs = window.speechSynthesis.getVoices() || [];
+      voice = vs.find(v => /^en[-_]US/i.test(v.lang) && /samantha|google|natural|aria|jenny/i.test(v.name)) ||
+        vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+    } catch (e) { voice = null; }
+  };
+  if (ok) { pick(); try { window.speechSynthesis.addEventListener('voiceschanged', pick); } catch (e) {} }
+  return {
+    ok,
+    say(text) {
+      if (!ok || !text) return;
+      try {
+        window.speechSynthesis.cancel();
+        const u = new window.SpeechSynthesisUtterance(text);
+        u.lang = voice ? voice.lang : 'en-US';
+        if (voice) u.voice = voice;
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+  };
+})();
+/* 적힌 그대로 읽되, a(n)→a, (to)→to, ~·…→쉼, 한글·+는 뺌 (A·B·V는 그대로 읽음) */
+const sayText = it => String(it.en)
+  .replace(/(\S)\([^)]*\)/g, '$1').replace(/\([^)]*\)(\S)/g, '$1').replace(/[()]/g, '')
+  .replace(/\bsb\b/gi, 'somebody').replace(/\bsth\b/gi, 'something')
+  .replace(/…|\.{3}|~/g, ',').replace(/\+/g, ' ')
+  .split(/\s+/).filter(w => w && !HANGUL.test(w)).join(' ')
+  .replace(/\s*,[\s,]*/g, ', ').replace(/^[,\s]+|[,\s]+$/g, '');
+const AUDIO_BASE = 'audio/';
+const player = (() => { try { return typeof Audio === 'function' ? new Audio() : null; } catch (e) { return null; } })();
+const audioURL = it => AUDIO_BASE + it.audio + '.mp3';
+/* 카드가 뜰 때 미리 받아 두면 눌렀을 때 바로 나옴 */
+function primeAudio(it) {
+  if (!player || !it || !it.audio) return;
+  try { if (!player.src || player.src.slice(-audioURL(it).length) !== audioURL(it)) { player.preload = 'auto'; player.src = audioURL(it); } } catch (e) {}
+}
+function speak(it) {
+  if (!it) return;
+  if (player && it.audio) {
+    try {
+      if (!player.src || player.src.slice(-audioURL(it).length) !== audioURL(it)) player.src = audioURL(it);
+      try { player.currentTime = 0; } catch (e) {}
+      const p = player.play();
+      if (p && typeof p.catch === 'function') p.catch(() => TTS.say(sayText(it)));
+      return;
+    } catch (e) {}
+  }
+  TTS.say(sayText(it));
+}
+const canSpeak = it => !!(it && ((player && it.audio) || TTS.ok));
+const SAY_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+const sayBtn = (it, id, label) => canSpeak(it) ? `<button class="say" type="button" data-say="${id}" aria-label="발음 듣기">${SAY_ICON}${label ? `<span>${label}</span>` : ''}</button>` : '';
+
+/* 기기별 저장 (없어도 동작) */
+const mem = {};
+const store = {
+  get(k) { try { const v = localStorage.getItem(k); if (v != null) return JSON.parse(v); } catch (e) {} try { return k in mem ? JSON.parse(mem[k]) : null; } catch (e) { return null; } },
+  set(k, v) { const j = JSON.stringify(v); mem[k] = j; try { localStorage.setItem(k, j); } catch (e) {} },
+  del(k) { delete mem[k]; try { localStorage.removeItem(k); } catch (e) {} }
+};
+
+const S = { view: 'home', sess: null, result: null, confirm: null, banner: '', pasteOpen: false };
+let SET = null, R = {}, C = null, clockT = null;
+
+function customSets() { const l = store.get(K.custom); return Array.isArray(l) ? l : []; }
+function rawSets() { return (PASTE ? customSets() : []).concat(BUILTIN); }
+function findRaw(id) { return rawSets().find(s => s.id === id) || null; }
+function getRec(id) { const r = store.get(K.rec(id)); return r && typeof r === 'object' ? r : {}; }
+function liveSess(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 1 && ss.n === n && ss.phase && ss.phase !== 'done' ? ss : null; }
+function liveOrder(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 2 && ss.kind === 'order' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
+function liveKw(id, n) { const ss = store.get(K.sess(id)); return ss && ss.v === 3 && ss.kind === 'kw' && ss.n === n && ss.phase === 'play' && ss.cur ? ss : null; }
+function liveAny(raw) {
+  if (raw.kind === 'order') return liveOrder(raw.id, prepareOrder(raw).passages.length);
+  if (raw.kind === 'kw') return liveKw(raw.id, prepareKw(raw).passages.length);
+  return liveSess(raw.id, prepareSet(raw).items.length);
+}
+function save() { const s = S.sess; if (s && s.phase !== 'done') store.set(K.sess(s.setId), s); }
+
+/* ---------- 진행 엔진 ---------- */
+function newSession(set, mode) {
+  const n = set.items.length;
+  let pool = set.items.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { k: 0, ek: 0, ke: 0, m: 0, f: 0, ff: 0, sn: 0 }; });
+  const s = { v: 1, setId: set.id, n, mode, pool, st, b: 0, batches: [], phase: '', queue: [], recent: [], fDone: 0, ms: 0, lt: Date.now(), bms0: 0 };
+  if (mode === 'quick') startFinal(s);
+  else { s.batches = makeBatches(set, pool); startSort(s); }
+  return s;
+}
+function spreadRecent(q, recent) {
+  if (q.length < 4) return;
+  const r = new Set(recent.slice(-2));
+  for (let pass = 0; pass < 2; pass++) {
+    for (let i = 0; i < 2; i++) {
+      if (r.has(q[i].id)) { const c = q.splice(i, 1)[0]; q.splice(Math.min(q.length, 3 + i), 0, c); }
+    }
+  }
+}
+function startSort(s) {
+  s.phase = 'sort'; s.bms0 = s.ms;
+  s.queue = shuffle(s.batches[s.b].slice()).map(id => ({ id, d: 'ek' }));
+  spreadRecent(s.queue, s.recent);
+}
+function startLearn(s) {
+  s.phase = 'learn';
+  const q = [];
+  s.batches[s.b].forEach(id => {
+    const x = s.st[id];
+    if (x.k) { if (SET.items[id].ke) q.push({ id, d: 'ke' }); else x.m = 1; }
+    else q.push({ id, d: 'ek' });
+  });
+  shuffle(q); spreadRecent(q, s.recent);
+  s.queue = q;
+}
+function startFinal(s) {
+  s.phase = 'final'; s.fDone = 0; s.bms0 = s.ms;
+  s.queue = shuffle(s.pool.slice()).map(id => ({ id, d: SET.items[id].ke && Math.random() < 0.5 ? 'ke' : 'ek' }));
+  spreadRecent(s.queue, s.recent);
+}
+/* 틀린 카드는 3~6장 뒤로. 남은 카드가 모자라면 이미 외운 단어로 사이를 채워 바로 다시 나오지 않게 함 */
+function requeue(s, card, lo, hi) {
+  const gap = lo + rnd(hi - lo + 1);
+  if (s.queue.length < gap) pad(s, card.id, gap - s.queue.length);
+  s.queue.splice(Math.min(gap, s.queue.length), 0, card);
+}
+function pad(s, avoid, need) {
+  const scope = s.phase === 'learn' ? s.batches[s.b] : s.pool;
+  const inQ = new Set(s.queue.map(c => c.id));
+  const rec = new Set(s.recent.slice(-2));
+  const cand = shuffle(scope.filter(id => id !== avoid && !inQ.has(id) && !rec.has(id) && (s.phase !== 'learn' || s.st[id].m)));
+  const k = Math.min(need, 3, cand.length);
+  for (let i = 0; i < k; i++) s.queue.push({ id: cand[i], d: SET.items[cand[i]].ke && Math.random() < 0.5 ? 'ke' : 'ek', rv: 1 });
+}
+/* res: 영→한 'yes'|'meh'|'no', 한→영 'ok'|'hint'|'wrong'|'dunno' */
+function answer(res) {
+  const s = S.sess, card = s.queue.shift();
+  if (!card) return;
+  const id = card.id, x = s.st[id], it = SET.items[id];
+  tick(s); x.sn = 1;
+  if (s.phase === 'sort') {
+    x.k = res === 'yes' ? 1 : 0; x.ek = x.k;
+  } else if (s.phase === 'learn') {
+    if (card.d === 'ek') { if (res === 'yes') x.ek = 1; else { x.ek = 0; x.f++; } }
+    else if (res === 'ok') x.ke = 1;
+    else { x.ke = 0; if (res !== 'hint') x.f++; }
+    const need = !x.ek ? 'ek' : (it.ke && !x.ke ? 'ke' : '');
+    if (need) { x.m = 0; requeue(s, { id, d: need }, 3, need === card.d ? 5 : 6); }
+    else x.m = 1;
+  } else if (s.phase === 'final') {
+    const good = card.d === 'ek' ? res === 'yes' : res === 'ok';
+    if (good) { if (!card.rv) s.fDone++; }
+    else {
+      if (card.rv) s.fDone--;
+      x.ff = 1; if (res !== 'hint') x.f++;
+      requeue(s, { id, d: card.d }, 3, 5);
+    }
+  }
+  s.recent.push(id); if (s.recent.length > 4) s.recent.shift();
+  if (!s.queue.length) endPhase(s);
+  save();
+}
+function endPhase(s) {
+  if (s.phase === 'sort') {
+    const ids = s.batches[s.b], known = ids.filter(id => s.st[id].k).length, unknown = ids.length - known;
+    startLearn(s);
+    S.banner = `거르기 끝 · ${ids.length}개 중 ${known}개 바로 나옴. ` + (unknown ? `이제 안 나온 ${unknown}개 다시 + 철자 확인.` : '이제 철자 확인.');
+    if (!s.queue.length) { s.phase = 'bdone'; S.banner = ''; }
+  } else if (s.phase === 'learn') {
+    s.phase = 'bdone';
+  } else if (s.phase === 'final') {
+    s.phase = 'done'; finish(s);
+  }
+}
+function finish(s) {
+  const pool = s.pool;
+  const hard = pool.filter(id => s.st[id].f >= 2 || s.st[id].ff);
+  const known = s.mode === 'quick' ? pool.filter(id => !s.st[id].ff).length : pool.filter(id => s.st[id].k).length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  S.result = { setId: s.setId, title: SET.title, mode: s.mode, n: pool.length, ms: s.ms, known, hard };
+  store.del(K.sess(s.setId));
+}
+function nextBatch() {
+  const s = S.sess;
+  if (!s) { renderHome(); return; }
+  if (s.b + 1 < s.batches.length) { s.b++; startSort(s); } else startFinal(s);
+  s.lt = Date.now();
+  save(); route();
+}
+function tick(s) { const now = Date.now(); s.ms += Math.max(0, Math.min(now - (s.lt || now), CAP)); s.lt = now; }
+function startClock() {
+  stopClock();
+  const up = () => { const s = S.sess, el = R['st-clock']; if (s && el) el.textContent = fmt(s.ms + Math.max(0, Math.min(Date.now() - s.lt, CAP))); };
+  up(); clockT = setInterval(up, 1000);
+}
+function stopClock() { if (clockT) clearInterval(clockT); clockT = null; }
+
+/* ---------- 순서 맞추기 엔진 ----------
+   세트(과)의 지문을 교과서 순서대로 하나씩 냄. 지문마다 문장을 새로 섞고, 학생이 다 놓으면 채점.
+   틀린 지문은 큐 맨 뒤로 가서 다시 나오고, 모든 지문을 맞혀야 끝. st[id] = { t: 시도 수, w: 틀린 수 } */
+function newOrderSession(set, mode) {
+  const n = set.passages.length;
+  let pool = set.passages.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { t: 0, w: 0 }; });
+  const s = { v: 2, kind: 'order', setId: set.id, n, mode, pool, st, queue: pool.slice(), cur: null, done: 0, phase: 'play', ms: 0, lt: Date.now() };
+  openPassage(s);
+  return s;
+}
+function openPassage(s) {
+  const id = s.queue[0];
+  if (id == null) { s.cur = null; return; }
+  s.cur = { id, picks: shuffleOrder(SET.passages[id].lines.length), fb: null };
+}
+function validOrder(s) {
+  const n = SET.passages.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  if (!Array.isArray(s.pool) || !s.pool.every(ok) || !Array.isArray(s.queue) || !s.queue.every(ok)) return false;
+  if (!s.st || typeof s.st !== 'object' || !s.pool.every(id => s.st[id])) return false;
+  const c = s.cur;
+  if (!c || !ok(c.id) || (s.queue[0] !== c.id && !c.fb)) return false;
+  const m = SET.passages[c.id].lines.length;
+  const perm = a => Array.isArray(a) && a.length === m && a.slice().sort((x, y) => x - y).every((v, i) => v === i);
+  return perm(c.picks) && (!c.fb || perm(c.fb.picks));
+}
+function orderCheck() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const p = SET.passages[c.id];
+  if (DRAG) endDrag();
+  if (c.picks.length !== p.lines.length) return;
+  tick(s);
+  const g = gradeOrder(c.picks, p.lines.length), x = s.st[c.id];
+  x.t++;
+  s.queue.shift();
+  if (g.ok) s.done++; else { x.w++; s.queue.push(c.id); }
+  c.fb = { ok: g.ok, right: g.right, picks: c.picks.slice() };
+  save(); renderOrderFeedback();
+}
+function orderNext() {
+  const s = S.sess;
+  if (!s || !s.cur || !s.cur.fb) return;
+  tick(s);
+  if (!s.queue.length) { s.cur = null; finishOrder(s); stopClock(); renderResult(); return; }
+  openPassage(s); save(); renderOrder();
+}
+function finishOrder(s) {
+  const hard = s.pool.filter(id => s.st[id].w > 0);
+  const known = s.pool.length - hard.length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: s.pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  const tries = {};
+  s.pool.forEach(id => { tries[id] = s.st[id].t; });
+  S.result = { kind: 'order', setId: s.setId, title: SET.title, mode: s.mode, n: s.pool.length, ms: s.ms, known, hard, tries };
+  s.phase = 'done';
+  store.del(K.sess(s.setId));
+}
+function beginOrder(raw, mode) {
+  SET = prepareOrder(raw);
+  if (!SET.passages.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveOrder(SET.id, SET.passages.length);
+    if (s && !validOrder(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newOrderSession(SET, 'full');
+  } else s = newOrderSession(SET, mode === 'hard' ? 'hard' : 'full');
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+
+/* ---------- 핵심어 고르기 엔진 ----------
+   세트(강)의 지문을 차례대로 하나씩 냄. 지문마다 보기를 새로 섞고, 고른 보기가 핵심어와 똑같아야 정답
+   (핵심을 하나라도 빠뜨리거나 오답을 하나라도 고르면 다시). 틀린 지문은 큐 맨 뒤로 가서 보기가 새로 섞인 채 다시 나오고,
+   모든 지문을 맞혀야 끝. st[id] = { t: 시도 수, w: 틀린 수 } */
+function newKwSession(set, mode) {
+  const n = set.passages.length;
+  let pool = set.passages.map((_, i) => i);
+  if (mode === 'hard') {
+    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+    if (!pool.length) return null;
+  }
+  const st = {};
+  pool.forEach(id => { st[id] = { t: 0, w: 0 }; });
+  const s = { v: 3, kind: 'kw', setId: set.id, n, mode, pool, st, queue: pool.slice(), cur: null, done: 0, phase: 'play', ms: 0, lt: Date.now() };
+  openKw(s);
+  return s;
+}
+function openKw(s) {
+  const id = s.queue[0];
+  if (id == null) { s.cur = null; return; }
+  s.cur = { id, order: shuffleKw(SET.passages[id].opts.map(o => o.key)), picks: [], fb: null };
+}
+function validKw(s) {
+  const n = SET.passages.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  if (!Array.isArray(s.pool) || !s.pool.every(ok) || !Array.isArray(s.queue) || !s.queue.every(ok)) return false;
+  if (!s.st || typeof s.st !== 'object' || !s.pool.every(id => s.st[id])) return false;
+  const c = s.cur;
+  if (!c || !ok(c.id) || (s.queue[0] !== c.id && !c.fb)) return false;
+  const m = SET.passages[c.id].opts.length;
+  const sub = a => Array.isArray(a) && a.every(v => Number.isInteger(v) && v >= 0 && v < m) && new Set(a).size === a.length;
+  return sub(c.order) && c.order.length === m && sub(c.picks) && (!c.fb || sub(c.fb.picks));
+}
+function kwToggle(i) {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb) return;
+  const k = c.picks.indexOf(i);
+  if (k >= 0) c.picks.splice(k, 1); else c.picks.push(i);
+  save();
+}
+function kwCheck() {
+  const s = S.sess, c = s && s.cur;
+  if (!c || c.fb || !c.picks.length) return;
+  tick(s);
+  const g = gradeKw(c.picks, SET.passages[c.id].opts), x = s.st[c.id];
+  x.t++;
+  s.queue.shift();
+  if (g.ok) s.done++; else { x.w++; s.queue.push(c.id); }
+  c.fb = { ok: g.ok, picks: c.picks.slice() };
+  save(); renderKwFeedback();
+}
+function kwNext() {
+  const s = S.sess;
+  if (!s || !s.cur || !s.cur.fb) return;
+  tick(s);
+  if (!s.queue.length) { s.cur = null; finishKw(s); stopClock(); renderResult(); return; }
+  openKw(s); save(); renderKw();
+}
+function finishKw(s) {
+  const hard = s.pool.filter(id => s.st[id].w > 0);
+  const known = s.pool.length - hard.length;
+  const rec = getRec(s.setId);
+  rec.hard = hard;
+  rec.last = { at: Date.now(), ms: s.ms, n: s.pool.length, mode: s.mode, known, hard: hard.length };
+  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  store.set(K.rec(s.setId), rec);
+  const tries = {};
+  s.pool.forEach(id => { tries[id] = s.st[id].t; });
+  S.result = { kind: 'kw', setId: s.setId, title: SET.title, mode: s.mode, n: s.pool.length, ms: s.ms, known, hard, tries };
+  s.phase = 'done';
+  store.del(K.sess(s.setId));
+}
+function beginKw(raw, mode) {
+  SET = prepareKw(raw);
+  if (!SET.passages.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveKw(SET.id, SET.passages.length);
+    if (s && !validKw(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newKwSession(SET, 'full');
+  } else s = newKwSession(SET, mode === 'hard' ? 'hard' : 'full');
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+
+function begin(id, mode) {
+  const raw = findRaw(id);
+  if (!raw) { renderHome(); return; }
+  if (raw.kind === 'order') { beginOrder(raw, mode); return; }
+  if (raw.kind === 'kw') { beginKw(raw, mode); return; }
+  SET = prepareSet(raw);
+  if (!SET.items.length) { renderHome(); return; }
+  let s = null;
+  if (mode === 'resume') {
+    s = liveSess(id, SET.items.length);
+    if (s && !validSess(s)) s = null;
+    if (s) s.lt = Date.now();
+    else s = newSession(SET, 'full');
+  } else s = newSession(SET, mode);
+  if (!s) { renderHome(); return; }
+  S.sess = s; S.confirm = null; S.banner = '';
+  save(); route();
+}
+function validSess(s) {
+  const n = SET.items.length;
+  const ok = id => Number.isInteger(id) && id >= 0 && id < n;
+  return Array.isArray(s.pool) && s.pool.every(ok) && Array.isArray(s.queue) && s.queue.every(c => c && ok(c.id)) &&
+    s.st && typeof s.st === 'object' && s.pool.every(id => s.st[id]) && Array.isArray(s.batches) && Array.isArray(s.recent);
+}
+function route() {
+  const s = S.sess;
+  if (!s) { renderHome(); return; }
+  if (s.kind === 'order') {
+    if (s.phase === 'done') { renderResult(); return; }
+    if (!s.cur) { finishOrder(s); renderResult(); return; }
+    renderOrder(); return;
+  }
+  if (s.kind === 'kw') {
+    if (s.phase === 'done') { renderResult(); return; }
+    if (!s.cur) { finishKw(s); renderResult(); return; }
+    renderKw(); return;
+  }
+  if (s.phase === 'bdone') { renderPause(); return; }
+  if (s.phase === 'done') { renderResult(); return; }
+  if (!s.queue.length) { endPhase(s); save(); route(); return; }
+  renderStudy();
+}
+
+/* ---------- 목록 화면 ---------- */
+function sessLabel(ss) {
+  const B = (ss.batches || []).length;
+  if (ss.phase === 'final') return `${ss.mode === 'quick' ? '빠른 점검' : '마지막 점검'} ${ss.fDone}/${ss.pool.length}`;
+  if (ss.phase === 'bdone') return `배치 ${ss.b + 1}/${B} 끝`;
+  return `배치 ${ss.b + 1}/${B}`;
+}
+function confirmHTML(cf, sid) {
+  if (!cf) return '';
+  return `
+    <div class="confirm" role="group" aria-label="확인">
+      <span>${cf === 'del' ? '이 세트를 이 기기에서 지울까?' : '진행 중인 기록이 지워져. 새로 시작할까?'}</span>
+      <div class="confirm-btns">
+        <button class="btn btn-quiet btn-small" type="button" data-act="cancel" data-set="${sid}">취소</button>
+        <button class="btn btn-primary btn-small" type="button" data-act="yes-${cf}" data-set="${sid}">${cf === 'del' ? '지우기' : '지우고 시작'}</button>
+      </div>
+    </div>`;
+}
+/* 순서 세트 카드: 과 하나, 지문 수·문장 수, 진행 중/지난 기록, 순서 맞추기·틀린 지문만 */
+function orderCard(raw) {
+  const set = prepareOrder(raw);
+  const n = set.passages.length, lines = set.passages.reduce((a, p) => a + p.lines.length, 0);
+  const ss = liveOrder(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · 맞힌 지문 ${ss.done}/${ss.pool.length} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)} · 한 번에 ${rec.last.known}/${rec.last.n}${rec.last.mode === 'hard' ? ' (틀린 지문만)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">순서 맞추기</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">틀린 지문만 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}지문 · ${lines}문장</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
+/* 핵심어 세트 카드: 강 하나, 지문 수, 진행 중/지난 기록, 핵심어 고르기·틀린 지문만 */
+function kwCard(raw) {
+  const set = prepareKw(raw);
+  const n = set.passages.length;
+  const ss = liveKw(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · 맞힌 지문 ${ss.done}/${ss.pool.length} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)} · 한 번에 ${rec.last.known}/${rec.last.n}${rec.last.mode === 'hard' ? ' (틀린 지문만)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">핵심어 고르기</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">틀린 지문만 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}지문</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
+function setCard(raw) {
+  if (raw.kind === 'order') return orderCard(raw);
+  if (raw.kind === 'kw') return kwCard(raw);
+  const set = prepareSet(raw);
+  const n = set.items.length;
+  const nb = n ? makeBatches(set, set.items.map((_, i) => i)).length : 0;
+  const ss = liveSess(set.id, n);
+  const rec = getRec(set.id);
+  const hardN = (rec.hard || []).filter(id => id < n).length;
+  const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
+  const sid = esc(set.id);
+  const status = [];
+  if (ss) status.push(`<span class="chip">진행 중 · ${esc(sessLabel(ss))} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)}${rec.last.mode === 'quick' ? ' (빠른 점검)' : rec.last.mode === 'hard' ? ' (끈질긴 단어)' : ''}</span>`);
+  if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  let actions = ss
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
+    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">외우기</button>`;
+  actions += `<button class="btn btn-quiet" type="button" data-act="quick" data-set="${sid}">빠른 점검</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">끈질긴 단어 ${hardN}</button>`;
+  return `
+  <article class="set">
+    <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}단어 · 배치 ${nb}</div></div>
+    ${set.note ? `<div class="set-note">${esc(set.note)}</div>` : ''}
+    <div class="set-status">${status.join('')}</div>
+    <div class="set-actions">${actions}</div>
+    ${set.custom ? `<button class="linkish del" type="button" data-act="del" data-set="${sid}">이 세트 지우기</button>` : ''}
+    ${confirmHTML(cf, sid)}
+  </article>`;
+}
+/* 끌기 손잡이 아이콘(점 여섯 개) */
+const GRIP = '<svg width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="10" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="10" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="10" cy="18" r="1.8"/></g></svg>';
+/* 활동별 방법. 한 종류만 있는 페이지는 목록 위에 펼쳐 두고, 여러 종류가 섞인 페이지는 그 종류의 첫 그룹 제목 밑에 접어 둠
+   (그 종류를 이 기기에서 아직 한 번도 안 했으면 펼친 채로) — 섞인 페이지에서 방법 상자가 위에 쌓여 목록이 밀려나지 않게 */
+const RULES = {
+  vocab: ['외우는 방법', `
+      <li><span class="num">1</span><span><b>소리 내서 말한 다음</b> 뜻 보기. 속으로 ‘아 그거’는 모르는 거야.</span></li>
+      <li><span class="num">2</span><span><b>5초 안에 안 나오면 애매.</b> 애매·몰랐어는 몇 장 뒤에 다시 나와.</span></li>
+      <li><span class="num">3</span><span><b>철자는 직접 쳐서</b> 채점. 틀린 단어는 맞힐 때까지 돌아와.</span></li>
+      <li><span class="num">4</span><span><b>마지막에 전체를 섞어서</b> 한 번 더. 맞힌 단어도 다시 꺼내야 오래 가.</span></li>`],
+  order: ['순서 맞추는 방법', `
+      <li><span class="num">1</span><span><b>교재·필기는 덮고</b> 해. 보면서 맞추면 시험장에선 안 나와.</span></li>
+      <li><span class="num">2</span><span><b>문장을 끌어서</b> 본문 순서대로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.</span></li>
+      <li><span class="num">3</span><span><b>다 맞췄으면 확인.</b> 틀리면 왜 그 순서인지 해설이 나오고, 그 지문은 뒤로 갔다가 다시 나와. 다 맞혀야 끝.</span></li>
+      <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>`],
+  kw: ['핵심어 고르는 방법', `
+      <li><span class="num">1</span><span><b>필기·해석은 덮고</b> 지문만 읽어. 주제를 한 줄로 먼저 떠올려 봐.</span></li>
+      <li><span class="num">2</span><span><b>주제의 핵심어를 모두</b> 골라. 지문에 나왔다고 다 핵심은 아니야 — 예시·고유명사·세부는 지엽.</span></li>
+      <li><span class="num">3</span><span><b>지문에 없는 말도 섞여 있어.</b> 핵심어를 바꿔 쓴 말이면 정답, 주제의 방향을 뒤집은 말이면 함정.</span></li>
+      <li><span class="num">4</span><span><b>하나라도 빠뜨리거나 더 고르면 다시.</b> 이유와 한 줄 주제가 나오고, 그 지문은 보기가 새로 섞여 뒤에 다시 나와.</span></li>`]
+};
+const kindOf = s => (s.kind === 'order' || s.kind === 'kw' ? s.kind : 'vocab');
+const rulesBox = k => `
+  <section class="rules" aria-labelledby="rules-${k}">
+    <h2 class="eyebrow" id="rules-${k}">${RULES[k][0]}</h2>
+    <ol>${RULES[k][1]}</ol>
+  </section>`;
+const rulesFold = (k, open) => `<details class="rules-fold"${open ? ' open' : ''}><summary>${RULES[k][0]}</summary><ol>${RULES[k][1]}</ol></details>`;
+const triedKind = (sets, k) => sets.some(s => kindOf(s) === k && (getRec(s.id).last || store.get(K.sess(s.id))));
+function renderHome() {
+  S.view = 'home'; stopClock(); S.sess = null; C = null;
+  const sets = rawSets();
+  const kinds = [...new Set(sets.map(kindOf))], mixed = kinds.length > 1;
+  const hasO = kinds.includes('order'), hasK = kinds.includes('kw'), hasV = kinds.includes('vocab');
+  const onlyO = hasO && !hasV && !hasK, onlyK = hasK && !hasV && !hasO;
+  const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.'
+    : onlyK ? '지문을 읽고 주제의 핵심어만 골라 봐. 나왔다고 다 핵심은 아니야.'
+    : hasO && hasK ? '단어는 먼저 떠올리고, 본문은 다시 세우고, 지문은 핵심어만 골라 봐.'
+    : hasO ? '단어는 먼저 떠올리고, 본문은 안 보고 다시 세워 봐.'
+    : hasK ? '단어는 먼저 떠올리고, 지문은 주제의 핵심어만 골라 봐.'
+    : '눈으로 보는 대신 먼저 떠올리고, 바로 채점해.';
+  app.innerHTML = `
+<div class="wrap home">
+  <header class="masthead">
+    <div class="fields">${FIELDS.map(f => `<span class="field"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></span>`).join('')}</div>
+    <h1>${onlyO ? '본문 순서 맞추기' : onlyK ? '핵심어 고르기' : '꺼내는 단어장'}</h1>
+    <p class="lede">${lede}</p>
+  </header>
+  ${mixed ? '' : rulesBox(kinds[0] || 'vocab')}
+  <section class="sets" aria-labelledby="sets-h">
+    <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : onlyK ? '핵심어 세트' : hasO || hasK ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
+    ${groupedCards(sets, mixed)}
+  </section>
+  ${PASTE ? `<details class="paste" id="paste"${S.pasteOpen ? ' open' : ''}>
+    <summary><span class="sum-l">단어 직접 넣기</span><span class="sum-r">이 기기에만 저장</span></summary>
+    <div class="paste-body">
+      <label for="p-title">세트 이름</label>
+      <input type="text" id="p-title" maxlength="40" placeholder="예: 13강 1~2번" autocomplete="off">
+      <label for="p-text">엑셀에서 영어·뜻 칸을 복사해 붙여넣기 (번호·본문 풀이 칸이 같이 와도 괜찮아)</label>
+      <textarea id="p-text" rows="6" spellcheck="false" placeholder="deliberate&#9;의도적인 (a.)&#9;일부러 계획해서 하는"></textarea>
+      <p class="paste-status" id="p-status">한 줄에 단어 하나. 지문 제목 줄이 있으면 지문별로 묶여.</p>
+      <button class="btn btn-primary" id="p-save" type="button" disabled>세트 만들기</button>
+    </div>
+  </details>` : ''}
+  <p class="foot">${hasV || (!hasO && !hasK) ? '외국어 단어 실험에서, 한 번 맞힌 단어를 계속 다시 꺼내 본 경우 1주 뒤 약 80%가 남았고 다시 보기만 한 경우는 약 35%였어 (Karpicke &amp; Roediger, 2008).<br>' : ''}진행 기록은 이 기기 브라우저에만 저장돼. 매번 같은 브라우저로 열어야 이어서 할 수 있어.</p>
+</div>`;
+  bindHome();
+}
+/* 세트에 group이 있으면 묶음 제목을 달아 줌 (예: 어휘평가 2차 / 2학기 기말) */
+function groupedCards(sets, mixed) {
+  let last = null;
+  const folded = new Set();
+  return sets.map(s => {
+    const g = s.group || '', k = kindOf(s);
+    let head = g && g !== last ? `<h3 class="group-h">${esc(g)}</h3>` : '';
+    if (mixed && !folded.has(k)) { folded.add(k); head += rulesFold(k, !triedKind(sets, k)); }
+    last = g;
+    return head + setCard(s);
+  }).join('');
+}
+function deleteCustom(id) {
+  store.set(K.custom, customSets().filter(s => s.id !== id));
+  store.del(K.sess(id)); store.del(K.rec(id));
+}
+function bindHome() {
+  app.onclick = e => {
+    const b = e.target.closest('[data-act]');
+    if (!b) return;
+    const act = b.dataset.act, id = b.dataset.set;
+    const raw = findRaw(id);
+    if (!raw) return;
+    const live = liveAny(raw);
+    if (act === 'resume') { begin(id, 'resume'); return; }
+    if (act === 'cancel') { S.confirm = null; renderHome(); return; }
+    if (act === 'del') { S.confirm = { setId: id, act: 'del' }; renderHome(); return; }
+    if (act === 'yes-del') { deleteCustom(id); S.confirm = null; renderHome(); return; }
+    if (act.indexOf('yes-') === 0) { store.del(K.sess(id)); S.confirm = null; begin(id, act.slice(4)); return; }
+    if (act === 'full' || act === 'quick' || act === 'hard') {
+      if (live) { S.confirm = { setId: id, act }; renderHome(); return; }
+      begin(id, act);
+    }
+  };
+  const det = $('#paste'), pt = $('#p-text'), ps = $('#p-status'), pb = $('#p-save'), pti = $('#p-title');
+  if (!det) return;
+  det.addEventListener('toggle', () => { S.pasteOpen = det.open; });
+  let parsed = null;
+  pt.addEventListener('input', () => {
+    parsed = parsePaste(pt.value);
+    if (!pt.value.trim()) { ps.className = 'paste-status'; ps.textContent = '한 줄에 단어 하나. 지문 제목 줄이 있으면 지문별로 묶여.'; pb.disabled = true; return; }
+    if (!parsed.n) { ps.className = 'paste-status bad'; ps.textContent = '영어와 뜻을 못 나눴어. 엑셀에서 영어 칸과 뜻 칸을 같이 복사해 줘.'; pb.disabled = true; return; }
+    const f = parsed.sections[0].items[0];
+    ps.className = 'paste-status ok';
+    ps.innerHTML = `단어 <b>${parsed.n}</b>개 · 묶음 ${parsed.sections.length}개 인식${parsed.skipped ? ` · ${parsed.skipped}줄은 못 읽어서 뺐어` : ''}<br><span class="mono">${esc(f[0])}</span> → ${esc(f[1])}`;
+    pb.disabled = false;
+  });
+  pb.addEventListener('click', () => {
+    if (!parsed || !parsed.n) return;
+    const d = new Date();
+    const title = pti.value.trim() || `내 단어 ${d.getMonth() + 1}/${d.getDate()}`;
+    const list = customSets();
+    list.unshift({ id: 'c' + Date.now().toString(36), title, note: '직접 넣은 단어', custom: true, sections: parsed.sections });
+    store.set(K.custom, list);
+    S.pasteOpen = false;
+    renderHome();
+    window.scrollTo(0, 0);
+  });
+}
+
+/* ---------- 공부 화면 ---------- */
+const STUDY = `
+<div class="wrap study" id="st-root">
+  <div class="bar">
+    <button class="back" id="st-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="st-title"></div><div class="bar-sub" id="st-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="st-track"></div>
+  <div class="banner" id="st-banner" hidden></div>
+  <section class="card" id="st-card">
+    <div class="card-top"><span class="dir" id="c-dir"></span><span class="left mono" id="c-left"></span></div>
+    <div class="zone" id="ek-zone">
+      <div class="word" id="ek-word" lang="en"></div>
+      <div class="say-row" id="ek-say"></div>
+      <div class="tbar" id="ek-tbar" aria-hidden="true"><i></i></div>
+      <div class="ek-hint" id="ek-hint"></div>
+      <div class="reveal" id="ek-reveal" hidden>
+        <div class="core" id="ek-core"></div>
+        <div class="notes" id="ek-notes"></div>
+      </div>
+    </div>
+    <div class="zone" id="ke-zone" hidden>
+      <div class="ko-prompt" id="ke-core"></div>
+      <div class="ke-fb" id="ke-fb" aria-live="polite"></div>
+      <div class="slots" id="ke-slots" hidden></div>
+      <form class="answer" id="ke-form" novalidate>
+        <label class="sr" for="ke-input">영어로 쓰기</label>
+        <input id="ke-input" type="text" lang="en" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go">
+        <button class="btn btn-primary" id="ke-go" type="submit">확인</button>
+      </form>
+      <div class="ke-tools" id="ke-tools">
+        <button class="linkish" id="ke-hint" type="button">힌트 · 글자 수와 첫 글자</button>
+        <button class="linkish" id="ke-dunno" type="button">모르겠어</button>
+      </div>
+    </div>
+    <div class="stamp" id="st-stamp" aria-hidden="true"></div>
+  </section>
+  <div class="actions" id="ek-actions">
+    <button class="btn btn-primary wide big" id="ek-show" type="button">뜻 보기</button>
+    <div class="grade" id="ek-grade" hidden>
+      <button class="btn" type="button" data-g="no">몰랐어</button>
+      <button class="btn" type="button" data-g="meh">애매해</button>
+      <button class="btn btn-primary" type="button" data-g="yes">알았어</button>
+    </div>
+  </div>
+</div>`;
+
+function renderStudy() {
+  S.view = 'study'; app.onclick = null;
+  app.innerHTML = STUDY;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  R['st-title'].textContent = SET.title;
+  R['st-back'].onclick = () => { if (C) { clearTimeout(C.timer); clearTimeout(C.late); } tick(S.sess); save(); renderHome(); };
+  R['ek-show'].onclick = () => reveal(false);
+  R['ek-zone'].onclick = () => reveal(false);
+  R['ek-grade'].onclick = e => { const b = e.target.closest('[data-g]'); if (b) gradeEK(b.dataset.g); };
+  R['ke-form'].onsubmit = onKESubmit;
+  ['ke-go', 'ke-hint', 'ke-dunno'].forEach(k => R[k].addEventListener('pointerdown', e => { if (document.activeElement === R['ke-input']) e.preventDefault(); }));
+  R['ke-hint'].onclick = useHint;
+  R['ke-dunno'].onclick = dunno;
+  /* 발음 버튼: 카드를 눌러 뜻이 열리지 않게 막고, 한→영 입력 중엔 키보드가 닫히지 않게 함 */
+  R['st-card'].addEventListener('pointerdown', e => { if (e.target.closest('[data-say]') && document.activeElement === R['ke-input']) e.preventDefault(); });
+  R['st-card'].addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (!b || !C) return;
+    e.stopPropagation();
+    speak(SET.items[C.id]);
+  }, true);
+  window.scrollTo(0, 0);
+  showCard();
+  startClock();
+}
+/* 묶음이 25개 이하면 OMR 동그라미, 그보다 크면 막대(외운 것 진하게 + 본 것 연하게) */
+function trackHTML(n, full, dot) {
+  if (n > 25) {
+    const w = x => (x / n * 100).toFixed(1) + '%';
+    return `<div class="meter" aria-hidden="true"><i style="width:${w(full)}"></i><b style="width:${w(dot)}"></b></div>`;
+  }
+  let b = '';
+  for (let i = 0; i < n; i++) b += `<span class="bb${i < full ? ' full' : i < full + dot ? ' dot' : ''}"></span>`;
+  return `<div class="track-grid" aria-hidden="true"><div class="ticks">${'<i></i>'.repeat(n)}</div><div class="bubbles">${b}</div></div>`;
+}
+function updateHeader() {
+  const s = S.sess;
+  let sub = s.phase === 'final'
+    ? `${s.mode === 'quick' ? '빠른 점검' : '마지막 점검'} · 전체 섞어서 한 번씩`
+    : `배치 ${s.b + 1}/${s.batches.length} · ${s.phase === 'sort' ? '거르기' : '집중'}`;
+  if (s.mode === 'hard') sub = '끈질긴 단어 · ' + sub;
+  R['st-sub'].textContent = sub;
+}
+function updateTrack() {
+  const s = S.sess, el = R['st-track'];
+  if (s.phase === 'final') {
+    const n = s.pool.length, k = Math.max(0, s.fDone);
+    el.innerHTML = `<div class="meter" role="progressbar" aria-label="점검 진행" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${k}"><i style="width:${(k / n * 100).toFixed(1)}%"></i></div><div class="track-n mono">${k}/${n}</div>`;
+    return;
+  }
+  const ids = s.batches[s.b], n = ids.length;
+  let full = 0, dot = 0;
+  ids.forEach(id => { const x = s.st[id]; if (s.phase === 'learn' && x.m) full++; else if (x.sn) dot++; });
+  const label = s.phase === 'learn' ? `${n}개 중 ${full}개 외움` : `${n}개 중 ${dot}개 거름`;
+  el.innerHTML = trackHTML(n, full, dot) + `<div class="track-n mono" aria-label="${label}">${s.phase === 'learn' ? full : dot}/${n}</div>`;
+}
+function leftText() {
+  const s = S.sess;
+  if (s.phase === 'final') return `남은 ${s.pool.length - s.fDone}`;
+  if (s.phase === 'sort') return `남은 ${s.queue.length}`;
+  return `남은 ${s.batches[s.b].filter(id => !s.st[id].m).length}`;
+}
+function showCard() {
+  const s = S.sess, card = s.queue[0];
+  if (!card) { route(); return; }
+  if (C) { clearTimeout(C.timer); clearTimeout(C.late); }
+  const it = SET.items[card.id];
+  C = { d: card.d, id: card.id, rv: !!card.rv, revealed: false, state: 'ask', hint: false, busy: false, t0: performance.now(), timer: 0, late: 0, pending: '' };
+  updateHeader(); updateTrack();
+  if (S.banner) { R['st-banner'].textContent = S.banner; R['st-banner'].hidden = false; S.banner = ''; }
+  else R['st-banner'].hidden = true;
+  R['st-stamp'].className = 'stamp';
+  R['c-dir'].innerHTML = `<b>${card.d === 'ek' ? '영→한' : '한→영'}</b><span>${card.rv ? '복습' : card.d === 'ek' ? '말하고 넘기기' : '직접 쓰기'}</span>`;
+  R['c-left'].textContent = leftText();
+  R['st-root'].classList.toggle('ke-mode', card.d === 'ke');
+  if (card.d === 'ek') {
+    if (document.activeElement === R['ke-input']) R['ke-input'].blur();
+    R['ke-zone'].hidden = true; R['ek-zone'].hidden = false; R['ek-actions'].hidden = false;
+    R['ek-word'].textContent = it.en;
+    R['ek-say'].innerHTML = sayBtn(it, card.id, '발음');
+    primeAudio(it);
+    R['ek-reveal'].hidden = true; R['ek-show'].hidden = false; R['ek-grade'].hidden = true;
+    R['ek-hint'].textContent = '뜻을 소리 내서 말한 다음 뜻 보기';
+    R['ek-hint'].classList.remove('late');
+    const bar = R['ek-tbar'];
+    bar.hidden = false; bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
+    C.late = setTimeout(() => {
+      if (C && C.d === 'ek' && !C.revealed) { R['ek-hint'].textContent = '5초 넘었으면 애매로 눌러'; R['ek-hint'].classList.add('late'); }
+    }, 5000);
+  } else {
+    R['ek-zone'].hidden = true; R['ek-actions'].hidden = true; R['ke-zone'].hidden = false;
+    R['ke-core'].textContent = kePrompt(it.core);
+    primeAudio(it);
+    R['ke-slots'].hidden = true; R['ke-slots'].innerHTML = '';
+    R['ke-fb'].innerHTML = '';
+    R['ke-tools'].hidden = false; R['ke-hint'].disabled = false;
+    R['ke-go'].textContent = '확인';
+    R['ke-input'].value = '';
+    try { R['ke-input'].focus({ preventScroll: true }); } catch (e) { R['ke-input'].focus(); }
+  }
+}
+function reveal(force) {
+  if (!C || C.d !== 'ek' || C.revealed) return;
+  if (!force && performance.now() - C.t0 < 300) return; /* 연타로 다음 카드 뜻이 바로 열리는 것 방지 */
+  C.revealed = true; clearTimeout(C.late);
+  const it = SET.items[C.id];
+  R['ek-core'].textContent = it.core;
+  R['ek-notes'].innerHTML = it.notes.map(n => `<p>${esc(n)}</p>`).join('');
+  R['ek-reveal'].hidden = false;
+  R['ek-tbar'].classList.remove('run'); R['ek-tbar'].hidden = true;
+  R['ek-hint'].classList.remove('late');
+  R['ek-hint'].textContent = '굵은 뜻이 나왔으면 알았어';
+  R['ek-show'].hidden = true; R['ek-grade'].hidden = false;
+}
+function gradeEK(g) {
+  if (!C || C.d !== 'ek' || !C.revealed || C.busy) return;
+  C.busy = true;
+  answer(g); next();
+}
+function next() {
+  const s = S.sess;
+  if (s && (s.phase === 'sort' || s.phase === 'learn' || s.phase === 'final') && s.queue.length) showCard();
+  else { stopClock(); route(); }
+}
+function stamp(kind) { const el = R['st-stamp']; el.className = 'stamp'; void el.offsetWidth; el.className = 'stamp on ' + kind; }
+/* 한→영 문제에선 답을 흘리는 영어 괄호(예: "(pl. stimuli)")를 지움. 품사 표시 (v.) (n.) 등은 남김 */
+function kePrompt(core) {
+  const s = String(core).replace(/\s*\((?!(?:n|v|a|ad|adj|adv|prep|conj|pron)\.\))[^)]*[A-Za-z][^)]*\)/g, '').trim();
+  return s || core;
+}
+function otherHit(typed, id) {
+  for (let i = 0; i < SET.items.length; i++) if (i !== id && SET.items[i].ke && matchItem(typed, SET.items[i])) return i;
+  return -1;
+}
+function diffParts(typed, ans) {
+  const A = Array.from(typed), B = Array.from(ans);
+  const mk = lcsMask(A.map(c => c.toLowerCase()), B.map(c => c.toLowerCase()));
+  return {
+    a: A.map((c, i) => mk[0][i] ? esc(c) : `<span class="xtra">${esc(c)}</span>`).join(''),
+    b: B.map((c, i) => mk[1][i] ? esc(c) : `<span class="miss">${esc(c)}</span>`).join('')
+  };
+}
+function fbDone(btnText) { R['ke-tools'].hidden = true; R['ke-go'].textContent = btnText; }
+function onKESubmit(e) {
+  e.preventDefault();
+  if (!C || C.d !== 'ke') return;
+  if (C.state === 'wait' || C.state === 'fb') { finishKE(); return; }
+  if (C.state !== 'ask') return;
+  const typed = R['ke-input'].value.trim(), it = SET.items[C.id];
+  if (!typed) { R['ke-fb'].innerHTML = `<p class="warn">써 보고 확인해. 모르겠으면 아래 ‘모르겠어’.</p>`; return; }
+  if (!/[a-z]/i.test(typed)) { R['ke-fb'].innerHTML = `<p class="warn">영어 자판으로 바꿔서 써 줘.</p>`; return; }
+  const o = matchItem(typed, it) ? -1 : otherHit(typed, C.id);
+  /* 뜻 칸이 완전히 같은 단어(예: prior / former = 이전의)는 어느 쪽을 써도 정답 */
+  const twin = o >= 0 && SET.items[o].core === it.core;
+  if (o < 0 && matchItem(typed, it) || twin) {
+    C.state = 'wait'; C.pending = C.hint ? 'hint' : 'ok';
+    stamp('ok'); fbDone('다음');
+    R['ke-fb'].innerHTML = `<p class="ok-word" lang="en">${esc(it.en)}</p>` +
+      (twin ? `<p class="note"><span lang="en">${esc(SET.items[o].en)}</span>도 같은 뜻이라 정답이야.</p>` : '') +
+      (C.hint ? `<p class="note">힌트를 봤으니 몇 장 뒤에 한 번 더 나와.</p>` : '');
+    C.timer = setTimeout(finishKE, C.hint || twin ? 1500 : 700);
+    return;
+  }
+  if (o >= 0) {
+    R['ke-fb'].innerHTML = `<p class="warn">‘<span lang="en">${esc(typed)}</span>’는 ‘${esc(SET.items[o].core)}’ 뜻의 다른 단어야. 다시 써 봐.</p>`;
+    try { R['ke-input'].select(); } catch (_) {}
+    return;
+  }
+  C.state = 'fb'; C.pending = 'wrong';
+  stamp('x'); fbDone('다음');
+  const d = diffParts(typed, it.vars[0]);
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>내 답</dt><dd class="diff" lang="en">${d.a}</dd></div><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${d.b}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">빨간 글자만 확인하고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+}
+function dunno() {
+  if (!C || C.d !== 'ke' || C.state !== 'ask') return;
+  const it = SET.items[C.id];
+  C.state = 'fb'; C.pending = 'dunno';
+  fbDone('다음');
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${esc(it.vars[0])}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">철자를 눈에 담고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+}
+function slotsHTML(it) {
+  let first = true;
+  return expTokens(it.vars[0]).map(x => {
+    if (x.ph) return `<span class="ph">${esc(x.w)}</span>`;
+    const s = Array.from(x.w).map((ch, i) => /[a-z]/i.test(ch) ? (first && i === 0 ? esc(ch.toLowerCase()) : '_') : esc(ch)).join('');
+    first = false;
+    return `<span>${s}</span>`;
+  }).join('');
+}
+function useHint() {
+  if (!C || C.d !== 'ke' || C.state !== 'ask' || C.hint) return;
+  C.hint = true;
+  R['ke-slots'].innerHTML = slotsHTML(SET.items[C.id]);
+  R['ke-slots'].hidden = false;
+  R['ke-hint'].disabled = true;
+}
+function finishKE() {
+  if (!C || C.d !== 'ke' || (C.state !== 'wait' && C.state !== 'fb')) return;
+  clearTimeout(C.timer);
+  const res = C.pending;
+  C.state = 'done';
+  answer(res); next();
+}
+
+/* ---------- 순서 맞추기 화면 ---------- */
+const ORDER = `
+<div class="wrap study" id="od-root">
+  <div class="bar">
+    <button class="back" id="od-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="od-title"></div><div class="bar-sub" id="od-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="od-track"></div>
+  <section class="od-head">
+    <div class="card-top"><span class="dir" id="od-dir"></span><span class="left mono" id="od-left"></span></div>
+    <h2 class="od-name" id="od-name"></h2>
+    <p class="od-hint" id="od-hint" aria-live="polite"></p>
+    <p class="od-flow" id="od-flow" hidden></p>
+  </section>
+  <ol class="od-list" id="od-list" aria-label="문장"></ol>
+  <div class="od-foot" id="od-foot"></div>
+</div>`;
+
+function renderOrder() {
+  S.view = 'study'; app.onclick = null; C = null;
+  if (DRAG) endDrag();
+  app.innerHTML = ORDER;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  const s = S.sess;
+  R['od-title'].textContent = SET.title;
+  R['od-back'].onclick = () => { if (DRAG) endDrag(); tick(s); save(); renderHome(); };
+  bindDrag(R['od-list']);
+  window.scrollTo(0, 0);
+  if (s.cur.fb) renderOrderFeedback(); else renderOrderPick();
+  startClock();
+}
+function orderHeader() {
+  const s = S.sess, p = SET.passages[s.cur.id], n = s.pool.length;
+  R['od-sub'].textContent = (s.mode === 'hard' ? '틀린 지문만 · ' : '') + `맞힌 지문 ${s.done}/${n}`;
+  R['od-track'].innerHTML = trackHTML(n, s.done, 1) + `<div class="track-n mono" aria-label="맞힌 지문 ${s.done}/${n}">${s.done}/${n}</div>`;
+  R['od-left'].textContent = `남은 지문 ${s.queue.length}`;
+  R['od-name'].textContent = p.name;
+}
+function renderOrderPick() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length;
+  orderHeader();
+  R['od-dir'].innerHTML = `<b>순서</b><span>${esc(p.kind)} · ${n}문장</span>`;
+  R['od-hint'].className = 'od-hint';
+  R['od-hint'].innerHTML = `안 보고 끌어서 본문 순서대로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.`;
+  R['od-flow'].hidden = true;
+  R['od-list'].className = 'od-list pick';
+  R['od-list'].innerHTML = c.picks.map((li, k) =>
+    `<li class="od-line" data-line="${li}"><span class="od-bb" aria-hidden="true">${k + 1}</span><span lang="en">${esc(p.lines[li])}</span><span class="od-grip" aria-label="끌어서 옮기기">${GRIP}</span></li>`).join('');
+  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-go" type="button">확인</button>`;
+  $('#od-go').onclick = orderCheck;
+}
+/* 확인 뒤: 교과서 순서대로 다시 나열하고, 자리를 틀린 문장에 내가 놓은 번호를 달아 줌.
+   틀렸으면 지문 흐름 한 줄과 문장마다 '왜 여기인지' 한국어 단서를 같이 보여 줌 */
+function renderOrderFeedback() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], n = p.lines.length, fb = c.fb;
+  orderHeader();
+  R['od-dir'].innerHTML = `<b>${fb.ok ? '정답' : '다시'}</b><span>${esc(p.kind)} · ${n}문장</span>`;
+  R['od-hint'].className = 'od-hint ' + (fb.ok ? 'ok' : 'bad');
+  const cued = !fb.ok && p.cues.some(Boolean);
+  R['od-hint'].textContent = fb.ok ? `${n}문장 다 제자리야.`
+    : `${n}문장 중 ${fb.right}개 제자리. 빨간 문장이 왜 그 자리인지 읽고 넘겨 — 이 지문은 뒤에 다시 나와.`;
+  if (!fb.ok && p.flow) { R['od-flow'].innerHTML = `<b>흐름</b>${esc(p.flow)}`; R['od-flow'].hidden = false; }
+  else R['od-flow'].hidden = true;
+  R['od-list'].className = 'od-list';
+  R['od-list'].innerHTML = p.lines.map((t, i) => {
+    const mine = fb.picks.indexOf(i) + 1, miss = mine !== i + 1;
+    return `<li class="od-line ${miss ? 'miss' : 'hit'}"><span class="od-bb" aria-hidden="true">${i + 1}</span><span><span lang="en">${esc(t)}</span>${miss ? `<span class="od-mine">내 답 ${mine}번째</span>` : ''}${cued && p.cues[i] ? `<span class="od-cue">${esc(p.cues[i])}</span>` : ''}</span></li>`;
+  }).join('');
+  R['od-foot'].innerHTML = `<button class="btn btn-primary wide big" id="od-next" type="button">${s.queue.length ? '다음 지문' : '결과 보기'}</button>`;
+  $('#od-next').onclick = orderNext;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- 핵심어 고르기 화면 ---------- */
+const KW = `
+<div class="wrap study" id="kw-root">
+  <div class="bar">
+    <button class="back" id="kw-back" type="button">목록</button>
+    <div class="bar-mid"><div class="bar-title" id="kw-title"></div><div class="bar-sub" id="kw-sub"></div></div>
+    <div class="clock mono" id="st-clock" aria-label="걸린 시간">00:00</div>
+  </div>
+  <div class="track" id="kw-track"></div>
+  <section class="od-head">
+    <div class="card-top"><span class="dir" id="kw-dir"></span><span class="left mono" id="kw-left"></span></div>
+    <h2 class="od-name" id="kw-name"></h2>
+    <p class="od-hint" id="kw-hint" aria-live="polite"></p>
+  </section>
+  <div class="kw-body" id="kw-body">
+    <p class="kw-cap" id="kw-cap" hidden>본문 · 이유에 적힌 번호가 문장 번호야</p>
+    <p class="kw-text" id="kw-text" lang="en"></p>
+  </div>
+  <section class="kw-zone" id="kw-zone"></section>
+  <div class="od-foot" id="kw-foot"></div>
+</div>`;
+/* 한 줄 주제의 **…**를 굵게 */
+const boldHTML = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+
+function renderKw() {
+  S.view = 'study'; app.onclick = null; C = null;
+  app.innerHTML = KW;
+  R = {};
+  app.querySelectorAll('[id]').forEach(el => { R[el.id] = el; });
+  const s = S.sess, p = SET.passages[s.cur.id];
+  R['kw-title'].textContent = SET.title;
+  R['kw-back'].onclick = () => { tick(s); save(); renderHome(); };
+  R['kw-text'].innerHTML = p.lines.map((t, i) => `<span class="kw-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>${esc(t)}`).join(' ');
+  window.scrollTo(0, 0);
+  if (s.cur.fb) renderKwFeedback(); else renderKwPick();
+  startClock();
+}
+function kwHeader() {
+  const s = S.sess, p = SET.passages[s.cur.id], n = s.pool.length;
+  R['kw-sub'].textContent = (s.mode === 'hard' ? '틀린 지문만 · ' : '') + `맞힌 지문 ${s.done}/${n}`;
+  R['kw-track'].innerHTML = trackHTML(n, s.done, 1) + `<div class="track-n mono" aria-label="맞힌 지문 ${s.done}/${n}">${s.done}/${n}</div>`;
+  R['kw-left'].textContent = `남은 지문 ${s.queue.length}`;
+  R['kw-name'].textContent = p.name;
+}
+function renderKwPick() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id];
+  kwHeader();
+  R['kw-dir'].innerHTML = `<b>핵심어</b><span>보기 ${p.opts.length}개</span>`;
+  R['kw-hint'].className = 'od-hint';
+  R['kw-hint'].textContent = '지문을 읽고 주제의 핵심어를 모두 골라. 몇 개인지는 안 알려 줘.';
+  R['kw-zone'].innerHTML = `<p class="kw-ask">나왔다고 다 핵심은 아니야 · 지문에 없어도 핵심어를 바꿔 쓴 말이면 정답</p>
+    <div class="kw-chips" id="kw-chips" role="group" aria-label="보기">${c.order.map(i =>
+      `<button class="kw-chip" type="button" data-i="${i}" aria-pressed="${c.picks.includes(i)}" lang="en">${esc(p.opts[i].w)}</button>`).join('')}</div>`;
+  R['kw-foot'].innerHTML = `<button class="btn btn-primary wide big" id="kw-go" type="button">확인</button>`;
+  const go = $('#kw-go');
+  const sync = () => { go.disabled = !c.picks.length; go.textContent = c.picks.length ? `확인 · ${c.picks.length}개 골랐어` : '확인'; };
+  $('#kw-chips').onclick = e => {
+    const b = e.target.closest('[data-i]');
+    if (!b) return;
+    const i = +b.dataset.i;
+    kwToggle(i);
+    b.setAttribute('aria-pressed', String(c.picks.includes(i)));
+    sync();
+  };
+  go.onclick = kwCheck;
+  sync();
+}
+/* 확인 뒤: 한 줄 주제(핵심어 굵게) → 핵심 보기(빠뜨린 것은 빨갛게 + 이유) → 잘못 고른 보기(빨갛게 + 이유)
+   → 안 고른 오답 보기 한 줄 → 본문(이유의 번호를 찾아보게). 맞혀도 한 줄 주제는 보여 줌 */
+function renderKwFeedback() {
+  const s = S.sess, c = s.cur, p = SET.passages[c.id], g = gradeKw(c.fb.picks, p.opts);
+  kwHeader();
+  const nk = g.hit.length + g.miss.length;
+  R['kw-dir'].innerHTML = `<b>${g.ok ? '정답' : '다시'}</b><span>핵심어 ${nk}개</span>`;
+  R['kw-hint'].className = 'od-hint ' + (g.ok ? 'ok' : 'bad');
+  const parts = [];
+  if (g.miss.length) parts.push(`빠뜨린 핵심 ${g.miss.length}개`);
+  if (g.wrong.length) parts.push(`잘못 고른 보기 ${g.wrong.length}개`);
+  R['kw-hint'].textContent = g.ok ? `핵심어 ${nk}개 다 골랐어.` : `${parts.join(' · ')}. 빨간 칸의 이유를 읽고 넘겨 — 이 지문은 뒤에 다시 나와.`;
+  const hitS = new Set(g.hit), wrongS = new Set(g.wrong);
+  const row = (i, cls, tag, why) => `<li class="kw-row ${cls}"><span class="kw-tag">${tag}</span><span class="kw-w" lang="en">${esc(p.opts[i].w)}</span>${why ? `<span class="kw-why">${esc(p.opts[i].why)}</span>` : ''}</li>`;
+  const keys = p.opts.map((o, i) => i).filter(i => p.opts[i].key);
+  const rest = p.opts.map((o, i) => i).filter(i => !p.opts[i].key && !wrongS.has(i));
+  R['kw-zone'].innerHTML = `
+    <div class="kw-topic"><span class="eyebrow">한 줄 주제</span><span>${boldHTML(p.ko)}</span>${p.en ? `<span class="kw-en" lang="en">${boldHTML(p.en)}</span>` : ''}</div>
+    <ul class="kw-fb" aria-label="채점">
+      ${keys.map(i => hitS.has(i) ? row(i, 'hit', '핵심', false) : row(i, 'miss', '빠뜨린 핵심', true)).join('')}
+      ${g.wrong.map(i => row(i, 'wrong', '잘못 고름', true)).join('')}
+    </ul>
+    ${rest.length ? `<p class="kw-rest">안 고른 오답 보기 · ${rest.map(i => `<span lang="en">${esc(p.opts[i].w)}</span>`).join(' · ')}</p>` : ''}`;
+  R['kw-zone'].after(R['kw-body']);
+  R['kw-cap'].hidden = false;
+  R['kw-foot'].innerHTML = `<button class="btn btn-primary wide big" id="kw-next" type="button">${s.queue.length ? '다음 지문' : '결과 보기'}</button>`;
+  $('#kw-next').onclick = kwNext;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- 끌어서 옮기기 ----------
+   손잡이(touch-action:none)는 바로 끌림. 문장 부분은 꾹 누르면(0.25초) 끌리고, 바로 움직이면 그냥 스크롤.
+   마우스는 아무 데나 눌러서 끌기. 끌리는 동안 화면 끝에 가까우면 자동으로 스크롤됨 */
+let DRAG = null, HOLD = null;
+function rowsOf(list) { return Array.from(list.children); }
+function renumber(list) { rowsOf(list).forEach((li, k) => { const b = li.querySelector('.od-bb'); if (b) b.textContent = k + 1; }); }
+function startDrag(li, y, src) {
+  if (DRAG || !li || !li.parentNode) return;
+  const list = li.parentNode, rect = li.getBoundingClientRect();
+  DRAG = { li, list, grab: y - rect.top, y, ty: 0, src, raf: 0 };
+  li.classList.add('drag');
+  try { if (src === 'hold' && navigator.vibrate) navigator.vibrate(12); } catch (e) {}
+  moveDrag(y);
+  const loop = () => { if (!DRAG) return; autoScroll(); DRAG.raf = requestAnimationFrame(loop); };
+  DRAG.raf = requestAnimationFrame(loop);
+}
+function moveDrag(y) {
+  if (!DRAG) return;
+  DRAG.y = y;
+  const { li, list } = DRAG, rows = rowsOf(list);
+  const myIdx = rows.indexOf(li);
+  let above = 0;
+  rows.forEach(r => { if (r !== li) { const b = r.getBoundingClientRect(); if (b.top + b.height / 2 < y) above++; } });
+  if (above !== myIdx) {
+    const others = rows.filter(r => r !== li);
+    if (above >= others.length) list.appendChild(li); else list.insertBefore(li, others[above]);
+    renumber(list);
+  }
+  const top = li.getBoundingClientRect().top - DRAG.ty; /* 지금 transform을 뺀 원래 자리 */
+  DRAG.ty = y - DRAG.grab - top;
+  li.style.transform = `translateY(${DRAG.ty}px)`;
+}
+function autoScroll() {
+  if (!DRAG) return;
+  const top = 72, bot = 104, h = window.innerHeight, y = DRAG.y; /* 아래쪽은 고정된 확인 버튼 높이만큼 더 넓게 */
+  let dy = 0;
+  if (y < top) dy = -Math.ceil((top - y) / 6);
+  else if (y > h - bot) dy = Math.ceil((y - (h - bot)) / 6);
+  if (!dy) return;
+  const before = window.scrollY;
+  window.scrollBy(0, dy);
+  if (window.scrollY !== before) moveDrag(DRAG.y);
+}
+function endDrag() {
+  if (!DRAG) return;
+  const { li, list, raf } = DRAG;
+  cancelAnimationFrame(raf);
+  li.classList.remove('drag'); li.style.transform = '';
+  DRAG = null;
+  const s = S.sess;
+  if (s && s.cur && !s.cur.fb) { s.cur.picks = rowsOf(list).map(r => +r.dataset.line); save(); }
+}
+function cancelHold() { if (HOLD) { clearTimeout(HOLD.t); HOLD = null; } }
+function bindDrag(list) {
+  const rowAt = e => { const li = e.target.closest('.od-line'); return li && list.classList.contains('pick') ? li : null; };
+  /* 터치: 손잡이면 바로, 문장이면 꾹 눌러서 */
+  list.addEventListener('touchstart', e => {
+    if (DRAG || e.touches.length !== 1) return;
+    const li = rowAt(e); if (!li) return;
+    const t = e.touches[0];
+    if (e.target.closest('.od-grip')) { startDrag(li, t.clientY, 'grip'); return; }
+    cancelHold();
+    HOLD = { li, x: t.clientX, y: t.clientY, t: setTimeout(() => { if (HOLD) { const h = HOLD; HOLD = null; startDrag(h.li, h.y, 'hold'); } }, 250) };
+  }, { passive: true });
+  list.addEventListener('touchmove', e => {
+    if (DRAG) { e.preventDefault(); moveDrag(e.touches[0].clientY); return; }
+    if (HOLD) { const t = e.touches[0]; if (Math.abs(t.clientX - HOLD.x) > 8 || Math.abs(t.clientY - HOLD.y) > 8) cancelHold(); }
+  }, { passive: false });
+  list.addEventListener('touchend', () => { cancelHold(); endDrag(); });
+  list.addEventListener('touchcancel', () => { cancelHold(); endDrag(); });
+  /* 마우스: 아무 데나 눌러서 */
+  list.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0 || DRAG) return;
+    const li = rowAt(e); if (!li) return;
+    e.preventDefault();
+    startDrag(li, e.clientY, 'mouse');
+    const mv = ev => moveDrag(ev.clientY);
+    const up = () => { document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); document.removeEventListener('pointercancel', up); endDrag(); };
+    document.addEventListener('pointermove', mv); document.addEventListener('pointerup', up); document.addEventListener('pointercancel', up);
+  });
+  list.addEventListener('contextmenu', e => { if (rowAt(e)) e.preventDefault(); });
+  list.addEventListener('dragstart', e => e.preventDefault());
+}
+
+/* ---------- 배치 끝 / 결과 ---------- */
+function renderPause() {
+  S.view = 'pause'; app.onclick = null; stopClock();
+  const s = S.sess, ids = s.batches[s.b], n = ids.length;
+  const known = ids.filter(id => s.st[id].k).length;
+  const last = s.b + 1 >= s.batches.length;
+  app.innerHTML = `
+<div class="wrap pause">
+  <div class="eyebrow">${s.mode === 'hard' ? '끈질긴 단어 · ' : ''}배치 ${s.b + 1}/${s.batches.length} 끝</div>
+  <div class="track">${trackHTML(n, n, 0)}<div class="track-n mono">${n}/${n}</div></div>
+  <h2 class="big-h">${n}개 모두 꺼냈어</h2>
+  <dl class="stats">
+    <div><dt>이번 배치</dt><dd>${fmt(s.ms - (s.bms0 || 0))}</dd></div>
+    <div><dt>바로 나온 단어</dt><dd>${known}</dd></div>
+    <div><dt>전체 시간</dt><dd>${fmt(s.ms)}</dd></div>
+  </dl>
+  <p class="note">${last ? `이제 ${s.pool.length}개 전체를 섞어서 한 번씩 꺼내. 영→한과 한→영이 섞여 나와.` : '여기까지 저장됐어. 쉬었다 와도 다음 배치부터 이어서 할 수 있어.'}</p>
+  <div class="actions">
+    <button class="btn btn-primary wide big" id="go-next" type="button">${last ? '마지막 점검 시작' : `다음 배치 (${s.b + 2}/${s.batches.length})`}</button>
+    <button class="btn btn-quiet wide" id="go-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  $('#go-next').onclick = nextBatch;
+  $('#go-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+/* 순서 세트 결과: 한 번에 맞힌 지문 수, 다시 한 지문 목록(몇 번 만에 맞혔는지). 제출 칸은 없음 */
+function renderOrderResult(r) {
+  S.sess = null;
+  const hardP = r.hard.map(id => ({ id, p: SET.passages[id] })).filter(x => x.p);
+  const kind = r.mode === 'hard' ? '틀린 지문만' : '순서 맞추기';
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.n}지문 다 세웠어</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>한 번에 맞힘</dt><dd>${r.known}</dd></div>
+    <div><dt>다시 한 지문</dt><dd>${hardP.length}</dd></div>
+  </dl>
+  ${hardP.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">다시 한 지문</h3>
+    <p class="note">한 번에 못 맞힌 지문이야. 시험 전에 한 번 더 세워 봐.</p>
+    <ul>${hardP.map(x => `<li><span class="en">${esc(x.p.name)}</span><span>${esc(x.p.kind)} ${x.p.lines.length}문장 · ${r.tries[x.id] || 2}번 만에</span></li>`).join('')}</ul>
+  </section>` : `<p class="note">전부 한 번에 맞혔어.</p>`}
+  <p class="note">시험 전날 한 번 더 세우면 오래 가.</p>
+  <div class="actions">
+    ${hardP.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">틀린 지문만 다시</button>` : ''}
+    <button class="btn ${hardP.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+/* 핵심어 세트 결과: 한 번에 맞힌 지문 수, 다시 한 지문 목록. 처음부터 끝까지 했으면 구글폼 제출 칸
+   (세트 '핵심어 · 16강', 끈질긴 단어 칸에는 다시 한 지문 '2지문: 16강 03(2번 만에), …') */
+function renderKwResult(r) {
+  S.sess = null;
+  const hardP = r.hard.map(id => ({ id, p: SET.passages[id] })).filter(x => x.p);
+  const kind = r.mode === 'hard' ? '틀린 지문만' : '핵심어 고르기';
+  const tries = id => r.tries[id] || 2;
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.n}지문 핵심어 다 골랐어</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>한 번에 맞힘</dt><dd>${r.known}</dd></div>
+    <div><dt>다시 한 지문</dt><dd>${hardP.length}</dd></div>
+  </dl>
+  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘핵심어 고르기’를 처음부터 끝까지 했을 때만 할 수 있어.</p>` : ''}
+  ${FORM && r.mode === 'full' ? submitHTML() : ''}
+  ${hardP.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">다시 한 지문</h3>
+    <p class="note">한 번에 못 맞힌 지문이야. 주제의 핵심어가 뭐였는지 한 번 더 떠올려 봐.</p>
+    <ul>${hardP.map(x => `<li><span class="en">${esc(x.p.name)}</span><span>핵심어 ${x.p.opts.filter(o => o.key).length}개 · ${tries(x.id)}번 만에</span></li>`).join('')}</ul>
+  </section>` : `<p class="note">전부 한 번에 맞혔어.</p>`}
+  <p class="note">시험 전에 한 번 더 고르면 주제가 더 빨리 보여.</p>
+  <div class="actions">
+    ${hardP.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">틀린 지문만 다시</button>` : ''}
+    <button class="btn ${hardP.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  if (FORM && r.mode === 'full') {
+    bindSubmit(r, `핵심어 · ${r.title}`, `${hardP.length}지문` + (hardP.length ? ': ' + hardP.map(x => `${x.p.name}(${tries(x.id)}번 만에)`).join(', ') : ''));
+  }
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+function submitHTML() {
+  return `
+  <section class="submit" aria-labelledby="sub-h">
+    <h3 id="sub-h">선생님께 제출</h3>
+    <label for="sub-name">이름</label>
+    <div class="submit-row">
+      <input type="text" id="sub-name" maxlength="20" autocomplete="name" placeholder="이름 쓰기">
+      <a class="btn btn-primary" id="sub-go" href="#" target="_blank" rel="noopener">제출하러 가기</a>
+    </div>
+    <p class="note" id="sub-note">구글폼이 결과가 채워진 채로 열려. 거기서 <b>제출(Submit)</b>까지 눌러야 끝나.</p>
+  </section>`;
+}
+function renderResult() {
+  S.view = 'result'; app.onclick = null; stopClock();
+  const r = S.result;
+  if (!r) { renderHome(); return; }
+  if (r.kind === 'order') { renderOrderResult(r); return; }
+  if (r.kind === 'kw') { renderKwResult(r); return; }
+  S.sess = null;
+  const hardItems = r.hard.map(id => SET.items[id]).filter(Boolean);
+  const kind = r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기';
+  app.innerHTML = `
+<div class="wrap result">
+  <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
+  <h2 class="big-h">${r.mode === 'quick' ? `${r.n}개 점검 끝` : `${r.n}개 다 꺼냈어`}</h2>
+  <dl class="stats">
+    <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
+    <div><dt>${r.mode === 'quick' ? '한 번에 맞힘' : '바로 나온 단어'}</dt><dd>${r.known}</dd></div>
+    <div><dt>끈질긴 단어</dt><dd>${hardItems.length}</dd></div>
+  </dl>
+  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.</p>` : ''}
+  ${FORM && r.mode === 'full' ? submitHTML() : ''}
+  ${hardItems.length ? `
+  <section class="hard" aria-labelledby="hard-h">
+    <h3 id="hard-h">끈질긴 단어</h3>
+    <p class="note">여러 번 틀렸거나 마지막 점검에서 걸린 단어야.</p>
+    <ul class="${hardItems.some(canSpeak) ? 'with-say' : ''}">${hardItems.map((it, i) => `<li><span class="en" lang="en">${esc(it.en)}</span><span>${esc(it.core)}</span>${sayBtn(it, i, '') || (hardItems.some(canSpeak) ? '<span></span>' : '')}</li>`).join('')}</ul>
+  </section>` : `<p class="note">끈질긴 단어 없이 끝났어.</p>`}
+  <p class="note">시험 전날 ‘빠른 점검’을 한 번 더 하면 오래 가.</p>
+  <div class="actions">
+    ${hardItems.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">끈질긴 단어만 다시</button>` : ''}
+    <button class="btn ${hardItems.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
+  </div>
+</div>`;
+  if (FORM && r.mode === 'full') bindSubmit(r, `${r.title} · ${kind}`, `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : ''));
+  const hl = $('.hard ul');
+  if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(hardItems[+b.dataset.say]); });
+  const h = $('#r-hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard');
+  $('#r-home').onclick = () => renderHome();
+  window.scrollTo(0, 0);
+}
+
+/* 결과를 선생님 구글폼으로: 미리 채워진 링크를 새 탭으로 열고, 학생이 폼에서 제출을 누름.
+   setText = 세트 칸(단어 '기말 · 1~80번 · 외우기', 핵심어 '핵심어 · 16강'), hardText = 끈질긴 단어 칸 */
+function bindSubmit(r, setText, hardText) {
+  const nameEl = $('#sub-name'), go = $('#sub-go'), note = $('#sub-note');
+  const noteHTML = note.innerHTML;
+  const fmtKo = ms => { const t = Math.max(0, Math.round(ms / 1000)); return `${Math.floor(t / 60)}분 ${t % 60}초`; };
+  const sync = () => {
+    const pairs = [['usp', 'pp_url'], [FORM.name, nameEl.value.trim()], [FORM.school, CFG.school || ''], [FORM.set, setText], [FORM.time, fmtKo(r.ms)], [FORM.hard, hardText]];
+    go.href = FORM.url + '?' + pairs.filter(p => p[0]).map(p => encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1])).join('&');
+  };
+  nameEl.value = store.get(K.name) || '';
+  nameEl.addEventListener('input', () => { store.set(K.name, nameEl.value.trim()); note.innerHTML = noteHTML; note.classList.remove('warn'); sync(); });
+  go.addEventListener('click', e => {
+    if (!nameEl.value.trim()) { e.preventDefault(); note.textContent = '이름부터 써 줘.'; note.classList.add('warn'); nameEl.focus(); }
+  });
+  sync();
+}
+
+/* 데스크톱: 스페이스/엔터 = 뜻 보기, 1·2·3 = 몰랐어·애매해·알았어 */
+document.addEventListener('keydown', e => {
+  if (S.view !== 'study' || !C || C.d !== 'ek') return;
+  const tg = e.target && e.target.tagName;
+  if (tg === 'INPUT' || tg === 'TEXTAREA') return;
+  if (!C.revealed && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); reveal(true); }
+  else if (C.revealed && (e.key === '1' || e.key === '2' || e.key === '3')) { e.preventDefault(); gradeEK(['no', 'meh', 'yes'][+e.key - 1]); }
+});
+document.addEventListener('visibilitychange', () => {
+  const s = S.sess;
+  if (!s || S.view !== 'study') return;
+  if (document.hidden) { tick(s); save(); } else s.lt = Date.now();
+});
+
+renderHome();
+})();
+</script>
+</body>
+</html>

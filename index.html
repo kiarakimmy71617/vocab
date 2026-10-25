@@ -1198,8 +1198,8 @@ const RULES = {
       <li><span class="num">3</span><span><b>철자는 직접 쳐서</b> 채점. 틀린 단어는 맞힐 때까지 돌아와.</span></li>
       <li><span class="num">4</span><span><b>마지막에 전체를 섞어서</b> 한 번 더. 맞힌 단어도 다시 꺼내야 오래 가.</span></li>`],
   order: ['순서 맞추는 방법', `
-      <li><span class="num">1</span><span><b>교과서·노트는 덮고</b> 해. 보면서 맞추면 시험장에선 안 나와.</span></li>
-      <li><span class="num">2</span><span><b>문장을 끌어서</b> 교과서 순서로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.</span></li>
+      <li><span class="num">1</span><span><b>교재·필기는 덮고</b> 해. 보면서 맞추면 시험장에선 안 나와.</span></li>
+      <li><span class="num">2</span><span><b>문장을 끌어서</b> 본문 순서대로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.</span></li>
       <li><span class="num">3</span><span><b>다 맞췄으면 확인.</b> 틀리면 왜 그 순서인지 해설이 나오고, 그 지문은 뒤로 갔다가 다시 나와. 다 맞혀야 끝.</span></li>
       <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>`],
   kw: ['핵심어 고르는 방법', `
@@ -1613,7 +1613,7 @@ function renderOrderPick() {
   orderHeader();
   R['od-dir'].innerHTML = `<b>순서</b><span>${esc(p.kind)} · ${n}문장</span>`;
   R['od-hint'].className = 'od-hint';
-  R['od-hint'].innerHTML = `안 보고 끌어서 교과서 순서로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.`;
+  R['od-hint'].innerHTML = `안 보고 끌어서 본문 순서대로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.`;
   R['od-flow'].hidden = true;
   R['od-list'].className = 'od-list pick';
   R['od-list'].innerHTML = c.picks.map((li, k) =>

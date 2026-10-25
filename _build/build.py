@@ -11,7 +11,7 @@
 나간 뒤에는 id_prefix나 set_size(단어), 과 키(순서)·강 키(핵심어)를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
 
 순서 텍스트 형식 (_build/src/<데이터이름>.txt):
-  # L5 | 5과 · From Trash to Music               ← 과(= 세트 하나). '|' 앞이 세트 ID에 들어가는 키, 뒤가 세트 제목
+  # L5 | 5과 · From Trash to Music | 설명        ← 과(= 세트 하나). 키(세트 ID에 들어감) | 세트 제목 | 카드 설명(선택, 없으면 그룹 note나 '대화문 5 + 본문 4')
   ## Listen & Speak 1 ① | 대화문 | 환영 → 감사 → … ← 지문. 이름 | 종류(대화문/본문) | 흐름 요약(오답 때 보여 줌, 선택)
   Hey, Bora. Welcome to our rock band. | 첫 문장: …  ← 문장 | 왜 이 자리인지 한국어 단서(선택). 말한 사람 표시는 쓰지 않음
   ...
@@ -133,7 +133,7 @@ def import_order(path, name):
             parts = [p.strip() for p in line[2:].split('|')]
             if len(parts) < 2 or not re.fullmatch(r'[A-Za-z0-9_-]+', parts[0]):
                 sys.exit(f'과 줄은 "# 키 | 제목" 형식이어야 해 (키는 영문·숫자): {line}')
-            cur_l = {'key': parts[0], 'title': parts[1], 'passages': []}; cur_p = None
+            cur_l = {'key': parts[0], 'title': parts[1], 'note': parts[2] if len(parts) > 2 else '', 'passages': []}; cur_p = None
             lessons.append(cur_l)
         else:
             if cur_p is None: sys.exit(f'문장 앞에 지문 줄(## 이름 | 종류)이 없어: {line}')
@@ -283,7 +283,7 @@ def order_sets(g):
             if not kinds or kinds[-1][0] != p['kind']: kinds.append([p['kind'], 0])
             kinds[-1][1] += 1
         st = {'id': f"{g['id_prefix']}-{l['key']}", 'kind': 'order', 'group': g['group'], 'title': l['title'],
-              'note': g.get('note') or ' + '.join(f'{k} {c}' for k, c in kinds), 'passages': l['passages']}
+              'note': l.get('note') or g.get('note') or ' + '.join(f'{k} {c}' for k, c in kinds), 'passages': l['passages']}
         sets.append(st)
         print(f"{g['group'][:24]} | {st['title']} | {st['note']} | {len(l['passages'])}지문 {sum(len(p['lines']) for p in l['passages'])}문장")
     return sets
