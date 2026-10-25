@@ -1,0 +1,615 @@
+{
+ "source": "songdo1-2026-2f-order.txt",
+ "lessons": [
+  {
+   "key": "L16",
+   "title": "16강 · 글의 순서",
+   "passages": [
+    {
+     "name": "16강 01 · p.134",
+     "kind": "본문",
+     "flow": "페달 밟기 → 멈추면 → 서서히 느려짐 → 더 빨리 멈추려면? 브레이크 → 브레이크가 힘을 가함 → 그 힘 = 마찰력 → 브레이크 없이도 다른 마찰력 → 바퀴-축 → 공기 저항 → 카트에 적용",
+     "lines": [
+      "Imagine you are pedalling your bicycle on a level road.",
+      "You stop pedalling: no force is now acting to move you forward.",
+      "What happens? You gradually slow down.",
+      "How could you slow down more suddenly, in a shorter distance? By putting the brakes on.",
+      "Because the brakes change your movement, making you slow down more suddenly, they must be exerting a force on the bicycle and you, as they grip and rub on the wheel-rims.",
+      "This is the force called friction, which tends to slow down moving things by acting in the direction opposite to movement, that is backwards.",
+      "Even without the brakes on, there are other friction forces acting on you and your bicycle, which also slow you down.",
+      "One of these is friction in the wheels rubbing on the axles.",
+      "Another is air resistance, which you can feel, pushing you backwards as you and the bicycle move forwards.",
+      "When you apply these ideas to something around you, like a cart, you can see what could be generating friction: mainly the axles rubbing on the body as they rotate."
+     ],
+     "cues": [
+      "첫 문장: 상황 설정 — 평지에서 페달 밟기",
+      "페달을 멈춤 → 앞으로 미는 힘이 없음",
+      "'What happens?' = 멈추면 어떻게 되나 → 서서히 느려짐",
+      "'서서히'와 대비: 더 갑자기 멈추려면? 브레이크",
+      "'the brakes' = 앞의 브레이크 → 힘을 가하고 있다는 추론",
+      "'This' = 브레이크가 가하는 힘 → 이름(마찰력)",
+      "'Even without the brakes' = 브레이크 말고도 다른 마찰력",
+      "'One of these' = 그 다른 마찰력 중 하나: 바퀴-축",
+      "'Another' = 또 하나: 공기 저항",
+      "'these ideas' = 지금까지의 마찰 개념 → 카트에 적용"
+     ]
+    },
+    {
+     "name": "16강 02 · p.134",
+     "kind": "본문",
+     "flow": "역사는 반복된다는 말 → 실제로 반복되는 듯 → 예: 팽창 후 붕괴 → 하지만 항상? → 그렇다면 고고학은 지루 → 실제론 아님 → 갑자기 끝난 문명 → 팽창으로 무너질 기회도 없음 → 결론: 지나친 단순화",
+     "lines": [
+      "History, people often say, repeats itself.",
+      "And looking at the historical records of the ancient civilizations, some things do seem to happen again and again.",
+      "Civilizations expand, get overextended, and then collapse as in the cases of Rome, which went under in 476 AD, and the British Empire, which fell apart more than a thousand years later in the post-World War II era.",
+      "But is this always the case?",
+      "If so, archaeology would be pretty boring; one thing would happen again and again.",
+      "But that's not what archaeologists see.",
+      "Some civilizations end suddenly, like the Aztec and Inca, conquered by invaders in the 1520s AD.",
+      "Those empires never had the chance to collapse as a result of overexpansion.",
+      "So in the case of civilizations, \"history repeats itself\" seems to be an oversimplification."
+     ],
+     "cues": [
+      "첫 문장: 흔한 말 — 역사는 반복된다",
+      "'And' = 그 말을 뒷받침: 실제로 반복되는 듯",
+      "반복되는 것의 구체 예: 팽창 → 붕괴(로마·영국)",
+      "'But ... this' = 그 반복 패턴이 늘 그런가? 의문",
+      "'If so' = 늘 그렇다면 → 고고학은 지루할 것",
+      "'But that's not' = 실제 고고학자가 보는 건 다름",
+      "다른 예: 갑자기 끝난 아즈텍·잉카",
+      "'Those empires' = 아즈텍·잉카, 팽창으로 무너질 기회도 없음",
+      "'So' = 결론: '역사는 반복'은 지나친 단순화"
+     ]
+    },
+    {
+     "name": "16강 03 · p.135",
+     "kind": "본문",
+     "flow": "드웩 = 성장 마인드셋 개척자 → 똑똑하다 칭찬 → 고정 마인드셋 → 반대로 노력 칭찬 → 성장 마인드셋 → 노력이 성공을 이끈다고 배움 → 더 어려운 일 도전 → 드웩의 말",
+     "lines": [
+      "Stanford psychology professor Dr. Carol Dweck is the internationally recognized pioneer of the concept of \"growth mindset\" as a way to continually grow, learn, and persevere in our efforts.",
+      "Dweck found that kids who are told they're \"smart\" actually underperform in future tasks, by choosing easier tasks to avoid evidence that they are not smart, which Dweck calls having a \"fixed mindset.\"",
+      "In contrast, Dweck found, kids who are praised not for their smarts but for their effort develop what Dweck calls a \"growth mindset.\"",
+      "They learn that their effort is what led to their success, and if they continue to try, over time they'll improve and achieve more things.",
+      "These kids end up taking on tougher things, and feel better about themselves.",
+      "\"Emphasizing effort gives a child a variable that they can control,\" Dweck has explained."
+     ],
+     "cues": [
+      "첫 문장: 인물 소개 — 드웩, 성장 마인드셋 개척자",
+      "발견 ①: '똑똑하다' 칭찬 → 쉬운 것만 → 고정 마인드셋",
+      "'In contrast' = 발견 ②: 노력 칭찬 → 성장 마인드셋",
+      "'They' = 노력 칭찬받은 아이들이 배우는 것",
+      "'These kids' = 그 아이들의 결과: 더 어려운 일에 도전",
+      "마무리: 드웩의 말(노력은 조절할 수 있는 변수)"
+     ]
+    },
+    {
+     "name": "16강 04 · p.135",
+     "kind": "본문",
+     "flow": "기존 의학: 물질 불균형이 원인 → 하지만 문제 → 불균형은 결과일 뿐 → 즉 인과가 반대 → 바뀐 인과: 의식의 문제 → 의식은 뇌보다 근본 → 뇌는 의식의 기관 → 근본 원인은 의식의 왜곡 → 그 병이 우울증으로",
+     "lines": [
+      "Conventional medicine has long believed that depression is caused by an imbalance of neurotransmitters in the brain.",
+      "However, there is a major problem with this explanation.",
+      "This is because the imbalance of substances in the brain is a consequence of depression, not its cause.",
+      "In other words, depression causes a decrease in brain substances such as serotonin and noradrenaline, not a decrease in brain substances causes depression.",
+      "In this revised cause-and-effect, the key is to reframe depression as a problem of consciousness.",
+      "Our consciousness is a more fundamental entity that goes beyond the functioning of the brain.",
+      "The brain is no more than an organ of consciousness.",
+      "If it is not consciousness itself, then the root cause of depression is also a distortion of our state of consciousness: a consciousness that has lost its sense of self and the meaning of life.",
+      "Such a disease of consciousness may manifest itself in the form of depression."
+     ],
+     "cues": [
+      "첫 문장: 기존 의학의 믿음 — 물질 불균형이 원인",
+      "'However ... this explanation' = 그 믿음에 큰 문제",
+      "'This is because' = 문제의 이유: 불균형은 결과일 뿐",
+      "'In other words' = 같은 말을 풀어서(원인↔결과)",
+      "'this revised cause-and-effect' = 뒤집힌 인과 → 의식의 문제로",
+      "'consciousness'를 이어받아: 의식은 뇌보다 근본",
+      "같은 생각 이어서: 뇌는 의식의 기관일 뿐",
+      "'it' = 뇌, 그래서 근본 원인은 의식의 왜곡",
+      "'Such a disease of consciousness' = 그 왜곡 → 우울증으로 나타남"
+     ]
+    },
+    {
+     "name": "16강 05 · p.136",
+     "kind": "본문",
+     "flow": "녹음된 내 목소리에 놀람? → 이게 내 목소리? → 억양·높이가 다름 → 흔한 경험 → 설명은 간단 → 경로가 둘 → ① 공기 → ② 내부 경로 → 뼈로 전달 → 낮은 주파수 강조 → 그래서 내겐 더 낮게",
+     "lines": [
+      "Have you ever been surprised to hear a recording of your own voice?",
+      "You might have thought, \"Is that really what my voice sounds like?\"",
+      "Maybe your accent is more pronounced in the recording than you realized, or your voice is higher than it seems to your own ears.",
+      "This is of course quite a common experience.",
+      "The explanation is actually fairly simple.",
+      "There are two pathways through which we perceive our own voice when we speak.",
+      "One is the route through which we perceive most external sounds, like waves that travel from the air through the outer, middle and inner ear.",
+      "But because our vocal cords vibrate when we speak, there is a second internal path.",
+      "Vibrations are conducted through our bones and stimulate our inner ears directly.",
+      "Lower frequencies are emphasized along this pathway.",
+      "That makes your voice sound deeper and richer to yourself than it may sound to other people."
+     ],
+     "cues": [
+      "첫 문장: 질문 — 녹음된 내 목소리에 놀란 적?",
+      "놀랐을 때 든 생각",
+      "'Maybe' = 왜 낯선지: 억양이 세거나 목소리가 높음",
+      "'This' = 앞의 경험 전체 → 흔한 일",
+      "'The explanation' = 그 경험에 대한 설명은 간단",
+      "설명 시작: 내 목소리를 듣는 경로는 둘",
+      "'One' = 경로 ①: 공기를 거쳐 귀로",
+      "'a second internal path' = 경로 ②: 성대 진동",
+      "경로 ② 구체적으로: 뼈로 전달돼 속귀로",
+      "'this pathway' = 뼈 경로, 낮은 주파수 강조",
+      "'That' = 낮은 주파수 강조 → 내겐 더 낮고 풍부하게"
+     ]
+    },
+    {
+     "name": "16강 06 · p.136",
+     "kind": "본문",
+     "flow": "디지털이면 환경 영향이 덜하다는 통념 → 하지만 여전히 위협 → 더 해로울 수도 → 예전엔 종이 쓰레기 → 디지털 전환은 나무를 살리는 한 걸음 → 하지만 인터넷·전기 비용은 무시됨 → 데이터센터 = 화석 연료 → 클라우드가 회색으로 → 이메일 탄소 수치",
+     "lines": [
+      "As businesses shift some core business activities to digital, such as sales, marketing, or archiving, it is assumed that the impact on the environment will be less negative.",
+      "However, digital business activities can still threaten the environment.",
+      "In some cases, the harm of digital businesses can be even more hazardous.",
+      "A few decades ago, offices used to have much more paper waste since all documents were paper based.",
+      "When workplaces shifted from paper to digital documents, invoices, and emails, it was a promising step to save trees.",
+      "However, the cost of the Internet and electricity for the environment is neglected.",
+      "A recent Wired report declared that most data centers' energy source is fossil fuels.",
+      "When we store bigger data on clouds, increased carbon emissions make our green clouds gray.",
+      "The carbon footprint of an email is smaller than mail sent via a post office, but still, it causes four grams of CO₂, and it can be as much as 50 grams if the attachment is big."
+     ],
+     "cues": [
+      "첫 문장: 통념 — 디지털로 옮기면 환경 영향이 덜함",
+      "'However' = 통념 반박: 여전히 환경을 위협",
+      "'even more' = 한 단계 더: 오히려 더 해로울 수도",
+      "과거 이야기: 예전 사무실은 종이 쓰레기가 많았음",
+      "종이 → 디지털 전환은 나무를 살리는 한 걸음",
+      "'However' = 그런데 인터넷·전기의 환경 비용은 무시됨",
+      "그 근거: 데이터센터 에너지원은 화석 연료",
+      "그래서 클라우드에 저장할수록 탄소 증가",
+      "구체 수치: 이메일 한 통의 탄소 발자국"
+     ]
+    },
+    {
+     "name": "16강 07 · p.137",
+     "kind": "본문",
+     "flow": "외래종이 들어오면 문제 → 예: 영국 다람쥐 → 회색이 와서 경쟁 → 회색이 유리 ① 먹이 적응 → 먹이를 먼저 없앰 → 유리 ② 서식지 → 결국 붉은 다람쥐 멸종 위기",
+     "lines": [
+      "Problems often arise if an exotic species is suddenly introduced to an ecosystem.",
+      "Britain's red and grey squirrels provide a clear example.",
+      "When the grey arrived from America in the 1870s, both squirrel species competed for the same food and habitat, which put the native red squirrel populations under pressure.",
+      "The grey had the edge because it can adapt its diet; it is able, for instance, to eat green acorns, while the red can only digest mature acorns.",
+      "Within the same area of forest, grey squirrels can destroy the food supply before red squirrels even have a bite.",
+      "Greys can also live more densely and in varied habitats, so have survived more easily when woodland has been destroyed.",
+      "As a result, the red squirrel has come close to extinction in England."
+     ],
+     "cues": [
+      "첫 문장: 주장 — 외래종이 갑자기 들어오면 문제",
+      "'a clear example' = 그 예: 영국의 붉은·회색 다람쥐",
+      "'the grey' 등장: 1870년대 미국에서 와서 경쟁",
+      "'had the edge' = 회색이 유리한 이유 ①: 먹이 적응",
+      "그 결과: 붉은 다람쥐보다 먼저 먹이를 없앰",
+      "'also' = 유리한 이유 ②: 빽빽하게·다양한 곳에서 삶",
+      "'As a result' = 결국 붉은 다람쥐 멸종 위기"
+     ]
+    },
+    {
+     "name": "16강 08 · p.137",
+     "kind": "본문",
+     "flow": "잉카는 걸어서 전달 → 전령 배치 → 차스키·오두막 → 젊은 달리기 선수·양쪽 감시 → 오는 전령 보면 마중 → 오두막은 서로 보이는 높은 곳 → 외치며 반복 → 결과: 3~4일에 1,000마일",
+     "lines": [
+      "With no horses available, the Inca empire excelled at delivering messages on foot.",
+      "The messengers were stationed on the royal roads to deliver the Inca king's orders and reports coming from his lands.",
+      "Called Chasquis, they lived in groups of four to six in huts, placed from one to two miles apart along the roads.",
+      "They were all young men and especially good runners who watched the road in both directions.",
+      "If they caught sight of another messenger coming, they hurried out to meet them.",
+      "The Inca built the huts on high ground, in sight of one another.",
+      "When a messenger neared the next hut, he began to call out and repeated the message three or four times to the one who was running out to meet him.",
+      "The Inca empire could relay messages 1,000 miles (1,610 km) in three or four days under good conditions."
+     ],
+     "cues": [
+      "첫 문장: 잉카는 말 없이 걸어서 메시지 전달에 뛰어남",
+      "'The messengers' = 걸어서 전하는 전령, 왕의 길에 배치",
+      "'they' = 전령들, 이름(차스키)과 오두막 생활",
+      "'They' = 차스키, 젊은 달리기 선수·양쪽 감시",
+      "양쪽을 지켜보다가 오는 전령을 보면 마중",
+      "마중이 가능한 이유: 오두막을 서로 보이는 높은 곳에",
+      "전달 장면: 다음 오두막 가까우면 외치며 반복",
+      "결과: 좋은 조건이면 3~4일에 1,000마일"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "L17",
+   "title": "17강 · 문장 삽입",
+   "passages": [
+    {
+     "name": "17강 01 · p.144",
+     "kind": "본문",
+     "flow": "이제 편집은 비선형 → 장점 ① 특수 효과 → ② 바로 찾기 → ③ 넣고 빼기 → 비유: 선형 = 타자기 → 실수하면 다시 침 → 비선형 = 워드 → 쉽게 고침",
+     "lines": [
+      "All editing systems are now nonlinear computer-based systems that allow random access to any video shot or scene without having to fast forward or fast reverse to find it.",
+      "Nonlinear systems can create a range of special effects, such as slow motion, wipes and dissolves.",
+      "Another highlight of a digital nonlinear system is its random access process that makes it easy for an editor to find desired shots or scenes without having to spend time fast forwarding or rewinding videotape.",
+      "With nonlinear editing, shots or scenes can be easily added or removed anywhere in the program, and the computer adjusts the program length automatically.",
+      "Linear editing was like composing a paper on a typewriter.",
+      "If a mistake was made or new information needed to be added the whole piece had to be retyped.",
+      "Nonlinear editing, on the other hand, is like using a word processing program.",
+      "If a mistake is made, it is easily deleted and fixed with a few keystrokes, and new information can be added easily."
+     ],
+     "cues": [
+      "첫 문장: 이제 모든 편집은 비선형(임의 접근)",
+      "비선형의 장점 ①: 특수 효과",
+      "'Another highlight' = 장점 ②: 원하는 장면을 바로 찾음",
+      "장점 ③: 어디든 쉽게 넣고 빼기",
+      "비유 시작: 선형 편집 = 타자기로 글쓰기",
+      "타자기라서: 실수하면 전부 다시 쳐야",
+      "'on the other hand' = 비선형 = 워드프로세서",
+      "워드라서: 실수는 몇 번 눌러 고침"
+     ]
+    },
+    {
+     "name": "17강 02 · p.144",
+     "kind": "본문",
+     "flow": "주변 감시 = 바깥 감각 → 하지만 장소를 정하는 건 내 안의 느낌 → 예: 지하철 승객 연구 → 연구 내용 → 발견: 문 근처 선호 → 이유 ① 편리함 → ② 눈 마주침 회피 → 느낌은 실재하고 영향 줌",
+     "lines": [
+      "To monitor our surroundings is to focus on what's outside of ourselves: what we see, hear, smell, feel, and perhaps even taste.",
+      "But sometimes what really marks a place is something less specific ─ a feeling within us.",
+      "An interesting example emerged from a study of subway passenger behavior.",
+      "Researchers trying to understand why people sit where they sit or stand where they stand in subway and metro trains examined the factors that shape the way riders used and navigated that space in different situations.",
+      "One of their findings involved the reasons many riders like to plant themselves close to the train's doors.",
+      "Partly this was the obvious convenience of being able to exit more quickly.",
+      "But it was shaped partly by a more abstract sensation ─ the desire to avoid the sometimes uncomfortable feeling of accidentally making eye contact with seated passengers.",
+      "We can't see feelings ─ but they're very real, and they influence our experience of the world."
+     ],
+     "cues": [
+      "첫 문장: 주변 감시 = 바깥의 감각에 집중",
+      "'But' = 장소를 특징짓는 건 내 안의 느낌일 때도",
+      "'An interesting example' = 그 느낌의 예: 지하철 승객 연구",
+      "그 연구 내용: 왜 거기 앉고 서는지",
+      "'their findings' = 연구자들의 발견 중 하나: 문 근처 선호",
+      "'Partly this' = 문 근처 선호 이유 ①: 빨리 내림",
+      "'But ... partly' = 이유 ②: 앉은 승객과 눈 마주침 회피",
+      "마무리: 느낌은 안 보여도 실재하고 영향 줌"
+     ]
+    },
+    {
+     "name": "17강 03 · p.145",
+     "kind": "본문",
+     "flow": "잠수 반사 → 얼굴이 잠길 때만 → 머리가 밖이면 없음 → 얼굴만 담그면 일어남 → 기도를 닫음 → 동시에 심박 감소 → 대조: 유인원은 익사",
+     "lines": [
+      "We have a 'diving reflex', like other marine mammals.",
+      "This means that special nerve endings on our faces, around the mouth and nose, trigger this reflex only when the facial region goes under water.",
+      "If we are in the water, with our head out in the air, there is no diving reflex.",
+      "But if we sink just our face in a bowl of water, while the whole of the rest of our body is in the dry air, the diving reflex is triggered.",
+      "It automatically closes down the airway, reducing the risk of swallowing water, and it narrows the small air-passages in the lungs.",
+      "At the same time the heart rate is slowed down to half speed and blood is shunted to the vital organs, protecting them from the effects of the brief stop in breathing.",
+      "By contrast, if a chimpanzee or a gorilla found itself in water with its face below the surface, it would panic, its heart would race and it would quickly drown."
+     ],
+     "cues": [
+      "첫 문장: 우리에겐 '잠수 반사'가 있음",
+      "'This means' = 잠수 반사의 뜻: 얼굴이 물에 잠길 때만",
+      "'얼굴만' 증거 ①: 몸이 물속이어도 머리가 밖이면 없음",
+      "'But' = 증거 ②: 얼굴만 담가도 일어남",
+      "'It' = 잠수 반사가 하는 일 ①: 기도를 닫음",
+      "'At the same time' = 하는 일 ②: 심박 감소·혈류 이동",
+      "'By contrast' = 반사가 없는 유인원은 공황·익사"
+     ]
+    },
+    {
+     "name": "17강 04 · p.145",
+     "kind": "본문",
+     "flow": "흔한 인간 본성 설명 = 가정·이야기 → 하지만 심리학은 다름 → 사람을 이해하는 과학 → 핵심어 과학 → 의견에 의존 X → 대신 증거 → 게다가 근본 과정·원리 → 이것이 현대 심리학",
+     "lines": [
+      "The common accounts of human nature that float around in society are generally a mixture of assumptions, tales and sometimes plain silliness.",
+      "However, psychology is different.",
+      "It is the branch of science that is devoted to understanding people: how and why we act as we do; why we see things as we do; and how we interact with one another.",
+      "The key word here is 'science.'",
+      "Psychologists don't depend on opinions and hearsay, or the generally accepted views of society at the time, or even the considered opinions of deep thinkers.",
+      "Instead, they look for evidence, to make sure that psychological ideas are firmly based, and not just derived from generally held beliefs or assumptions.",
+      "In addition to this evidence-based approach, psychology deals with fundamental processes and principles that generate our rich cultural and social diversity, as well as those shared by all human beings.",
+      "These are what modern psychology is all about."
+     ],
+     "cues": [
+      "첫 문장: 흔한 인간 본성 설명 = 가정·이야기·헛소리",
+      "'However' = 심리학은 다름",
+      "'It' = 심리학의 정의: 사람을 이해하는 과학",
+      "'here' = 앞의 정의에서 핵심 단어는 '과학'",
+      "'과학'이라서: 의견·소문에 기대지 않음",
+      "'Instead' = 대신 증거를 찾음",
+      "'In addition to this evidence-based approach' = 증거 외에 또 하는 일",
+      "'These' = 앞의 과정·원리 → 현대 심리학의 전부"
+     ]
+    },
+    {
+     "name": "17강 05 · p.146",
+     "kind": "본문",
+     "flow": "유사성은 두 종류 → ① 상사(기능만 같음) → 예: 새·벌 날개 → ② 상동(조상이 같음) → 예: 박쥐 날개·말 앞다리 → 그래서 기능 없는 특징 공유 → 구별법",
+     "lines": [
+      "Biologists distinguish two kinds of similarity.",
+      "\"Analogous\" traits are ones that have a common function but arose on different branches of the evolutionary tree and are in an important sense not \"the same\" organ.",
+      "The wings of birds and the wings of bees are both used for flight and are similar in some ways because anything used for flight has to be built in those ways, but they arose independently in evolution and have nothing in common beyond their use in flight.",
+      "\"Homologous\" traits, in contrast, may or may not have a common function, but they descended from a common ancestor and hence have some common structure that indicates their being \"the same\" organ.",
+      "The wing of a bat and the front leg of a horse have very different functions, but they are all modifications of the forelimb of the ancestor of all mammals.",
+      "As a result, they share nonfunctional traits like the number of bones and the ways they are connected.",
+      "To distinguish analogy from homology, biologists usually look at the overall architecture of the organs and focus on their most useless properties."
+     ],
+     "cues": [
+      "첫 문장: 생물학자는 유사성을 두 종류로 나눔",
+      "종류 ①: '상사' 형질 — 기능만 같음",
+      "상사의 예: 새의 날개·벌의 날개",
+      "'in contrast' = 종류 ②: '상동' 형질 — 조상이 같음",
+      "상동의 예: 박쥐 날개·말 앞다리",
+      "'As a result' = 조상이 같아서 뼈 수 같은 특징 공유",
+      "마무리: 둘을 구별하는 방법"
+     ]
+    },
+    {
+     "name": "17강 06 · p.146",
+     "kind": "본문",
+     "flow": "농사 → 정착 → 수렵채집인은 이동·짐 → 특히 아이 → 그래서 4년에 한 명 → 반면 농부는 정착 → 출산 간격 2년 → 인구 급증 → 인구 증가는 농경에 이득",
+     "lines": [
+      "Growing crops forced people to stay in one place.",
+      "Hunter-gatherers typically moved around frequently, and they had to be able to carry all their possessions with them every time they moved.",
+      "In particular, mothers had to carry their young children.",
+      "As a result, hunter-gatherer mothers could have only one baby every four years or so, spacing their births so that they never had to carry more than one child at a time.",
+      "Farmers, on the other hand, could live in the same place year after year and did not have to worry about transporting young children long distances.",
+      "Societies that settled down in one place were able to shorten their birth intervals from four years to about two.",
+      "This meant that each woman could have more children than her hunter-gatherer counterpart, which in turn resulted in rapid population growth among farming communities.",
+      "An increased population was actually an advantage to agricultural societies, because farming required large amounts of human labor."
+     ],
+     "cues": [
+      "첫 문장: 농사 때문에 한곳에 정착",
+      "대비 대상: 수렵채집인은 자주 이동, 짐을 다 들고",
+      "'In particular' = 짐 중에서도 특히 어린아이",
+      "'As a result' = 아이를 안고 다녀야 해서 4년에 한 명",
+      "'on the other hand' = 농부는 정착 → 아이를 옮길 걱정 없음",
+      "정착 사회: 출산 간격이 4년 → 2년",
+      "'This' = 짧아진 간격 → 아이가 더 많음 → 인구 급증",
+      "'An increased population' = 그 인구 증가가 오히려 이득"
+     ]
+    },
+    {
+     "name": "17강 07 · p.147",
+     "kind": "본문",
+     "flow": "어린 시절 = 환경 학습 → 없으면 타고난 것에 의존 → 예: 타고난 지식만으로 이동하는 철새 = 비효율 → 적응 못함 → 환경이 바뀌어도 옛 지도대로 → 반면 어린 시절이 긴 새는 효율적 → 문화 전달 → 유연성",
+     "lines": [
+      "Spending time as children allows animals to learn about their environment.",
+      "Without childhood, animals must rely more fully on hardware, and therefore be less flexible.",
+      "Among migratory bird species, those that are born knowing how, when, and where to migrate ─ those that are migrating entirely with instructions they were born with ─ sometimes have very inefficient migration routes.",
+      "These birds, born knowing how to migrate, don't adapt easily.",
+      "So when lakes dry up, forest becomes farmland, or climate change pushes breeding grounds farther north, those birds that are born knowing how to migrate keep flying by the old rules and maps.",
+      "By comparison, birds with the longest childhoods, and those that migrate with their parents, tend to have the most efficient migration routes.",
+      "Childhood facilitates the passing on of cultural information, and culture can evolve faster than genes.",
+      "Childhood gives flexibility in a changing world."
+     ],
+     "cues": [
+      "첫 문장: 어린 시절 덕에 환경을 배움",
+      "반대 경우: 어린 시절이 없으면 타고난 것에 의존·덜 유연",
+      "그 예: 타고난 지식만으로 이동하는 철새 → 비효율",
+      "'These birds' = 그 철새들, 적응을 못함",
+      "'So' = 적응 못하니 환경이 바뀌어도 옛 규칙대로",
+      "'By comparison' = 어린 시절이 긴 새는 가장 효율적",
+      "이유: 어린 시절 → 문화 전달 → 유전자보다 빠름",
+      "정리: 어린 시절은 변하는 세상에서 유연성을 줌"
+     ]
+    },
+    {
+     "name": "17강 08 · p.147",
+     "kind": "본문",
+     "flow": "혀 지도(부위별 맛) → 하지만 틀림 → 독일 연구의 오역 → 오늘날: 맛별로 안 모임 → 모든 맛을 어디서나 → 게다가 장소가 아니라 시간 → 예: 먼저 느낄 뿐",
+     "lines": [
+      "The tongue was mapped into separate areas where certain tastes were registered: sweetness at the tip, sourness on the sides, and bitterness at the back of the mouth.",
+      "Research in the 1980s and 1990s, however, demonstrated that the \"tongue map\" explanation of how we taste was, in fact, totally wrong.",
+      "As it turns out, the map was a misinterpretation and mistranslation of research conducted in Germany at the turn of the twentieth century.",
+      "Today, leading taste researchers believe that taste buds are not grouped according to specialty.",
+      "Sweetness, saltiness, bitterness, and sourness can be tasted everywhere in the mouth, although they may be perceived at a little different intensities at different sites.",
+      "Moreover, the mechanism at work is not place, but time.",
+      "It's not that you taste sweetness at the tip of your tongue, but rather that you register that perception first."
+     ],
+     "cues": [
+      "첫 문장: 예전 '혀 지도' — 부위별 맛",
+      "'however' = 1980~90년대 연구: 혀 지도는 틀림",
+      "'the map' = 혀 지도, 어디서 나왔나: 독일 연구 오역",
+      "'Today' = 오늘날의 생각: 맛봉오리는 맛별로 안 모임",
+      "구체적으로: 모든 맛을 입안 어디서나",
+      "'Moreover' = 게다가 작동 원리는 장소가 아닌 시간",
+      "'time'의 예: 단맛을 혀끝에서 '먼저' 느낄 뿐"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "L18",
+   "title": "18강 · 요약문 완성",
+   "passages": [
+    {
+     "name": "18강 01 · p.154",
+     "kind": "본문",
+     "flow": "시각은 선입견의 영향 → 기능적 관계로 위계 → 예: 망치를 사용 각도로 → 위에서 본 모습은 안 떠올림 → 그래서 카메라처럼 보기 방해 → 카메라는 형태·색만 → 공평하게 기록 → 사진은 놀라움 → 평면성",
+     "lines": [
+      "Vision is influenced by our preconceptions about reality.",
+      "In viewing a scene, we establish unconscious hierarchies that reflect our functional relationship to objects and our momentary priorities.",
+      "For example, when visualizing a hammer in our mind's eye, we tend to \"see\" it in profile or at some other \"ready for use\" angle.",
+      "One would probably not visualize a hammer as seen from the top so that the handle is hidden by the hammer's head.",
+      "The functional relationship we have with objects creates visual expectations that interfere with our ability to see \"like a camera.\"",
+      "The camera, like the human eye, sees only shapes and colors.",
+      "It documents the world impartially through a lens that is similar to the eye.",
+      "When we look at them carefully, photographs are often surprising because they don't interpret confusing details but simply serve them up to us with a mechanical indifference.",
+      "And because of their flatness, photographs often contain areas that appear as unrecognizable colors and shapes."
+     ],
+     "cues": [
+      "첫 문장: 주장 — 시각은 현실에 대한 선입견의 영향",
+      "구체적으로: 기능적 관계·우선순위로 위계를 만듦",
+      "'For example' = 망치를 '사용 준비' 각도로 떠올림",
+      "같은 예 이어서: 위에서 본 모습은 안 떠올림",
+      "정리: 기능적 관계가 '카메라처럼' 보기를 방해",
+      "'like a camera'를 이어받아: 카메라는 형태·색만 봄",
+      "'It' = 카메라, 세상을 공평하게 기록",
+      "'them' = 사진들, 해석 없이 보여 줘서 놀라움",
+      "'And' = 사진의 또 다른 특징: 평면성"
+     ]
+    },
+    {
+     "name": "18강 02 · p.154",
+     "kind": "본문",
+     "flow": "논리적으로 풀면 벽 → 논리적 사고 = 선형 → 아는 영역엔 잘 됨 → 새것엔 부족 → 반면 창의성은 새것 → 그래서 비선형으로 → 다시 말해 선형이면 보수적 → 그건 원치 않는 것",
+     "lines": [
+      "In the course of trying to solve a problem with an invention, you may encounter a brick wall of resistance when you try to think your way logically through the problem.",
+      "Such logical thinking is a linear type of process, which uses our reasoning skills.",
+      "This works fine when we're operating in the area of what we know or have experienced.",
+      "However, when we need to deal with new information, ideas, and viewpoints, linear thinking will often come up short.",
+      "On the other hand, creativity by definition involves the application of new information to old problems and the conception of new viewpoints and ideas.",
+      "For this you will be most effective if you learn to operate in a nonlinear manner; that is, use your creative brain.",
+      "Stated differently, if you think in a linear manner, you'll tend to be conservative and keep coming up with techniques which are already known.",
+      "This, of course, is just what you don't want."
+     ],
+     "cues": [
+      "첫 문장: 발명 문제를 논리적으로 풀다 벽에 부딪힘",
+      "'Such logical thinking' = 그 논리적 사고 = 선형 과정",
+      "'This' = 선형 사고, 아는 영역에선 잘 됨",
+      "'However' = 새 정보·아이디어엔 부족",
+      "'On the other hand' = 창의성은 새 정보·관점을 다룸",
+      "'For this' = 창의성을 위해선 비선형으로",
+      "'Stated differently' = 같은 말 반대로: 선형이면 보수적",
+      "'This' = 이미 아는 기술만 떠올림 → 원치 않는 것"
+     ]
+    },
+    {
+     "name": "18강 03 · p.155",
+     "kind": "본문",
+     "flow": "벌이 효과 없는 이유 = 속임수 벌 → 정의 → 오히려 부추김 → 예: 휴가 때리면 혼남 → 외로운 아이에겐 혼나는 게 나음 → 다른 전략 → 예: 안 때리면 칭찬 → 긍정에 보상 → 이렇게 피함",
+     "lines": [
+      "Punishing a child may not be effective due to what Alvaro Bilbao, a neuropsychologist, calls 'trick-punishments.'",
+      "A trick-punishment is a scolding, a moment of anger or a punishment in the most classic sense of the word.",
+      "Instead of discouraging the child from doing something, it encourages them to do it.",
+      "For example, Hugh learns that when he hits his little brother, his mother scolds him.",
+      "For a child who feels lonely, being scolded is much better than feeling invisible, so he will continue to hit his brother.",
+      "In this case, his mother would be better adopting a different strategy.",
+      "For instance, she could congratulate Hugh when he has not hit his brother for a certain length of time.",
+      "The mother clearly cannot allow the child to hit his little brother, but instead of constantly pointing out the negatives, she can choose to reward the positives.",
+      "In this way, any parent can avoid trick-punishments."
+     ],
+     "cues": [
+      "첫 문장: 벌이 효과 없을 수 있는 이유 = '속임수 벌'",
+      "'A trick-punishment' = 그 용어의 정의",
+      "'it' = 속임수 벌, 막기는커녕 부추김",
+      "'For example' = 휴: 동생을 때리면 엄마가 혼냄",
+      "그래서 외로운 아이는 혼나려고 계속 때림",
+      "'In this case' = 휴의 경우 → 다른 전략이 나음",
+      "'For instance' = 다른 전략의 예: 안 때리면 칭찬",
+      "정리: 때리는 건 막되 긍정에 보상",
+      "'In this way' = 이렇게 하면 속임수 벌을 피함"
+     ]
+    },
+    {
+     "name": "18강 04 · p.155",
+     "kind": "본문",
+     "flow": "원숭이는 사람과 거래 → 돌 주면 먹이 → 둘 다 오이면 잘 먹음 → 한쪽만 포도면 오이를 던짐 → 받는 건 같아도 비교로 불공평 → 게다가 이득도 포기",
+     "lines": [
+      "Capuchins ─ New World Monkeys that live in large social groups ─ will, in captivity, trade with people all day long, especially if food is involved.",
+      "I give you this rock and you give me a treat to eat.",
+      "If you put two monkeys in cages next to each other, and offer them both slices of cucumber for the rocks they already have, they will happily eat the cucumbers.",
+      "If, however, you give one monkey grapes instead ─ grapes being universally preferred to cucumbers ─ the monkey that is still receiving cucumbers will begin to throw them back at the experimenter.",
+      "Even though she is still getting \"paid\" the same amount for her effort of sourcing rocks, and so her particular situation has not changed, the comparison to another makes the situation unfair.",
+      "Furthermore, she is now willing to abandon all gains ─ the cucumbers themselves ─ to communicate her displeasure to the experimenter."
+     ],
+     "cues": [
+      "첫 문장: 꼬리감기원숭이는 사람과 하루 종일 거래",
+      "거래 방식: 돌을 주면 먹이를 줌",
+      "실험 ①: 둘 다 오이를 주면 잘 먹음",
+      "'however' = 실험 ②: 한쪽만 포도 → 오이를 던짐",
+      "'she' = 오이 받는 원숭이, 받는 건 같아도 비교로 불공평",
+      "'Furthermore' = 한술 더 떠 이득(오이)까지 포기"
+     ]
+    },
+    {
+     "name": "18강 05 · p.156",
+     "kind": "본문",
+     "flow": "디지털 정보 표준 발전 → 하지만 장애인 요구는 소홀 → 그래서 쓸모없는 자료 → 일부 분야는 발전, 학자들은 여전히 소홀 → 개선 방법",
+     "lines": [
+      "Over the last several decades, scholars have developed standards for how best to create, organize, present, and preserve digital information for future generations.",
+      "What has remained neglected for the most part, however, are the needs of people with disabilities.",
+      "As a result, many of the otherwise most valuable digital resources are useless for people who are deaf or hard of hearing, as well as for people who are blind, have low vision, or have difficulty distinguishing particular colors.",
+      "While professionals working in educational technology and commercial web design have made significant progress in meeting the needs of such users, some scholars creating digital projects all too often fail to take these needs into account.",
+      "This situation would be much improved if more projects embraced the idea that we should always keep the largest possible audience in mind as we make design decisions, ensuring that our final product serves the needs of those with disabilities as well as those without."
+     ],
+     "cues": [
+      "첫 문장: 수십 년간 디지털 정보 표준을 발전시킴",
+      "'however' = 그런데 장애인의 요구는 소홀",
+      "'As a result' = 그래서 귀중한 자료도 장애인에겐 쓸모없음",
+      "'such users' = 장애인 사용자, 일부 분야는 발전·학자들은 여전히",
+      "'This situation' = 소홀한 상황 → 개선 방법"
+     ]
+    },
+    {
+     "name": "18강 06 · p.156",
+     "kind": "본문",
+     "flow": "마음 = 의식 + 잠재의식 → 잠재의식: 빠름·감정 X → 반응의 기억 → 반면 의식은 통제 가능 → 생각·감정 → 잘못된 결정 → 감정이 판단을 흐림 → 두려움 예 → 두려움은 의식에서 → 잠재의식이 기록해야 진짜",
+     "lines": [
+      "The mind has parts that are known as the conscious mind and the subconscious mind.",
+      "The subconscious mind is very fast to act and doesn't deal with emotions.",
+      "It deals with memories of your responses to life, your memories and recognition.",
+      "However, the conscious mind is the one that you have more control over.",
+      "You think. You can choose whether to carry on a thought or to add emotion to it and this is the part of your mind that lets you down frequently because ─ fueled by emotions ─ you make the wrong decisions time and time again.",
+      "When your judgment is clouded by emotions, this puts in biases and all kinds of other negativities that hold you back.",
+      "Scared of spiders? Scared of the dark?",
+      "There are reasons for all of these fears, but they originate in the conscious mind.",
+      "They only become real fears when the subconscious mind records your reactions."
+     ],
+     "cues": [
+      "첫 문장: 마음은 의식과 잠재의식으로 나뉨",
+      "둘 중 먼저 잠재의식: 빠르고 감정은 안 다룸",
+      "'It' = 잠재의식, 반응의 기억을 다룸",
+      "'However' = 반면 의식은 통제할 수 있음",
+      "의식이 하는 일: 생각·감정 → 자주 잘못된 결정",
+      "감정이 판단을 흐리면 편견이 생김",
+      "그런 부정적인 것의 예: 거미·어둠이 무서워?",
+      "'these fears' = 앞의 두려움들, 의식에서 시작",
+      "'They' = 그 두려움, 잠재의식이 기록해야 진짜가 됨"
+     ]
+    },
+    {
+     "name": "18강 07 · p.157",
+     "kind": "본문",
+     "flow": "초기 문화 진화 모형 = 유전학 개념 적용 → 문화 ↔ 유전 비유 → 하지만 차이 때문에 수정 → 예: 유전 규칙을 엄격히 안 따름 → 부모 중 반반 아님 → 게다가 부모 아닌 사람에게서도",
+     "lines": [
+      "Many of the first models of cultural evolution drew noticeable connections between culture and genes by using concepts from theoretical population genetics and applying them to culture.",
+      "Cultural patterns of transmission, innovation, and selection are conceptually likened to genetic processes of transmission, mutation, and selection.",
+      "However, these approaches had to be modified to account for the differences between genetic and cultural transmission.",
+      "For example, we do not expect the cultural transmission to follow the rules of genetic transmission strictly.",
+      "If two biological parents have different forms of a cultural trait, their child is not necessarily equally likely to acquire the mother's or father's form of that trait.",
+      "Further, a child can acquire cultural traits not only from its parents but also from nonparental adults and peers; thus, the frequency of a cultural trait in the population is relevant beyond just the probability that an individual's parents had that trait."
+     ],
+     "cues": [
+      "첫 문장: 초기 문화 진화 모형은 유전학 개념을 문화에 적용",
+      "그 적용의 구체 내용: 전달·혁신·선택 ↔ 전달·돌연변이·선택",
+      "'However, these approaches' = 그 모형들, 차이 때문에 수정 필요",
+      "'For example' = 차이의 예: 유전 규칙을 엄격히 안 따름",
+      "구체적으로: 부모 중 누구의 형질을 받을지 반반이 아님",
+      "'Further' = 차이 ②: 부모 아닌 어른·또래에게서도 받음"
+     ]
+    },
+    {
+     "name": "18강 08 · p.157",
+     "kind": "본문",
+     "flow": "옷으로 남을 판단 → 기대에 맞는 옷 선호 + 예외 하나 → 그 예외 연구 → 예 ① 빨간 나비넥타이 → 예 ② 빨간 운동화 교수 → 결과 해석",
+     "lines": [
+      "It's not news to anyone that we judge others based on their clothes.",
+      "In general, studies that investigate these judgments find that people prefer clothing that matches expectations ─ surgeons in scrubs, little boys in blue ─ with one notable exception.",
+      "A series of studies published in an article in June 2014 in the Journal of Consumer Research explored observers' reactions to people who broke established norms only slightly.",
+      "In one scenario, a man at a black-tie affair was viewed as having higher status and competence when wearing a red bow tie.",
+      "The researchers also found that valuing uniqueness increased audience members' ratings of the status and competence of a professor who wore red sneakers while giving a lecture.",
+      "The results suggest that people judge these slight deviations from the norm as positive because they suggest that the individual is powerful enough to risk the social costs of such behaviors."
+     ],
+     "cues": [
+      "첫 문장: 누구나 아는 사실 — 옷으로 남을 판단",
+      "'these judgments' = 옷 판단, 기대에 맞는 옷 선호 + 예외 하나",
+      "'one notable exception'에 대한 연구: 규범을 살짝 깬 사람",
+      "'In one scenario' = 연구 장면 ①: 빨간 나비넥타이",
+      "'also' = 장면 ②: 빨간 운동화 교수",
+      "'The results' = 두 장면의 결과 해석"
+     ]
+    }
+   ]
+  }
+ ]
+}
