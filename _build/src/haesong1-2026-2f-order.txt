@@ -1,0 +1,255 @@
+# U10 | UNIT 10 · 단어 빈칸 추론
+
+## ANALYSIS · p.68 | 본문 | 지각까지 0.5초 → 그런데 못 느낌 → 그 착각은 소급 기제 덕 → 불가능해 보이지만 속음 → 한 가지 설명(병렬 흐름)
+It takes on average half a second for the unconscious mind to process incoming sensory stimuli into conscious perceptions. | 첫 문장: 사실 제시 — 의식적 지각까지 평균 0.5초
+Yet we are not aware of this time delay — you think you see things move as they move, and when you stub your toe you get the impression of knowing about it right away. | 'Yet' = 0.5초나 걸리는데도 그 지연을 못 느낌
+This illusion of immediacy is created by an ingenious mechanism, which backdates conscious perceptions to the time when the stimulus first entered the brain. | 'This illusion of immediacy' = 앞의 '바로 안다'는 착각 → 원인(소급 기제)
+On the face of it, this seems impossible because cortical signals take the same “real” time to process to consciousness, but somehow we are tricked into thinking we feel things earlier. | 'this' = 소급 기제, 불가능해 보이는 이유
+One way it might be explained is that consciousness consists of many parallel streams and that the brain jumps from one to another, revising them and redrafting them. | 'One way it might be explained' = 앞의 '속는' 현상에 대한 설명
+
+## PRACTICE 01 · p.70 | 본문 | 집단이 협력·배신 신호를 전함 → 남들도 하면 사익 억제 → 그 원리는 공정성 → 다 같이면 희생 OK → 이용당하면 우리도 배신
+We not only absorb our moral codes and definitions of right and wrong from the group; the group also transmits cues about cooperation and defection and what it means to act in a trustworthy manner. | 첫 문장: 집단이 옳고 그름 + 협력·배신의 신호를 전함
+People are more likely to suppress their self-interest in favor of the group interest if they feel that others are doing so as well, and they’re less likely to do so if they feel that others are taking advantage of them. | 협력 신호의 구체 내용: 남들도 하면 사익을 억제
+The psychological mechanism for this is unclear, but certainly it is related to our innate sense of fairness. | 'this' = 앞 문장의 현상 → 원인(타고난 공정성)
+We generally don’t mind sacrificing for the group, as long as we’re all sacrificing equally. | 공정성의 예: 다 같이 희생하면 괜찮음
+But if we feel like we’re being taken advantage of by others who are defecting, we’re more likely to defect as well. | 'But' = 반대 경우: 이용당한다 느끼면 우리도 배신
+
+## PRACTICE 02 · p.71 | 본문 | 포식 전엔 아무도 안 무서워함 → 육식 시작 → 하지만 포식자 틀에 안 맞음 → 처음 본 동물들은 위협으로 안 봄 → 신뢰·온순 → 용어 → 두려움을 배워야 했음 → 못 배우고 죽음
+In their pre-predatory stage, our primate ancestors had moved through the world among other creatures that did not fear them. | 첫 문장: 포식 이전 단계 — 아무도 영장류를 안 무서워함
+Once they adopted carnivory, the prey they were interested in learned to allow close approaches at their own risk. | 'Once' = 육식을 시작한 뒤의 변화(가까이 오게 두면 위험)
+But unlike big cats or terrifying wolves that were obvious predators, upright primates didn’t automatically fit the predator template for most animals. | 'But' = 그래도 직립 영장류는 뻔한 포식자 틀이 아님
+Numerous examples from around the world during the past five centuries testify that upon initially encountering humans, many wild creatures did not associate us with a threat. | 그 근거: 사람을 처음 본 동물들의 사례
+In their first encounters with humans, scores of species reacted with trust and tameness. | 처음 만났을 때의 반응을 구체적으로: 신뢰·온순
+There is a term of art for this: biological first contact. | 'this' = 앞의 현상에 붙은 용어(생물학적 첫 접촉)
+When we appeared in new geographies for the first time, wild animals had to learn to be afraid of us. | 그래서 동물들은 우리를 두려워하는 법을 배워야 했음
+Many died standing and looking, never absorbing the lesson. | 'the lesson' = 두려워하라는 교훈, 못 배우고 죽음
+
+## PRACTICE 03 · p.72 | 본문 | 두 표현 제시 → 문자 그대로는 말이 안 됨 → 왜 안 되는지 → 이런 은유 표현은 수없이 많음 → 은유는 시인의 도구만이 아님 → 평범한 사고 기제 → 언어 전반에 스며듦
+Consider the following two everyday linguistic expressions: “The election is ahead of us” and “the long Winter is now behind us.” | 첫 문장: 예시 표현 두 개 제시
+Literally, these expressions do not make any sense. | 'these expressions' = 앞의 두 표현, 문자 그대로는 말이 안 됨
+“An election” is not something that can physically be “ahead” of us in any measurable or observable way, and the “Winter” is not something that can be physically “behind” us. | 말이 안 되는 이유를 두 표현에 하나씩
+Hundreds of thousands of these expressions, whose meaning is not literal but metaphorical, can be observed in human everyday language: “he is a cold person,” “she has strong opinions,” “the market is quite depressed.” | 'these expressions' 확장: 이런 은유 표현은 수없이 많음
+Metaphor, in this sense, is not just a figure of speech, or an exceptional communicational tool in the hands of poets and artists. | 'in this sense' = 일상에 널린 만큼 은유는 특별한 도구가 아님
+It is an ordinary mechanism of thought. | 'It' = 은유, 'not just A' 뒤의 진짜 정체(B)
+Usually operating unconsciously and effortlessly, it permeates nearly every aspect of human everyday (and technical) language, making imagination possible. | 'it' = 은유가 언어 전반에 스며든다는 마무리
+
+# U11 | UNIT 11 · 짧은 어구 빈칸 추론
+
+## ANALYSIS · p.74 | 본문 | 주제(개성은 없지만 특별한 성질) → 모양 → 단단함 → 색 → 맛 → 냄새 → 정리(주변에 맞춰 바뀌는 성격)
+Water essentially has no persona of its own, but has an extraordinary quality. | 첫 문장: 주제 — 자기 개성은 없지만 특별한 성질
+Water as a liquid has no shape, yet it is readily defined by its surroundings. | 예 ① 모양: 없지만 주변에 따라 정해짐
+Water has no hardness; it is completely yielding to the touch, yet is hard as concrete when impacted at high speed. | 예 ② 단단함: 없지만 빠르게 부딪히면 콘크리트
+Water has no color when viewed in a transparent container, yet becomes vividly green or blue as an ocean, and readily reflects at its surface everything around it. | 예 ③ 색: 없지만 바다에선 초록·파랑
+Pure water has no taste, yet it readily absorbs and transmits the taste of any suspended or dissolved substances. | 예 ④ 맛: 없지만 녹아든 물질의 맛을 전함
+It has no smell, yet, as atmospheric humidity, readily distributes the aromas of its surroundings. | 'It' = 바로 앞 'Pure water', 예 ⑤ 냄새
+This ubiquitous part of our environment truly has a variable personality, readily changing to assimilate its surroundings. | 'This ubiquitous part' = 물, 예시를 묶어 정리
+
+## PRACTICE 01 · p.76 | 본문 | 누구나 마음 지도를 그려 봄 → 수업에서 그려 보게 함 → 다 다르고 축척도 안 맞음 → 그래도 이해됨 → 공동체가 공유하는 랜드마크 → 마음 지도의 특징 ①② → 예(파란 고릴라)
+I suppose everyone has at one time or another drawn a mental map, and it offers little conceptual difficulty. | 첫 문장: 누구나 마음속 지도를 그려 봤음
+In my classes, I ask students to draw a map by hand, in just five minutes, showing their route to and from class. | 그 예: 내 수업에서 등하굣길 지도 그리기
+No two maps are ever entirely the same, of course, and none are to scale. | 그려 온 지도들: 다 다르고 축척도 안 맞음
+Nevertheless, most of the maps are easily understood. | 'Nevertheless' = 그런데도 대부분 쉽게 이해됨
+This shows that while we all produce our own versions of spatial reality, we can see particular landmarks that communicate to all of us in a social community. | 'This' = 다른데도 이해된다는 사실이 보여 주는 것
+Mental maps tend to highlight important parts of a route, with streets labeled to indicate where to turn. | 마음 지도의 특징 ①: 중요한 부분을 강조
+Such maps tend to include informal but understood cultural references. | 'Such maps' = 마음 지도, 특징 ②: 문화적 참조
+Where a professionally made street map might give you numbered addresses, a mental map is more likely to describe a route by referencing visible features like “a giant blue gorilla” outside a car dealership or “that old pink Victorian house.” | 문화적 참조의 예: 파란 고릴라·분홍 빅토리아풍 집
+
+## PRACTICE 02 · p.77 | 본문 | 익숙한 건 덜 주목 → 이 적응은 유용(새것이 중요) → 뇌는 반복에 적응 → 반복 이미지 실험: 반응 감소 → 새것에만 다시 반응 → 가장 예상 밖일 때 최대 → 예(망치를 먹었다)
+People tend to pay less attention to familiar things, whether it’s a possession or even a person. | 첫 문장: 익숙한 것엔 덜 주목함
+On the whole, this adaptive behavior is biologically useful (for objects, events, and situations), because it is usually the novel, unexpected things in life that require the most attention. | 'this adaptive behavior' = 앞의 덜 주목하기, 왜 유용한지
+The brain naturally adapts to repeated experiences. | 뇌 차원의 일반 설명: 반복에 적응
+If I were to show you a series of repeated images and measure your brain responses, the activity would diminish with the repetitions. | 적응을 보여 주는 가정 실험: 반복하면 반응 감소
+Your brain would respond again only when something new was presented. | 'again' = 줄었던 반응이 새것에만 다시
+Scientists have shown that the biggest responses always come with the least expected event. | 새것 중에서도 가장 예상 밖일 때 반응 최대
+A simple sentence such as, “He picked up the hammer and nail” gives a tiny response; change the last few words, “He picked up the hammer and ate it,” and you’ll see a much larger one. | 'least expected'의 예: 망치를 먹었다
+
+## PRACTICE 03 · p.78 | 본문 | 실험 소개 → 채점한 척, 절반만 찾았다고 → 후회를 찌름 → 지시 ① → 지시 ② → 기분은 나빠짐 → 하지만 다음 판엔 더 잘함 → 결론: 후회는 끈기를 키움
+In one experiment, Keith Markman and two colleagues gave participants ten anagrams to solve. | 첫 문장: 실험 소개 — 애너그램 10개
+After supposedly “grading” the results, they told participants that they’d found only half of the available words. | 'the results' = 푼 결과, 채점한 척 → 절반만 찾았다고
+Then they poked people with a little regret. | 'Then' = 다음 단계: 후회를 살짝 찌름
+“Close your eyes and think about your actual performance on the anagrams compared to how you might have performed better,” they told the participants. | 찌르는 방법 = 지시 ① 눈 감고 더 잘했을 경우와 비교 ('they told' 있음)
+“Take a minute and vividly evaluate your performance in comparison to how you might have performed better.” | 지시 ② 이어서: 1분간 생생하게 평가하라
+Their heads now swimming with If Onlys, these puzzle-solvers felt worse — especially compared to another group that had been asked to make At Least comparisons. | 'If Onlys' = 지시대로 후회 → 기분이 더 나빠짐
+But on the next round, the regretful group solved more puzzles and stuck with the task longer than anyone else in the experiment. | 'But' = 기분은 나빴지만 다음 판엔 더 잘함
+This is one of the central findings on regret: it can deepen persistence, which almost always elevates performance. | 'This' = 실험 결과 → 후회에 관한 핵심 결론
+
+# U12 | UNIT 12 · 긴 어구 빈칸 추론
+
+## ANALYSIS · p.80 | 본문 | 주장(너무 쉽지도 어렵지도 않게) → 혼자 공부할 때 특히 → 쉬운 쪽 예 → 쉬운 것만 반복은 낭비 → 같은 이치로 어려운 쪽도 X
+In your pursuit of proficiency in a foreign language, it’s important that you study topics that are neither too easy nor too difficult for you at any given point in time. | 첫 문장: 주장 — 너무 쉽지도 어렵지도 않은 것을 공부
+This is particularly true if you’re studying a language largely on your own. | 'This' = 앞의 주장, 혼자 공부할 때 특히 중요
+If you already have a working knowledge of Greek, for example, it wouldn’t be very helpful to spend all of your time studying basic vocabulary or completing elementary exercises, although some overlearning can be beneficial. | 'for example' = '너무 쉬운' 쪽 예: 아는데 기초만
+Although it may make you feel good about yourself to effortlessly rattle off simple phrases like “Where is the train station?” ultimately, rehearsing only easy material is not the best use of your study time. | 같은 쪽(쉬운 것) 이어서: 쉬운 것만 반복은 낭비
+By the same token, if you’re a beginner, then jumping into a difficult topic, like the grammar for a language’s subjunctive mood, is not time well spent either. | 'By the same token' = 반대쪽(너무 어려운) 예, 'either'
+
+## PRACTICE 01 · p.82 | 본문 | 중학년에 문해력 중요 → 그런데 읽기 수업이 끝남 → 이유: 연수받는 교사 50% → 더 적은 수만 특정 연수 → 그래서 준비 부족 → 그래도 모든 교사가 언어 교과 통합을 요구받음
+Literacy is crucial to the teaching-learning process that occurs in the middle grades because this is when young adolescents begin to move from narrative to expository text, a process that places increasing demands on the students’ literacy skills. | 첫 문장: 중학년에 문해력이 중요한 이유(설명문으로 넘어감)
+Unfortunately, despite these increasing demands on their literacy skills, formal reading instruction ends for many young adolescents once they enter middle school. | 'these increasing demands' = 앞의 커지는 요구 → 그런데 수업이 끝남
+One reason for this is that only about 50 percent of middle-grades teachers receive training in the teaching of literacy, broadly conceived as integrated reading, writing, speaking, and listening. | 'this' = 읽기 수업이 끝나는 현상의 이유
+Fewer still receive specific training in programs such as writing across the curriculum. | 'Fewer still' = 50%보다 더 적은 수
+Consequently, many teachers are less than ideally prepared to teach content-area literacy strategies to their students. | 'Consequently' = 연수 부족의 결과: 준비 부족
+Given the increasing emphasis on integrated curricula in the middle grades, all teachers, regardless of the subjects they teach, are being called on to integrate the language arts into their subjects. | 마무리: 그래도 모든 교사가 언어 교과 통합을 요구받음
+
+## PRACTICE 02 · p.83 | 본문 | 주장(소설가 지망생은 기자로 시작) → 예 ① 안네 프랑크 → 일기 속 꿈 → 예 ② 다른 작가들 → 예 ③ 스타인벡
+Many people who aspire to be novelists began their writing careers as journalists. | 첫 문장: 주장 — 소설가 지망생은 기자로 시작
+The thirteen-year-old Anne Frank had exactly this in mind for herself, and it is hard to believe that someone so full of life and so gifted at writing as a child would not have accomplished what she set out to do had the Nazis not murdered her. | 'exactly this' = 기자로 시작하려는 생각, 예 ① 안네 프랑크
+She wrote in her diary about “the big question, will I ever be able to write something great, will I ever become a journalist or a writer?” | 'She' = 안네, 일기에 쓴 꿈(기자 또는 작가)
+There are many others, too — Martha Gellhorn, Jack London, Margaret Mitchell (Gone With the Wind), Tom Wolfe — who wrote for newspapers or magazines before turning to fiction. | 'many others, too' = 안네 말고도 여러 작가
+John Steinbeck, already a published novelist, wrote a series of pieces on the Okie migrant camps of California for the San Francisco News before writing his most celebrated book, also about the migrants, The Grapes of Wrath. | 마지막 예: 이미 소설가였던 스타인벡도 기사 먼저
+
+## PRACTICE 03 · p.84 | 본문 | 탐험·길 찾기 정신 → 미래에 큰 영향 → 길 찾기 → 넓은 사회 관계망 → 정보 공유가 진화적 이점 → 친구는 생존 자산 → 예(음식·사냥)
+Over the course of our evolution between 350,000 and 150,000 years ago, Homo sapiens developed an appetite for exploration and a wayfinding spirit that set us apart from other human species. | 첫 문장: 탐험·길 찾기 정신이 생김
+It had a huge effect on our future. | 'It' = 그 정신, 미래에 큰 영향
+One of the most intriguing recent ideas in anthropology is that our ability to navigate was essential to our success as a species, because it allowed us to cultivate extensive social networks. | 그 영향의 내용: 길 찾기 → 넓은 사회 관계망
+In prehistoric times, when people lived in small family units and spent much of their time looking for food and shelter, being able to share information with other groups about the whereabouts of resources and the movements of predators would have given us an evolutionary edge. | 관계망이 왜 이로웠나: 다른 무리와 정보 공유
+Friends were a survival asset. | 정리: 친구는 생존 자산
+If you ran out of food, you knew where to go; if you needed help on a hunt, you knew who to ask. | 'Friends'의 구체 예: 갈 곳·물을 사람을 앎
+
+# U13 | UNIT 13 · 무관한 문장 찾기
+
+## ANALYSIS · p.88 | 본문 | 작물 생산 조절 정책 → 보조금이 그중 하나 → 형태는 다양, 더 싸게 팔게 함 → 거의 모든 선진국이 지급 → 예외 → 보조금의 결과
+To avoid famine and economic dislocation, countries use different kinds of policies to provide incentives or disincentives for the production of different crops. | 첫 문장: 나라마다 작물 생산을 조절하는 정책
+Subsidies are used to encourage agricultural production. | 그 정책 중 하나: 보조금(장려)
+They come in many forms, but collectively they give producers the ability to sell products at prices that are lower than would otherwise be possible. | 'They' = 보조금, 가격을 낮춰 줌
+Almost every developed country has found itself subsidizing agricultural producers. | 보조금을 거의 모든 선진국이 줌
+The exceptions — New Zealand, Australia, and to some extent Canada — represent special cases since they do not have large rural populations and their natural advantages in certain crops permit them to produce at lower costs than most other countries. | 'The exceptions' = 'Almost every'에서 빠진 나라들
+Subsidies ensure agricultural surpluses under most conditions, and they allow producers in a country that subsidizes agriculture to reap benefits as producers in non-subsidizing countries are forced out of business. | 다시 보조금 일반: 잉여 보장·안 주는 나라 생산자 도태
+
+## PRACTICE 01 · p.90 | 본문 | 집값이 소득에 비해 비쌈 → 그래서 빌리거나 대출 → 그래서 장기 금융 → 대출로 산 사람 → 임대 투자자
+Houses in Britain are too expensive in relation to income for households to buy a house for ready money at the beginning of their housing career or accumulate the purchase money from prior savings. | 첫 문장: 영국 집값이 소득에 비해 너무 비쌈
+Most householders must therefore either hire a house, or buy one with borrowed money. | 'therefore' ① = 비싸서 → 빌리거나 대출로 사야
+Housing must therefore be financed, and the finance has to be for a long term. | 'therefore' ② = 그래서 금융이 장기로 필요
+For buyers using borrowed funds, long-term loans are necessary to ensure that the principal repayments can be spread out thinly enough to be covered by annual income. | 장기여야 하는 이유 ① 대출로 산 사람: 갚을 돈을 얇게 나눔
+The investor in rental properties often finds that the yearly rent only covers a small portion of the debt used to purchase the property. | ② 임대 투자자: 1년 임대료로 빚의 일부만
+
+## PRACTICE 02 · p.91 | 본문 | 경제 이론의 출발점 = 완전 경쟁 시장 → 그 가상 경제의 구성원 → 그런 경제엔 항상 균형 → 보이지 않는 손 → 벗어나면 누군가 손해
+The customary starting point for economic theory, the basic model to which other situations and policy options are compared, is a system of perfectly competitive markets. | 첫 문장: 경제 이론의 출발점 = 완전 경쟁 시장
+This imagined economy is populated exclusively by small producers and individual consumers, all possessed of very broad information and very narrow motives and desires. | 'This imagined economy' = 완전 경쟁 시장, 구성원 설명
+In such an economy, under long lists of traditional but unrealistic assumptions, economists have proved that there is always an “equilibrium” — that is, a set of prices at which supply equals demand for every commodity. | 'such an economy' = 그 가상 경제, 늘 '균형'이 있음
+The invisible hand of market competition, in Adam Smith’s famous metaphor, ensures that every resource is used wherever it will produce the greatest value for consumers. | 균형의 의미를 보이지 않는 손으로: 자원이 최대 가치로
+Any deviation from the free-market outcome will make someone worse off, so there is no possible change to a market equilibrium that could win unanimous support. | 그래서 그 결과에서 벗어나면 누군가 손해
+
+## PRACTICE 03 · p.92 | 본문 | 스포츠·미디어의 이해관계 → 서로 이익 → 중계권 → TV 노출 → 노출의 이익 → 카메라 없으면 의미 없음
+Over the years, the sports sector and the media sector have developed a self-interest relationship. | 첫 문장: 스포츠와 미디어가 서로 이익 관계
+Both industries gain benefits from the complementary nature of their interests: while sport provides valuable content and audiences for media operators, the media is a revenue source and promotional tool for sport. | 'Both industries' = 두 분야, 어떻게 서로 이익인지
+The sale of exclusive live sports broadcasting rights is an important, if not the principal, source of revenue for sports organisations and clubs, whereas live sports content is decisive for media operators to create attractive programming for their audience. | 그 구체적인 모습 ①: 독점 중계권 판매
+Wide coverage through television, for instance, can result in significant exposure for sports leagues. | 'for instance' ②: TV 중계 → 리그 노출
+Such exposure can deliver private benefits to the league and the clubs in the form of increased revenue from sponsorship and attraction of new supporters. | 'Such exposure' = 앞의 노출 → 후원·팬 증가
+This implies that, without cameras, major sports events would have virtually no meaning at all. | 'This' = 미디어 덕분이라는 앞 내용 → 결론
+
+# U14 | UNIT 14 · 글의 순서 배열
+
+## ANALYSIS · p.94 | 본문 | 사진 전엔 나비 이미지가 왜곡됨 → 죽은 표본 모습 → 날개를 90도로 편 자세 → 그래도 그게 나비 모양 → 하지만 살아 있을 땐 다름 → 펴도 아래로 처짐
+Until the camera came along to take photographs of living butterflies, the standard image of a butterfly was a grossly distorted one. | 첫 문장: 사진 전 나비 이미지는 왜곡됨
+It shows them not as they are in life but in death, mounted on a pin in a museum. | 'It' = 그 표준 이미지 → 죽은 표본 모습
+The wings are held out flat at ninety degrees to the body — a posture which would sorely test the ligaments of any butterfly. | 표본의 날개 자세: 몸에 90도로 평평
+It is nevertheless the shape which we instantly recognise as ‘butterfly’, whether in bow-ties or the pasta the Italians call farfalle (after farfalla, a butterfly). | 'nevertheless' = 무리한 자세인데도 그게 '나비' 모양
+Yet in life butterflies open their wings flat only to enjoy the sun, and some species never do it at all, but settle with their wings tight shut. | 'Yet' = 실제 살아 있는 나비는 다름
+Even when the wings are wide open, they always slope downwards more than mounted specimens, with the hindwings much closer to the butterfly’s body. | 'Even when' = 활짝 펴도 표본보다 아래로 처짐
+
+## PRACTICE 01 · p.96 | 본문 | 음악·언어는 비교하게 됨 → 그런데 연구는 거의 없음 → 곧 바뀔 듯 → 그런 연구의 매력 → 인간만 소리를 이해 → 다른 영역은 동물로 연구 가능 → 언어·음악은 인간만 → 그래서 동물 비교로는 어려움
+The central role of music and language in human existence and the fact that both involve complex and meaningful sound sequences naturally invite comparison between the two domains. | 첫 문장: 음악과 언어는 자연스레 비교하게 됨
+Yet from the standpoint of modern cognitive science, music-language relations have barely begun to be explored. | 'Yet' = 그런데 인지과학에선 거의 연구 안 됨
+This situation appears to be poised to change rapidly, as researchers from diverse fields are increasingly drawn to this interdisciplinary enterprise. | 'This situation' = 연구가 거의 없는 상황, 곧 바뀔 듯
+The appeal of such research is easy to understand. | 'such research' = 음악-언어 연구, 매력은 이해됨
+Humans are unparalleled in their ability to make sense out of sound. | 매력의 이유: 인간은 소리 이해에 독보적
+In many other branches of our experience (e.g., visual perception, touch), we can learn much from studying the behavior and brains of other animals because our experience is not that different from theirs. | 비교 대상: 다른 경험 영역은 동물 연구가 도움
+When it comes to language and music, however, our species is unique. | 'however' = 언어·음악은 인간만 독특
+This makes it difficult to gain insight into language or music as a cognitive system by comparing humans to other organisms. | 'This' = 인간만 독특함 → 동물 비교로는 어려움
+
+## PRACTICE 02 · p.97 | 본문 | 건강·과체중 기준은 여럿 → BMI → 하지만 한계 → 또 다른 기준: 허리둘레 → 둘 다 진단 도구는 아님 → 대안적 접근 → 지지자의 근거 → 결국 이해·공감
+There are different measures of “healthy” and “overweight.” | 첫 문장: '건강·과체중'을 재는 기준은 여럿
+BMI (body mass index) is widely used by health professionals and has a strong correlation with various diseases and chronic conditions. | 기준 ①: BMI — 널리 쓰임
+However, it doesn’t reflect the amount of fat or muscle in a body, bone weight, or cultural factors, age, and gender (women tend to carry more fat). | 'However' = BMI의 한계
+Waist circumference is another commonly used measure because excess abdominal fat — more than 40 inches for men and 35 inches for women — increases the risk of developing obesity-related conditions. | 'another' = 기준 ②: 허리둘레
+While both are used to screen for potential risk, they aren’t diagnostic tools. | 'both' = BMI·허리둘레, 진단 도구는 아님
+Instead of using weight or measures like BMI to define well-being, an alternative “health at every size” approach focuses on sustainable health-promoting behavior regardless of body size. | 'Instead of' = 수치 대신 쓰는 대안적 접근
+Proponents argue a weight-neutral approach is healthier because it avoids the potentially harmful effects of repeated dieting, such as a higher risk of early death and psychological distress. | 'Proponents' = 그 대안 지지자들의 근거
+Ultimately, nutrition and health are socioeconomic issues that require understanding and empathy. | 'Ultimately' = 결국 이해·공감의 문제로 마무리
+
+## PRACTICE 03 · p.98 | 본문 | 농장 데이터는 농부 것이라는 말 → 계약서에도 → 하지만 법은 소유를 안 다룸 → 데이터의 특이한 성질 탓 → 비경합성 → 정리된 데이터 vs 원자료 → 원자료는 사실처럼 소유 불가
+It is common to read that farm data belongs to the farmer. | 첫 문장: 흔한 말 — 농장 데이터는 농부 것
+It is sometimes even stated in contracts. | 'It' = 그 말, 'even' 계약서에도 적힘
+However, ‘ownership’ is a legal assertion and data ownership is not addressed by legislation except for copyright for datasets as intellectual products. | 'However' = 법적으로는 소유가 다뤄지지 않음
+This is partly due to the peculiar nature of data compared to other goods that can be owned. | 'This' = 법이 안 다루는 이유: 데이터의 특이한 성질
+In legal terms, it is non-rivalrous: the same data can be in different places and be owned by different people because, when data is copied or migrated to other platforms, it remains the same. | 특이한 성질 ①: 비경합성(복사해도 그대로)
+In addition, there is a difference between data collected in a structured dataset, which can be considered as an intellectual product by law, and raw data as individual, unstructured bits before they are collected and made sense of. | 'In addition' = 이유 ②: 정리된 데이터 vs 원자료
+These raw data are similar to facts, for which no copyright and no ownership is legally applicable. | 'These raw data' = 앞의 원자료 → 사실처럼 소유 불가
+
+# U15 | UNIT 15 · 문장 삽입
+
+## ANALYSIS · p.100 | 본문 | 좋은 디자인의 시작 → 소통이 필요 → 잘못될 때 특히 → 잘될 땐 쉬움 → 문제 생길 때가 핵심 → 잘못되는 경우에 집중 → 사실 거기서 만족이 생김
+Good design starts with an understanding of psychology and technology. | 첫 문장: 좋은 디자인은 심리·기술 이해에서 시작
+Good design requires good communication, especially from machine to person, indicating what actions are possible, what is happening, and what is about to happen. | 좋은 디자인의 요건: 기계→사람 소통
+Communication is especially important when things go wrong. | 'Communication'을 이어받아: 잘못될 때 특히 중요
+It is relatively easy to design things that work smoothly and harmoniously as long as things go right. | 대비: 잘될 때는 디자인이 쉬움
+But as soon as there is a problem or a misunderstanding, the problems arise and this is where good design is essential. | 'But' = 문제가 생기면 좋은 디자인이 필수
+Designers need to focus their attention on the cases where things go wrong, not just on when things work as planned. | 그래서 디자이너는 잘못되는 경우에 집중해야
+Actually, this is where the most satisfaction can arise: when something goes wrong but the machine highlights the problems, then the person understands the issue, takes the proper actions, and the problem is solved. | 'Actually, this' = 잘못되는 경우 → 거기서 만족이 생김
+
+## PRACTICE 01 · p.102 | 본문 | 질문 → 첫째, 결론·동의로 판단 X → 뛰어난 두 학자도 의견이 다를 수 있음 → 연구자 간 의견 차이 많음 → 같은 실험도 결과가 다름 → 잘못한 건 아님 → 오히려 중요한 정보
+When we read about psychology, how do we assess the quality of what we read? | 첫 문장: 질문 — 심리학 글의 질을 어떻게 판단?
+First, we cannot judge the quality of an argument on the basis of what it concludes about people, or on the basis of whether we agree with the author’s beliefs about people or not. | 'First' = 질문에 대한 첫 답: 결론·동의로 판단 X
+It is quite possible for two excellent psychologists to differ strongly about an aspect of human behaviour, while both providing convincing arguments and good evidence for reaching their conclusions. | 그 이유: 뛰어난 두 학자도 의견이 다를 수 있음
+As you read more widely in psychology, you will find that there are many differences in opinion among researchers. | 더 읽어 보면 의견 차이가 많음을 알게 됨
+It can even be the case that two researchers conduct what looks like the same experiment in two different settings, but get very different results. | 'even' = 같은 실험인데 결과까지 다른 경우
+This does not mean, necessarily, that either of the researchers did bad work. | 'This' = 결과가 다르다는 것 → 잘못한 건 아님
+On the contrary, different findings from different contexts may give us important information. | 'On the contrary' = 오히려 중요한 정보
+
+## PRACTICE 02 · p.103 | 본문 | '보면 믿겠다' → 직접 경험이 믿음의 기준 → 예: 미생물을 안 믿음 → 현미경 후 바뀜 → 단어 의미로 확장 → 처방 → 아니면 무의미한 소리 → 흄이 주장
+‘I’ll believe it when I see it.’ | 첫 문장: 익숙한 말 '보면 믿겠다'
+This familiar remark recalls how first-hand personal experience is commonly accepted as a convincing way — if not the fundamental way — to determine what to believe in. | 'This familiar remark' = 앞의 말, 직접 경험이 믿음의 기준
+Many centuries ago, for instance, it was unbelievable that there could be organisms so small as to be invisible to the naked eye. | 'for instance' = 직접 경험의 예: 미생물을 안 믿었음
+Opinions changed after microscopes allowed us to see these tiny creatures in the late 1600s. | 'these tiny creatures' = 그 미생물, 현미경 후 의견 바뀜
+This emphasis upon direct personal experience is philosophically expandable to the point of prescribing how words must derive their meaning. | 'This emphasis' = 직접 경험 강조 → 단어 의미로 확장
+The prescription would be: if any given word is to be meaningful, then it must be traceable back to some sensory experience. | 'The prescription' = 앞에서 말한 '처방'의 내용
+Otherwise, the word should be regarded as only a meaningless sound. | 'Otherwise' = 감각 경험으로 못 거슬러 가면 무의미
+This experience-tied theory of meaning was advocated by the Scottish philosopher David Hume, an empiricist who believed that knowledge of what exists or is true can only come from observing the world. | 'This experience-tied theory' = 앞 이론 → 주장한 사람(흄)
+
+## PRACTICE 03 · p.104 | 본문 | 분노와 공격성은 관련 있지만 다름 → 하나 없이 다른 하나 가능 → 하지만 둘은 연결·생물학적 → 분노는 사회적으로 구성된다는 견해 → 즉 표현 정도는 사회가 정함 → 예: 남녀 차이 → 학습된 차이
+Anger is clearly related to aggression but they are not one and the same. | 첫 문장: 분노와 공격성은 관련 있지만 같지 않음
+It is possible to be aggressive without being angry, and it is equally possible to be angry without becoming aggressive. | '같지 않음'의 증거: 하나 없이 다른 하나 가능
+However, the two (the emotion of anger and the behaviour of aggression) are linked and are biologically based, with obvious survival value. | 'However' = 그래도 둘은 연결돼 있고 생물학적
+Anger always results in a much increased burst of energy and, although biologically based, is seen by some psychologists as largely socially constructed. | 분노: 생물학적이지만 사회적으로 구성된다는 견해
+That is, some people might be temperamentally more prone to anger than others, but the extent to which they express this is probably socially determined. | 'That is' = '사회적 구성'을 풀어서 설명
+In our culture, for example, boys are encouraged to express their anger more openly than girls and a far greater proportion of men than women are made to take anger management courses. | 'for example' = 사회가 정하는 예: 남녀 차이
+These are learned differences, not differences of biology. | 'These' = 앞의 남녀 차이 → 학습된 차이
+
+# U16 | UNIT 16 · 요약문 완성
+
+## ANALYSIS · p.106 | 본문 | 온라인이 시의성을 바꿈 → 예전 ① 직접 가야 함 → 가는 데만 시간 → 오늘날 ① 즉시 → 그때 ② 검증된 소수 자료 → 지금 ② 검증 안 된 무한 정보 → 그래서 온라인만 쓰면 위험
+As it has done in so many areas, the information-rich online environment has added a new dimension to the area of timeliness. | 첫 문장: 온라인 환경이 '시의성'에 새 차원을 더함
+Years ago, learners were restricted to searching for information that was often available only in environments accessible by foot, car, bicycle, or public transportation. | 'Years ago' = 과거 ①: 직접 가서 찾아야 했음
+It took time to get to information repositories, let alone to find good information. | 과거 이어서: 가는 데만 시간, 좋은 정보 찾기는 더
+Today, learners can find information instantly through devices that we carry in our pockets, purses, and back-packs. | 'Today' = 현재 ①: 주머니 속 기기로 즉시
+Then, information seeking involved painstakingly finding a few “good” resources among the limited (but vetted) possibilities that were physically accessible. | 'Then' = 다시 과거 ②: 검증된 소수 자료를 힘들게
+Now, it involves skimming through the limitless (often unvetted) information online that comes and goes at lightning speed. | 'Now' = 현재 ②: 검증 안 된 무한 정보를 훑음
+Given many students’ tendency to delay — as well as to finish assignments in the least amount of time possible — the dangers of limiting one’s information seeking to the online environment are clear. | 결론: 미루는 습관 + 온라인만 → 위험
+
+## PRACTICE 01 · p.108 | 본문 | 나쁜 것이 더 강함 → 근거 ① 긍정 4번 = 부정 1번 → 근거 ② 나쁜 기억이 더 강함 → 나쁜 기억은 선명 → 좋은 기억은 흐릿 → 부정성 편향 → 이유: 생존 → 진화 압력 → 현대에도 여전
+From a psychological point of view, bad is stronger than good. | 첫 문장: 주장 — 나쁜 것이 좋은 것보다 강함
+It takes four positive interactions to balance out a single negative one. | 근거 ①: 부정 1번을 상쇄하려면 긍정 4번
+Bad memories resonate much more powerfully than good ones. | 근거 ②: 나쁜 기억이 더 강하게 남음
+A bad experience from ten years ago might appear in your mind’s eye in sharp focus with strong, clear emotions attached to it. | 나쁜 기억의 예: 10년 전 일도 선명
+A happy memory from the same time period may have fuzzier edges and just an overall sense of pleasantness. | 'the same time period' = 같은 10년 전, 좋은 기억은 흐릿
+This is known as negativity bias or the negativity effect. | 'This' = 앞의 현상 전체의 이름
+The human brain is organized to survive by avoiding negative experiences and emotions. | 왜 그런가: 뇌는 부정적인 걸 피해 생존하게 짜임
+Our brains and emotional systems developed under evolutionary pressures to better keep us alive by remembering dangerous situations very clearly so we could avoid them in the future. | 그 배경: 진화 압력 — 위험을 선명하게 기억
+In modern times, we are unlikely to die from getting split off from our tribe and becoming prey to a wild beast, but our brains still look for negativity in every situation. | 'still' = 지금은 위험이 적은데도 여전히 부정을 찾음
+
+## PRACTICE 02 · p.109 | 본문 | 1975 동전 던지기 실험 → 초반에 맞힌 학생은 예측한다고 믿음 → 즉 승→패 vs 패 섞임 → 초반 4번이면 충분 → 카지노의 수법
+In a classic study from 1975, Ellen Langer and Jane Roth trained 90 Stanford undergraduate students to play a coin-flip game. | 첫 문장: 1975년 실험 소개 — 동전 던지기
+Students who guessed correctly early were much more likely to decide that they were correctly predicting the outcomes than students who guessed incorrectly early. | 결과: 초반에 맞힌 학생이 예측한다고 믿음
+That is, a sequence of wins followed by losses led the students to imagine they understood the task and needed to try to figure out what was going wrong, while a series of losses intermixed with wins led the students to think it was random. | 'That is' = 결과를 풀어서(승→패 vs 패 섞임)
+A sequence of four correct early guesses was enough to lead people to believe they could correctly guess the sequence “even for sophisticated subjects.” | 몇 번이면 되나: 초반 4번이면 충분
+This is how the casinos hook people — a quick series of wins leads you to think that you can beat the game, even though WWWWWLLLLL (where W means win and L means lose) is just as random as WLWLLLWWLW. | 'This' = 초반 승리로 생긴 착각 → 카지노가 이용
+
+## PRACTICE 03 · p.110 | 본문 | 유전율은 오해받음 → 예: 상수가 아님 → 특정 집단·시점의 통계 → 쉽게 말해 현재를 기술 → 다른 집단·시점은 다름 → 유전율이 그 차이를 반영 → 예: 부유한 나라 → 이유
+Heritability is frequently misunderstood. | 첫 문장: 유전율은 자주 오해받음
+For example, it is not a constant like the speed of light or gravity. | 'For example' = 오해의 예: 상수가 아님
+It is a statistic that describes a particular population at a particular time with that population’s particular mix of genetic and environmental influences. | 'It' = 유전율의 진짜 정체: 특정 집단·시점의 통계
+A simpler way of expressing this is that it describes what is but does not predict what could be. | 'this' = 앞 정의를 더 쉽게: 현재를 기술할 뿐
+Another population, or the same population at a different time, could have a different mix of genetic and environmental influences. | 'Another population' = 다른 집단·시점은 섞임이 다름
+Heritability will reflect these differences. | 'these differences' = 그 섞임의 차이를 유전율이 반영
+For example, heritability of body weight is greater in wealthier countries such as the US than in poorer countries such as Albania and Nicaragua. | 'For example' = 차이의 예: 부유한 나라가 더 큼
+Wealthier countries have greater access to fast-food outlets and high-energy snacks, and greater access to fattening food leads to higher heritability because it exposes genetic differences in people’s propensities to put on the pounds. | 'Wealthier countries' = 그 이유: 살찌는 음식 접근

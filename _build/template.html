@@ -66,6 +66,13 @@ h1{margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-.02e
 .rules{display:grid;gap:10px;padding:14px;background:var(--card);border:1px solid var(--omr-line);border-radius:2px}
 .rules ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}
 .rules li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.5}
+.rules-fold{background:var(--card);border:1px solid var(--omr-line);border-radius:2px}
+.rules-fold summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;cursor:pointer;list-style:none;font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--omr);touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.rules-fold summary::-webkit-details-marker{display:none}
+.rules-fold summary::before{content:"+";font-family:var(--font-mono);font-size:15px;letter-spacing:0}
+.rules-fold[open] summary::before{content:"−"}
+.rules-fold ol{list-style:none;margin:0;padding:0 14px 14px;display:grid;gap:9px}
+.rules-fold li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.5}
 .num{width:18px;height:23px;margin-top:-1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--omr)}
 .sets{display:grid;gap:12px}
 .sets-h{display:flex;justify-content:space-between;align-items:baseline;color:var(--omr);font-size:12px}
@@ -1173,42 +1180,38 @@ function setCard(raw) {
 }
 /* 끌기 손잡이 아이콘(점 여섯 개) */
 const GRIP = '<svg width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="10" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="10" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="10" cy="18" r="1.8"/></g></svg>';
-/* 페이지에 단어 세트만 있으면 단어장 안내, 순서 세트만 있으면 순서 맞추기 안내, 둘 다면 둘 다 */
-const VOCAB_RULES = `
-  <section class="rules" aria-labelledby="rules-h">
-    <h2 class="eyebrow" id="rules-h">외우는 방법</h2>
-    <ol>
+/* 활동별 방법. 한 종류만 있는 페이지는 목록 위에 펼쳐 두고, 여러 종류가 섞인 페이지는 그 종류의 첫 그룹 제목 밑에 접어 둠
+   (그 종류를 이 기기에서 아직 한 번도 안 했으면 펼친 채로) — 섞인 페이지에서 방법 상자가 위에 쌓여 목록이 밀려나지 않게 */
+const RULES = {
+  vocab: ['외우는 방법', `
       <li><span class="num">1</span><span><b>소리 내서 말한 다음</b> 뜻 보기. 속으로 ‘아 그거’는 모르는 거야.</span></li>
       <li><span class="num">2</span><span><b>5초 안에 안 나오면 애매.</b> 애매·몰랐어는 몇 장 뒤에 다시 나와.</span></li>
       <li><span class="num">3</span><span><b>철자는 직접 쳐서</b> 채점. 틀린 단어는 맞힐 때까지 돌아와.</span></li>
-      <li><span class="num">4</span><span><b>마지막에 전체를 섞어서</b> 한 번 더. 맞힌 단어도 다시 꺼내야 오래 가.</span></li>
-    </ol>
-  </section>`;
-const ORDER_RULES = `
-  <section class="rules" aria-labelledby="orules-h">
-    <h2 class="eyebrow" id="orules-h">순서 맞추는 방법</h2>
-    <ol>
+      <li><span class="num">4</span><span><b>마지막에 전체를 섞어서</b> 한 번 더. 맞힌 단어도 다시 꺼내야 오래 가.</span></li>`],
+  order: ['순서 맞추는 방법', `
       <li><span class="num">1</span><span><b>교과서·노트는 덮고</b> 해. 보면서 맞추면 시험장에선 안 나와.</span></li>
       <li><span class="num">2</span><span><b>문장을 끌어서</b> 교과서 순서로 맞춰. 오른쪽 <span class="grip-ic">${GRIP}</span>를 잡거나 문장을 꾹 누르면 끌려.</span></li>
       <li><span class="num">3</span><span><b>다 맞췄으면 확인.</b> 틀리면 왜 그 순서인지 해설이 나오고, 그 지문은 뒤로 갔다가 다시 나와. 다 맞혀야 끝.</span></li>
-      <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>
-    </ol>
-  </section>`;
-const KW_RULES = `
-  <section class="rules" aria-labelledby="krules-h">
-    <h2 class="eyebrow" id="krules-h">핵심어 고르는 방법</h2>
-    <ol>
+      <li><span class="num">4</span><span><b>섞이는 순서는 매번 달라.</b> 자리나 기호를 외우는 건 소용없어.</span></li>`],
+  kw: ['핵심어 고르는 방법', `
       <li><span class="num">1</span><span><b>필기·해석은 덮고</b> 지문만 읽어. 주제를 한 줄로 먼저 떠올려 봐.</span></li>
       <li><span class="num">2</span><span><b>주제의 핵심어를 모두</b> 골라. 지문에 나왔다고 다 핵심은 아니야 — 예시·고유명사·세부는 지엽.</span></li>
       <li><span class="num">3</span><span><b>지문에 없는 말도 섞여 있어.</b> 핵심어를 바꿔 쓴 말이면 정답, 주제의 방향을 뒤집은 말이면 함정.</span></li>
-      <li><span class="num">4</span><span><b>하나라도 빠뜨리거나 더 고르면 다시.</b> 이유와 한 줄 주제가 나오고, 그 지문은 보기가 새로 섞여 뒤에 다시 나와.</span></li>
-    </ol>
+      <li><span class="num">4</span><span><b>하나라도 빠뜨리거나 더 고르면 다시.</b> 이유와 한 줄 주제가 나오고, 그 지문은 보기가 새로 섞여 뒤에 다시 나와.</span></li>`]
+};
+const kindOf = s => (s.kind === 'order' || s.kind === 'kw' ? s.kind : 'vocab');
+const rulesBox = k => `
+  <section class="rules" aria-labelledby="rules-${k}">
+    <h2 class="eyebrow" id="rules-${k}">${RULES[k][0]}</h2>
+    <ol>${RULES[k][1]}</ol>
   </section>`;
+const rulesFold = (k, open) => `<details class="rules-fold"${open ? ' open' : ''}><summary>${RULES[k][0]}</summary><ol>${RULES[k][1]}</ol></details>`;
+const triedKind = (sets, k) => sets.some(s => kindOf(s) === k && (getRec(s.id).last || store.get(K.sess(s.id))));
 function renderHome() {
   S.view = 'home'; stopClock(); S.sess = null; C = null;
   const sets = rawSets();
-  const hasO = sets.some(s => s.kind === 'order'), hasK = sets.some(s => s.kind === 'kw');
-  const hasV = sets.some(s => s.kind !== 'order' && s.kind !== 'kw');
+  const kinds = [...new Set(sets.map(kindOf))], mixed = kinds.length > 1;
+  const hasO = kinds.includes('order'), hasK = kinds.includes('kw'), hasV = kinds.includes('vocab');
   const onlyO = hasO && !hasV && !hasK, onlyK = hasK && !hasV && !hasO;
   const lede = onlyO ? '외운 본문을 안 보고 순서대로 다시 세워 봐.'
     : onlyK ? '지문을 읽고 주제의 핵심어만 골라 봐. 나왔다고 다 핵심은 아니야.'
@@ -1223,12 +1226,10 @@ function renderHome() {
     <h1>${onlyO ? '본문 순서 맞추기' : onlyK ? '핵심어 고르기' : '꺼내는 단어장'}</h1>
     <p class="lede">${lede}</p>
   </header>
-  ${hasV || (!hasO && !hasK) ? VOCAB_RULES : ''}
-  ${hasO ? ORDER_RULES : ''}
-  ${hasK ? KW_RULES : ''}
+  ${mixed ? '' : rulesBox(kinds[0] || 'vocab')}
   <section class="sets" aria-labelledby="sets-h">
     <div class="sets-h"><h2 class="eyebrow" id="sets-h">${onlyO ? '순서 세트' : onlyK ? '핵심어 세트' : hasO || hasK ? '세트' : '단어 세트'}</h2><span class="mono">${sets.length}</span></div>
-    ${groupedCards(sets)}
+    ${groupedCards(sets, mixed)}
   </section>
   ${PASTE ? `<details class="paste" id="paste"${S.pasteOpen ? ' open' : ''}>
     <summary><span class="sum-l">단어 직접 넣기</span><span class="sum-r">이 기기에만 저장</span></summary>
@@ -1246,11 +1247,13 @@ function renderHome() {
   bindHome();
 }
 /* 세트에 group이 있으면 묶음 제목을 달아 줌 (예: 어휘평가 2차 / 2학기 기말) */
-function groupedCards(sets) {
+function groupedCards(sets, mixed) {
   let last = null;
+  const folded = new Set();
   return sets.map(s => {
-    const g = s.group || '';
-    const head = g && g !== last ? `<h3 class="group-h">${esc(g)}</h3>` : '';
+    const g = s.group || '', k = kindOf(s);
+    let head = g && g !== last ? `<h3 class="group-h">${esc(g)}</h3>` : '';
+    if (mixed && !folded.has(k)) { folded.add(k); head += rulesFold(k, !triedKind(sets, k)); }
     last = g;
     return head + setCard(s);
   }).join('');
