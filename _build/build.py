@@ -98,7 +98,9 @@ def import_xlsx(path, name):
     by_ko = {}
     for it in items: by_ko.setdefault(it['ko'], []).append(it['en'])
     twins = {k: v for k, v in by_ko.items() if len(v) > 1}
-    long_en = [it['en'] for it in items if len([w for w in it['en'].split() if not re.fullmatch(r'[A-Z~…+]', w) and not HANGUL.search(w)]) > 7]
+    no_eq = lambda en: re.sub(r'\s*\(\s*=[^)]*\)', '', en)  # (=다른 표현)은 한→영 단어 수에 안 셈 (template.html variants와 같음)
+    long_en = [it['en'] for it in items if len([w for w in no_eq(it['en']).split() if not re.fullmatch(r'[A-Z~…+]', w) and not HANGUL.search(w)]) > 7]
+    eq_en = [it['en'] for it in items if no_eq(it['en']) != it['en']]
 
     out = os.path.join(HERE, 'data', name + '.json')
     os.makedirs(os.path.dirname(out), exist_ok=True)
@@ -115,6 +117,7 @@ def import_xlsx(path, name):
     if dup_en: print(f'  ! 같은 표제어 {dup_en[:10]}')
     if twins: print(f'  · 뜻이 똑같은 단어(한→영에서 둘 다 정답 처리): {list(twins.values())[:10]}')
     if long_en: print(f'  · 8단어 이상이라 한→영 철자 문제에서 빠지는 표제어: {long_en[:10]}')
+    if eq_en: print(f'  · (=…) 다른 표현도 한→영 정답으로 받는 표제어 {len(eq_en)}개: {eq_en[:6]}{" …" if len(eq_en) > 6 else ""}')
 
 
 # ---------- 순서 텍스트 → 데이터 ----------

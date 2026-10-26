@@ -2275,14 +2275,36 @@ function parseMeaning(ko, gl) {
   const notes = note ? note.split(/\s+\/\s+|\s+[—–]\s+/).map(x => x.trim()).filter(Boolean) : [];
   return { core, notes };
 }
-/* 정답 후보: "a/b" 둘 다, "(be) x" 괄호 넣고 빼고 둘 다 */
+/* 표제어의 V-ing(-ing) 자리와 p.p. 자리: 비우면 오답, 꼴은 자유
+   (V-ing → ving·v-ing·ing·-ing, ~ing도 ing로 읽힘 / p.p. → p.p.·pp). 2026-10-26 선생님이 정함 */
+const ING_SLOT = /^(?:v-?ing|-ing|ing)$/i, PP_SLOT = /^p\.?p\.?$/i;
+const SLOT_RE = { ing: '(?:v-?|-)?ing ', pp: 'p\\.?p\\.? ' };
+const LIGHT_WORD = /^(?:a|an|the|be|have|get|make|take|do)$/i;
+/* "(=y)" 다른 표현: 빼고 쓴 것 · y로 바꿔 쓴 것 · y까지 넣어 쓴 것 셋 다 정답 후보.
+   (=y)가 끝에 있으면 y가 표현 전체(factor in A (=take A into account)),
+   중간이면 y가 바로 앞 말을 바꿈 — 앞 말이 한 단어이거나, a·be·have로 시작하는데 y는 아니면 바로 앞 한 단어만
+   (a string (=series) of A, be accustomed (=used) to V-ing), 아니면 앞 말 전체(think of (=view) A as B, have a responsibility (=be obliged) to V) */
+function eqVariants(a) {
+  const m = a.match(/\(\s*=\s*([^)]*)\)/);
+  if (!m) return [a];
+  const before = a.slice(0, m.index).trim(), after = a.slice(m.index + m[0].length).trim(), y = m[1].trim();
+  const bw = before.split(/\s+/).filter(Boolean);
+  let sub = y;
+  if (after) {
+    const one = bw.length <= 1 || (LIGHT_WORD.test(bw[0]) && !LIGHT_WORD.test(y.split(/\s+/)[0]));
+    sub = (one ? bw.slice(0, -1) : []).concat(y, after).join(' ');
+  }
+  return [before + ' ' + after, sub, before + ' ' + y + ' ' + after].flatMap(eqVariants);
+}
+/* 정답 후보: "a/b" 둘 다, "(be) x" 괄호 넣고 빼고 둘 다, "(=y)"는 위 eqVariants. 첫 후보(괄호 넣은 원래 표현)가 힌트·정답 화면에 나옴 */
 function variants(en) {
   const out = [];
-  String(en).split(/\s*\/\s*/).filter(Boolean).forEach(a => {
+  String(en).split(/\s*\/\s*/).filter(Boolean).forEach(a0 => eqVariants(a0).forEach(a => {
     out.push(a.replace(/[()]/g, '').replace(/\s+/g, ' ').trim());
     if (/\(/.test(a)) out.push(a.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim());
-  });
-  return out.length ? out : [String(en)];
+  }));
+  const uniq = [...new Set(out.filter(Boolean))];
+  return uniq.length ? uniq : [String(en)];
 }
 function rawTokens(s) {
   return String(s).replace(/[’‘`´]/g, "'").replace(/…|\.{3}/g, ' ~ ').replace(/~/g, ' ~ ')
@@ -2291,7 +2313,13 @@ function rawTokens(s) {
 /* 자리표시: A·B·V 같은 대문자 한 글자, sb·sth·one's·~·+, 한글(주어·형용사 등).
    자리표시 자리는 비워도 되고 아무 말(4단어까지)을 써도 됨. 나머지 단어는 철자까지 정확해야 함 */
 function isPh(w) { return /^[A-Z]$/.test(w) || PH_WORD.test(w) || HANGUL.test(w) || /^[+~]+$/.test(w); }
-function expTokens(v) { return rawTokens(v).map(w => ({ w, t: w.toLowerCase(), ph: isPh(w) })); }
+/* mk: 'ing'(V-ing 자리) · 'pp'(p.p. 자리) — 꼭 써야 하지만 꼴은 SLOT_RE대로 자유 */
+function expTokens(v) {
+  return rawTokens(v).map(w => {
+    const ph = isPh(w);
+    return { w, t: w.toLowerCase(), ph, mk: ph ? '' : ING_SLOT.test(w) ? 'ing' : PP_SLOT.test(w) ? 'pp' : '' };
+  });
+}
 const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 function patternFor(v) {
   const et = expTokens(v);
@@ -2299,12 +2327,13 @@ function patternFor(v) {
   let src = '^', prevPh = false;
   et.forEach(x => {
     if (x.ph) { if (!prevPh) src += '(?:\\S+ ){0,4}'; prevPh = true; }
-    else { src += reEsc(x.t) + ' '; prevPh = false; }
+    else { src += SLOT_RE[x.mk] || reEsc(x.t) + ' '; prevPh = false; }
   });
   return new RegExp(src + '$');
 }
+/* 학생 답: 괄호는 지우고(a(n) → an), '='는 띄어 읽음((=trouble) → trouble) */
 function typedNorm(s) {
-  return rawTokens(String(s).replace(/[()]/g, '')).map(w => w.toLowerCase()).filter(w => !/^[+~]+$/.test(w)).join(' ') + ' ';
+  return rawTokens(String(s).replace(/=/g, ' ').replace(/[()]/g, '')).map(w => w.toLowerCase()).filter(w => !/^[+~]+$/.test(w)).join(' ') + ' ';
 }
 function matchItem(typed, item) {
   const t = typedNorm(typed);
@@ -2498,8 +2527,9 @@ const TTS = (() => {
     }
   };
 })();
-/* 적힌 그대로 읽되, a(n)→a, (to)→to, ~·…→쉼, 한글·+는 뺌 (A·B·V는 그대로 읽음) */
+/* 적힌 그대로 읽되, (=다른 표현)은 빼고, a(n)→a, (to)→to, ~·…→쉼, 한글·+는 뺌 (A·B·V는 그대로 읽음) */
 const sayText = it => String(it.en)
+  .replace(/\s*\(\s*=[^)]*\)/g, '')
   .replace(/(\S)\([^)]*\)/g, '$1').replace(/\([^)]*\)(\S)/g, '$1').replace(/[()]/g, '')
   .replace(/\bsb\b/gi, 'somebody').replace(/\bsth\b/gi, 'something')
   .replace(/…|\.{3}|~/g, ',').replace(/\+/g, ' ')
@@ -3353,7 +3383,7 @@ function dunno() {
 function slotsHTML(it) {
   let first = true;
   return expTokens(it.vars[0]).map(x => {
-    if (x.ph) return `<span class="ph">${esc(x.w)}</span>`;
+    if (x.ph || x.mk) return `<span class="ph">${esc(x.mk === 'pp' ? 'p.p.' : x.w)}</span>`;
     const s = Array.from(x.w).map((ch, i) => /[a-z]/i.test(ch) ? (first && i === 0 ? esc(ch.toLowerCase()) : '_') : esc(ch)).join('');
     first = false;
     return `<span>${s}</span>`;

@@ -1,5 +1,5 @@
 // 올리기 전 점검: node _build/check.js <page>.html
-// 스크립트 구문 · 세트별 단어 수와 묶음 · 한→영 정답 인식(모든 표제어가 자기 자신을 정답으로 받는지) · 제출 폼 설정
+// 스크립트 구문 · 한→영 채점 규칙 시험표(RULES) · 세트별 단어 수와 묶음 · 한→영 정답 인식(모든 표제어가 자기 자신을 정답으로 받는지) · 제출 폼 설정
 // 순서 세트: 지문·문장 수, 똑같은 문장 없음, 섞기가 교과서 순서를 그대로 내지 않음, 채점이 정답/오답을 가림, 해설(흐름·문장 단서)이 빠짐없이 있음
 // 핵심어 세트: 지문마다 보기 12~15개·핵심과 오답이 둘 다·이유와 한 줄 주제가 있음, 흐름 어휘 정답 1 + 함정 1,
 //   섞기가 원본 순서를 그대로 내거나 핵심을 한데 몰지 않음, 채점이 '핵심 전부 + 오답 0'만 정답으로 받음
@@ -11,8 +11,31 @@ new vm.Script(main); // 구문 오류면 여기서 멈춤
 const block = id => { const m = scripts.find(s => s[0].includes(`id="${id}"`)); return m ? JSON.parse(m[1]) : null; };
 const sets = block('sets-data'), cfg = block('page-config') || {};
 const pure = main.split('/*PURE-START*/')[1].split('/*PURE-END*/')[0];
-const P = new Function(pure + '; return {prepareSet, makeBatches, matchItem, expTokens, prepareOrder, shuffleOrder, gradeOrder, prepareKw, shuffleKw, gradeKw};')();
+const P = new Function(pure + '; return {prepareSet, makeBatches, matchItem, expTokens, prepItem, prepareOrder, shuffleOrder, gradeOrder, prepareKw, shuffleKw, gradeKw};')();
 const bad = [];
+// 한→영 채점 규칙 시험 (2026-10-26 선생님이 정함): V-ing(-ing) 자리는 ving·v-ing·ing·-ing(~ing) 중 하나를 써야 정답(비우거나 doing은 오답),
+// p.p. 자리도 같은 식(p.p.·pp), (=…) 다른 표현은 빼도·바꿔 써도·넣어 써도 정답, (in)·(up) 같은 괄호는 넣어도 빼도 정답
+const RULES = [
+  ['stop V-ing', ['stop V-ing', 'stop ving', 'stop v-ing', 'stop ing', 'stop -ing', 'stop ~ing', 'Stop Ving'], ['stop', 'stop to', 'stop V', 'stop doing']],
+  ['have difficulty (=trouble) (in) V-ing', ['have difficulty in V-ing', 'have difficulty ving', 'have trouble in -ing', 'have trouble ing',
+    'have difficulty (=trouble) (in) V-ing', 'have difficulty trouble in ving'], ['have difficulty', 'have difficulty in', 'have trouble', 'have difficulty to']],
+  ['a string (=series) of A', ['a string of', 'a series of', 'a string of A', 'a string (=series) of A'], ['series of', 'a string', 'a series']],
+  ['be accustomed (=used) to V-ing', ['be accustomed to ving', 'be used to -ing', 'be accustomed to V-ing'], ['used to ving', 'be used to', 'be accustomed to']],
+  ['think of (=view) A as B', ['think of A as B', 'view A as B', 'think of as', 'view as'], ['think view as', 'think of']],
+  ['have a responsibility (=be obliged) to V', ['have a responsibility to', 'be obliged to V'], ['have a be obliged to', 'obliged to']],
+  ['factor in A (=take A into account)', ['factor in', 'factor in A', 'take A into account', 'take into account'], ['factor', 'take account']],
+  ['prevent (=stop) A from -ing', ['prevent A from -ing', 'prevent from ving', 'stop A from v-ing', 'stop him from ing'], ['prevent from', 'stop A from']],
+  ['the risk of A V-ing', ['the risk of v-ing', 'the risk of A V-ing', 'the risk of him ing'], ['the risk of', 'the risk of A']],
+  ['seem to have p.p.', ['seem to have p.p.', 'seem to have pp', 'seem to have p.p'], ['seem to have', 'seem to have done']],
+  ['freeze (up)', ['freeze', 'freeze up'], ['freeze down']],
+];
+let nRule = 0;
+for (const [en, yes, no] of RULES) {
+  const it = P.prepItem([en, '뜻', '']);
+  yes.forEach(t => { nRule++; if (!P.matchItem(t, it)) bad.push(`채점 규칙: '${en}'에 '${t}'를 오답 처리`); });
+  no.forEach(t => { nRule++; if (P.matchItem(t, it)) bad.push(`채점 규칙: '${en}'에 '${t}'를 정답 처리`); });
+}
+console.log(`한→영 채점 규칙 시험 ${nRule}개`);
 for (const raw of sets) {
   if (raw.kind === 'kw') {
     const set = P.prepareKw(raw);
