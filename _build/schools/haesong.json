@@ -8,6 +8,8 @@
    "note": "공통영어2 어휘평가 2차", "set_size": 100, "batch": 50, "active": false, "memo": "2026-10-22 시험 끝나서 뺌"},
   {"data": "haesong1-2026-2f", "group": "2학기 기말 · 공통영어2 L3·4 · 247개", "title": "기말", "id_prefix": "haesong1-2026-2f",
    "set_size": 80, "batch": 20, "active": true},
+  {"data": "haesong1-2026-2f-olym", "group": "2학기 기말 · 올림포스 기본2 UNIT 10~16 · 1,116개", "title": "올림포스", "rounds": true,
+   "id_prefix": "haesong1-2026-2f-olym", "set_size": 93, "batch": 20, "active": true},
   {"type": "order", "data": "haesong1-2026-2f-order", "group": "2학기 기말 순서 · 올림포스 기본2 UNIT 10~16 · 28지문", "id_prefix": "haesong1-2026-2f-order",
    "note": "ANALYSIS + PRACTICE 01~03", "active": true}
  ]

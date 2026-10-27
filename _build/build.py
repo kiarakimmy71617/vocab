@@ -318,9 +318,11 @@ def build(school):
         if len(bounds) > 1 and bounds[-1][1] - bounds[-1][0] < size // 2:  # 자투리(세트 절반 미만)는 앞 세트에 합침
             bounds[-2] = (bounds[-2][0], bounds[-1][1]); bounds.pop()
         seen = set()
-        for lo, hi in bounds:
+        for k, (lo, hi) in enumerate(bounds, 1):
             chunk = items[lo:hi]; n0, n1 = chunk[0]['n'], chunk[-1]['n']
-            st = {'id': f"{g['id_prefix']}-{n0}-{n1}", 'group': g['group'], 'title': f"{g['title']} · {n0}~{n1}번", 'sections': []}
+            # "rounds": true면 단어장 종이의 회차를 제목에 붙임 (올림포스 3회차 · 187~279번). 제목만 바뀌고 세트 ID는 그대로
+            label = f"{g['title']} {k}회차" if g.get('rounds') else g['title']
+            st = {'id': f"{g['id_prefix']}-{n0}-{n1}", 'group': g['group'], 'title': f"{label} · {n0}~{n1}번", 'sections': []}
             if int(g.get('batch', DEFAULT_BATCH)) != DEFAULT_BATCH: st['batch'] = int(g['batch'])
             for it in chunk:
                 if not st['sections'] or st['sections'][-1]['raw'] != it['sec']:
