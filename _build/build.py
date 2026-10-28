@@ -9,6 +9,7 @@
 
 세트 ID(단어: id_prefix-첫번호-끝번호, 순서: id_prefix-과키, 핵심어: id_prefix-강키)는 학생 진행 기록의 열쇠다. 학생에게 링크가
 나간 뒤에는 id_prefix나 set_size(단어), 과 키(순서)·강 키(핵심어)를 바꾸지 않는다(바꾸면 그 그룹의 진행 기록이 처음부터 다시 시작됨).
+뒤쪽 세트 크기만 바꿀 때는 set_size를 목록으로 써서 앞 세트를 그대로 둔다: [80, 160] = 첫 세트 80개, 그다음부터 160개씩.
 
 순서 텍스트 형식 (_build/src/<데이터이름>.txt):
   # L5 | 5과 · From Trash to Music | 설명        ← 과(= 세트 하나). 키(세트 ID에 들어감) | 세트 제목 | 카드 설명(선택, 없으면 그룹 note나 '대화문 5 + 본문 4')
@@ -313,9 +314,13 @@ def build(school):
         if g.get('type') == 'kw':
             sets += kw_sets(g); continue
         items = json.load(open(os.path.join(HERE, 'data', g['data'] + '.json'), encoding='utf-8'))['items']
-        size = int(g['set_size'])
-        bounds = [(i, min(i + size, len(items))) for i in range(0, len(items), size)]
-        if len(bounds) > 1 and bounds[-1][1] - bounds[-1][0] < size // 2:  # 자투리(세트 절반 미만)는 앞 세트에 합침
+        # set_size: 숫자면 모두 그 크기, 목록이면 차례대로 쓰고 마지막 값을 반복 ([80, 160] → 80, 160, 160, …)
+        sizes = g['set_size'] if isinstance(g['set_size'], list) else [g['set_size']]
+        bounds, i = [], 0
+        while i < len(items):
+            size = int(sizes[min(len(bounds), len(sizes) - 1)])
+            bounds.append((i, min(i + size, len(items)))); i += size
+        if len(bounds) > 1 and bounds[-1][1] - bounds[-1][0] < size // 2:  # 자투리(그 세트 크기의 절반 미만)는 앞 세트에 합침
             bounds[-2] = (bounds[-2][0], bounds[-1][1]); bounds.pop()
         seen = set()
         for k, (lo, hi) in enumerate(bounds, 1):
@@ -329,8 +334,8 @@ def build(school):
                     st['sections'].append({'raw': it['sec'], 'name': sec_name(it['sec'], it['sec'] in seen, g.get('note')), 'items': []})
                 st['sections'][-1]['items'].append([it['en'], it['ko'], it['note']])
             seen.update(s['raw'] for s in st['sections'])
-            st['note'] = g.get('note') or ' + '.join(
-                f"{s['name'].split(' · ')[0].replace(' (이어서)', '')} {len(s['items'])}" for s in st['sections'])
+            st['note'] = g.get('note') or ' + '.join(  # 지문 하나('16강 05번 42')는 줄이 안 갈라지게 붙임
+                f"{s['name'].split(' · ')[0].replace(' (이어서)', '')} {len(s['items'])}".replace(' ', ' ') for s in st['sections'])
             for s in st['sections']: s.pop('raw')
             sets.append(st)
             print(f"{g['group'][:24]} | {st['title']} | {st['note']} | {hi - lo}개")
