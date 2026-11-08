@@ -28,6 +28,15 @@ const RULES = [
   ['the risk of A V-ing', ['the risk of v-ing', 'the risk of A V-ing', 'the risk of him ing'], ['the risk of', 'the risk of A']],
   ['seem to have p.p.', ['seem to have p.p.', 'seem to have pp', 'seem to have p.p'], ['seem to have', 'seem to have done']],
   ['freeze (up)', ['freeze', 'freeze up'], ['freeze down']],
+  // (=…)가 앞 말의 어디까지를 바꾸는지 (2026-11-08 국제고1 단어장에서 보완): 전치사·부사끼리 / 전치사·as로 시작하는 말 / 끝의 한 단어
+  ['be linked to (=connected with) A', ['be linked to A', 'be connected with A', 'be linked to (=connected with) A'], ['be linked connected with A', 'connected with A', 'be connected to A']],
+  ['wear down (=away) A', ['wear down A', 'wear away', 'wear away A'], ['away', 'away A', 'wear']],
+  ['weave A through (=into) B', ['weave A through B', 'weave A into B', 'weave into'], ['into B', 'into', 'weave A']],
+  ['as many (=much) as + 수', ['as many as', 'as much as', 'as many as 30'], ['much as', 'as many', 'as much']],
+  ['at high (=great) speed', ['at high speed', 'at great speed'], ['great speed', 'at speed']],
+  ['under most conditions (=circumstances)', ['under most conditions', 'under most circumstances'], ['most circumstances', 'under conditions']],
+  ['close to (=nearly) A', ['close to A', 'nearly A', 'nearly'], ['close nearly A', 'close']],
+  ['as long as (=provided that) S V', ['as long as', 'provided that', 'provided that S V'], ['as long provided that', 'provided']],
 ];
 let nRule = 0;
 for (const [en, yes, no] of RULES) {

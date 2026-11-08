@@ -6397,21 +6397,36 @@ function parseMeaning(ko, gl) {
 const ING_SLOT = /^(?:v-?ing|-ing|ing)$/i, PP_SLOT = /^p\.?p\.?$/i;
 const SLOT_RE = { ing: '(?:v-?|-)?ing ', pp: 'p\\.?p\\.? ' };
 const LIGHT_WORD = /^(?:a|an|the|be|have|get|make|take|do)$/i;
+/* 전치사·부사(up·down·away 등) — (=y)가 앞 말의 어디까지를 바꾸는지 가를 때 씀 */
+const PREP_WORD = /^(?:about|across|after|against|along|among|around|as|at|away|back|before|behind|below|beside|between|beyond|by|down|for|from|in|into|of|off|on|onto|out|over|past|through|to|toward|towards|under|up|upon|with|within|without)$/i;
 /* "(=y)" 다른 표현: 빼고 쓴 것 · y로 바꿔 쓴 것 · y까지 넣어 쓴 것 셋 다 정답 후보.
-   (=y)가 끝에 있으면 y가 표현 전체(factor in A (=take A into account)),
-   중간이면 y가 바로 앞 말을 바꿈 — 앞 말이 한 단어이거나, a·be·have로 시작하는데 y는 아니면 바로 앞 한 단어만
-   (a string (=series) of A, be accustomed (=used) to V-ing), 아니면 앞 말 전체(think of (=view) A as B, have a responsibility (=be obliged) to V) */
+   (=y)가 끝에 있으면 y가 표현 전체(factor in A (=take A into account)) — y가 한 단어면 바로 앞 한 단어만 바꾼 것도 정답
+   (under most conditions (=circumstances) → under most circumstances도).
+   중간이면 y가 바로 앞 말을 바꿈:
+   ① 앞 말 끝과 y 끝이 둘 다 전치사·부사면: y가 한 단어면 바로 앞 한 단어만(wear down (=away) A, weave A through (=into) B),
+      여러 단어면 앞 말 전체 — be로 시작하면 be는 남김(be linked to (=connected with) A → be connected with A, because of (=due to) A → due to A)
+   ② 앞 말이 한 단어이거나, a·be·have로 시작하는데 y는 아니거나, 전치사·so·too로 시작하는데 y도 바뀌는 말도 전치사가 아니면
+      바로 앞 한 단어만(a string (=series) of A, be accustomed (=used) to V-ing, as many (=much) as, at high (=great) speed)
+   ③ 아니면 앞 말 전체(think of (=view) A as B, have a responsibility (=be obliged) to V, close to (=nearly) A, as long as (=provided that) S V) */
 function eqVariants(a) {
   const m = a.match(/\(\s*=\s*([^)]*)\)/);
   if (!m) return [a];
   const before = a.slice(0, m.index).trim(), after = a.slice(m.index + m[0].length).trim(), y = m[1].trim();
-  const bw = before.split(/\s+/).filter(Boolean);
-  let sub = y;
-  if (after) {
-    const one = bw.length <= 1 || (LIGHT_WORD.test(bw[0]) && !LIGHT_WORD.test(y.split(/\s+/)[0]));
-    sub = (one ? bw.slice(0, -1) : []).concat(y, after).join(' ');
+  const bw = before.split(/\s+/).filter(Boolean), yw = y.split(/\s+/).filter(Boolean);
+  const last = bw[bw.length - 1] || '', swap = k => bw.slice(0, bw.length - k).concat(y, after).join(' ').trim();  // 앞 말의 끝 k단어를 y로
+  const subs = [];
+  if (!after) {
+    subs.push(y);
+    if (yw.length === 1 && bw.length >= 2 && !isPh(last) && !PREP_WORD.test(last)) subs.push(swap(1));
+  } else if (bw.length >= 2 && PREP_WORD.test(last) && PREP_WORD.test(yw[yw.length - 1]) && (yw.length === 1 || !PREP_WORD.test(yw[0]))) {
+    subs.push(swap(yw.length === 1 ? 1 : /^be$/i.test(bw[0]) && !/^be$/i.test(yw[0]) ? bw.length - 1 : bw.length));
+  } else {
+    const lightOne = LIGHT_WORD.test(bw[0]) && !LIGHT_WORD.test(yw[0]);
+    const prepOne = bw.length >= 2 && (PREP_WORD.test(bw[0]) || /^(?:so|too)$/i.test(bw[0]))
+      && !PREP_WORD.test(yw[0]) && !LIGHT_WORD.test(yw[0]) && !PREP_WORD.test(last);
+    subs.push(swap(bw.length <= 1 || lightOne || prepOne ? 1 : bw.length));
   }
-  return [before + ' ' + after, sub, before + ' ' + y + ' ' + after].flatMap(eqVariants);
+  return [before + ' ' + after, ...subs, before + ' ' + y + ' ' + after].flatMap(eqVariants);
 }
 /* 정답 후보: "a/b" 둘 다, "(be) x" 괄호 넣고 빼고 둘 다, "(=y)"는 위 eqVariants. 첫 후보(괄호 넣은 원래 표현)가 힌트·정답 화면에 나옴 */
 function variants(en) {

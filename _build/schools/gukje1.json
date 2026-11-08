@@ -1,0 +1,10 @@
+{
+ "page": "gukje1.html",
+ "short": "국제고1",
+ "school": "국제고 1학년",
+ "fields": [["학교", "국제고 1학년"]],
+ "groups": [
+  {"data": "gukje1-2026-2f", "group": "2학기 기말 · 올림포스 Theme 46~60 · TOEFL 01~10 · Eveline · 1,469개", "title": "기말", "id_prefix": "gukje1-2026-2f",
+   "set_size": 100, "batch": 20, "active": true}
+ ]
+}
