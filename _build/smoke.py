@@ -1,6 +1,6 @@
 """폰 화면(390px)으로 열어서 목록 → 세트 시작까지 오류 없는지 확인: python3 _build/smoke.py <page>.html [캡처.png]
 페이지에 있는 세트 종류마다 첫 세트를 한 번씩 연다.
-- 단어 세트: 외우기 첫 카드까지
+- 단어 세트: 외우기 첫 카드까지 → 방향을 한→영만·영→한만으로 바꿔 처음부터(지우고 시작) 하면 첫 카드가 그 방향인지 (끝나면 둘 다로 되돌림)
 - 순서 세트: 첫 지문을 끌어서 교과서 순서로 맞춰 정답 처리 → 다음 지문을 섞인 채로 확인해 오답(해설 포함) → 목록에 진행 중
 - 핵심어 세트: 첫 지문에서 핵심만 골라 정답 → 다음 지문에서 핵심 하나 빼고 오답 하나 더해 오답(이유 2개) → 끝까지 맞혀서
   결과 화면 → (제출 폼이 있으면) 이름 넣고 폼 링크에 세트·다시 한 지문이 들어가는지 → 목록에 지난 기록
@@ -68,7 +68,23 @@ def run_vocab(pg, st, errs):
     sub = pg.inner_text('#st-sub'); word = pg.inner_text('#ek-word')
     if not word.strip(): errs.append('단어 카드가 비어 있음')
     pg.click('#st-back'); pg.wait_for_timeout(300)
-    return f'단어 {st["title"]!r}: {sub} · 첫 단어 {word!r}'
+    dirs, full = [], f'[data-act="full"][data-set="{st["id"]}"]'
+    if pg.locator('.dir-pick').count() != 1: errs.append(f'단어 방향 고르기가 {pg.locator(".dir-pick").count()}개')
+    else:
+        for d, want, sel in [('ke', '한→영만', '#ke-input'), ('ek', '영→한만', '#ek-word')]:
+            pg.click(f'[data-dir="{d}"]'); pg.wait_for_timeout(200)
+            label = pg.locator(full).inner_text()
+            if want not in label: errs.append(f'{want}: 버튼 이름에 방향이 없음 ({label})')
+            pg.click(full); pg.wait_for_timeout(200)
+            yes = f'[data-act="yes-full"][data-set="{st["id"]}"]'
+            if pg.locator(yes).count(): pg.click(yes)
+            pg.wait_for_timeout(300)
+            s2 = pg.inner_text('#st-sub')
+            if want not in s2 or not pg.is_visible(sel): errs.append(f'{want}: 첫 카드 방향이 다름 ({s2})')
+            else: dirs.append(f'{want} → {"철자 쓰기" if d == "ke" else "영→한"}')
+            pg.click('#st-back'); pg.wait_for_timeout(300)
+        pg.click('[data-dir="both"]'); pg.wait_for_timeout(200)
+    return f'단어 {st["title"]!r}: {sub} · 첫 단어 {word!r}' + (f' · 방향 {" / ".join(dirs)}' if dirs else '')
 
 
 def run_order(pg, first, errs):

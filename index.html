@@ -81,6 +81,17 @@ h1{margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-.02e
 .rules-fold ol{list-style:none;margin:0;padding:0 14px 14px;display:grid;gap:9px}
 .rules-fold li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.5}
 .num{width:18px;height:23px;margin-top:-1px;border:1.5px solid var(--omr);border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--omr)}
+/* 단어 방향 고르기: 둘 다 / 영→한만 / 한→영만 (페이지마다 기기에 기억) */
+.dir-pick{display:grid;gap:8px;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.dir-row{display:flex;align-items:center;gap:10px}
+.dir-l{flex:none;font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--omr)}
+.dir-seg{display:flex;flex:1 1 auto;min-width:0;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
+.dir-seg button{flex:1 1 0;min-width:0;min-height:40px;padding:0 4px;border:0;border-left:1px solid var(--rule);background:var(--card);color:var(--ink);font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer;touch-action:manipulation}
+.dir-seg button:first-child{border-left:0}
+.dir-seg button[aria-checked="true"]{background:var(--ink);color:var(--card);font-weight:600}
+.dir-seg button:focus-visible{outline-offset:-4px}
+.dir-note{margin:0;font-size:13px;line-height:1.45;color:var(--muted)}
+.dir-note.on{color:var(--omr)}
 .sets{display:grid;gap:12px}
 .sets-h{display:flex;justify-content:space-between;align-items:baseline;color:var(--omr);font-size:12px}
 .group-h{margin:10px 0 -2px;padding-top:12px;border-top:1px solid var(--rule);font-size:15px;font-weight:700;line-height:1.35}
@@ -765,6 +776,16 @@ const store = {
 const S = { view: 'home', sess: null, result: null, confirm: null, banner: '', pasteOpen: false };
 let SET = null, R = {}, C = null, clockT = null;
 
+/* 단어 방향: 학생이 원하면 영→한만·한→영만 따로 연습. 페이지 목록에서 한 번 고르면 이 기기에 기억됨.
+   한쪽만 한 기록은 연습용이라 선생님께 제출은 '둘 다'로 외우기를 끝까지 했을 때만 됨. 한→영만은 철자 쓰기(못 쓰는 표현은 빠짐) */
+const DIRS = { both: '둘 다', ek: '영→한만', ke: '한→영만' };
+const DIR_KEY = 'kd1:dir:' + ((location.pathname || '').split('/').pop() || 'index');
+let DIR = (() => { const d = store.get(DIR_KEY); return Object.prototype.hasOwnProperty.call(DIRS, d) ? d : 'both'; })();
+const sdir = s => (s && (s.dir === 'ek' || s.dir === 'ke') ? s.dir : 'both');
+const dirTag = d => (d === 'ek' || d === 'ke' ? ' · ' + DIRS[d] : '');
+/* 이 세션에서 카드 방향 정하기: 한쪽만이면 그쪽, 둘 다면 철자 쓸 수 있는 표현만 반반 섞음 */
+const pickDir = (s, id) => (sdir(s) === 'ek' ? 'ek' : sdir(s) === 'ke' ? 'ke' : SET.items[id].ke && Math.random() < 0.5 ? 'ke' : 'ek');
+
 function customSets() { const l = store.get(K.custom); return Array.isArray(l) ? l : []; }
 function rawSets() { return (PASTE ? customSets() : []).concat(BUILTIN); }
 function findRaw(id) { return rawSets().find(s => s.id === id) || null; }
@@ -780,16 +801,16 @@ function liveAny(raw) {
 function save() { const s = S.sess; if (s && s.phase !== 'done') store.set(K.sess(s.setId), s); }
 
 /* ---------- 진행 엔진 ---------- */
-function newSession(set, mode) {
+function newSession(set, mode, dir) {
   const n = set.items.length;
+  dir = dir === 'ek' || dir === 'ke' ? dir : 'both';
   let pool = set.items.map((_, i) => i);
-  if (mode === 'hard') {
-    pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
-    if (!pool.length) return null;
-  }
+  if (mode === 'hard') pool = (getRec(set.id).hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n);
+  if (dir === 'ke') pool = pool.filter(id => set.items[id].ke);  // 한→영만: 철자로 쓸 수 없는 표현은 뺌
+  if (!pool.length) return null;
   const st = {};
   pool.forEach(id => { st[id] = { k: 0, ek: 0, ke: 0, m: 0, f: 0, ff: 0, sn: 0 }; });
-  const s = { v: 1, setId: set.id, n, mode, pool, st, b: 0, batches: [], phase: '', queue: [], recent: [], fDone: 0, ms: 0, lt: Date.now(), bms0: 0 };
+  const s = { v: 1, setId: set.id, n, mode, dir, pool, st, b: 0, batches: [], phase: '', queue: [], recent: [], fDone: 0, ms: 0, lt: Date.now(), bms0: 0 };
   if (mode === 'quick') startFinal(s);
   else { s.batches = makeBatches(set, pool); startSort(s); }
   return s;
@@ -803,25 +824,27 @@ function spreadRecent(q, recent) {
     }
   }
 }
+/* 거르기: 둘 다·영→한만은 영→한 자기채점, 한→영만은 철자 쓰기로 거름 */
 function startSort(s) {
   s.phase = 'sort'; s.bms0 = s.ms;
-  s.queue = shuffle(s.batches[s.b].slice()).map(id => ({ id, d: 'ek' }));
+  s.queue = shuffle(s.batches[s.b].slice()).map(id => ({ id, d: sdir(s) === 'ke' ? 'ke' : 'ek' }));
   spreadRecent(s.queue, s.recent);
 }
+/* 집중: 거르기에서 안 나온 단어는 다시(같은 방향). 둘 다면 바로 나온 단어도 철자 확인(한→영) 한 번 */
 function startLearn(s) {
   s.phase = 'learn';
   const q = [];
   s.batches[s.b].forEach(id => {
     const x = s.st[id];
-    if (x.k) { if (SET.items[id].ke) q.push({ id, d: 'ke' }); else x.m = 1; }
-    else q.push({ id, d: 'ek' });
+    if (x.k) { if (sdir(s) === 'both' && SET.items[id].ke) q.push({ id, d: 'ke' }); else x.m = 1; }
+    else q.push({ id, d: sdir(s) === 'ke' ? 'ke' : 'ek' });
   });
   shuffle(q); spreadRecent(q, s.recent);
   s.queue = q;
 }
 function startFinal(s) {
   s.phase = 'final'; s.fDone = 0; s.bms0 = s.ms;
-  s.queue = shuffle(s.pool.slice()).map(id => ({ id, d: SET.items[id].ke && Math.random() < 0.5 ? 'ke' : 'ek' }));
+  s.queue = shuffle(s.pool.slice()).map(id => ({ id, d: pickDir(s, id) }));
   spreadRecent(s.queue, s.recent);
 }
 /* 틀린 카드는 3~6장 뒤로. 남은 카드가 모자라면 이미 외운 단어로 사이를 채워 바로 다시 나오지 않게 함 */
@@ -836,7 +859,7 @@ function pad(s, avoid, need) {
   const rec = new Set(s.recent.slice(-2));
   const cand = shuffle(scope.filter(id => id !== avoid && !inQ.has(id) && !rec.has(id) && (s.phase !== 'learn' || s.st[id].m)));
   const k = Math.min(need, 3, cand.length);
-  for (let i = 0; i < k; i++) s.queue.push({ id: cand[i], d: SET.items[cand[i]].ke && Math.random() < 0.5 ? 'ke' : 'ek', rv: 1 });
+  for (let i = 0; i < k; i++) s.queue.push({ id: cand[i], d: pickDir(s, cand[i]), rv: 1 });
 }
 /* res: 영→한 'yes'|'meh'|'no', 한→영 'ok'|'hint'|'wrong'|'dunno' */
 function answer(res) {
@@ -845,12 +868,14 @@ function answer(res) {
   const id = card.id, x = s.st[id], it = SET.items[id];
   tick(s); x.sn = 1;
   if (s.phase === 'sort') {
-    x.k = res === 'yes' ? 1 : 0; x.ek = x.k;
+    if (card.d === 'ke') { x.k = res === 'ok' ? 1 : 0; x.ke = x.k; }  // 한→영만 거르기: 힌트 없이 맞혀야 아는 단어
+    else { x.k = res === 'yes' ? 1 : 0; x.ek = x.k; }
   } else if (s.phase === 'learn') {
     if (card.d === 'ek') { if (res === 'yes') x.ek = 1; else { x.ek = 0; x.f++; } }
     else if (res === 'ok') x.ke = 1;
     else { x.ke = 0; if (res !== 'hint') x.f++; }
-    const need = !x.ek ? 'ek' : (it.ke && !x.ke ? 'ke' : '');
+    const d = sdir(s);
+    const need = d !== 'ke' && !x.ek ? 'ek' : (d !== 'ek' && it.ke && !x.ke ? 'ke' : '');
     if (need) { x.m = 0; requeue(s, { id, d: need }, 3, need === card.d ? 5 : 6); }
     else x.m = 1;
   } else if (s.phase === 'final') {
@@ -870,7 +895,9 @@ function endPhase(s) {
   if (s.phase === 'sort') {
     const ids = s.batches[s.b], known = ids.filter(id => s.st[id].k).length, unknown = ids.length - known;
     startLearn(s);
-    S.banner = `거르기 끝 · ${ids.length}개 중 ${known}개 바로 나옴. ` + (unknown ? `이제 안 나온 ${unknown}개 다시 + 철자 확인.` : '이제 철자 확인.');
+    S.banner = sdir(s) === 'ke' ? `거르기 끝 · ${ids.length}개 중 ${known}개 바로 맞힘. 이제 틀린 ${unknown}개 다시.`
+      : sdir(s) === 'ek' ? `거르기 끝 · ${ids.length}개 중 ${known}개 바로 나옴. 이제 안 나온 ${unknown}개 다시.`
+      : `거르기 끝 · ${ids.length}개 중 ${known}개 바로 나옴. ` + (unknown ? `이제 안 나온 ${unknown}개 다시 + 철자 확인.` : '이제 철자 확인.');
     if (!s.queue.length) { s.phase = 'bdone'; S.banner = ''; }
   } else if (s.phase === 'learn') {
     s.phase = 'bdone';
@@ -884,10 +911,10 @@ function finish(s) {
   const known = s.mode === 'quick' ? pool.filter(id => !s.st[id].ff).length : pool.filter(id => s.st[id].k).length;
   const rec = getRec(s.setId);
   rec.hard = hard;
-  rec.last = { at: Date.now(), ms: s.ms, n: pool.length, mode: s.mode, known, hard: hard.length };
-  if (s.mode === 'full' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
+  rec.last = { at: Date.now(), ms: s.ms, n: pool.length, mode: s.mode, dir: sdir(s), known, hard: hard.length };
+  if (s.mode === 'full' && sdir(s) === 'both' && (!rec.best || s.ms < rec.best)) rec.best = s.ms;
   store.set(K.rec(s.setId), rec);
-  S.result = { setId: s.setId, title: SET.title, mode: s.mode, n: pool.length, ms: s.ms, known, hard };
+  S.result = { setId: s.setId, title: SET.title, mode: s.mode, dir: sdir(s), n: pool.length, ms: s.ms, known, hard };
   store.del(K.sess(s.setId));
 }
 function nextBatch() {
@@ -1074,7 +1101,7 @@ function beginKw(raw, mode) {
   save(); route();
 }
 
-function begin(id, mode) {
+function begin(id, mode, dir) {
   const raw = findRaw(id);
   if (!raw) { renderHome(); return; }
   if (raw.kind === 'order') { beginOrder(raw, mode); return; }
@@ -1086,8 +1113,8 @@ function begin(id, mode) {
     s = liveSess(id, SET.items.length);
     if (s && !validSess(s)) s = null;
     if (s) s.lt = Date.now();
-    else s = newSession(SET, 'full');
-  } else s = newSession(SET, mode);
+    else s = newSession(SET, 'full', dir || DIR);
+  } else s = newSession(SET, mode, dir || DIR);
   if (!s) { renderHome(); return; }
   S.sess = s; S.confirm = null; S.banner = '';
   save(); route();
@@ -1195,18 +1222,26 @@ function setCard(raw) {
   const nb = n ? makeBatches(set, set.items.map((_, i) => i)).length : 0;
   const ss = liveSess(set.id, n);
   const rec = getRec(set.id);
-  const hardN = (rec.hard || []).filter(id => id < n).length;
+  /* 한→영만이면 철자로 쓸 수 있는 끈질긴 단어만 셈 (새 세션도 그것만 냄) */
+  const hardN = (rec.hard || []).filter(id => Number.isInteger(id) && id >= 0 && id < n && (DIR !== 'ke' || set.items[id].ke)).length;
   const cf = S.confirm && S.confirm.setId === set.id ? S.confirm.act : '';
   const sid = esc(set.id);
   const status = [];
-  if (ss) status.push(`<span class="chip">진행 중 · ${esc(sessLabel(ss))} · ${fmt(ss.ms)}</span>`);
-  if (rec.last) status.push(`<span>지난 기록 ${fmt(rec.last.ms)}${rec.last.mode === 'quick' ? ' (빠른 점검)' : rec.last.mode === 'hard' ? ' (끈질긴 단어)' : ''}</span>`);
+  if (ss) status.push(`<span class="chip">진행 중 · ${esc(sessLabel(ss))}${esc(dirTag(sdir(ss)))} · ${fmt(ss.ms)}</span>`);
+  if (rec.last) {
+    const how = [rec.last.mode === 'quick' ? '빠른 점검' : rec.last.mode === 'hard' ? '끈질긴 단어' : '', rec.last.dir === 'ek' || rec.last.dir === 'ke' ? DIRS[rec.last.dir] : ''].filter(Boolean).join(' · ');
+    status.push(`<span>지난 기록 ${fmt(rec.last.ms)}${how ? ` (${how})` : ''}</span>`);
+  }
   if (!ss && !rec.last) status.push('<span>아직 안 함</span>');
+  /* 한→영만: 철자로 쓸 수 있는 표현만 나오니 몇 개가 빠지는지 알려 줌 (긴 속담·'숫자-year-old'처럼 둘 다에서도 영→한으로만 나오는 것) */
+  const keN = DIR === 'ke' ? set.items.filter(it => it.ke).length : n;
+  if (keN < n) status.push(`<span>${keN ? `한→영만 ${keN}개 · 영→한 전용 표현 ${n - keN}개 빠짐` : '철자로 쓸 단어가 없는 세트야'}</span>`);
+  const tag = esc(dirTag(DIR));
   let actions = ss
-    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기</button><button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터</button>`
-    : `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">외우기</button>`;
-  actions += `<button class="btn btn-quiet" type="button" data-act="quick" data-set="${sid}">빠른 점검</button>`;
-  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">끈질긴 단어 ${hardN}</button>`;
+    ? `<button class="btn btn-primary" type="button" data-act="resume" data-set="${sid}">이어서 하기${esc(dirTag(sdir(ss)))}</button>` + (keN ? `<button class="btn btn-quiet" type="button" data-act="full" data-set="${sid}">처음부터${tag}</button>` : '')
+    : (keN ? `<button class="btn btn-primary" type="button" data-act="full" data-set="${sid}">외우기${tag}</button>` : '');
+  if (keN) actions += `<button class="btn btn-quiet" type="button" data-act="quick" data-set="${sid}">빠른 점검${tag}</button>`;
+  if (hardN) actions += `<button class="btn btn-quiet" type="button" data-act="hard" data-set="${sid}">끈질긴 단어 ${hardN}${tag}</button>`;
   return `
   <article class="set">
     <div class="set-top"><div class="set-title">${esc(set.title)}</div><div class="set-count mono">${n}단어 · 배치 ${nb}</div></div>
@@ -1285,14 +1320,29 @@ function renderHome() {
 </div>`;
   bindHome();
 }
+/* 단어 방향 고르기 (첫 단어 세트 바로 위에 한 번) */
+function dirPickHTML() {
+  const note = DIR === 'ek' ? '영어 보고 뜻 말하기만 나와(철자 쓰기 없음). 제출은 ‘둘 다’로 외우기를 끝까지 했을 때만 돼.'
+    : DIR === 'ke' ? '뜻 보고 철자 쓰기만 나와. 긴 속담 같은 영→한 전용 표현은 빠져. 제출은 ‘둘 다’로 외우기를 끝까지 했을 때만 돼.'
+    : '숙제는 ‘둘 다’로 해. 한쪽만 따로 연습하고 싶을 때 바꿔.';
+  return `
+  <div class="dir-pick">
+    <div class="dir-row">
+      <span class="dir-l" id="dir-l">방향</span>
+      <div class="dir-seg" role="radiogroup" aria-labelledby="dir-l">${Object.keys(DIRS).map(d => `<button type="button" role="radio" aria-checked="${d === DIR}" tabindex="${d === DIR ? 0 : -1}" data-dir="${d}">${DIRS[d]}</button>`).join('')}</div>
+    </div>
+    <p class="dir-note${DIR === 'both' ? '' : ' on'}">${note}</p>
+  </div>`;
+}
 /* 세트에 group이 있으면 묶음 제목을 달아 줌 (예: 어휘평가 2차 / 2학기 기말) */
 function groupedCards(sets, mixed) {
-  let last = null;
+  let last = null, dirShown = false;
   const folded = new Set();
   return sets.map(s => {
     const g = s.group || '', k = kindOf(s);
     let head = g && g !== last ? `<h3 class="group-h">${esc(g)}</h3>` : '';
     if (mixed && !folded.has(k)) { folded.add(k); head += rulesFold(k, !triedKind(sets, k)); }
+    if (k === 'vocab' && !dirShown) { dirShown = true; head += dirPickHTML(); }
     last = g;
     return head + setCard(s);
   }).join('');
@@ -1303,6 +1353,16 @@ function deleteCustom(id) {
 }
 function bindHome() {
   app.onclick = e => {
+    const dd = e.target.closest('[data-dir]');
+    if (dd) {
+      const d = dd.dataset.dir;
+      if (Object.prototype.hasOwnProperty.call(DIRS, d) && d !== DIR) {
+        DIR = d; store.set(DIR_KEY, d);
+        const y = window.scrollY; S.confirm = null; renderHome(); window.scrollTo(0, y);
+        const now = app.querySelector(`[data-dir="${d}"]`); if (now) now.focus({ preventScroll: true });
+      }
+      return;
+    }
     const b = e.target.closest('[data-act]');
     if (!b) return;
     const act = b.dataset.act, id = b.dataset.set;
@@ -1318,6 +1378,14 @@ function bindHome() {
       if (live) { S.confirm = { setId: id, act }; renderHome(); return; }
       begin(id, act);
     }
+  };
+  app.onkeydown = e => {
+    const cur = e.target.closest && e.target.closest('[data-dir]'), step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (!cur || !step) return;
+    e.preventDefault();
+    const order = Object.keys(DIRS), i = order.indexOf(cur.dataset.dir);
+    const nx = app.querySelector(`[data-dir="${order[(i + step + order.length) % order.length]}"]`);
+    if (nx) nx.click();
   };
   const det = $('#paste'), pt = $('#p-text'), ps = $('#p-status'), pb = $('#p-save'), pti = $('#p-title');
   if (!det) return;
@@ -1435,7 +1503,7 @@ function updateHeader() {
     ? `${s.mode === 'quick' ? '빠른 점검' : '마지막 점검'} · 전체 섞어서 한 번씩`
     : `배치 ${s.b + 1}/${s.batches.length} · ${s.phase === 'sort' ? '거르기' : '집중'}`;
   if (s.mode === 'hard') sub = '끈질긴 단어 · ' + sub;
-  R['st-sub'].textContent = sub;
+  R['st-sub'].textContent = sub + dirTag(sdir(s));
 }
 function updateTrack() {
   const s = S.sess, el = R['st-track'];
@@ -1537,6 +1605,8 @@ function diffParts(typed, ans) {
   };
 }
 function fbDone(btnText) { R['ke-tools'].hidden = true; R['ke-go'].textContent = btnText; }
+/* 한→영만 거르기에서 틀린 단어는 거르기가 끝난 뒤 집중 단계에서 다시 나옴 */
+const backWhen = () => (S.sess && S.sess.phase === 'sort' ? '거르기 끝나고' : '몇 장 뒤에');
 function onKESubmit(e) {
   e.preventDefault();
   if (!C || C.d !== 'ke') return;
@@ -1553,7 +1623,7 @@ function onKESubmit(e) {
     stamp('ok'); fbDone('다음');
     R['ke-fb'].innerHTML = `<p class="ok-word" lang="en">${esc(it.en)}</p>` +
       (twin ? `<p class="note"><span lang="en">${esc(SET.items[o].en)}</span>도 같은 뜻이라 정답이야.</p>` : '') +
-      (C.hint ? `<p class="note">힌트를 봤으니 몇 장 뒤에 한 번 더 나와.</p>` : '');
+      (C.hint ? `<p class="note">힌트를 봤으니 ${backWhen()} 한 번 더 나와.</p>` : '');
     C.timer = setTimeout(finishKE, C.hint || twin ? 1500 : 700);
     return;
   }
@@ -1565,14 +1635,14 @@ function onKESubmit(e) {
   C.state = 'fb'; C.pending = 'wrong';
   stamp('x'); fbDone('다음');
   const d = diffParts(typed, it.vars[0]);
-  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>내 답</dt><dd class="diff" lang="en">${d.a}</dd></div><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${d.b}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">빨간 글자만 확인하고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>내 답</dt><dd class="diff" lang="en">${d.a}</dd></div><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${d.b}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">빨간 글자만 확인하고 넘겨. ${backWhen()} 다시 나와.</p>`;
 }
 function dunno() {
   if (!C || C.d !== 'ke' || C.state !== 'ask') return;
   const it = SET.items[C.id];
   C.state = 'fb'; C.pending = 'dunno';
   fbDone('다음');
-  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${esc(it.vars[0])}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">철자를 눈에 담고 넘겨. 몇 장 뒤에 다시 나와.</p>`;
+  R['ke-fb'].innerHTML = `<dl class="fb"><div class="fb-row"><dt>정답</dt><dd class="diff fb-say" lang="en"><span>${esc(it.vars[0])}</span>${sayBtn(it, C.id, '')}</dd></div></dl><p class="note">철자를 눈에 담고 넘겨. ${backWhen()} 다시 나와.</p>`;
 }
 function slotsHTML(it) {
   let first = true;
@@ -1862,15 +1932,15 @@ function renderPause() {
   const last = s.b + 1 >= s.batches.length;
   app.innerHTML = `
 <div class="wrap pause">
-  <div class="eyebrow">${s.mode === 'hard' ? '끈질긴 단어 · ' : ''}배치 ${s.b + 1}/${s.batches.length} 끝</div>
+  <div class="eyebrow">${s.mode === 'hard' ? '끈질긴 단어 · ' : ''}배치 ${s.b + 1}/${s.batches.length} 끝${dirTag(sdir(s))}</div>
   <div class="track">${trackHTML(n, n, 0)}<div class="track-n mono">${n}/${n}</div></div>
   <h2 class="big-h">${n}개 모두 꺼냈어</h2>
   <dl class="stats">
     <div><dt>이번 배치</dt><dd>${fmt(s.ms - (s.bms0 || 0))}</dd></div>
-    <div><dt>바로 나온 단어</dt><dd>${known}</dd></div>
+    <div><dt>${sdir(s) === 'ke' ? '바로 맞힌 단어' : '바로 나온 단어'}</dt><dd>${known}</dd></div>
     <div><dt>전체 시간</dt><dd>${fmt(s.ms)}</dd></div>
   </dl>
-  <p class="note">${last ? `이제 ${s.pool.length}개 전체를 섞어서 한 번씩 꺼내. 영→한과 한→영이 섞여 나와.` : '여기까지 저장됐어. 쉬었다 와도 다음 배치부터 이어서 할 수 있어.'}</p>
+  <p class="note">${last ? `이제 ${s.pool.length}개 전체를 섞어서 한 번씩 꺼내. ${sdir(s) === 'ek' ? '영→한으로만 나와.' : sdir(s) === 'ke' ? '한→영(철자 쓰기)으로만 나와.' : '영→한과 한→영이 섞여 나와.'}` : '여기까지 저장됐어. 쉬었다 와도 다음 배치부터 이어서 할 수 있어.'}</p>
   <div class="actions">
     <button class="btn btn-primary wide big" id="go-next" type="button">${last ? '마지막 점검 시작' : `다음 배치 (${s.b + 2}/${s.batches.length})`}</button>
     <button class="btn btn-quiet wide" id="go-home" type="button">목록으로</button>
@@ -1969,18 +2039,21 @@ function renderResult() {
   if (r.kind === 'kw') { renderKwResult(r); return; }
   S.sess = null;
   const hardItems = r.hard.map(id => SET.items[id]).filter(Boolean);
-  const kind = r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기';
+  const rdir = sdir(r);
+  const kind = (r.mode === 'quick' ? '빠른 점검' : r.mode === 'hard' ? '끈질긴 단어' : '외우기') + dirTag(rdir);
+  /* 제출은 '둘 다'로 외우기를 끝까지 했을 때만 (한쪽만 한 건 연습 기록) */
+  const canSubmit = FORM && r.mode === 'full' && rdir === 'both';
   app.innerHTML = `
 <div class="wrap result">
   <div class="eyebrow">${kind} 끝 · ${esc(r.title)}</div>
   <h2 class="big-h">${r.mode === 'quick' ? `${r.n}개 점검 끝` : `${r.n}개 다 꺼냈어`}</h2>
   <dl class="stats">
     <div><dt>걸린 시간</dt><dd>${fmt(r.ms)}</dd></div>
-    <div><dt>${r.mode === 'quick' ? '한 번에 맞힘' : '바로 나온 단어'}</dt><dd>${r.known}</dd></div>
+    <div><dt>${r.mode === 'quick' ? '한 번에 맞힘' : rdir === 'ke' ? '바로 맞힌 단어' : '바로 나온 단어'}</dt><dd>${r.known}</dd></div>
     <div><dt>끈질긴 단어</dt><dd>${hardItems.length}</dd></div>
   </dl>
-  ${FORM && r.mode !== 'full' ? `<p class="note">선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.</p>` : ''}
-  ${FORM && r.mode === 'full' ? submitHTML() : ''}
+  ${FORM && !canSubmit ? `<p class="note">${r.mode === 'full' ? '한쪽만 한 건 연습 기록이야. 선생님께 제출은 ‘둘 다’로 외우기를 끝까지 했을 때만 할 수 있어.' : '선생님께 제출은 ‘외우기’를 끝까지 했을 때만 할 수 있어.'}</p>` : ''}
+  ${canSubmit ? submitHTML() : ''}
   ${hardItems.length ? `
   <section class="hard" aria-labelledby="hard-h">
     <h3 id="hard-h">끈질긴 단어</h3>
@@ -1989,15 +2062,15 @@ function renderResult() {
   </section>` : `<p class="note">끈질긴 단어 없이 끝났어.</p>`}
   <p class="note">시험 전날 ‘빠른 점검’을 한 번 더 하면 오래 가.</p>
   <div class="actions">
-    ${hardItems.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">끈질긴 단어만 다시</button>` : ''}
+    ${hardItems.length ? `<button class="btn btn-primary wide big" id="r-hard" type="button">끈질긴 단어만 다시${dirTag(rdir)}</button>` : ''}
     <button class="btn ${hardItems.length ? 'btn-quiet' : 'btn-primary big'} wide" id="r-home" type="button">목록으로</button>
   </div>
 </div>`;
-  if (FORM && r.mode === 'full') bindSubmit(r, `${r.title} · ${kind}`, `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : ''));
+  if (canSubmit) bindSubmit(r, `${r.title} · ${kind}`, `${hardItems.length}개` + (hardItems.length ? ': ' + hardItems.map(it => it.en).join(', ') : ''));
   const hl = $('.hard ul');
   if (hl) hl.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(hardItems[+b.dataset.say]); });
   const h = $('#r-hard');
-  if (h) h.onclick = () => begin(r.setId, 'hard');
+  if (h) h.onclick = () => begin(r.setId, 'hard', rdir);  // 방금 한 방향 그대로
   $('#r-home').onclick = () => renderHome();
   window.scrollTo(0, 0);
 }
