@@ -1,0 +1,1056 @@
+{
+ "source": "박문여고2_수행평가_단어.xlsx",
+ "title": "",
+ "items": [
+  {
+   "n": 1,
+   "en": "transcription",
+   "ko": "전사, 필사",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 2,
+   "en": "transmission",
+   "ko": "전승, 전달, 전송",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 3,
+   "en": "identical",
+   "ko": "동일한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 4,
+   "en": "intensify",
+   "ko": "심화하다, 강화하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 5,
+   "en": "certify",
+   "ko": "증명하다, 인증하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 6,
+   "en": "portray",
+   "ko": "묘사하다, 그리다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 7,
+   "en": "massive",
+   "ko": "거대한, 대규모의, 엄청난",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 8,
+   "en": "clarify",
+   "ko": "명확히 하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 9,
+   "en": "awkward",
+   "ko": "어색한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 10,
+   "en": "infectious",
+   "ko": "전염성이 있는",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 11,
+   "en": "inclusive",
+   "ko": "포용적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 12,
+   "en": "conception",
+   "ko": "이해, 개념",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 13,
+   "en": "surpass",
+   "ko": "넘어서다, 뛰어넘다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 14,
+   "en": "ignite",
+   "ko": "불러일으키다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 15,
+   "en": "classify",
+   "ko": "분류하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 16,
+   "en": "install",
+   "ko": "설치하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 17,
+   "en": "temporary",
+   "ko": "임시의, 일시적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 18,
+   "en": "compass",
+   "ko": "나침반",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 19,
+   "en": "desirable",
+   "ko": "바람직한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 20,
+   "en": "skeptical",
+   "ko": "회의론적인, 회의적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 21,
+   "en": "succession",
+   "ko": "연속, 연쇄",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 22,
+   "en": "contingency",
+   "ko": "우연(성), 우발(성)",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 23,
+   "en": "asymmetry",
+   "ko": "불균형, 비대칭",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 24,
+   "en": "settlement",
+   "ko": "정착지, 정착, 해결",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 25,
+   "en": "underplay",
+   "ko": "과소평가하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 26,
+   "en": "contaminate",
+   "ko": "오염시키다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 27,
+   "en": "comparable",
+   "ko": "비교할 수 있는, 비슷한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 28,
+   "en": "tentative",
+   "ko": "잠정적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 29,
+   "en": "mutter",
+   "ko": "중얼거리다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 30,
+   "en": "tense",
+   "ko": "긴장한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 31,
+   "en": "aspire",
+   "ko": "포부를 가지다, 큰 뜻을 품다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 32,
+   "en": "sigh",
+   "ko": "한숨 / 한숨을 내쉬다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 33,
+   "en": "convenient",
+   "ko": "편리한, 사용하기 좋은",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 34,
+   "en": "encompass",
+   "ko": "포함하다, 에워싸다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 35,
+   "en": "via",
+   "ko": "~으로, ~을 통해",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 36,
+   "en": "expose",
+   "ko": "접하게 하다, 노출시키다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 37,
+   "en": "cite",
+   "ko": "인용하다, 언급하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 38,
+   "en": "tough",
+   "ko": "아주 힘이 센, 어려운",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 39,
+   "en": "behave",
+   "ko": "예의 바르게 행동하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 40,
+   "en": "lean",
+   "ko": "기울다, 기대다 / 기울기",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 41,
+   "en": "empower",
+   "ko": "부여하다, 힘을 실어주다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 42,
+   "en": "grateful",
+   "ko": "감사하는, 고마워하는",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 43,
+   "en": "unease",
+   "ko": "불안(감)",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 44,
+   "en": "demand",
+   "ko": "요구하다, 청구하다 / 수요",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 45,
+   "en": "statement",
+   "ko": "진술, 말",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 46,
+   "en": "career",
+   "ko": "진로, 직업, 경력",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 47,
+   "en": "insight",
+   "ko": "통찰, 이해",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 48,
+   "en": "extra",
+   "ko": "추가의, 여분의",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 49,
+   "en": "exaggerated",
+   "ko": "과장된, 지나친",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 50,
+   "en": "delay",
+   "ko": "지연하다, 미루다, 연기하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 51,
+   "en": "excessive",
+   "ko": "과도한, 지나친",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 52,
+   "en": "subordinate",
+   "ko": "종속된, 하위의",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 53,
+   "en": "distress",
+   "ko": "고충, 고통",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 54,
+   "en": "definitive",
+   "ko": "명확한, 결정적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 55,
+   "en": "density",
+   "ko": "밀도, 비중",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 56,
+   "en": "input",
+   "ko": "투입, 의견 / 입력하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 57,
+   "en": "inclination",
+   "ko": "경향(성), 성향, 기질",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 58,
+   "en": "delicately",
+   "ko": "세심하게, 섬세하게",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 59,
+   "en": "practical",
+   "ko": "실제적인, 실용적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 60,
+   "en": "assure",
+   "ko": "장담하다, 안심시키다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 61,
+   "en": "scar",
+   "ko": "흉터",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 62,
+   "en": "proctor",
+   "ko": "감독하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 63,
+   "en": "critique",
+   "ko": "비판, 비판적 분석",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 64,
+   "en": "dissent",
+   "ko": "반대",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 65,
+   "en": "divergent",
+   "ko": "상반된, 서로다른",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 66,
+   "en": "advocacy",
+   "ko": "옹호, 지지",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 67,
+   "en": "altruism",
+   "ko": "이타주의, 이타심",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 68,
+   "en": "prevalence",
+   "ko": "보급, 널리퍼짐",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 69,
+   "en": "incubation",
+   "ko": "잠복, 부화",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 70,
+   "en": "dissolve",
+   "ko": "사라지다, 녹이다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 71,
+   "en": "poll",
+   "ko": "여론조사, 투표",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 72,
+   "en": "fluctuate",
+   "ko": "오르내리다, 변동하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 73,
+   "en": "underlying",
+   "ko": "근본적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 74,
+   "en": "synthesis",
+   "ko": "합성, 통합",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 75,
+   "en": "revenue",
+   "ko": "수입, 수익",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 76,
+   "en": "irrelevant",
+   "ko": "무의미한, 무관한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 77,
+   "en": "burst",
+   "ko": "붕괴하다, 터지다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 78,
+   "en": "unforeseen",
+   "ko": "예측하지 못한, 뜻밖의",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 79,
+   "en": "launch",
+   "ko": "시작하다, 일으키다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 80,
+   "en": "donor",
+   "ko": "기부자, 기증자",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 81,
+   "en": "persistence",
+   "ko": "지구력, 인내, 끈기",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 82,
+   "en": "upbringing",
+   "ko": "양육",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 83,
+   "en": "urbanization",
+   "ko": "도시화",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 84,
+   "en": "scrutiny",
+   "ko": "면밀한 검토",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 85,
+   "en": "government",
+   "ko": "통치, 관리, 지배구조",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 86,
+   "en": "surveillance",
+   "ko": "감시",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 87,
+   "en": "consent",
+   "ko": "동의, 승낙",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 88,
+   "en": "recite",
+   "ko": "나열하다, 암송하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 89,
+   "en": "resist",
+   "ko": "저항하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 90,
+   "en": "exclaim",
+   "ko": "외치다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 91,
+   "en": "enlarge",
+   "ko": "확대하다, 확장하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 92,
+   "en": "bait",
+   "ko": "미끼",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 93,
+   "en": "raw",
+   "ko": "익히지 않은, 미숙한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 94,
+   "en": "colleague",
+   "ko": "동료",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 95,
+   "en": "resolution",
+   "ko": "해상도, 해결, 결의",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 96,
+   "en": "expire",
+   "ko": "(유통기한이)끝나다, 만료되다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 97,
+   "en": "mural",
+   "ko": "벽화",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 98,
+   "en": "dehumidifier",
+   "ko": "제습기",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 99,
+   "en": "attachment",
+   "ko": "부속품, 애착",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 100,
+   "en": "courtesy",
+   "ko": "예의, 공손함",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 101,
+   "en": "inviting",
+   "ko": "매력적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 102,
+   "en": "refrain",
+   "ko": "삼가다, 자제하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 103,
+   "en": "foster",
+   "ko": "기르다, 조성하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 104,
+   "en": "ingredient",
+   "ko": "성분, 요인, 구성요소",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 105,
+   "en": "genuine",
+   "ko": "참된, 진정성 있는",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 106,
+   "en": "uplifting",
+   "ko": "기분좋게 해주는",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 107,
+   "en": "overviewing",
+   "ko": "개요, 개관",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 108,
+   "en": "account",
+   "ko": "계정, 서술, 설명",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 109,
+   "en": "elastic",
+   "ko": "탄력있는",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 110,
+   "en": "fuss",
+   "ko": "번거로움, 소란",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 111,
+   "en": "cram",
+   "ko": "벼락치기 공부를 하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 112,
+   "en": "vendor",
+   "ko": "판매자, 노점상",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 113,
+   "en": "upcoming",
+   "ko": "다가오는, 앞으로의",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 114,
+   "en": "irritating",
+   "ko": "짜증나게 하는, 성가신",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 115,
+   "en": "overdue",
+   "ko": "연체된",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 116,
+   "en": "oversee",
+   "ko": "총괄하다, 감독하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 117,
+   "en": "profit",
+   "ko": "수익, 이윤",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 118,
+   "en": "depict",
+   "ko": "묘사하다, 그리다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 119,
+   "en": "autonomous",
+   "ko": "자율적인, 독립적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 120,
+   "en": "mobility",
+   "ko": "이동성",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 121,
+   "en": "sibling",
+   "ko": "남매, 형제자매",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 122,
+   "en": "proceed",
+   "ko": "진행되다 / 수익금",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 123,
+   "en": "primary",
+   "ko": "기본의, 주요한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 124,
+   "en": "adorable",
+   "ko": "사랑스러운",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 125,
+   "en": "pharmacy",
+   "ko": "약국, 약학",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 126,
+   "en": "mandatory",
+   "ko": "필수적인",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 127,
+   "en": "pottery",
+   "ko": "도자기",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 128,
+   "en": "recruitment",
+   "ko": "신입회원 모집",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 129,
+   "en": "reunion",
+   "ko": "동창회, 재회",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 130,
+   "en": "identity",
+   "ko": "신원, 정체성",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 131,
+   "en": "iris",
+   "ko": "홍채",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 132,
+   "en": "vein",
+   "ko": "정맥",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 133,
+   "en": "vague",
+   "ko": "모호한, 애매한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 134,
+   "en": "refrigerate",
+   "ko": "냉장보관하다, 냉장하다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 135,
+   "en": "overshadow",
+   "ko": "가리다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 136,
+   "en": "attendee",
+   "ko": "참석자",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 137,
+   "en": "showcase",
+   "ko": "뽐내다, 보여주다",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 138,
+   "en": "itinerary",
+   "ko": "여행 일정",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 139,
+   "en": "strain",
+   "ko": "긴장, 피로",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 140,
+   "en": "capacity",
+   "ko": "용량, 능력, 수용력",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 141,
+   "en": "heritage",
+   "ko": "유산, 유적",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 142,
+   "en": "pollutant",
+   "ko": "오염물질",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 143,
+   "en": "eligible",
+   "ko": "자격이 있는, 적합한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 144,
+   "en": "authentic",
+   "ko": "정통의, 진정한, 진짜의",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 145,
+   "en": "consequence",
+   "ko": "결과, 중요함",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 146,
+   "en": "linguistics",
+   "ko": "언어학",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 147,
+   "en": "steady",
+   "ko": "일정한, 한결같은, 꾸준한",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 148,
+   "en": "grocery",
+   "ko": "식료품",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 149,
+   "en": "absence",
+   "ko": "결석, 부재",
+   "note": "",
+   "sec": null
+  },
+  {
+   "n": 150,
+   "en": "stem",
+   "ko": "줄기 / 비롯되다, 유래하다",
+   "note": "",
+   "sec": null
+  }
+ ]
+}
