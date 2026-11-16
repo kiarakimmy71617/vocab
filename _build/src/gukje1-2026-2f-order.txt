@@ -1,0 +1,141 @@
+# O46 | 올림포스 Theme 46~50 | Field 10 · 경제·경영
+
+## Theme 46 · p.116 | 본문 | 지니 계수의 탄생 → 0과 1.0의 뜻 → 재산에도 씀 → 대부분 0.3~0.6 → 낮은 나라·높은 나라 → 미국 2013년 0.45(1950년 0.38) → 200년 전엔 훨씬 낮음 → 지금의 불평등 = 입법 영향력 불균형 → 부유층이 원한 법이 절반 → 대조: 다수가 원한 건 18%만
+When social scientists discovered that the magnitude of income inequality in a country or region predicted some outcomes that a family’s average income did not, economists invented an index of income inequality called the Gini coefficient. | 첫 문장: 소득 불평등 지수 '지니 계수'의 탄생
+A Gini coefficient of 0 means that everyone in the society has the same income; a coefficient of 1.0 means that one family earns all the income. | 계수 값의 뜻: 0 = 모두 같음, 1.0 = 한 가구가 독차지
+The Gini coefficient can also be used to index inequality in total wealth. | 'also' = 소득 말고 총재산 불평등에도 씀
+The coefficients in most contemporary societies range from 0.3 to 0.6. | 실제 값의 범위: 대부분 0.3~0.6
+Canada, Japan, and the Scandinavian countries have low coefficients (less than 0.3); South Africa, Brazil, Nigeria, and China have the highest (from 0.4 to 0.6). | 범위 속 나라별 예: 낮은 나라 ↔ 높은 나라
+The Gini coefficient for the United States in 2013 was a moderately high 0.45, compared with 0.38 in 1950, which implies that 10 percent of Americans in 2013 owned more than two-thirds of the country’s wealth. | 미국의 값: 2013년 0.45 vs 1950년 0.38
+The Gini coefficient for the United States was much lower two hundred years earlier when most families owned a house and livestock, and a college education was a less important requirement for accumulating wealth. | 새 단락: 더 거슬러 200년 전엔 훨씬 낮았음
+The currently high level of inequality is accompanied by an imbalance in the degree of influence on legislation. | 'currently high' = 지금의 불평등 → 입법 영향력 불균형
+Two social scientists report in Perspectives on Politics that between 1981 and 2002, close to one-half of the laws Congress passed were favored by a small proportion of very wealthy Americans. | 불균형의 근거: 법의 절반 가까이 = 부유층이 원한 것
+By contrast, only 18 percent of the proposals a majority of the public favored, but the wealthy opposed, became law. | 'By contrast' = 다수가 원해도 부유층 반대면 18%만
+
+## Theme 47 · p.118 | 본문 | 외적 문제만 말하면 손해 → 원칙: 사람은 내적 문제의 해결책을 산다 → 이야기의 외적 문제 = 내적 문제를 드러냄 → 폭탄 해체만? 흥미 잃음 → 그래서 좌절 사연 → 예: 머니볼 → 스타워즈 → 공통 질문 → 좌절감 → 공감의 원천 → 교훈: 내적 욕구가 더 큰 동기 → 브랜드의 실수 → 실수 내용 → 고객을 움직이는 건 좌절
+By limiting our marketing messages to external problems, we neglect a principle that is costing us thousands and potentially millions of dollars. | 첫 문장: 외적 문제만 말하면 원칙을 놓쳐 손해
+That principle is this: companies tend to sell solutions to external problems, but people buy solutions to internal problems. | 'That principle' = 그 원칙: 사람은 내적 문제 해결을 삼
+The purpose of an external problem in a story is to manifest an internal problem. | 새 단락: 이야기로 설명 — 외적 문제는 내적 문제를 드러냄
+If I wrote a movie about a guy who simply needed to disarm a bomb, audiences would lose interest. | 가정: 폭탄 해체만 하는 영화면 흥미 잃음
+What storytellers and screenwriters do, then, is create a backstory of frustration in the hero’s life. | 'then' = 그래서 작가는 주인공의 좌절 사연을 만듦
+In the movie Moneyball, for instance, Billy Beane failed in his playing career and so was filled with self-doubt about whether he could prove himself as a general manager. | 새 단락: 'for instance' = 좌절 사연 예 ① 머니볼
+In Star Wars, Luke Skywalker was told by his uncle that he was too young to join the Rebellion, so he doubted his ability until the very end. | 예 ② 스타워즈: 너무 어리다는 말 → 자기 의심
+In almost every story the hero struggles with the same question: Do I have what it takes? | 두 예의 공통점: 거의 모든 주인공의 같은 질문
+This question can make them feel frustrated, incompetent, and confused. | 'This question' = 그 질문이 주는 좌절·무력감
+The sense of self-doubt is what makes a movie about baseball relatable to a soccer mom and a romantic comedy relatable to a male truck driver. | 'self-doubt' = 그 감정이 누구나 공감하게 함
+Stories teach us that people’s internal desire to resolve a frustration is a greater motivator than their desire to solve an external problem. | 새 단락: 이야기의 교훈 — 내적 욕구가 더 큰 동기
+This is where most brands make a critical mistake. | 'This' = 그 교훈 → 브랜드의 결정적 실수
+By assuming our customers only want to resolve external problems, we fail to engage the deeper frustration they’re feeling. | 실수의 내용: 외적 문제만 원한다고 가정
+The truth is, it’s those frustrations that are motivating them to call you. | 마무리: 'those frustrations' = 고객을 움직이는 건 좌절
+
+## Theme 48 · p.120 | 본문 | 생산성 지상주의 → 의미 있는 일자리 감소 → 이유: 자동화·해외 이전 → 보통 소득 위기로 봄 → 하지만 목적의 위기 → 예전 평생 직장 ↔ 지금 안정 고용 감소 → 여러 일 병행 → 영국 긱 노동 통계 → 미국도 → 일 없는 사람도 → 고된 분투 → 만족은 거의 없음
+In recent decades, the dominant social model of ever-increasing productivity has reduced the scope of meaningful employment opportunities available to workers in the Western world. | 첫 문장: 생산성 지상주의 → 의미 있는 일자리 감소
+Many companies have found that they can produce more goods and services for less money if they automate the production process and/or transfer jobs to emerging labor markets. | 일자리가 준 이유: 자동화·해외 이전이 더 쌈
+This situation, and the resultant waves of mass unemployment and underemployment, is often primarily characterized as an income crisis. | 'This situation' = 그 결과 실업 → 보통 '소득 위기'로 봄
+But it is also a crisis of purpose. | 'But ... also' = 목적의 위기이기도 함(주제문)
+Whereas decades ago it was common for people to work at the same company from training until retirement, modern business management practices have reduced the kind of long-term, stable employment opportunities that were once enjoyed by blue- and white-collar workers alike. | 새 단락: 예전 평생 직장 ↔ 지금 안정 고용 감소
+As a result, many people today are putting in long hours while juggling multiple jobs and short-term work, none of which offer the same sort of steady income and long-term stability as the jobs enjoyed by earlier generations. | 'As a result' = 그래서 여러 일·단기 일 병행
+A 2021 Guardian article reported that approximately 4.4 million adults in England and Wales were working for gig-economy companies — a number that had more than doubled since 2016. | 통계 ① 영국: 긱 노동 440만, 2016년의 두 배 넘음
+This trend is mirrored in the United States, too: In 2020 alone, according to Small Business Trends, the gig economy in the United States grew by 33 percent, expanding 8.25 times faster than the U.S. economy as a whole. | 'This trend ... too' = 통계 ② 미국도 마찬가지
+Plenty of other people have no work at all, and spend their days looking for jobs that aren’t there and may never return. | 'other people' = 아예 일이 없는 사람도 많음
+All of this striving is hard work. | 'All of this striving' = 이 모든 분투는 고됨
+Very little of it is existentially fulfilling. | 'it' = 그 분투 → 만족은 거의 없음(목적의 위기)
+
+## Theme 49 · p.122 | 본문 | 뒤죽박죽 가격 찾기 → 포장 고추 10배 → 이유: 값을 안 봄 → 채소값 3배 수법 → 필자의 감자칩 경험 → 위 칸·아래 칸 → 위 칸 25% 비쌈, 비교 안 함 → 과자에만 관심 → 인정: 맛이 중요한 사람도 → 알고도 삼 / 다른 맛 선호 → 일반 원리: 무작위 가격 → 꼼꼼한 손님만 이득 → 관찰이 무기 → 귀찮으면 아낄 필요 없음
+Try to spot odd mix-ups next time you’re in the supermarket. | 첫 문장: 슈퍼마켓의 뒤죽박죽 가격을 찾아보라
+Have you noticed that supermarkets often charge ten times as much for fresh chili peppers in a package as for loose fresh chilies? | 그 예 ①: 포장 고추가 낱개의 10배
+That’s because the typical customer buys such small quantities that he doesn’t think to check whether they cost four cents or forty. | 'That's because' = 10배인 이유: 조금 사서 값을 안 봄
+Randomly tripling the price of a vegetable is a favorite trick: customers who notice the markup just buy a different vegetable that week; customers who don’t have self-targeted a whopping price rise. | 수법 ②: 채소값 무작위 3배 → 알아챈 손님 ↔ 못 알아챈 손님
+I once spotted a particularly inspired trick while on a search for potato chips. | 새 단락: 필자의 경험 — 감자칩의 기발한 수법
+My favorite brand was available on the top shelf in salt and pepper flavor and on the bottom shelf, just a few feet away, in other flavors, all the same size. | 수법의 배경: 위 칸 소금·후추 맛 ↔ 아래 칸 다른 맛
+The top-shelf potato chips cost 25 percent more, and customers who reached for the top shelf demonstrated that they hadn’t made a price-comparison between two near-identical products in near-identical locations. | 'top-shelf' = 위 칸이 25% 비쌈 → 집은 손님은 비교 안 함
+They were more interested in snacking. | 'They' = 위 칸을 집은 손님 → 과자에만 관심
+Admittedly, for some people the difference in flavors is important. | 새 단락: 'Admittedly' = 인정 — 맛이 중요한 사람도
+Some will notice the higher price for salt and pepper flavor and, irritated, pay anyway. | 'Some' = 일부는 비싼 걸 알고도 짜증 내며 삼
+Others will prefer the different flavors and count themselves lucky that they have inexpensive tastes. | 'Others' = 나머지는 다른 맛 선호 → 다행
+But this is an example of a universal truth about supermarkets: they are full of close (or not so close) substitutes, some cheap, some expensive, and with a strong random element to the pricing. | 새 단락: 'But this' = 사례 → 일반 원리: 무작위 가격
+The random element is there so that only shoppers who are careful to notice, remember, and compare prices will get the best bargains. | 'The random element' = 그 무작위성의 목적
+If you want to outwit the supermarkets, simple observation is your best weapon. | 결론: 이기려면 관찰이 최고의 무기
+And if you can’t be bothered to do that, you really don’t need to save money. | 'do that' = 관찰 → 귀찮으면 아낄 필요 없음
+
+## Theme 50 · p.124 | 본문 | 기펜재의 정의 → 가정이 있음 → ① 열등재 → ② 소득의 큰 몫 → ③ 대체재 없음 → 빵엔 더 싼 주식이 없음 → 빵값 상승의 두 효과 → 덜 삼 → 대체 효과 = 일반 법칙 → 그러나 소득 효과로 수요 증가 → 소득 효과가 이김 → 다른 예: 감자 대기근
+Today, commodities for which demand rises as their prices rise are known as Giffen goods. | 첫 문장: 정의 — 값이 오르면 수요도 오르는 기펜재
+Giffen goods rely on a number of assumptions. | 기펜재가 성립하는 가정들(예고)
+First, the commodity has to be an inferior good, that is, a good that people choose to buy less of as their income rises because there are better alternatives; for example, choosing meat over bread. | 'First' = 조건 ① 열등재
+Second, the consumer must spend a large portion of their income on this product, hence the fact that the example refers to the poorest section of society. | 'Second' = 조건 ② 소득의 큰 몫
+Finally, there must be no alternatives to the product. | 'Finally' = 조건 ③ 대체재가 없음
+In the case of bread, there is no cheaper alternative staple. | 조건 ③을 빵에: 더 싼 주식이 없음
+Given these assumptions, an increase in the price of bread creates two effects. | 새 단락: 'these assumptions' = 세 조건 → 두 효과 예고
+It causes people to buy less bread because the satisfaction it creates per pound of spending falls compared to other goods. | 효과 ①: 빵을 덜 삼(만족도 하락)
+This substitution effect would cause bread to follow the general rule of higher price causing lower demand. | 'This substitution effect' = 효과 ①의 이름 → 일반 법칙대로
+However, as the price of bread rises, it also reduces the power to spend on other things, and because bread is an inferior good, this lower income will make the demand for bread rise. | 'However ... also' = 효과 ②: 쓸 돈이 줄어 빵 수요 증가
+What makes the Giffen good so special is that because the poor spend so much of their income on bread, the income effect is so large that it outweighs the substitution effect, and so when the price goes up, some people buy more. | 두 효과 비교: 소득 효과 > 대체 효과 → 더 삼
+Another example of a Giffen good is that of potatoes during the Irish Potato Famine of 1845–52, where rising prices allegedly caused an increase in the demand for potatoes. | 'Another example' = 빵 말고 다른 예: 감자 대기근
+
+# O51 | 올림포스 Theme 51~55 | Field 11 · 환경·자원·생태
+
+## Theme 51 · p.128 | 본문 | 재산권이 자원 이용을 좌우 → 넉넉하면 상관없음 → 희소해지면 변화 시작 → 수요·공급으로 보자 → 재산권 수요가 생기는 때 → 가상 마을(수요 낮음) → 외부 변화로 수요 급증 → 공동 이용 계속 → 서로 손실 → 제도 변화 요구 → 일반화: 시장 실패
+Property rights are key determinants of natural resource use. | 첫 문장: 재산권이 자원 이용을 좌우
+When a natural resource is not scarce relative to the existing demand, the rights to use it are generally irrelevant. | 자원이 넉넉하면 → 사용권은 상관없음
+If changes occur that render the resource economically scarce, however, e.g., shifts in preferences, technology, or demographics, rights to use the resource begin to matter and a process whereby property rights evolve may be set in motion. | 'however' = 희소해지면 → 권리가 중요, 변화 시작
+It is useful to think of this process in terms of supply and demand forces. | 'this process' = 재산권 변화 → 수요·공급으로 보자
+The demand for property rights arises when groups or individuals realize that their welfare would be enhanced if the current property rights system were changed. | 새 단락: 재산권 '수요'가 생기는 때
+Imagine a renewable natural resource used by a village under open access conditions in which demand is low relative to the yield the resource can sustain, so common pool losses are minimal. | 'Imagine' = 가상 사례: 수요가 낮은 마을 자원
+An exogenous change then occurs that dramatically increases demand, e.g., a technological innovation or trade liberalization that creates a demand for the resource as an input. | 'then' = 외부 변화로 수요 급증
+If open access persists, each individual’s increased use of the resource would now adversely affect use by others, causing welfare losses. | 'now' = 수요가 는 지금 공동 이용 → 서로 손실
+Users now have an incentive to “demand” a change in the property rights system, to a form that avoids these losses. | 'these losses' = 손실을 피하려 제도 변화 '요구'
+This observation applies more generally: most market failures, such as externalities, public goods, and asymmetric information, afford the possibility to increase efficiency through changes in property rights. | 'This observation' = 가상 사례 → 일반화(시장 실패)
+
+## Theme 52 · p.130 | 본문 | 도시 호수는 관리 엉망·오염 → 이유: 배수관의 끝 → 예: 벨란두르 호수 화재·거품 → 분해로 산소 고갈 → 메탄 → 화재 원인 → 관리 방식 실패 → 원인: 유역 무시·시설 부족 → 평가 제도 → 쪼개진 관리
+Despite their potential value, urban lakes are often poorly managed and severely degraded. | 첫 문장: 도시 호수는 관리가 엉망, 심하게 오염
+This is because they are, by their very nature, at the “end-of-the-pipe,” often receiving large volumes of wastewater (treated and untreated) and stormwater run-off produced in cities. | 'This is because' = 이유: '배수관의 끝'이라 하수가 모임
+One particularly severe example is Bellandur Lake in Bengaluru, which often caught fire and produced foam in the past because it received large amounts of untreated wastewater from millions of people living upstream. | 극단적 예: 불나고 거품 일던 벨란두르 호수
+Decomposition of this organic matter led to a loss of oxygen from the water and a decline in fish and most other animal life. | 새 단락: 'this organic matter' = 그 하수 → 산소 고갈
+The high levels of decomposition and absence of oxygen also resulted in a huge production of the greenhouse gas methane, a flammable gas that was the likely cause of the fires on the lake surface. | 'also' = 메탄도 생김 → 화재의 원인
+The severely degraded state of many urban lakes highlights that current approaches to managing water quality across cities have failed. | 새 단락: 사례 → 일반: 지금의 관리 방식은 실패
+Not only have city authorities failed to recognise the interconnectedness between urban catchments and lakes, but also the centralised wastewater treatment infrastructure is often highly inadequate, lagging behind rapidly growing populations and particularly ineffective during high rainfall periods, such as the monsoons. | 실패 원인 ①② 유역 연결성 무시 + 처리 시설 부족
+In India, lake quality assessment plans are not designed to evaluate the usability of lakes for the multiple benefits they provide, within a timescale that is useful for lake managers. | 원인 ③ 수질 평가 제도의 한계
+The management of city lakes is divided among different groups, including water supply and sewage services, city departments that handle rainwater, and pollution regulators who mostly focus on industrial waste rather than household wastewater. | 원인 ④ 관리가 여러 기관으로 쪼개짐
+
+## Theme 53 · p.132 | 본문 | CO₂로는 대기압 부족 → 그래서 농도 높일 방법 → 언 CO₂ 데우기 → 극지방 폭파 → 해빙 + 먼지구름 → 더 빨리 데워짐 → 불행히도 극지방 CO₂는 부족 → 지구 수준이 필요 → 그러나 다른 공급원 → 토양 → 최대 4% → 클라트레이트 → 5% 미만
+Carbon dioxide (CO₂) is the main component of the Martian atmosphere, but its current level does not produce enough atmospheric pressure to support human activity on the planet. | 첫 문장: 화성 대기의 CO₂로는 대기압 부족
+Therefore, scientists are considering ways to increase its concentration in the air. | 'Therefore' = 그래서 CO₂ 농도를 높일 방법 고민
+One common idea is to warm up the CO₂ that exists in a frozen state both at the poles and beneath the surface so that it can return to the atmosphere. | 새 단락: 방법 — 언 CO₂를 데워 대기로
+One of the suggested ways to do this is by detonating high-power explosives on the poles. | 'do this' = 데우기 → 극지방 폭파
+This would cause a quick melt and would also generate a cloud of dust, darkening the zone around the detonation, thus making solar radiation absorption more efficient. | 'This' = 폭파 → 빠른 해빙 + 먼지구름
+In this way, the area would heat up faster, helping to liquefy the existing water. | 'In this way' = 그렇게 더 빨리 데워짐
+Unfortunately, analyses of the latest data sent by the various probes indicate that the amount of CO₂ at the poles is not enough to achieve this purpose: vaporising polar ice sheets would only contribute enough CO₂ to double the Martian atmospheric pressure, bringing it to just 1.2% of the Earth’s value. | 새 단락: 'Unfortunately' = 반전 — 극지방 CO₂는 부족
+If we want to have liquid water at a suitable temperature in a stable way on Mars, an atmospheric pressure similar to the one we have on Earth is required. | 필요한 수준: 지구와 비슷한 대기압
+However, there are also other sources of CO₂ on Mars. | 새 단락: 'However ... other sources' = 극지방 말고 다른 공급원
+Dust particles in the Martian soil contain CO₂, and they could eventually be heated up to release the gas. | 공급원 ① 토양 먼지
+Scientists estimate that heating the soil could provide up to 4% of the necessary pressure. | 토양을 데워도 최대 4%
+CO₂ molecules which are intermingled with ice molecules called “clathrate compounds” have also been observed, which upon melting would release CO₂ to the atmosphere. | 'also' = 공급원 ② 클라트레이트 화합물
+In any case, it is speculated that they would add less than 5% of the required pressure. | 'they' = 클라트레이트 → 5% 미만(여전히 부족)
+
+## Theme 54 · p.134 | 본문 | 시각·청각 연구 ↔ 통증 연구는 동물을 아프게 해야 → 적게·충분히 → 힘든 일 → 양극단 의견 → 중간이 없음 → 물고기가 예 → 송어 실험 → 거친 숨 → 먹지 않음 → 누워 흔듦 → 입술 문지름 → 낯선 물체 안 피함(모르핀으로 사라짐) → 단순 반응 아님 → 통증으로 봄
+Scientists who work on vision or hearing can play images and sounds at the animals they’re studying. | 첫 문장: 시각·청각 연구는 이미지·소리만 틀면 됨
+But those who study pain have to harm the creatures they work with in the pursuit of knowledge that might improve the welfare of those same creatures. | 'But' = 대비: 통증 연구는 동물을 아프게 해야 함
+They want to use as few animals as possible, but have to use enough that their results are statistically sound. | 'They' = 통증 연구자 → 적게 쓰고 싶지만 충분히
+Their work is morally challenging and often frustrating. | 'Their work' = 그래서 도덕적으로 힘들고 좌절스러움
+“People either feel that animals absolutely feel pain like we do so it’s a stupid question to research, or that they don’t feel pain like we do so it’s a stupid question to research,” Robyn Crook tells me. | 연구자의 말: 사람들은 양극단(느낀다 ↔ 안 느낀다)
+“There’s not a lot of middle ground where people are agnostic.” | 이어지는 말: 중간 입장은 거의 없음
+Fish exemplify the complicated nature of pain research. | 새 단락: 물고기 = 통증 연구의 복잡함을 보여 주는 예
+In the early 2000s, Lynne Sneddon, Mike Gentle, and Victoria Braithwaite injected trout in the lips with bee venom or acetic acid, the substance that gives vinegar its kick. | 실험: 송어 입술에 벌독·아세트산 주입
+Unlike fish that had been injected with saline, these unfortunate individuals began breathing heavily. | 'these unfortunate individuals' = 주입된 송어 → 거친 숨
+They stopped eating for several hours. | 행동 ② 몇 시간 먹지 않음
+They lay on the gravel bottoms of their tanks and rocked from side to side. | 행동 ③ 바닥에 누워 몸을 흔듦
+Some of them rubbed their lips against the gravel or the walls of their tanks. | 행동 ④ 입술을 문지름
+They no longer kept their distance from unfamiliar objects, as if something was distracting them, but this went away when they got a shot of morphine. | 행동 ⑤ 낯선 물체를 안 피함 → 모르핀으로 사라짐
+Sneddon and her colleagues couldn’t see how these actions, which persisted well after the injections, could be attributed to mere nociception. | 'these actions' = 그 행동들 → 단순 반응일 리 없음
+They saw animals in pain. | 결론: 'They' = 연구진 → 통증을 느끼는 동물로 봄
+
+## Theme 55 · p.136 | 본문 | 다윈: 도덕성 = 사회적 본능의 확장 → 공감에 주목 → 눈먼 펠리컨 → 까마귀 → 공감 = 토대 → 결론 인용(양심) → 정도의 차이 → 다윈이 옳았음 → 그러나 오래 묻힘
+Charles Darwin suggested that human morality is an extension of social instincts, and that human morality is continuous with similar social behavior in other animals. | 첫 문장: 다윈 — 도덕성 = 사회적 본능의 확장
+He paid special attention to the capacity for sympathy, which he believed was evidenced in a large number of animals. | 'He' = 다윈 → 특히 공감 능력에 주목
+Darwin tells a number of stories, including these about birds: “Capt. Stansbury found on a salt lake in Utah an old and completely blind pelican, which was very fat, and must have been well fed for a long time by his companions. | 공감의 증거 ①: 눈먼 펠리컨(새 이야기 인용 시작)
+Mr Blyth, as he informs me, saw Indian crows feeding two or three of their companions which were blind; and I have heard of a similar case with the domestic cock.” | 인용 이어짐 ②: 눈먼 동료를 먹이는 까마귀
+Darwin calls sympathy an essential part of, and indeed the foundation stone for, other social instincts. | 사례 뒤 평가: 공감 = 사회적 본능의 토대
+He concludes, “Any animal whatever, endowed with well-marked social instincts, the parental and filial affections being here included, would inevitably acquire a moral sense of conscience, as soon as its intellectual powers had become as well-developed, or nearly as well-developed, as in man.” | 'He concludes' = 결론 인용: 지능이 발달하면 양심
+Darwin emphasized that the differences between humans and other animals—in all realms, including the moral sentiments—were of degree, not of kind. | 새 단락: 핵심 — 차이는 정도이지 종류가 아님
+Darwin, it turns out, was quite right about the importance of the sentiments, about the role of sympathy, and about the evolutionary continuity between humans and other social animals. | 'it turns out' = 평가: 다윈이 옳았음
+Yet his ideas lay mostly dormant for more than a century. | 'Yet' = 옳았지만 한 세기 넘게 묻혀 있었음
