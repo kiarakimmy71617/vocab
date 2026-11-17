@@ -115,7 +115,7 @@ def import_xlsx(path, name):
     print(f'  제목: {title}')
     print('  지문: ' + (' / '.join(f'{(s or "구분 없음")[:40]} {c}' for s, c in secs) or '구분 없음'))
     if gaps or dup_n: print(f'  ! 번호 빠짐 {gaps[:10]} / 중복 {dup_n[:10]}')
-    if dup_en: print(f'  ! 같은 표제어 {dup_en[:10]}')
+    if dup_en: print(f'  ! 같은 표제어 {len(dup_en)}개 {dup_en[:10]}' + (' …' if len(dup_en) > 10 else ''))
     if twins: print(f'  · 뜻이 똑같은 단어(한→영에서 둘 다 정답 처리): {list(twins.values())[:10]}')
     if long_en: print(f'  · 8단어 이상이라 한→영 철자 문제에서 빠지는 표제어: {long_en[:10]}')
     if eq_en: print(f'  · (=…) 다른 표현도 한→영 정답으로 받는 표제어 {len(eq_en)}개: {eq_en[:6]}{" …" if len(eq_en) > 6 else ""}')

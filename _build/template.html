@@ -486,11 +486,14 @@ const PREP_WORD = /^(?:about|across|after|against|along|among|around|as|at|away|
       여러 단어면 앞 말 전체 — be로 시작하면 be는 남김(be linked to (=connected with) A → be connected with A, because of (=due to) A → due to A)
    ② 앞 말이 한 단어이거나, a·be·have로 시작하는데 y는 아니거나, 전치사·so·too로 시작하는데 y도 바뀌는 말도 전치사가 아니면
       바로 앞 한 단어만(a string (=series) of A, be accustomed (=used) to V-ing, as many (=much) as, at high (=great) speed)
-   ③ 아니면 앞 말 전체(think of (=view) A as B, have a responsibility (=be obliged) to V, close to (=nearly) A, as long as (=provided that) S V) */
+   ③ 아니면 앞 말 전체(think of (=view) A as B, have a responsibility (=be obliged) to V, close to (=nearly) A, as long as (=provided that) S V)
+   쉼표로 나열한 y는 하나씩 따로 본다(address (=deal with, tackle) → deal with · tackle 둘 다 정답) */
 function eqVariants(a) {
   const m = a.match(/\(\s*=\s*([^)]*)\)/);
   if (!m) return [a];
   const before = a.slice(0, m.index).trim(), after = a.slice(m.index + m[0].length).trim(), y = m[1].trim();
+  if (y.includes(',')) return y.split(/\s*,\s*/).filter(Boolean).flatMap(z => eqVariants(`${before} (=${z}) ${after}`.trim()))
+    .concat(eqVariants(`${before} ${y} ${after}`.trim()));
   const bw = before.split(/\s+/).filter(Boolean), yw = y.split(/\s+/).filter(Boolean);
   const last = bw[bw.length - 1] || '', swap = k => bw.slice(0, bw.length - k).concat(y, after).join(' ').trim();  // 앞 말의 끝 k단어를 y로
   const subs = [];

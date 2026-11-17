@@ -37,6 +37,8 @@ const RULES = [
   ['under most conditions (=circumstances)', ['under most conditions', 'under most circumstances'], ['most circumstances', 'under conditions']],
   ['close to (=nearly) A', ['close to A', 'nearly A', 'nearly'], ['close nearly A', 'close']],
   ['as long as (=provided that) S V', ['as long as', 'provided that', 'provided that S V'], ['as long provided that', 'provided']],
+  // 쉼표로 나열한 (=…)는 하나씩 (2026-11-17 송도고 10월 학평)
+  ['address (=deal with, tackle)', ['address', 'deal with', 'tackle', 'address (=deal with, tackle)'], ['deal with tackle', 'deal', 'address deal']],
 ];
 let nRule = 0;
 for (const [en, yes, no] of RULES) {
